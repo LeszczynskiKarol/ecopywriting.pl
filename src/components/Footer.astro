@@ -1,0 +1,162 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">
+          <span class="footer__logo-mark">e</span><span class="footer__logo-text">Copywriting</span>
+        </a>
+        <p class="footer__tagline">Od strategii treści po gotową publikację.</p>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Content</h4>
+          <a href="/uslugi/copywriting/">Copywriting</a>
+          <a href="/uslugi/seo-copywriting/">SEO Copywriting</a>
+          <a href="/uslugi/artykuly-blogowe/">Artykuły blogowe</a>
+          <a href="/uslugi/teksty-na-strone/">Teksty na stronę</a>
+          <a href="/uslugi/email-marketing/">Email marketing</a>
+          <a href="/uslugi/strategia-content-marketingowa/">Strategia</a>
+        </div>
+
+        <div class="footer__col">
+          <h4>Publikacje</h4>
+          <a href="/uslugi/ebooki/">Ebooki</a>
+          <a href="/uslugi/white-papers/">White papers</a>
+          <a href="/uslugi/katalogi-broszury/">Katalogi i broszury</a>
+          <a href="/uslugi/materialy-szkoleniowe/">Materiały szkoleniowe</a>
+          <a href="/uslugi/prezentacje/">Prezentacje</a>
+          <a href="/uslugi/dokumentacja-techniczna/">Dokumentacja</a>
+        </div>
+
+        <div class="footer__col">
+          <h4>Firma</h4>
+          <a href="/o-nas/">O nas</a>
+          <a href="/portfolio/">Portfolio</a>
+          <a href="/blog/">Blog</a>
+          <a href="/cennik/">Cennik</a>
+          <a href="/kontakt/">Kontakt</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {year} eCopywriting.pl</span>
+      <div class="footer__legal">
+        <a href="/polityka-prywatnosci/">Polityka prywatności</a>
+        <a href="/regulamin/">Regulamin</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: var(--space-16) 0 var(--space-8);
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @media (max-width: 768px) {
+    .footer__top {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: var(--fw-semibold);
+    color: var(--white);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .footer__logo-mark {
+    color: var(--accent-light);
+    font-weight: var(--fw-bold);
+    font-style: italic;
+  }
+
+  .footer__tagline {
+    margin-top: var(--space-3);
+    font-size: var(--fs-sm);
+    color: rgba(255,255,255,0.4);
+    max-width: 220px;
+    line-height: var(--lh-relaxed);
+  }
+
+  .footer__cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  @media (max-width: 640px) {
+    .footer__cols {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .footer__col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer__col a {
+    display: block;
+    font-size: var(--fs-sm);
+    color: rgba(255,255,255,0.6);
+    padding: 3px 0;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__col a:hover {
+    color: var(--white);
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-6);
+    font-size: var(--fs-xs);
+    color: rgba(255,255,255,0.3);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footer__legal a {
+    color: rgba(255,255,255,0.3);
+    transition: color var(--transition-fast);
+  }
+
+  .footer__legal a:hover {
+    color: rgba(255,255,255,0.6);
+  }
+</style>

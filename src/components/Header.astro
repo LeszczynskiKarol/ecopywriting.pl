@@ -1,0 +1,434 @@
+---
+---
+
+<header class="header" id="header">
+  <div class="header__inner container-wide">
+    <a href="/" class="header__logo" aria-label="eCopywriting — strona główna">
+      <span class="header__logo-mark">e</span><span class="header__logo-text">Copywriting</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Menu główne">
+      <ul class="header__menu">
+        <li class="header__item header__item--dropdown">
+          <button class="header__link" aria-expanded="false" aria-haspopup="true">
+            Usługi
+            <svg class="header__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </button>
+          <div class="header__dropdown">
+            <div class="header__dropdown-inner">
+              <div class="header__dropdown-col">
+                <span class="header__dropdown-label">Content & Copywriting</span>
+                <a href="/uslugi/copywriting/">Copywriting</a>
+                <a href="/uslugi/seo-copywriting/">SEO Copywriting</a>
+                <a href="/uslugi/artykuly-blogowe/">Artykuły blogowe</a>
+                <a href="/uslugi/teksty-na-strone/">Teksty na stronę</a>
+                <a href="/uslugi/opisy-produktow/">Opisy produktów</a>
+                <a href="/uslugi/email-marketing/">Email marketing</a>
+                <a href="/uslugi/social-media/">Social media</a>
+                <a href="/uslugi/strategia-content-marketingowa/">Strategia contentowa</a>
+                
+              </div>
+              <div class="header__dropdown-col">
+                <span class="header__dropdown-label">Publikacje & Materiały</span>
+                <a href="/uslugi/ebooki/">Ebooki</a>
+                <a href="/uslugi/white-papers/">White papers</a>
+                <a href="/uslugi/katalogi-broszury/">Katalogi i broszury</a>
+                <a href="/uslugi/materialy-szkoleniowe/">Materiały szkoleniowe</a>
+                <a href="/uslugi/prezentacje/">Prezentacje</a>
+                <a href="/uslugi/dokumentacja-techniczna/">Dokumentacja techniczna</a>
+                <a href="/uslugi/landing-page/">Landing page</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="header__item"><a href="/portfolio/" class="header__link">Portfolio</a></li>
+        <li class="header__item"><a href="/blog/" class="header__link">Blog</a></li>
+        <li class="header__item"><a href="/cennik/" class="header__link">Cennik</a></li>
+      </ul>
+    </nav>
+
+    <a href="/kontakt/" class="header__cta">Kontakt</a>
+
+    <button class="header__burger" aria-label="Otwórz menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobile-nav" hidden>
+  <nav aria-label="Menu mobilne">
+    <ul class="mobile-nav__menu">
+      <li>
+        <button class="mobile-nav__toggle" aria-expanded="false">Usługi</button>
+        <div class="mobile-nav__sub" hidden>
+          <span class="mobile-nav__label">Content & Copywriting</span>
+          <a href="/uslugi/copywriting/">Copywriting</a>
+          <a href="/uslugi/seo-copywriting/">SEO Copywriting</a>
+          <a href="/uslugi/artykuly-blogowe/">Artykuły blogowe</a>
+          <a href="/uslugi/teksty-na-strone/">Teksty na stronę</a>
+          <a href="/uslugi/opisy-produktow/">Opisy produktów</a>
+          <a href="/uslugi/email-marketing/">Email marketing</a>
+          <a href="/uslugi/social-media/">Social media</a>
+          <a href="/uslugi/strategia-content-marketingowa/">Strategia contentowa</a>
+          
+          <span class="mobile-nav__label">Publikacje & Materiały</span>
+          <a href="/uslugi/ebooki/">Ebooki</a>
+          <a href="/uslugi/white-papers/">White papers</a>
+          <a href="/uslugi/katalogi-broszury/">Katalogi i broszury</a>
+          <a href="/uslugi/materialy-szkoleniowe/">Materiały szkoleniowe</a>
+          <a href="/uslugi/prezentacje/">Prezentacje</a>
+          <a href="/uslugi/dokumentacja-techniczna/">Dokumentacja techniczna</a>
+          <a href="/uslugi/landing-page/">Landing page</a>
+        </div>
+      </li>
+      <li><a href="/portfolio/">Portfolio</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cennik/">Cennik</a></li>
+      <li><a href="/kontakt/" class="mobile-nav__cta">Kontakt</a></li>
+    </ul>
+  </nav>
+</div>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    header.classList.toggle('header--scrolled', y > 60);
+    header.classList.toggle('header--hidden', y > 400 && y > lastScroll);
+    lastScroll = y;
+  });
+
+  // Desktop dropdown
+  const dropdownBtn = document.querySelector('.header__item--dropdown > .header__link');
+  const dropdownItem = document.querySelector('.header__item--dropdown');
+  if (dropdownBtn && dropdownItem) {
+    dropdownBtn.addEventListener('click', () => {
+      const expanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
+      dropdownBtn.setAttribute('aria-expanded', String(!expanded));
+      dropdownItem.classList.toggle('open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdownItem.contains(e.target)) {
+        dropdownBtn.setAttribute('aria-expanded', 'false');
+        dropdownItem.classList.remove('open');
+      }
+    });
+  }
+
+  // Mobile menu
+  const burger = document.querySelector('.header__burger');
+  const mobileNav = document.getElementById('mobile-nav');
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    burger.classList.toggle('active');
+    if (open) {
+      mobileNav.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    } else {
+      mobileNav.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  // Mobile sub-toggle
+  document.querySelectorAll('.mobile-nav__toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sub = btn.nextElementSibling;
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) sub.setAttribute('hidden', '');
+      else sub.removeAttribute('hidden');
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .header--scrolled {
+    background: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--rule-light);
+  }
+
+  .header--hidden {
+    transform: translateY(-100%);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  /* Logo */
+  .header__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .header__logo-mark {
+    color: var(--accent);
+    font-weight: var(--fw-bold);
+    font-style: italic;
+  }
+
+  /* Nav */
+  .header__nav {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .header__nav { display: block; }
+  }
+
+  .header__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .header__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--ink-soft);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background var(--transition-fast);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .header__link:hover {
+    color: var(--ink);
+    background: var(--paper-warm);
+  }
+
+  .header__chevron {
+    transition: transform var(--transition-fast);
+  }
+
+  .header__item--dropdown.open .header__chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Dropdown */
+  .header__item--dropdown {
+    position: relative;
+  }
+
+  .header__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 100;
+  }
+
+  .header__item--dropdown.open .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .header__dropdown-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    background: var(--white);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-6) var(--space-8);
+    box-shadow: var(--shadow-lg);
+    min-width: 480px;
+  }
+
+  .header__dropdown-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .header__dropdown-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .header__dropdown-col a {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    padding: 5px 8px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+  }
+
+  .header__dropdown-col a:hover {
+    color: var(--ink);
+    background: var(--paper-warm);
+  }
+
+  /* CTA */
+  .header__cta {
+    display: none;
+    padding: 8px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+  }
+
+  @media (min-width: 900px) {
+    .header__cta { display: inline-flex; }
+  }
+
+  .header__cta:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  /* Burger */
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  @media (min-width: 900px) {
+    .header__burger { display: none; }
+  }
+
+  .header__burger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .header__burger.active span:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .header__burger.active span:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  /* Mobile Nav */
+  .mobile-nav {
+    position: fixed;
+    inset: 0;
+    top: 72px;
+    z-index: 999;
+    background: var(--paper);
+    overflow-y: auto;
+    padding: var(--space-6) var(--gutter);
+  }
+
+  .mobile-nav[hidden] { display: none; }
+
+  .mobile-nav__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-nav__menu > li > a,
+  .mobile-nav__toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--space-4) 0;
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-medium);
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .mobile-nav__sub {
+    padding: var(--space-2) 0 var(--space-4) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobile-nav__sub[hidden] { display: none; }
+
+  .mobile-nav__label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-1);
+  }
+
+  .mobile-nav__sub a {
+    display: block;
+    padding: 6px 0;
+    font-size: var(--fs-base);
+    color: var(--ink-muted);
+  }
+
+  .mobile-nav__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    background: var(--ink);
+    color: var(--paper) !important;
+    font-family: var(--font-body) !important;
+    font-size: var(--fs-base) !important;
+    font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm);
+    border: none !important;
+  }
+</style>
