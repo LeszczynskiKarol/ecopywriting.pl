@@ -1,0 +1,1176 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje artykuł blogowy?',
+    a: 'Cena zależy od długości, specjalizacji tematu i głębokości researchu. Standardowy artykuł blogowy (1000–1500 słów) z optymalizacją SEO to 500–1000 zł. Artykuł ekspercki z pogłębionym researchem (2000–3000+ słów) to 1000–2500 zł. Przy stałej współpracy i pakietach miesięcznych oferujemy lepsze stawki. Wycenę przygotowujemy w 24h.'
+  },
+  {
+    q: 'Jak często powinien publikować blog firmowy?',
+    a: 'Minimum to 2–4 artykuły miesięcznie, żeby Google widział regularną aktywność i indeksował stronę częściej. Optymalna częstotliwość zależy od branży i konkurencji — dla większości firm B2B to 4–8 artykułów miesięcznie, dla e-commerce i mediów nawet 12–20. Ważniejsza od częstotliwości jest systematyczność i jakość — lepiej 4 solidne artykuły niż 12 słabych.'
+  },
+  {
+    q: 'Czy piszecie artykuły w każdej branży?',
+    a: 'Mamy doświadczenie w ponad 30 branżach — od technologii, SaaS i fintech, przez e-commerce, medycynę i prawo, po nieruchomości, edukację i produkcję. Przy bardziej specjalistycznych tematach przeprowadzamy wywiady z ekspertami z Twojego zespołu lub współpracujemy z branżowymi konsultantami. Dzięki temu tekst jest zarówno merytorycznie bezbłędny, jak i zoptymalizowany pod SEO.'
+  },
+  {
+    q: 'Czy zajmujecie się też strategią bloga, czy tylko pisaniem?',
+    a: 'Jedno i drugie. Możemy napisać pojedynczy artykuł na podstawie Twojego tematu, ale najlepsze efekty daje współpraca strategiczna — audyt obecnych treści, research fraz, content plan z priorytetyzacją, kalendarz publikacji i systematyczne pisanie. Strategia pozwala budować topical authority zamiast publikować przypadkowe artykuły.'
+  },
+  {
+    q: 'Czy artykuły są gotowe do publikacji, czy wymagają dodatkowej pracy?',
+    a: 'Dostarczamy artykuły gotowe do publikacji — zredagowane, skorygowane, z optymalizacją SEO (nagłówki, meta tagi, linkowanie wewnętrzne). Format dostawy ustalamy: Google Docs, Markdown, bezpośrednio w Twoim CMS lub jako gotowa strona HTML. Możemy też wdrożyć artykuły na stronę — nasz zespół programistów obsługuje WordPress, Webflow, Astro i inne CMS-y.'
+  },
+  {
+    q: 'Po jakim czasie blog zacznie generować ruch?',
+    a: 'Pierwsze efekty (indeksacja, początkowe pozycje) widać po 2–4 tygodniach od publikacji. Stabilny ruch organiczny z bloga buduje się w ciągu 3–6 miesięcy systematycznej pracy. Blog to inwestycja z compound interest — artykuł napisany dziś może generować ruch przez lata. Dlatego im wcześniej zaczniesz, tym szybciej zobaczysz efekt kuli śnieżnej.'
+  },
+  {
+    q: 'Czy mogę zamówić jeden artykuł próbny?',
+    a: 'Tak. Dla nowych klientów oferujemy możliwość zamówienia jednego artykułu próbnego, który pozwoli ocenić nasz styl, jakość researchu i dopasowanie do tonu Twojej marki. Na tej podstawie decydujesz o dalszej współpracy — bez zobowiązań i bez ryzyka.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/#service",
+      "name": "Artykuły blogowe",
+      "description": "Profesjonalne artykuły blogowe dla firm. Eksperckie treści budujące autorytet marki, generujące ruch organiczny i wspierające sprzedaż. Research, copywriting, redakcja, SEO, publikacja.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Blog writing",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/",
+      "name": "Artykuły Blogowe — Eksperckie Treści dla Firm | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne artykuły blogowe dla firm. Eksperckie treści SEO budujące autorytet i generujące ruch organiczny. Od strategii po publikację. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Artykuły blogowe", "item": "https://www.ecopywriting.pl/uslugi/artykuly-blogowe/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Article types ──
+const articleTypes = [
+  {
+    title: 'Artykuły poradnikowe',
+    desc: 'How-to guides, tutoriale, instrukcje krok po kroku. Treści odpowiadające na konkretne pytania Twoich klientów — „jak zrobić X", „jak wybrać Y", „jak rozwiązać Z". Najskuteczniejszy format do pozyskiwania ruchu informacyjnego i budowania zaufania.',
+    tag: 'Najwyższy potencjał SEO'
+  },
+  {
+    title: 'Artykuły eksperckie i branżowe',
+    desc: 'Pogłębione analizy trendów, komentarze rynkowe, opinie eksperckie. Treści budujące pozycję thought leadera w branży. Oparte na danych, researchu i realnym doświadczeniu — nie na ogólnikach z pierwszej strony Google.',
+    tag: 'Budowanie autorytetu'
+  },
+  {
+    title: 'Listicle i zestawienia',
+    desc: '„Top 10 narzędzi do…", „7 błędów, które…", „5 sposobów na…". Format o najwyższym potencjale viralowym i świetnych wskaźnikach klikalności w SERP. Łatwy do skanowania, chętnie udostępniany, zoptymalizowany pod featured snippets.',
+    tag: 'Wysoki CTR w SERP'
+  },
+  {
+    title: 'Case studies i success stories',
+    desc: 'Artykuły pokazujące realne efekty — Twoje lub Twoich klientów. Konkretne liczby, kontekst, proces, rezultat. Format budujący social proof i wspierający sprzedaż na etapie decyzji zakupowej.',
+    tag: 'Wspieranie sprzedaży'
+  },
+  {
+    title: 'Ultimate guides i pillar content',
+    desc: 'Rozbudowane, kompleksowe przewodniki (3000–5000+ słów) będące filarami strategii content SEO. Budują topical authority, przyciągają linki zewnętrzne i stanowią hub dla powiązanych artykułów w content clusterze.',
+    tag: 'Topical authority'
+  },
+  {
+    title: 'Artykuły newsowe i aktualizacje',
+    desc: 'Komentarze do zmian w branży, nowych regulacji, trendów rynkowych. Szybka reakcja na bieżące wydarzenia buduje wizerunek marki, która trzyma rękę na pulsie. Świetne do dystrybucji w social media i newsletterach.',
+    tag: 'Aktualność i zasięg'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Strategia i research',
+    desc: 'Audyt obecnego bloga, analiza konkurencji, research fraz kluczowych z podziałem na intencje. Tworzymy content plan — lista tematów z priorytetami, frazami docelowymi i rekomendowanymi formatami. Plan, który buduje topical authority, nie przypadkową kolekcję tekstów.'
+  },
+  {
+    num: '02',
+    title: 'Brief i outline',
+    desc: 'Dla każdego artykułu przygotowujemy szczegółowy outline — struktura nagłówków, kluczowe punkty do pokrycia, frazy do uwzględnienia, rekomendowana długość. Outline do akceptacji przed pisaniem, żeby uniknąć niespodzianek.'
+  },
+  {
+    num: '03',
+    title: 'Pisanie',
+    desc: 'Artykuł pisze doświadczony copywriter specjalizujący się w Twojej branży. Tekst powstaje w oparciu o zatwierdzony outline, dane z researchu i ton Twojej marki. Wykorzystujemy AI do przyspieszenia procesu, ale finalny tekst to zawsze praca człowieka.'
+  },
+  {
+    num: '04',
+    title: 'Redakcja i optymalizacja',
+    desc: 'Tekst przechodzi redakcję merytoryczną i korektę językową. Optymalizujemy pod SEO — nagłówki, meta tagi, linkowanie wewnętrzne, czytelność, długość. Sprawdzamy zgodność z briefem, ton i spójność z innymi treściami na blogu.'
+  },
+  {
+    num: '05',
+    title: 'Publikacja i dystrybucja',
+    desc: 'Dostarczamy gotowy artykuł w ustalonym formacie lub wdrażamy bezpośrednio w CMS. Na życzenie przygotowujemy warianty do dystrybucji: skrót do newslettera, posty na social media, infografiki. Artykuł gotowy do pracy od momentu publikacji.'
+  }
+];
+
+// ── Why blog = ROI ──
+const roiPoints = [
+  {
+    stat: '67%',
+    label: 'więcej leadów',
+    desc: 'generują firmy, które prowadzą blog, w porównaniu do firm bez bloga (wg DemandMetric). Blog to nie koszt — to kanał pozyskiwania klientów.'
+  },
+  {
+    stat: '3×',
+    label: 'tańszy lead',
+    desc: 'z content marketingu w porównaniu do płatnych kampanii (wg Kapost). Artykuł napisany raz generuje ruch przez miesiące i lata — reklama przestaje działać, gdy wyłączysz budżet.'
+  },
+  {
+    stat: '434%',
+    label: 'więcej stron w indexie',
+    desc: 'mają firmy z regularnym blogiem (wg TechClient). Więcej zaindeksowanych stron to więcej punktów wejścia z Google — i więcej szans na konwersję.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Od strategii po publikację',
+    desc: 'Nie piszemy losowych artykułów. Zaczynamy od strategii — research fraz, analiza konkurencji, content plan z priorytetami. Każdy artykuł ma swoje miejsce w większej układance budującej Twoją widoczność i autorytet.'
+  },
+  {
+    title: 'SEO w każdym tekście',
+    desc: 'Każdy artykuł blogowy jest natywnie zoptymalizowany pod wyszukiwarki — research fraz, struktura nagłówków, meta tagi, linkowanie wewnętrzne. Nie dlatego, że to „extra" — ale dlatego, że artykuł bez SEO to artykuł, którego nikt nie znajdzie.'
+  },
+  {
+    title: 'Skalowalne procesy',
+    desc: 'Potrzebujesz 4 artykuły miesięcznie? Albo 40? Nasze procesy i własne narzędzia AI pozwalają skalować produkcję bez utraty jakości. AI wspiera research i drafting, doświadczony copywriter finalizuje każdy tekst.'
+  },
+  {
+    title: 'Blog → Lead magnet pipeline',
+    desc: 'Artykuły blogowe to dopiero początek. Najlepsze treści możemy przekształcić w ebooki, white papers i lead magnety — z profesjonalnym składem i layoutem. Jeden content, wiele formatów, maksymalny zwrot z inwestycji.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'SEO Copywriting', href: '/uslugi/seo-copywriting/', desc: 'Zaawansowana optymalizacja treści z researchem fraz i analizą intencji' },
+  { title: 'Strategia contentowa', href: '/uslugi/strategia-content-marketingowa/', desc: 'Audyt treści, kalendarz publikacji, plan budujący topical authority' },
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Przekształć najlepsze artykuły w profesjonalną publikację z layoutem' },
+  { title: 'Email marketing', href: '/uslugi/email-marketing/', desc: 'Dystrybucja treści blogowych w newsletterach i sekwencjach mailowych' }
+];
+---
+
+<BaseLayout
+  title="Artykuły Blogowe — Eksperckie Treści dla Firm | eCopywriting.pl"
+  description="Profesjonalne artykuły blogowe dla firm. Eksperckie treści SEO budujące autorytet marki i generujące ruch organiczny. Od strategii i researchu po pisanie, redakcję i publikację. Wycena w 24h."
+  keywords="artykuły blogowe, pisanie artykułów, blog firmowy, prowadzenie bloga firmowego, artykuły eksperckie, treści blogowe, artykuły seo, copywriting blog"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/artykuly-blogowe/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Artykuły blogowe</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true">
+      <div class="srv-hero__grain"></div>
+      <div class="srv-hero__gradient"></div>
+    </div>
+
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge">
+        <span class="srv-hero__badge-dot"></span>
+        Content & Copywriting
+      </div>
+
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Artykuły blogowe, które<br>
+        <em>budują ruch i&nbsp;autorytet</em>
+      </h1>
+
+      <p class="srv-hero__subtitle">
+        Eksperckie treści dla firm, które chcą dominować swoją niszę w&nbsp;Google.
+        Piszemy artykuły oparte na researchu, zoptymalizowane pod SEO
+        i&nbsp;gotowe do publikacji — nie surowe drafty w&nbsp;Google Docs.
+      </p>
+
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#formaty" class="srv-hero__cta-secondary">
+          Formaty artykułów
+        </a>
+      </div>
+
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item">
+          <strong>Research + SEO</strong> w każdym tekście
+        </div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item">
+          <strong>Od strategii</strong> po publikację
+        </div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item">
+          <strong>Artykuł próbny</strong> bez zobowiązań
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ROI — Why blog matters
+       ═══════════════════════════════════════ -->
+  <section class="srv-roi" aria-label="Dlaczego blog się opłaca">
+    <div class="container">
+      <div class="srv-roi__grid reveal">
+        {roiPoints.map((r) => (
+          <div class="srv-roi__card">
+            <div class="srv-roi__stat">
+              <span class="srv-roi__stat-value">{r.stat}</span>
+              <span class="srv-roi__stat-label">{r.label}</span>
+            </div>
+            <p class="srv-roi__desc">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ARTICLE TYPES
+       ═══════════════════════════════════════ -->
+  <section class="srv-types" id="formaty" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Formaty artykułów"
+          title="Jakie artykuły blogowe piszemy?"
+          subtitle="Każdy format ma inne zastosowanie i&nbsp;inny potencjał. Dobieramy typ artykułu do celu — ruch organiczny, budowanie autorytetu, wsparcie sprzedaży czy viralowy zasięg."
+        />
+      </div>
+
+      <div class="srv-types__grid">
+        {articleTypes.map((s, i) => (
+          <div class="srv-type reveal" style={`--delay: ${i * 0.05}s`}>
+            <div class="srv-type__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+            <div class="srv-type__content">
+              <div class="srv-type__header">
+                <h3 class="srv-type__title">{s.title}</h3>
+                <span class="srv-type__tag">{s.tag}</span>
+              </div>
+              <p class="srv-type__desc">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROCESS
+       ═══════════════════════════════════════ -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od researchu po gotowy artykuł"
+          subtitle="Przejrzysty proces, w&nbsp;którym na każdym etapie wiesz, co&nbsp;się dzieje. Outline do akceptacji przed pisaniem, dwie rundy poprawek w&nbsp;cenie, artykuł gotowy do publikacji."
+          inverted
+        />
+      </div>
+
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       COMPOUND — Blog as investment
+       ═══════════════════════════════════════ -->
+  <section class="srv-compound" id="inwestycja" aria-labelledby="srv-compound-title">
+    <div class="container">
+      <div class="srv-compound__inner reveal">
+        <span class="srv-compound__label">Blog = compound interest</span>
+        <h2 id="srv-compound-title" class="srv-compound__title">
+          Artykuł napisany dziś<br>generuje ruch <em>latami</em>
+        </h2>
+        <div class="srv-compound__body">
+          <p>
+            Reklama działa, dopóki płacisz. Artykuł blogowy pracuje na Ciebie miesiącami i&nbsp;latami po publikacji.
+            To jedyny kanał marketingowy, który działa jak procent składany — każdy nowy artykuł buduje na fundamencie
+            poprzednich, wzmacniając autorytet domeny i&nbsp;generując coraz więcej ruchu organicznego.
+          </p>
+          <p>
+            Firma z&nbsp;50 artykułami SEO ma 50 punktów wejścia z&nbsp;Google. Firma z&nbsp;200 artykułami
+            ma 200 punktów wejścia — i&nbsp;wielokrotnie silniejszy autorytet domenowy. Im wcześniej zaczniesz
+            budować blog, tym szybciej zobaczysz efekt kuli śnieżnej.
+          </p>
+        </div>
+        <div class="srv-compound__visual" aria-hidden="true">
+          <div class="srv-compound__bar" style="--h: 15%"><span>mies. 1</span></div>
+          <div class="srv-compound__bar" style="--h: 22%"><span>mies. 3</span></div>
+          <div class="srv-compound__bar" style="--h: 35%"><span>mies. 6</span></div>
+          <div class="srv-compound__bar" style="--h: 55%"><span>mies. 9</span></div>
+          <div class="srv-compound__bar" style="--h: 78%"><span>mies. 12</span></div>
+          <div class="srv-compound__bar srv-compound__bar--accent" style="--h: 100%"><span>mies. 18</span></div>
+        </div>
+        <p class="srv-compound__caption">Ilustracja: typowa krzywa wzrostu ruchu organicznego przy systematycznym publikowaniu</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BENEFITS
+       ═══════════════════════════════════════ -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Dlaczego zlecić artykuły blogowe nam?"
+          subtitle="Na rynku nie brakuje copywriterów. Oto dlaczego warto pracować z&nbsp;agencją, która łączy strategię, copywriting, SEO i&nbsp;technologię."
+        />
+      </div>
+
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PACKAGES hint
+       ═══════════════════════════════════════ -->
+  <section class="srv-packages" aria-label="Modele współpracy">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Modele współpracy"
+          title="Elastycznie — od jednego artykułu po stałą obsługę"
+          centered
+        />
+      </div>
+
+      <div class="srv-packages__grid reveal">
+        <div class="srv-packages__card">
+          <h3>Pojedynczy artykuł</h3>
+          <p>Potrzebujesz jednego tekstu na konkretny temat? Napisz do nas z briefem — dostarczymy gotowy artykuł z SEO i redakcją. Idealny na start lub jako artykuł próbny.</p>
+          <span class="srv-packages__tag">Od 500 zł</span>
+        </div>
+        <div class="srv-packages__card srv-packages__card--featured">
+          <div class="srv-packages__card-badge">Najlepsze efekty</div>
+          <h3>Stała współpraca</h3>
+          <p>Regularny wolumen artykułów, strategia, content plan, monitoring wyników. Model, który buduje compound interest i przynosi najlepszy ROI. Minimalny okres: 3 miesiące.</p>
+          <span class="srv-packages__tag">Pakiety miesięczne</span>
+        </div>
+        <div class="srv-packages__card">
+          <h3>Projekt jednorazowy</h3>
+          <p>Seria artykułów na konkretny cel — launch produktu, content cluster, kampania sezonowa. Zamknięty zakres, ustalony harmonogram, mierzalny rezultat.</p>
+          <span class="srv-packages__tag">Wycena indywidualna</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="FAQ"
+          title="Najczęściej zadawane pytania"
+          subtitle="Odpowiedzi na pytania o&nbsp;artykuły blogowe, które słyszymy najczęściej."
+        />
+      </div>
+
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED SERVICES -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" />
+      </div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3>
+            <p>{r.desc}</p>
+            <span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz artykułów, które&nbsp;rankują?</h2>
+        <p class="srv-cta__desc">
+          Opisz swój projekt lub branżę — odpowiemy z&nbsp;wyceną, propozycją tematów
+          i&nbsp;wstępnym content planem w&nbsp;ciągu 24&nbsp;godzin. Bez zobowiązań.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów artykuły blogowe
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o artykułach blogowych">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Artykuły blogowe dla firm — treści, które budują widoczność i&nbsp;autorytet</h2>
+
+        <p>
+          <strong>Artykuły blogowe</strong> to fundament skutecznego content marketingu. Profesjonalny <strong>blog
+          firmowy</strong> generuje ruch organiczny, buduje autorytet marki w&nbsp;branży, edukuje potencjalnych
+          klientów i&nbsp;wspiera proces sprzedaży na każdym etapie lejka marketingowego. Dobrze prowadzony blog
+          to najtańsze źródło leadów w&nbsp;długim terminie — artykuł napisany raz generuje ruch przez miesiące i&nbsp;lata.
+        </p>
+
+        <h3>Dlaczego warto zlecić pisanie artykułów profesjonalistom?</h3>
+
+        <p>
+          <strong>Pisanie artykułów</strong> blogowych to więcej niż tworzenie tekstu. Skuteczny artykuł wymaga
+          researchu fraz kluczowych, analizy intencji wyszukiwania, przemyślanej struktury nagłówków, optymalizacji
+          SEO, linkowania wewnętrznego i&nbsp;dystrybucji. Profesjonalna agencja łączy te kompetencje w&nbsp;jednym
+          procesie — od strategii i&nbsp;planowania, przez <strong>pisanie artykułów</strong>, redakcję i&nbsp;korektę,
+          po publikację i&nbsp;monitoring efektów.
+        </p>
+
+        <h3>Prowadzenie bloga firmowego z eCopywriting.pl</h3>
+
+        <p>
+          <strong>Prowadzenie bloga firmowego</strong> z&nbsp;naszą agencją to nie tylko <strong>pisanie artykułów</strong>
+          na zadane tematy. To strategiczne podejście do budowania widoczności — research fraz, content plan,
+          priorytetyzacja tematów, systematyczne publikowanie i&nbsp;monitoring wyników. Nasze <strong>artykuły
+          blogowe</strong> są oparte na danych, zoptymalizowane pod wyszukiwarki i&nbsp;gotowe do publikacji.
+          A&nbsp;jeśli potrzebujesz więcej niż tekst — możemy przekształcić najlepsze artykuły w&nbsp;ebooki, white
+          papers i&nbsp;lead magnety z&nbsp;profesjonalnym składem i&nbsp;layoutem.
+        </p>
+
+        <h3>Komu powierzyć pisanie artykułów na bloga?</h3>
+
+        <p>
+          Profesjonalne <strong>artykuły blogowe</strong> są niezbędne dla firm, które chcą: budować widoczność
+          organiczną w&nbsp;Google, pozycjonować się jako eksperci w&nbsp;branży, generować leady bez ciągłego
+          zwiększania budżetu reklamowego, edukować potencjalnych klientów i&nbsp;skracać cykl sprzedaży. Niezależnie
+          od branży — <strong>blog firmowy</strong> prowadzony strategicznie to inwestycja z&nbsp;rosnącym zwrotem.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════
+     BREADCRUMBS
+     ═══════════════════════════════════════ */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+
+  .breadcrumbs__list {
+    display: flex; align-items: center; gap: 0;
+    font-family: var(--font-mono); font-size: 0.68rem;
+    letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap;
+  }
+
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* ═══════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════ */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+
+  .srv-hero__gradient {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%);
+  }
+
+  .srv-hero__grain {
+    position: absolute; inset: 0; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .srv-hero__inner { position: relative; z-index: 1; }
+
+  .srv-hero__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards;
+  }
+
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+  .srv-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards;
+  }
+
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+
+  .srv-hero__subtitle {
+    font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 560px; margin-top: var(--space-5);
+    opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .srv-hero__actions {
+    display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+    margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards;
+  }
+
+  .srv-hero__cta-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 26px; background: var(--ink); color: var(--paper);
+    font-size: var(--fs-base); font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm); transition: all var(--transition-base);
+  }
+
+  .srv-hero__cta-primary:hover {
+    background: var(--accent); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(196,90,60,0.25);
+  }
+
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+
+  .srv-hero__cta-secondary {
+    font-weight: var(--fw-medium); color: var(--ink-muted);
+    border-bottom: 1px solid var(--rule); padding-bottom: 2px;
+    transition: all var(--transition-fast);
+  }
+
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+
+  .srv-hero__proof {
+    display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+    margin-top: var(--space-10); padding-top: var(--space-6);
+    border-top: 1px solid var(--rule-light);
+    opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards;
+  }
+
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+
+  @media (max-width: 640px) {
+    .srv-hero__proof-sep { display: none; }
+    .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  }
+
+  @keyframes srvFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══════════════════════════════════════
+     ROI NUMBERS
+     ═══════════════════════════════════════ */
+  .srv-roi {
+    padding: var(--space-12) 0;
+    background: var(--card-bg);
+    border-top: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .srv-roi__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .srv-roi__grid { grid-template-columns: 1fr; gap: var(--space-4); }
+  }
+
+  .srv-roi__card {
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .srv-roi__stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: var(--space-3);
+  }
+
+  .srv-roi__stat-value {
+    font-family: var(--font-display);
+    font-size: var(--fs-5xl);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .srv-roi__stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .srv-roi__desc {
+    font-size: var(--fs-sm);
+    line-height: var(--lh-relaxed);
+    color: var(--ink-muted);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* ═══════════════════════════════════════
+     ARTICLE TYPES
+     ═══════════════════════════════════════ */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: flex; flex-direction: column; gap: 0; }
+
+  .srv-type {
+    display: grid; grid-template-columns: 64px 1fr; gap: var(--space-6);
+    padding: var(--space-8) 0; border-bottom: 1px solid var(--rule-light);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-type:first-child { border-top: 1px solid var(--rule); }
+
+  @media (max-width: 640px) {
+    .srv-type { grid-template-columns: 40px 1fr; gap: var(--space-4); padding: var(--space-6) 0; }
+  }
+
+  .srv-type__num {
+    font-family: var(--font-display); font-size: var(--fs-3xl);
+    font-weight: var(--fw-light); color: var(--rule);
+    text-align: right; line-height: 1; padding-top: 0.15rem;
+  }
+
+  .srv-type__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2);
+  }
+
+  .srv-type__title {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    line-height: var(--lh-snug);
+  }
+
+  .srv-type__tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .srv-type__desc {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 640px;
+  }
+
+  /* ═══════════════════════════════════════
+     PROCESS
+     ═══════════════════════════════════════ */
+  .srv-process {
+    padding: var(--space-24) 0; background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+
+  .srv-process::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .srv-process__steps {
+    display: flex; flex-direction: column; gap: 0;
+    position: relative; max-width: 720px;
+  }
+
+  .srv-process__step {
+    display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5);
+    padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .srv-process__step:last-child { border-bottom: none; }
+
+  .srv-process__step-num {
+    font-family: var(--font-mono); font-size: var(--fs-sm);
+    color: var(--accent-light); letter-spacing: 0.06em;
+    padding-top: 3px; text-align: right;
+  }
+
+  .srv-process__step-content h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2);
+  }
+
+  .srv-process__step-content p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: rgba(255,255,255,0.5); max-width: 580px;
+  }
+
+  /* ═══════════════════════════════════════
+     COMPOUND INTEREST
+     ═══════════════════════════════════════ */
+  .srv-compound {
+    padding: var(--space-24) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .srv-compound__inner { max-width: 760px; }
+
+  .srv-compound__label {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 0.68rem;
+    font-weight: var(--fw-medium); letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: var(--space-4);
+  }
+
+  .srv-compound__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+  }
+
+  .srv-compound__title em { font-style: italic; color: var(--accent); }
+
+  .srv-compound__body p {
+    font-size: var(--fs-sm);
+    line-height: var(--lh-relaxed);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-4);
+    max-width: 620px;
+  }
+
+  .srv-compound__visual {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-3);
+    height: 180px;
+    margin-top: var(--space-10);
+    padding-bottom: var(--space-6);
+    border-bottom: 2px solid var(--rule-light);
+  }
+
+  .srv-compound__bar {
+    flex: 1;
+    height: var(--h);
+    background: var(--rule-light);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 0;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .srv-compound__bar span {
+    position: absolute;
+    bottom: -28px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  .srv-compound__bar--accent {
+    background: var(--accent);
+  }
+
+  .srv-compound__caption {
+    margin-top: var(--space-10);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+    font-style: italic;
+  }
+
+  /* ═══════════════════════════════════════
+     BENEFITS
+     ═══════════════════════════════════════ */
+  .srv-benefits { padding: var(--space-24) 0; }
+
+  .srv-benefits__grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6);
+  }
+
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+
+  .srv-benefit {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-8);
+    position: relative; overflow: hidden;
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .srv-benefit__accent {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.5s ease;
+  }
+
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+
+  .srv-benefit h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-3); line-height: var(--lh-snug);
+  }
+
+  .srv-benefit p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted);
+  }
+
+  /* ═══════════════════════════════════════
+     PACKAGES
+     ═══════════════════════════════════════ */
+  .srv-packages {
+    padding: var(--space-20) 0;
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .srv-packages__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .srv-packages__grid { grid-template-columns: 1fr; max-width: 400px; }
+  }
+
+  .srv-packages__card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+    position: relative;
+    transition: border-color var(--transition-base), transform var(--transition-base);
+  }
+
+  .srv-packages__card:hover {
+    border-color: var(--ink-faint);
+    transform: translateY(-3px);
+  }
+
+  .srv-packages__card--featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .srv-packages__card--featured:hover {
+    border-color: var(--accent);
+  }
+
+  .srv-packages__card-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    padding: 3px 12px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .srv-packages__card h3 {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .srv-packages__card p {
+    font-size: var(--fs-sm);
+    line-height: var(--lh-relaxed);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .srv-packages__tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: var(--fw-medium);
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  /* ═══════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════ */
+  .srv-faq {
+    padding: var(--space-24) 0;
+    background: var(--card-bg);
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; gap: 0; }
+
+  .srv-faq__item {
+    border-bottom: 1px solid var(--rule-light);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+
+  .srv-faq__question {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer;
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    line-height: var(--lh-snug); transition: color var(--transition-fast);
+    list-style: none;
+  }
+
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+
+  .srv-faq__chevron {
+    flex-shrink: 0; color: var(--ink-faint);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+
+  .srv-faq__answer p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 620px;
+  }
+
+  /* ═══════════════════════════════════════
+     RELATED / CTA / SEO — reuse patterns
+     ═══════════════════════════════════════ */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+
+  .srv-related__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--rule-light);
+    border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden;
+  }
+
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+
+  .srv-related__card {
+    background: var(--card-bg); padding: var(--space-6);
+    text-decoration: none; transition: background var(--transition-base);
+    display: flex; flex-direction: column;
+  }
+
+  .srv-related__card:hover { background: var(--paper-warm); }
+
+  .srv-related__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-2); transition: color var(--transition-fast);
+  }
+
+  .srv-related__card:hover h3 { color: var(--accent); }
+
+  .srv-related__card p {
+    font-size: var(--fs-sm); color: var(--ink-muted);
+    line-height: var(--lh-relaxed); flex: 1;
+  }
+
+  .srv-related__arrow {
+    display: inline-block; margin-top: var(--space-3);
+    color: var(--accent); font-size: var(--fs-lg);
+    opacity: 0; transform: translateX(-6px); transition: all 0.3s ease;
+  }
+
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  /* CTA */
+  .srv-cta {
+    padding: var(--space-24) 0; background: var(--paper);
+    position: relative; overflow: hidden;
+  }
+
+  .srv-cta__bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%);
+  }
+
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+
+  .srv-cta__title {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: var(--fw-semibold); line-height: var(--lh-tight);
+    color: var(--ink); margin-bottom: var(--space-4);
+  }
+
+  .srv-cta__desc {
+    font-size: var(--fs-base); color: var(--ink-muted);
+    line-height: var(--lh-relaxed); margin-bottom: var(--space-8);
+  }
+
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+
+  .srv-cta__button {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; background: var(--ink); color: var(--paper);
+    font-size: var(--fs-base); font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm); transition: all var(--transition-base);
+  }
+
+  .srv-cta__button:hover {
+    background: var(--accent); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(196,90,60,0.25);
+  }
+
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+
+  .srv-cta__email {
+    font-family: var(--font-mono); font-size: var(--fs-sm);
+    color: var(--ink-faint); transition: color var(--transition-fast);
+  }
+
+  .srv-cta__email:hover { color: var(--accent); }
+
+  /* SEO */
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+
+  .srv-seo__article h2 {
+    font-family: var(--font-display); font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink);
+  }
+
+  .srv-seo__article h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); margin-top: var(--space-10);
+    margin-bottom: var(--space-3); color: var(--ink);
+  }
+
+  .srv-seo__article p {
+    font-size: 0.95rem; line-height: var(--lh-relaxed);
+    color: var(--ink-muted); margin-bottom: var(--space-4);
+  }
+
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

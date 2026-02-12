@@ -1,0 +1,687 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje stworzenie materiałów szkoleniowych?',
+    a: 'Cena zależy od objętości, złożoności tematu i formatu. Krótki moduł szkoleniowy (10–20 stron, jeden temat) to 2000–5000 zł. Komplet materiałów do szkolenia (podręcznik + ćwiczenia + prezentacja, 40–80 stron) to 5000–12 000 zł. Pełny program szkoleniowy (wielomodułowy, 100–300+ stron, różne formaty) to 12 000–35 000 zł. W cenę wliczone: struktura dydaktyczna, pisanie, redakcja, projekt graficzny, skład i rendering.'
+  },
+  {
+    q: 'Jakie formaty materiałów szkoleniowych tworzycie?',
+    a: 'Tworzymy materiały w dowolnych formatach: podręczniki szkoleniowe (PDF/druk), zeszyty ćwiczeń (PDF z formularzami do wypełnienia), prezentacje (PowerPoint/Google Slides/PDF), karty pracy i checklisty, one-pagery i ściągi, materiały do LMS (SCORM-kompatybilne). Dobieramy format do metody szkoleniowej — inny materiał do szkolenia stacjonarnego, inny do e-learningu.'
+  },
+  {
+    q: 'Czy tworzycie materiały pod konkretną platformę LMS?',
+    a: 'Tak — dostosowujemy materiały do wymagań Twojego LMS (Moodle, Teachable, Thinkific, LearnDash i inne). Dostarczamy treści w formatach kompatybilnych z platformą — od prostych PDF po moduły z quizami i interaktywnymi elementami. Nasz zespół programistów może też pomóc z technicznym wdrożeniem na platformie.'
+  },
+  {
+    q: 'Czy piszecie materiały szkoleniowe od zera, czy potrzebujecie gotowe treści?',
+    a: 'Jedno i drugie. Możemy napisać materiały od zera — na podstawie briefu, rozmów z ekspertami merytorycznymi (SME) i własnego researchu. Możemy też przetworzyć istniejące materiały: uporządkować, zredagować, dodać strukturę dydaktyczną, zaprojektować i złożyć. Często najlepsze efekty daje połączenie — Twoja wiedza ekspercka + nasz warsztat dydaktyczny i redaktorski.'
+  },
+  {
+    q: 'Jak długo trwa stworzenie materiałów szkoleniowych?',
+    a: 'Pojedynczy moduł (10–20 stron) to 1–2 tygodnie. Komplet materiałów do szkolenia to 3–5 tygodni. Pełny program wielomodułowy to 6–12 tygodni. Czas zależy od: dostępności ekspertów merytorycznych, złożoności tematu, liczby formatów i rund akceptacji. Przy cyklicznych szkoleniach (onboarding, compliance) rekomendujemy stałą współpracę z kwartalną aktualizacją.'
+  },
+  {
+    q: 'Czy pomagacie z aktualizacją istniejących materiałów?',
+    a: 'Tak — przejmujemy istniejące materiały i aktualizujemy: nowe regulacje, zmienione procedury, odświeżony branding, dodatkowe moduły. Jeśli materiały są w złym stanie (niespójne, nieaktualne, amatorski skład), robimy redesign i restrukturyzację. Tworzymy modularną strukturę, która ułatwia przyszłe aktualizacje bez przerabiania całości.'
+  },
+  {
+    q: 'Dla jakich branż tworzycie materiały szkoleniowe?',
+    a: 'Pracujemy z firmami z różnych sektorów: IT i SaaS (onboarding produktowy, dokumentacja), finanse i bankowość (compliance, procedury), produkcja i przemysł (BHP, procedury operacyjne), HR (onboarding pracowników, szkolenia miękkie), sprzedaż (playbooki, metodologie), healthcare (procedury, certyfikacje). Format materiałów szkoleniowych sprawdza się wszędzie, gdzie wiedza musi być przekazana systematycznie i powtarzalnie.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/#service",
+      "name": "Materiały szkoleniowe",
+      "description": "Profesjonalne tworzenie materiałów szkoleniowych. Podręczniki, zeszyty ćwiczeń, prezentacje, karty pracy, materiały e-learningowe. Struktura dydaktyczna, copywriting, design, skład i rendering.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Training materials creation",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/",
+      "name": "Materiały Szkoleniowe — Tworzenie Materiałów Szkoleniowych na Zamówienie | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne tworzenie materiałów szkoleniowych. Podręczniki, ćwiczenia, prezentacje, e-learning. Struktura dydaktyczna, pisanie, design, skład. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Materiały szkoleniowe", "item": "https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Material types ──
+const materialTypes = [
+  {
+    title: 'Podręczniki szkoleniowe',
+    desc: 'Kompleksowe materiały do nauki — teoria, przykłady, case studies, podsumowania rozdziałów. Struktura modułowa z jasną progresją trudności. Od 20 do 300+ stron. Format do druku i/lub PDF.',
+    format: 'PDF / druk / EPUB',
+    icon: '📖'
+  },
+  {
+    title: 'Zeszyty ćwiczeń (workbooki)',
+    desc: 'Materiały do pracy samodzielnej lub warsztatowej — ćwiczenia, pytania refleksyjne, szablony, checklisty. PDF z interaktywnymi formularzami do wypełniania na ekranie lub drukowania. Uzupełnienie podręcznika.',
+    format: 'PDF interaktywny / druk',
+    icon: '✏️'
+  },
+  {
+    title: 'Prezentacje szkoleniowe',
+    desc: 'Slajdy do prowadzenia szkoleń stacjonarnych i online — speaker notes, struktura dydaktyczna, wizualizacje danych, ćwiczenia grupowe. PowerPoint, Google Slides lub PDF. Gotowe do użycia przez trenera.',
+    format: 'PPTX / Google Slides / PDF',
+    icon: '📊'
+  },
+  {
+    title: 'Materiały onboardingowe',
+    desc: 'Kompletne pakiety dla nowych pracowników lub klientów — welcome book, przewodnik po firmie/produkcie, FAQ, procedury, checklisty pierwszych dni/tygodni. Systematyzują onboarding i redukują czas wdrożenia.',
+    format: 'PDF / LMS / druk',
+    icon: '🚀'
+  },
+  {
+    title: 'Playbooki i SOP',
+    desc: 'Standardowe procedury operacyjne i playbooki sprzedażowe/marketingowe — step-by-step instrukcje, decision trees, scenariusze, skrypty. Dokumenty, które pozwalają skalować procesy bez utraty jakości.',
+    format: 'PDF / wiki / Notion',
+    icon: '📋'
+  },
+  {
+    title: 'Materiały e-learningowe',
+    desc: 'Treści do platform LMS — moduły tekstowe, quizy, scenariusze, skrypty do video. Kompatybilne z Moodle, Teachable, Thinkific i innymi. Struktura mikro-learningu: krótkie moduły, jasne cele, natychmiastowa weryfikacja.',
+    format: 'LMS / SCORM / HTML',
+    icon: '💻'
+  }
+];
+
+// ── Use cases / scenarios ──
+const useCases = [
+  {
+    scenario: 'Onboarding pracowników',
+    problem: 'Każdy nowy pracownik jest wdrażany inaczej, wiedza przekazywana ustnie, brak standardu',
+    solution: 'Welcome book + checklista pierwszych 90 dni + podręcznik produktowy + FAQ',
+    result: 'Skrócenie onboardingu o 40%, jednolity standard, samodzielność nowego pracownika szybciej'
+  },
+  {
+    scenario: 'Szkolenie produktowe',
+    problem: 'Handlowcy nie znają produktu, prezentacje nieaktualne, każdy sprzedaje po swojemu',
+    solution: 'Playbook sprzedażowy + karty produktowe + prezentacja + zeszyt ćwiczeń z obiekcjami',
+    result: 'Spójny przekaz, krótszy cykl sprzedaży, wyższa konwersja w rozmowach handlowych'
+  },
+  {
+    scenario: 'Compliance i regulacje',
+    problem: 'Zmieniające się regulacje, pracownicy nie znają procedur, audyty wykazują braki',
+    solution: 'Podręcznik compliance + checklisty + moduły e-learningowe z quizami + certyfikaty',
+    result: 'Zgodność z regulacjami, udokumentowane szkolenia, gotowość na audyty'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Analiza potrzeb i brief',
+    desc: 'Definiujemy: kto jest odbiorcą, co ma umieć po szkoleniu, jaki format i kanał dostarczenia. Analiza istniejących materiałów, rozmowy z ekspertami merytorycznymi (SME), identyfikacja luk wiedzy. Plan modułów i struktura dydaktyczna do akceptacji.'
+  },
+  {
+    num: '02',
+    title: 'Struktura dydaktyczna',
+    desc: 'Projektowanie architektury szkolenia — moduły, cele uczenia się, progresja trudności, metody weryfikacji. Każdy moduł: cel → teoria → przykład → ćwiczenie → podsumowanie. Instructional design, który angażuje i utrwala wiedzę, nie męczy ścianami tekstu.'
+  },
+  {
+    num: '03',
+    title: 'Pisanie i redakcja',
+    desc: 'Pisanie treści w języku zrozumiałym dla odbiorcy — nie żargon eksperta, a jasne wyjaśnienia z przykładami z życia. Dwuetapowa redakcja: merytoryczna (z SME) i językowa (klarowność, spójność, gramatyka). Ćwiczenia, pytania kontrolne, podsumowania.'
+  },
+  {
+    num: '04',
+    title: 'Design, skład i rendering',
+    desc: 'Projekt graficzny dopasowany do kontekstu (korporacyjny, edukacyjny, tech). Skład typograficzny z profesjonalnym DTP. Rendering do wybranych formatów: PDF (druk/ekran), PPTX, interaktywny PDF z formularzami, moduły LMS. Pliki źródłowe do przyszłych edycji.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Instructional design, nie tylko copywriting',
+    desc: 'Materiały szkoleniowe to nie „długi tekst na temat". Każdy moduł ma jasny cel uczenia się, strukturę dydaktyczną, ćwiczenia i weryfikację. Projektujemy doświadczenie edukacyjne — cel → teoria → przykład → praktyka → podsumowanie — nie ścianę tekstu z nagłówkami.'
+  },
+  {
+    title: 'Język ucznia, nie eksperta',
+    desc: 'Największy problem materiałów szkoleniowych pisanych przez ekspertów? Są pisane językiem eksperta. My piszemy językiem odbiorcy — jasne wyjaśnienia, analogie z życia, przykłady z kontekstu. Jeśli nowy pracownik nie zrozumie tekstu bez pomocy trenera — materiał jest zły.'
+  },
+  {
+    title: 'Full-stack: od briefu po gotowe materiały',
+    desc: 'Jeden zespół prowadzi projekt od analizy potrzeb po rendering — structure, pisanie, redakcja z ekspertami, design, skład, pliki gotowe do druku/LMS/prezentacji. Zero koordynacji między copywriterem, grafikiem i „kimś od PowerPointa".'
+  },
+  {
+    title: 'Modularność i aktualizacje',
+    desc: 'Projektujemy materiały modularnie — zmiana procedury nie wymaga przerabiania 200 stron, a podmianę jednego modułu. Pliki źródłowe w przejrzystej strukturze, naming convention, version control. Aktualizacja w godzinach, nie tygodniach.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Publikacje cyfrowe i lead magnety edukacyjne' },
+  { title: 'Prezentacje', href: '/uslugi/prezentacje/', desc: 'Slajdy do prezentacji i wystąpień' },
+  { title: 'Dokumentacja techniczna', href: '/uslugi/dokumentacja-techniczna/', desc: 'Dokumentacja produktowa i API' },
+  { title: 'Katalogi i broszury', href: '/uslugi/katalogi-broszury/', desc: 'Materiały drukowane i cyfrowe' }
+];
+---
+
+<BaseLayout
+  title="Materiały Szkoleniowe — Tworzenie Materiałów Szkoleniowych na Zamówienie | eCopywriting.pl"
+  description="Profesjonalne tworzenie materiałów szkoleniowych. Podręczniki, zeszyty ćwiczeń, prezentacje, playbooki, materiały onboardingowe i e-learningowe. Instructional design, copywriting, skład, rendering. Wycena w 24h."
+  keywords="materiały szkoleniowe, tworzenie materiałów szkoleniowych, materiały szkoleniowe na zamówienie, podręcznik szkoleniowy, materiały onboardingowe, materiały e-learningowe, playbook, SOP, zeszyt ćwiczeń"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/materialy-szkoleniowe/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Materiały szkoleniowe</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Szkolenia & E-learning</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Materiały szkoleniowe,<br>z&nbsp;których <em>ludzie się uczą</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Podręczniki, workbooki, prezentacje, playbooki, materiały onboardingowe
+        i&nbsp;e-learningowe. Instructional design, copywriting, projekt graficzny,
+        skład i&nbsp;rendering — od&nbsp;analizy potrzeb po&nbsp;gotowe pliki.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#rodzaje" class="srv-hero__cta-secondary">Rodzaje materiałów</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Instructional design</strong> nie ściana tekstu</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>PDF + PPTX + LMS</strong> w standardzie</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Modularnie</strong> — łatwe aktualizacje</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES — scenario-based -->
+  <section class="srv-cases" aria-labelledby="srv-cases-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Zastosowania"
+          title="Materiały szkoleniowe rozwiązują realne problemy"
+          subtitle="Nie tworzymy materiałów &bdquo;bo trzeba mieć szkolenie&rdquo;. Projektujemy je pod konkretny problem biznesowy — i&nbsp;mierzymy efekt."
+        />
+      </div>
+
+      <div class="srv-cases__grid">
+        {useCases.map((c, i) => (
+          <div class="srv-cases__card reveal" style={`--delay: ${i * 0.08}s`}>
+            <span class="srv-cases__card-scenario">{c.scenario}</span>
+            <div class="srv-cases__card-row">
+              <span class="srv-cases__card-label">Problem</span>
+              <p>{c.problem}</p>
+            </div>
+            <div class="srv-cases__card-row">
+              <span class="srv-cases__card-label srv-cases__card-label--accent">Rozwiązanie</span>
+              <p>{c.solution}</p>
+            </div>
+            <div class="srv-cases__card-result">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span>{c.result}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAL TYPES -->
+  <section class="srv-types" id="rodzaje" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co tworzymy"
+          title="Rodzaje materiałów szkoleniowych"
+          subtitle="Od 10-stronowego one-pagera po 300-stronowy program wielomodułowy. Dobieramy format do metody szkoleniowej, kanału i&nbsp;grupy docelowej."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {materialTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-format">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+              {d.format}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIDACTIC STRUCTURE -->
+  <section class="srv-didactic" id="struktura" aria-labelledby="srv-didactic-title">
+    <div class="container">
+      <div class="srv-didactic__inner reveal">
+        <span class="srv-didactic__label">Nasze podejście</span>
+        <h2 id="srv-didactic-title" class="srv-didactic__title">
+          Struktura dydaktyczna —<br><em>każdy moduł uczy, nie nuży</em>
+        </h2>
+        <p class="srv-didactic__desc">
+          Materiały szkoleniowe pisane przez eksperta to często „brain dump" — wszystko,
+          co wie, wylane na papier. Nasze podejście to instructional design: każdy moduł
+          ma jasny cel i&nbsp;sprawdzoną strukturę, która angażuje i&nbsp;utrwala wiedzę.
+        </p>
+
+        <div class="srv-didactic__flow">
+          <div class="srv-didactic__step">
+            <span class="srv-didactic__step-num">1</span>
+            <div>
+              <strong>Cel uczenia się</strong>
+              <p>„Po tym module będziesz umiał..." — jasna obietnica wartości</p>
+            </div>
+          </div>
+          <div class="srv-didactic__step">
+            <span class="srv-didactic__step-num">2</span>
+            <div>
+              <strong>Teoria z kontekstem</strong>
+              <p>Wiedza podana z analogiami i przykładami z życia odbiorcy</p>
+            </div>
+          </div>
+          <div class="srv-didactic__step">
+            <span class="srv-didactic__step-num">3</span>
+            <div>
+              <strong>Przykład / case study</strong>
+              <p>Konkretne zastosowanie teorii — „oto jak to wygląda w praktyce"</p>
+            </div>
+          </div>
+          <div class="srv-didactic__step">
+            <span class="srv-didactic__step-num">4</span>
+            <div>
+              <strong>Ćwiczenie / praktyka</strong>
+              <p>Zadanie do wykonania — utrwalenie przez działanie, nie czytanie</p>
+            </div>
+          </div>
+          <div class="srv-didactic__step">
+            <span class="srv-didactic__step-num">5</span>
+            <div>
+              <strong>Podsumowanie i weryfikacja</strong>
+              <p>Key takeaways + pytanie kontrolne / quiz. Czy cel został osiągnięty?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od analizy potrzeb po gotowe materiały"
+          subtitle="Nasz proces łączy instructional design z profesjonalnym publishingiem. Analiza → struktura → pisanie → design + skład → rendering do wybranych formatów."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Materiały szkoleniowe od copywriterów, nie&nbsp;trenerów"
+          subtitle="Trenerzy znają temat, ale piszą językiem eksperta. My piszemy językiem ucznia — jasno, angażująco, z&nbsp;profesjonalnym składem i&nbsp;designem."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;materiałach szkoleniowych, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz materiałów szkoleniowych?</h2>
+        <p class="srv-cta__desc">
+          Opisz szkolenie — temat, grupa docelowa, format, cel. Odpowiemy z&nbsp;wyceną,
+          propozycją struktury i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę materiałów
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o materiałach szkoleniowych">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Tworzenie materiałów szkoleniowych na zamówienie</h2>
+        <p>
+          <strong>Materiały szkoleniowe</strong> to fundament każdego programu edukacyjnego — od onboardingu
+          nowych pracowników, przez szkolenia produktowe, po programy compliance. Profesjonalne
+          <strong>tworzenie materiałów szkoleniowych</strong> łączy instructional design (architekturę
+          dydaktyczną), copywriting (język zrozumiały dla odbiorcy), projekt graficzny i profesjonalny
+          skład. Materiał, który angażuje i uczy — nie PDF z copy-paste z prezentacji.
+        </p>
+        <h3>Dlaczego tworzenie materiałów szkoleniowych warto zlecić?</h3>
+        <p>
+          Najczęstszy problem z <strong>materiałami szkoleniowymi</strong> tworzonymi wewnętrznie?
+          Ekspert zna temat, ale pisze go swoim językiem — żargonem, skrótami, na poziomie, który
+          dla odbiorcy jest niezrozumiały. Profesjonalne <strong>materiały szkoleniowe na zamówienie</strong>
+          łączą wiedzę eksperta (pozyskaną w wywiadach) z warsztatem dydaktycznym i redaktorskim.
+          Efekt: materiały, z których ludzie naprawdę się uczą, nie tylko „przerabiają" na szkoleniu.
+        </p>
+        <h3>Materiały szkoleniowe w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>tworzenia materiałów szkoleniowych</strong> łączy copywriting
+          z instructional design i profesjonalnym DTP. Zaczynamy od analizy potrzeb i rozmów z ekspertami
+          merytorycznymi, projektujemy strukturę dydaktyczną (cel → teoria → przykład → ćwiczenie →
+          podsumowanie), piszemy w języku odbiorcy, projektujemy i składamy w InDesign/Figma lub
+          LaTeX/Quarto, renderujemy do PDF, PPTX, LMS i druku. Modularnie — żeby aktualizacja jednego
+          modułu nie wymagała przerabiania całości.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnych materiałów szkoleniowych?</h3>
+        <p>
+          Profesjonalne <strong>materiały szkoleniowe na zamówienie</strong> są potrzebne, gdy:
+          wdrażasz nowych pracowników i potrzebujesz standardowego onboardingu; szkolisz zespół
+          sprzedażowy z nowego produktu; musisz udokumentować procedury i procesy (SOP); przygotowujesz
+          szkolenie compliance lub certyfikacyjne; tworzysz kurs e-learningowy; Twoje obecne materiały
+          są nieaktualne, niespójne lub amatorskie.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 580px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* USE CASES */
+  .srv-cases { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); }
+
+  .srv-cases__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-cases__grid { grid-template-columns: 1fr; } }
+
+  .srv-cases__card {
+    background: var(--paper); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-5);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+    display: flex; flex-direction: column;
+  }
+  .srv-cases__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .srv-cases__card-scenario {
+    display: inline-block; font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3); border-bottom: 1px solid var(--rule-light);
+  }
+
+  .srv-cases__card-row { margin-bottom: var(--space-3); }
+
+  .srv-cases__card-label {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.58rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 4px;
+  }
+  .srv-cases__card-label--accent { color: var(--accent); }
+
+  .srv-cases__card-row p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  .srv-cases__card-result {
+    display: flex; align-items: flex-start; gap: 6px;
+    margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--rule-light);
+    font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent);
+    line-height: var(--lh-relaxed);
+  }
+  .srv-cases__card-result svg { flex-shrink: 0; margin-top: 2px; }
+
+  /* MATERIAL TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-format { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-format svg { flex-shrink: 0; }
+
+  /* DIDACTIC STRUCTURE */
+  .srv-didactic { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-didactic__inner { max-width: 740px; }
+  .srv-didactic__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-didactic__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-didactic__title em { font-style: italic; color: var(--accent); }
+  .srv-didactic__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; margin-bottom: var(--space-8); }
+
+  .srv-didactic__flow { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .srv-didactic__step {
+    display: flex; gap: var(--space-4); align-items: flex-start;
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-4) var(--space-5);
+  }
+
+  .srv-didactic__step-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-family: var(--font-mono); font-size: 0.7rem;
+    font-weight: var(--fw-bold); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .srv-didactic__step strong {
+    display: block; font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: 2px;
+  }
+
+  .srv-didactic__step p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

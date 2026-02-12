@@ -1,0 +1,609 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+// ── DNA / Pillars ──
+const pillars = [
+  {
+    num: '01',
+    title: 'Copywriting',
+    desc: 'Fundamentem wszystkiego, co robimy, jest słowo. Teksty sprzedażowe, eksperckie, techniczne, edukacyjne. Piszemy w języku odbiorcy — nie w żargonie branżowym. Każdy tekst ma cel biznesowy i mierzalny efekt.',
+    skills: ['Copywriting sprzedażowy', 'SEO copywriting', 'Technical writing', 'Content strategy', 'UX writing']
+  },
+  {
+    num: '02',
+    title: 'Design & DTP',
+    desc: 'Tekst bez formy to pół produktu. Projektujemy layouty, składamy typograficznie, renderujemy do druku i digitalu. InDesign, Figma, LaTeX — dobieramy narzędzie do projektu, nie odwrotnie.',
+    skills: ['Projekt graficzny', 'Skład typograficzny', 'InDesign & Figma', 'LaTeX & Quarto', 'Print-ready PDF']
+  },
+  {
+    num: '03',
+    title: 'Programowanie',
+    desc: 'To nas odróżnia od 99% agencji copywriterskich. Nasz zespół programistów koduje landing page, wdraża docs-as-code, buduje pipeline renderingu, automatyzuje skład katalogów i integruje systemy. Kod to nasz trzeci język — po polskim i angielskim.',
+    skills: ['HTML / CSS / JS', 'React / Next.js / Astro', 'Node.js & Python', 'AWS & CI/CD', 'Integracje API']
+  }
+];
+
+// ── What makes us different ──
+const differences = [
+  {
+    them: 'Agencja copywriterska',
+    us: 'eCopywriting.pl',
+    points: [
+      { them: 'Pisze tekst, oddaje Worda', us: 'Pisze, projektuje, składa, koduje, wdraża' },
+      { them: 'Potrzebuje grafika na zewnątrz', us: 'Design i DTP w zespole' },
+      { them: 'Nie rozumie technologii', us: 'Zespół programistów, docs-as-code, API' },
+      { them: 'Jeden format (Word/Google Docs)', us: 'PPTX, PDF, EPUB, HTML, LaTeX, LMS, print' },
+      { them: 'Copy bez kontekstu technicznego', us: 'Copy + development + integracje' },
+      { them: 'Oddaje plik, koniec relacji', us: 'Wdraża, testuje, optymalizuje, aktualizuje' }
+    ]
+  }
+];
+
+// ── Values ──
+const values = [
+  {
+    title: 'Efekt, nie deliverable',
+    desc: 'Nie sprzedajemy „tekstów" ani „stron". Sprzedajemy efekt: więcej leadów, wyższą konwersję, krótszy onboarding, mniej ticketów. Deliverable to środek — efekt biznesowy to cel.'
+  },
+  {
+    title: 'Dane, nie przeczucia',
+    desc: 'Research fraz, analiza konkurencji, A/B testy, Google Analytics — decyzje podejmujemy na podstawie danych. Intuicja pomaga, ale dane weryfikują. Jeśli coś nie działa, zmieniamy — szybko.'
+  },
+  {
+    title: 'Jeden zespół, zero luk',
+    desc: 'Copy, design, development pod jednym dachem. Zero koordynacji między freelancerami, zero „grafik czeka na tekst" i „dev czeka na design". Jeden harmonogram, jeden punkt kontaktu.'
+  },
+  {
+    title: 'Prostota wymaga więcej pracy',
+    desc: 'Prosty tekst, czysty layout, szybka strona — to nie łatwość, to dyscyplina. Łatwiej napisać 5000 słów niż 500, które mówią to samo. Redagujemy, wycinamy, upraszczamy — aż zostanie esencja.'
+  }
+];
+
+// ── Tools ──
+const tools = [
+  { group: 'Copywriting & SEO', items: ['Ahrefs', 'Semrush', 'Surfer SEO', 'Google Search Console', 'GA4', 'Własne narzędzia AI'] },
+  { group: 'Design & DTP', items: ['Figma', 'Adobe InDesign', 'Adobe Illustrator', 'Canva (prototypy)'] },
+  { group: 'Publishing', items: ['LaTeX', 'Quarto', 'Pandoc', 'Prince XML', 'Calibre'] },
+  { group: 'Development', items: ['Astro', 'Next.js', 'React', 'Node.js', 'TypeScript', 'Python'] },
+  { group: 'Infrastruktura', items: ['AWS (S3, CloudFront, Lambda)', 'GitHub Actions', 'Vercel', 'Docker'] },
+  { group: 'Integracje', items: ['Stripe', 'Mailchimp', 'ActiveCampaign', 'HubSpot', 'Zapier', 'Make'] }
+];
+
+// ── Numbers ──
+const numbers = [
+  { value: '15+', label: 'lat w digital marketingu i copywritingu' },
+  { value: '16', label: 'wyspecjalizowanych usług contentowych' },
+  { value: '3', label: 'filary: copywriting + design + programowanie' },
+  { value: '24h', label: 'na wycenę każdego projektu' }
+];
+
+// ── Schema.org ──
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/o-nas/#webpage",
+      "url": "https://www.ecopywriting.pl/o-nas/",
+      "name": "O nas — eCopywriting.pl | Agencja copywriterska z zespołem programistów",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "eCopywriting.pl to agencja copywriterska z zespołem programistów i designerów. Copywriting, design, DTP i development pod jednym dachem. 15+ lat doświadczenia.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/o-nas/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/o-nas/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "O nas", "item": "https://www.ecopywriting.pl/o-nas/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.ecopywriting.pl/#organization",
+      "name": "eCopywriting.pl",
+      "url": "https://www.ecopywriting.pl/",
+      "description": "Agencja copywriterska z zespołem programistów i designerów. Copywriting, design, skład typograficzny, development i wdrożenia.",
+      "foundingDate": "2009",
+      "areaServed": "PL",
+      "knowsAbout": ["Copywriting", "SEO", "Content Marketing", "Technical Writing", "Web Development", "DTP", "Publishing"]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="O nas — eCopywriting.pl | Agencja copywriterska z zespołem programistów"
+  description="eCopywriting.pl to agencja copywriterska z zespołem programistów i designerów. Copywriting, design, DTP i development pod jednym dachem. 15+ lat doświadczenia w digital marketingu i content marketingu."
+  keywords="agencja copywriterska, eCopywriting, copywriting Polska, agencja content marketingowa, copywriting i development, technical writing"
+  schema={schema}
+  canonical="https://www.ecopywriting.pl/o-nas/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li aria-current="page">O nas</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="about-hero" aria-labelledby="about-hero-title">
+    <div class="about-hero__bg" aria-hidden="true"><div class="about-hero__grain"></div><div class="about-hero__gradient"></div></div>
+    <div class="container about-hero__inner">
+      <div class="about-hero__badge"><span class="about-hero__badge-dot"></span>O nas</div>
+      <h1 id="about-hero-title" class="about-hero__title">
+        Agencja copywriterska<br>z&nbsp;<em>zespołem programistów</em>
+      </h1>
+      <p class="about-hero__subtitle">
+        Piszemy, projektujemy, składamy i&nbsp;kodujemy. Copywriting, design, DTP
+        i&nbsp;development pod jednym dachem — od&nbsp;jednego zdania na landing page
+        po&nbsp;300-stronowy katalog produktowy z&nbsp;automatycznym importem z&nbsp;bazy danych.
+      </p>
+      <p class="about-hero__thesis">
+        Większość agencji copywriterskich oddaje tekst w&nbsp;Wordzie i&nbsp;kończy relację.
+        My prowadzimy projekt od&nbsp;briefu po&nbsp;wdrożenie — bo&nbsp;dobry tekst
+        w&nbsp;złym layoutcie, na wolnej stronie, bez integracji to zmarnowany potencjał.
+      </p>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="about-numbers" aria-label="Liczby">
+    <div class="container">
+      <div class="about-numbers__grid">
+        {numbers.map((n, i) => (
+          <div class="about-numbers__item reveal" style={`--delay: ${i * 0.08}s`}>
+            <span class="about-numbers__value">{n.value}</span>
+            <span class="about-numbers__label">{n.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 PILLARS / DNA -->
+  <section class="about-dna" id="dna" aria-labelledby="about-dna-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Nasze DNA"
+          title="Trzy filary, jeden zespół"
+          subtitle="Copywriting to nasz fundament. Design i&nbsp;DTP to forma. Programowanie to siła, która odróżnia nas od&nbsp;reszty. Razem tworzą agencję, która dostarcza gotowe produkty — nie&nbsp;pliki do&nbsp;dalszej obróbki."
+        />
+      </div>
+      <div class="about-dna__grid">
+        {pillars.map((p, i) => (
+          <div class="about-dna__card reveal" style={`--delay: ${i * 0.1}s`}>
+            <span class="about-dna__card-num">{p.num}</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+            <div class="about-dna__card-skills">
+              {p.skills.map((skill) => (
+                <span class="about-dna__card-chip">{skill}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="about-diff" id="roznice" aria-labelledby="about-diff-title">
+    <div class="container">
+      <div class="about-diff__inner reveal">
+        <span class="about-diff__label">Porównanie</span>
+        <h2 id="about-diff-title" class="about-diff__title">
+          Typowa agencja copywriterska<br>vs <em>eCopywriting.pl</em>
+        </h2>
+        <p class="about-diff__desc">
+          Nie chcemy być kolejną agencją copywriterską. Chcemy być jedyną, która łączy
+          copywriting z&nbsp;profesjonalnym designem, składem i&nbsp;programowaniem.
+        </p>
+
+        <div class="about-diff__table">
+          <div class="about-diff__table-header">
+            <span class="about-diff__table-h about-diff__table-h--them">{differences[0].them}</span>
+            <span class="about-diff__table-h about-diff__table-h--us">{differences[0].us}</span>
+          </div>
+          {differences[0].points.map((row) => (
+            <div class="about-diff__table-row">
+              <div class="about-diff__table-cell about-diff__table-cell--them">
+                <span class="about-diff__table-x" aria-hidden="true">✕</span>
+                {row.them}
+              </div>
+              <div class="about-diff__table-cell about-diff__table-cell--us">
+                <span class="about-diff__table-check" aria-hidden="true">✓</span>
+                {row.us}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="about-values" id="wartosci" aria-labelledby="about-values-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Zasady"
+          title="Jak pracujemy"
+          subtitle="Cztery zasady, które definiują naszą pracę — od briefu po wdrożenie."
+          inverted
+        />
+      </div>
+      <div class="about-values__grid">
+        {values.map((v, i) => (
+          <div class="about-values__card reveal" style={`--delay: ${i * 0.08}s`}>
+            <span class="about-values__card-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="about-tools" id="narzedzia" aria-labelledby="about-tools-title">
+    <div class="container">
+      <div class="about-tools__inner reveal">
+        <span class="about-tools__label">Narzędzia</span>
+        <h2 id="about-tools-title" class="about-tools__title">Nasz stack technologiczny</h2>
+        <p class="about-tools__desc">
+          Dobieramy narzędzia do projektu — nie odwrotnie. Od Ahrefs przez LaTeX po
+          AWS. Transparentnie, bo wierzymy, że klient ma prawo wiedzieć, czym pracujemy.
+        </p>
+        <div class="about-tools__groups">
+          {tools.map((group) => (
+            <div class="about-tools__group">
+              <span class="about-tools__group-label">{group.group}</span>
+              <div class="about-tools__items">
+                {group.items.map((item) => (
+                  <span class="about-tools__item">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY / TIMELINE -->
+  <section class="about-history" id="historia" aria-labelledby="about-history-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Historia"
+          title="15 lat ewolucji — od copywritingu po full-stack content"
+          subtitle="Zaczynaliśmy od tekstów w Wordzie. Dziś dostarczamy kompletne produkty — od&nbsp;strategii po wdrożenie. Oto jak tu dotarliśmy."
+        />
+      </div>
+      <div class="about-history__timeline">
+        <div class="about-history__line" aria-hidden="true"></div>
+        <div class="about-history__item reveal">
+          <span class="about-history__year">2009</span>
+          <div class="about-history__content">
+            <h3>Początki w copywritingu</h3>
+            <p>Start jako copywriter freelancer. Teksty na strony, artykuły, opisy produktów. Fundamenty warsztatu pisarskiego i marketingowego — setki projektów, dziesiątki branż.</p>
+          </div>
+        </div>
+        <div class="about-history__item reveal">
+          <span class="about-history__year">2014</span>
+          <div class="about-history__content">
+            <h3>Content marketing i SEO</h3>
+            <p>Rozszerzenie o content marketing, SEO copywriting i strategię contentową. Pierwsze duże projekty: strategie dla e-commerce, portali branżowych, firm SaaS. Budowanie zespołu.</p>
+          </div>
+        </div>
+        <div class="about-history__item reveal">
+          <span class="about-history__year">2018</span>
+          <div class="about-history__content">
+            <h3>Design, DTP i publishing</h3>
+            <p>Dodanie kompetencji graficznych i DTP. Pierwsze ebooki, katalogi, white papers — od copy po gotowy PDF. LaTeX i Quarto do publikacji technicznych. Skład typograficzny na poziomie wydawnictwa.</p>
+          </div>
+        </div>
+        <div class="about-history__item reveal">
+          <span class="about-history__year">2021</span>
+          <div class="about-history__content">
+            <h3>Programowanie i development</h3>
+            <p>Przełom — budowa zespołu programistów. React, Next.js, Astro, Node.js, AWS. Landing page, bazy wiedzy, docs-as-code, automatyzacja składu, integracje API. Copywriting + technology stack.</p>
+          </div>
+        </div>
+        <div class="about-history__item reveal">
+          <span class="about-history__year">2024</span>
+          <div class="about-history__content">
+            <h3>AI i automatyzacja</h3>
+            <p>Integracja AI do procesów contentowych — własne narzędzia do researchu, analizy SERP, clusteringu fraz, wspomagania pisania. AI jako asystent, nie zamiennik. Człowiek pisze, AI przyspiesza.</p>
+          </div>
+        </div>
+        <div class="about-history__item about-history__item--now reveal">
+          <span class="about-history__year">Dziś</span>
+          <div class="about-history__content">
+            <h3>Full-stack content agency</h3>
+            <p>16 wyspecjalizowanych usług, 3 filary kompetencji, pełen pipeline od briefu po wdrożenie. Agencja copywriterska z zespołem programistów — jedyna taka w&nbsp;Polsce.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta" id="kontakt" aria-labelledby="about-cta-title">
+    <div class="about-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="about-cta__inner reveal">
+        <h2 id="about-cta-title" class="about-cta__title">Porozmawiajmy o&nbsp;Twoim projekcie</h2>
+        <p class="about-cta__desc">
+          Opisz projekt — cel, zakres, format. Odpowiemy z&nbsp;wyceną, propozycją
+          podejścia i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="about-cta__actions">
+          <a href="/kontakt/" class="about-cta__button">
+            Zamów wycenę
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="about-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="about-seo" aria-label="O agencji eCopywriting.pl">
+    <div class="container-narrow">
+      <article class="about-seo__article">
+        <h2>eCopywriting.pl — agencja copywriterska z&nbsp;zespołem programistów</h2>
+        <p>
+          <strong>eCopywriting.pl</strong> to agencja copywriterska, która łączy pisanie z&nbsp;technologią.
+          Działamy na rynku od 2009 roku, oferując ponad 15 lat doświadczenia w&nbsp;digital marketingu,
+          content marketingu i copywritingu. To, co nas wyróżnia, to trzy filary kompetencji pod jednym
+          dachem: copywriting (sprzedażowy, SEO, techniczny, edukacyjny), design i&nbsp;DTP (projekt
+          graficzny, skład typograficzny, rendering do druku i&nbsp;digitalu) oraz programowanie (landing
+          page, bazy wiedzy, docs-as-code, integracje, automatyzacja).
+        </p>
+        <h3>Dlaczego agencja copywriterska z&nbsp;programistami?</h3>
+        <p>
+          Typowa agencja copywriterska pisze tekst i&nbsp;oddaje go w&nbsp;Wordzie. Klient musi sam
+          znaleźć grafika, składacza, programistę i&nbsp;koordynować ich pracę. W&nbsp;eCopywriting.pl
+          prowadzimy projekt od briefu po wdrożenie — strategia, copywriting, design, skład, development,
+          integracje, testy. Jeden zespół, jeden harmonogram, zero luk między etapami. Efekt: spójny
+          produkt dostarczony szybciej i&nbsp;taniej niż przy koordynacji freelancerów.
+        </p>
+        <h3>Nasze usługi</h3>
+        <p>
+          Oferujemy 16 wyspecjalizowanych usług contentowych — od copywritingu i&nbsp;SEO copywritingu,
+          przez artykuły blogowe, teksty na stronę, opisy produktów, email marketing i&nbsp;social media,
+          po strategię contentową, ebooki, white papers, katalogi i&nbsp;broszury, materiały szkoleniowe,
+          prezentacje, dokumentację techniczną i&nbsp;landing page. Każda usługa to kompletny pipeline:
+          od briefu po gotowy produkt w&nbsp;wybranym formacie.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .about-hero { position: relative; padding: var(--space-12) 0 var(--space-16); overflow: hidden; }
+  .about-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .about-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .about-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .about-hero__inner { position: relative; z-index: 1; max-width: 720px; }
+  .about-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: aboutFadeUp 0.8s ease 0.1s forwards; }
+  .about-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .about-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); opacity: 0; animation: aboutFadeUp 0.9s ease 0.25s forwards; }
+  .about-hero__title em { font-style: italic; color: var(--accent); }
+  .about-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); margin-top: var(--space-5); opacity: 0; animation: aboutFadeUp 0.9s ease 0.4s forwards; }
+  .about-hero__thesis { font-family: var(--font-display); font-size: var(--fs-lg); line-height: var(--lh-relaxed); color: var(--ink-soft); margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: aboutFadeUp 0.9s ease 0.55s forwards; }
+  @keyframes aboutFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* NUMBERS */
+  .about-numbers { padding: var(--space-12) 0; border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); }
+  .about-numbers__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .about-numbers__grid { grid-template-columns: repeat(2, 1fr); } }
+  .about-numbers__item { text-align: center; transition-delay: var(--delay, 0s); }
+  .about-numbers__value { display: block; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: var(--fw-bold); color: var(--accent); line-height: 1; margin-bottom: var(--space-2); }
+  .about-numbers__label { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-snug); }
+
+  /* DNA / PILLARS */
+  .about-dna { padding: var(--space-24) 0; }
+  .about-dna__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .about-dna__grid { grid-template-columns: 1fr; } }
+
+  .about-dna__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-6);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+    display: flex; flex-direction: column;
+  }
+  .about-dna__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .about-dna__card-num {
+    font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent);
+    letter-spacing: 0.06em; margin-bottom: var(--space-3);
+  }
+  .about-dna__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-3); line-height: var(--lh-snug);
+  }
+  .about-dna__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); flex: 1; }
+
+  .about-dna__card-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--rule-light); }
+  .about-dna__card-chip {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: var(--fw-medium);
+    color: var(--ink-faint); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 3px 8px; border-radius: var(--radius-sm);
+  }
+
+  /* COMPARISON TABLE */
+  .about-diff { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .about-diff__inner { max-width: 780px; }
+  .about-diff__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .about-diff__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .about-diff__title em { font-style: italic; color: var(--accent); }
+  .about-diff__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8); }
+
+  .about-diff__table { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+
+  .about-diff__table-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--navy);
+  }
+  .about-diff__table-h {
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-mono); font-size: 0.68rem;
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--fw-bold);
+  }
+  .about-diff__table-h--them { color: rgba(255,255,255,0.45); }
+  .about-diff__table-h--us { color: var(--accent-light); border-left: 1px solid rgba(255,255,255,0.08); }
+
+  .about-diff__table-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s ease;
+  }
+  .about-diff__table-row:last-child { border-bottom: none; }
+  .about-diff__table-row:hover { background: var(--paper-warm); }
+
+  .about-diff__table-cell {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--fs-sm); line-height: var(--lh-snug);
+    display: flex; align-items: flex-start; gap: var(--space-2);
+  }
+  .about-diff__table-cell--them { color: var(--ink-faint); border-right: 1px solid var(--rule-light); }
+  .about-diff__table-cell--us { color: var(--ink); font-weight: var(--fw-medium); }
+
+  .about-diff__table-x { color: var(--ink-faint); font-size: 0.7rem; flex-shrink: 0; margin-top: 1px; }
+  .about-diff__table-check { color: var(--accent); font-size: 0.7rem; flex-shrink: 0; margin-top: 1px; }
+
+  @media (max-width: 640px) {
+    .about-diff__table-header, .about-diff__table-row { grid-template-columns: 1fr; }
+    .about-diff__table-h--us { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+    .about-diff__table-cell--them { border-right: none; border-bottom: none; padding-bottom: var(--space-1); }
+    .about-diff__table-cell--us { padding-top: 0; padding-bottom: var(--space-3); }
+  }
+
+  /* VALUES (dark) */
+  .about-values { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .about-values::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .about-values__grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);
+    position: relative;
+  }
+  @media (max-width: 768px) { .about-values__grid { grid-template-columns: 1fr; } }
+
+  .about-values__card {
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-md); padding: var(--space-6);
+    transition: border-color 0.3s ease; transition-delay: var(--delay, 0s);
+  }
+  .about-values__card:hover { border-color: rgba(255,255,255,0.12); }
+
+  .about-values__card-num {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--accent-light); letter-spacing: 0.06em; margin-bottom: var(--space-3); display: block;
+  }
+  .about-values__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: #fff;
+    margin-bottom: var(--space-2); line-height: var(--lh-snug);
+  }
+  .about-values__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); }
+
+  /* TOOLS */
+  .about-tools { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .about-tools__inner { max-width: 820px; }
+  .about-tools__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .about-tools__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); }
+  .about-tools__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-bottom: var(--space-6); }
+  .about-tools__groups { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 640px) { .about-tools__groups { grid-template-columns: 1fr; } }
+  .about-tools__group-label { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: var(--space-2); }
+  .about-tools__items { display: flex; flex-wrap: wrap; gap: 6px; }
+  .about-tools__item {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 5px 12px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .about-tools__item:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HISTORY / TIMELINE */
+  .about-history { padding: var(--space-24) 0; }
+
+  .about-history__timeline { position: relative; max-width: 680px; padding-left: var(--space-10); }
+
+  .about-history__line {
+    position: absolute; left: 18px; top: 0; bottom: 0; width: 1px;
+    background: var(--rule-light);
+  }
+
+  .about-history__item {
+    position: relative; padding-bottom: var(--space-8);
+  }
+  .about-history__item:last-child { padding-bottom: 0; }
+
+  .about-history__item::before {
+    content: ''; position: absolute;
+    left: calc(-1 * var(--space-10) + 14px); top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--paper); border: 2px solid var(--rule);
+    z-index: 1;
+  }
+  .about-history__item--now::before { background: var(--accent); border-color: var(--accent); }
+
+  .about-history__year {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.68rem;
+    font-weight: var(--fw-bold); letter-spacing: 0.06em; color: var(--accent);
+    margin-bottom: var(--space-2);
+  }
+
+  .about-history__content h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-1); line-height: var(--lh-snug);
+  }
+  .about-history__content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* CTA */
+  .about-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; border-top: 1px solid var(--rule-light); }
+  .about-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .about-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .about-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .about-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .about-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .about-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .about-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .about-cta__button svg { transition: transform var(--transition-fast); }
+  .about-cta__button:hover svg { transform: translateX(3px); }
+  .about-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .about-cta__email:hover { color: var(--accent); }
+
+  /* SEO CONTENT */
+  .about-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .about-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .about-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .about-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .about-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

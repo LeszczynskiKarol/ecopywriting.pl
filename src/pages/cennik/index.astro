@@ -1,0 +1,568 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+// ── Pricing tiers grouped by category ──
+const pricingGroups = [
+  {
+    group: 'Copywriting & treści na stronę',
+    id: 'copywriting',
+    services: [
+      {
+        title: 'Copywriting',
+        href: '/uslugi/copywriting/',
+        unit: 'za stronę A4 (1800 zzs)',
+        price: '150–350 zł',
+        scope: 'Teksty sprzedażowe, oferty, ulotki, teksty reklamowe, slogany',
+        includes: ['Brief i analiza', 'Copywriting', 'Jedna runda poprawek'],
+        note: 'Cena zależy od stopnia specjalizacji i researchu'
+      },
+      {
+        title: 'Teksty na stronę',
+        href: '/uslugi/teksty-na-strone/',
+        unit: 'za podstronę',
+        price: '500–2 000 zł',
+        scope: 'Strona główna, o nas, podstrony usługowe, kontakt, FAQ',
+        includes: ['Wireframe tekstowy', 'SEO copywriting', 'Struktura sekcji', 'Poprawki'],
+        note: 'Kompletna strona (5–8 podstron): 3 000–12 000 zł'
+      },
+      {
+        title: 'SEO copywriting',
+        href: '/uslugi/seo-copywriting/',
+        unit: 'za artykuł / podstronę',
+        price: '400–1 500 zł',
+        scope: 'Artykuły zoptymalizowane pod frazy, opisy kategorii, pillar pages',
+        includes: ['Research fraz', 'Analiza SERP', 'Copywriting SEO', 'Optymalizacja on-page'],
+        note: 'Stała współpraca: rabat 15–20% od cen jednostkowych'
+      },
+      {
+        title: 'Opisy produktów',
+        href: '/uslugi/opisy-produktow/',
+        unit: 'za opis',
+        price: '50–300 zł',
+        scope: 'Opisy produktów e-commerce, specyfikacje, porównania',
+        includes: ['Research produktu', 'Copywriting', 'SEO', 'Style guide'],
+        note: 'Pakiety od 50 szt. z rabatem. Automatyzacja AI + redakcja od 30 zł/opis'
+      }
+    ]
+  },
+  {
+    group: 'Content marketing',
+    id: 'content',
+    services: [
+      {
+        title: 'Artykuły blogowe',
+        href: '/uslugi/artykuly-blogowe/',
+        unit: 'za artykuł (3 000–5 000 słów)',
+        price: '600–2 000 zł',
+        scope: 'Artykuły eksperckie, poradniki, how-to, listicle, case studies',
+        includes: ['Research tematu', 'Copywriting', 'Optymalizacja SEO', 'Grafiki/tabele'],
+        note: 'Pakiet 4 artykuły/mies.: od 2 000 zł'
+      },
+      {
+        title: 'Strategia contentowa',
+        href: '/uslugi/strategia-content-marketingowa/',
+        unit: 'za projekt',
+        price: '3 000–12 000 zł',
+        scope: 'Audyt, research fraz, content clusters, kalendarz, KPI',
+        includes: ['Audyt istniejącego contentu', 'Research fraz i klastrów', 'Strategia 6–12 mies.', 'Kalendarz publikacji'],
+        note: 'Zakres zależy od wielkości serwisu i branży'
+      },
+      {
+        title: 'Email marketing',
+        href: '/uslugi/email-marketing/',
+        unit: 'za email / sekwencję',
+        price: '200–800 zł / email',
+        scope: 'Newslettery, sekwencje powitalne, nurturing, reaktywacja, launch',
+        includes: ['Copywriting', 'Temat + preheader', 'CTA', 'A/B warianty'],
+        note: 'Sekwencja 5–7 emaili: 1 500–4 000 zł. Setup automatyzacji: wycena indywidualna'
+      },
+      {
+        title: 'Social media',
+        href: '/uslugi/social-media/',
+        unit: 'za pakiet miesięczny',
+        price: '1 500–5 000 zł/mies.',
+        scope: 'Posty, stories, karuzele — LinkedIn, Facebook, Instagram',
+        includes: ['Content pillars', 'Copywriting postów', 'Kalendarz', 'Grafiki (opcja)'],
+        note: '12–20 postów/mies. Strategia + filary: od 2 000 zł jednorazowo'
+      }
+    ]
+  },
+  {
+    group: 'Publikacje & DTP',
+    id: 'publikacje',
+    services: [
+      {
+        title: 'Ebooki',
+        href: '/uslugi/ebooki/',
+        unit: 'za projekt',
+        price: '3 000–15 000 zł',
+        scope: 'Ebooki lead-gen, poradniki, raporty. Od copy po gotowy PDF/EPUB',
+        includes: ['Copywriting lub redakcja', 'Projekt graficzny', 'Skład typograficzny', 'PDF + EPUB'],
+        note: '20–40 stron (lead magnet): 3 000–6 000 zł. 100+ stron (poradnik): 8 000–15 000 zł'
+      },
+      {
+        title: 'White papers',
+        href: '/uslugi/white-papers/',
+        unit: 'za projekt',
+        price: '4 000–12 000 zł',
+        scope: 'White papers B2B, raporty branżowe, dokumenty eksperckie',
+        includes: ['Research i wywiady', 'Copywriting', 'Projekt + skład', 'PDF'],
+        note: '10–20 stron: 4 000–7 000 zł. 30+ stron z danymi: 8 000–12 000 zł'
+      },
+      {
+        title: 'Katalogi i broszury',
+        href: '/uslugi/katalogi-broszury/',
+        unit: 'za projekt',
+        price: '3 000–20 000 zł',
+        scope: 'Katalogi produktowe, broszury firmowe, foldery. Print + digital',
+        includes: ['Copywriting', 'Projekt graficzny', 'Skład DTP / LaTeX', 'Print-ready PDF'],
+        note: 'Broszura 8–16 str.: 3 000–6 000 zł. Katalog 50+ str.: 8 000–20 000 zł'
+      },
+      {
+        title: 'Prezentacje',
+        href: '/uslugi/prezentacje/',
+        unit: 'za projekt',
+        price: '1 500–8 000 zł',
+        scope: 'Pitch decki, prezentacje firmowe, sprzedażowe, konferencyjne',
+        includes: ['Copywriting', 'Storytelling', 'Projekt graficzny', 'PPTX / Slides / PDF / Keynote'],
+        note: '10–15 slajdów: 1 500–3 000 zł. Pitch deck 25+ slajdów: 4 000–8 000 zł'
+      },
+      {
+        title: 'Materiały szkoleniowe',
+        href: '/uslugi/materialy-szkoleniowe/',
+        unit: 'za projekt',
+        price: '3 000–25 000 zł',
+        scope: 'Podręczniki, zeszyty ćwiczeń, materiały onboardingowe, playbooki, e-learning',
+        includes: ['Instructional design', 'Copywriting', 'Projekt + skład', 'PDF / LMS / druk'],
+        note: 'Materiały onboardingowe (20–40 str.): 3 000–7 000 zł. Podręcznik 100+ str.: 10 000–25 000 zł'
+      }
+    ]
+  },
+  {
+    group: 'Strony & dokumentacja',
+    id: 'strony',
+    services: [
+      {
+        title: 'Landing page',
+        href: '/uslugi/landing-page/',
+        unit: 'za projekt',
+        price: '3 000–18 000 zł',
+        scope: 'Landing page lead-gen, sprzedażowe, webinar. Copy + design + development',
+        includes: ['Strategia i research', 'Copywriting', 'Design + development', 'Integracje + A/B testy'],
+        note: 'LP lead-gen: 3 000–7 000 zł. LP + lejek (emaile + thank you): 8 000–18 000 zł'
+      },
+      {
+        title: 'Dokumentacja techniczna',
+        href: '/uslugi/dokumentacja-techniczna/',
+        unit: 'za projekt',
+        price: '3 000–40 000 zł',
+        scope: 'Instrukcje obsługi, dokumentacja API, bazy wiedzy, help center, SOP',
+        includes: ['Audyt i research', 'Technical writing', 'Design + skład', 'Wdrożenie docs-as-code'],
+        note: 'Instrukcja 20–40 str.: 3 000–8 000 zł. Baza wiedzy 20–60 art.: 8 000–25 000 zł'
+      }
+    ]
+  }
+];
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Czy podane ceny są netto czy brutto?',
+    a: 'Wszystkie ceny na tej stronie są cenami netto (+ VAT 23%). Dla osób fizycznych nieprowadzących działalności cena brutto = cena netto + 23% VAT.'
+  },
+  {
+    q: 'Od czego zależy ostateczna cena?',
+    a: 'Od kilku czynników: złożoność tematu i stopień specjalizacji (branża medyczna vs ogólna), objętość i format docelowy, zakres prac (samo copy vs copy + design + development), ilość researchu i wywiadów z ekspertami, liczba rund poprawek ponad standard, termin realizacji (tryb ekspresowy: +50%).'
+  },
+  {
+    q: 'Czy oferujecie rabaty przy stałej współpracy?',
+    a: 'Tak — przy stałej współpracy (minimum 3 miesiące) oferujemy rabat 15–20% od cen jednostkowych. Przy dużych jednorazowych projektach (powyżej 10 000 zł) negocjujemy cenę indywidualnie.'
+  },
+  {
+    q: 'Jak wygląda płatność?',
+    a: 'Standardowo: 50% zaliczki przed rozpoczęciem prac, 50% po akceptacji finalnego produktu. Przy projektach powyżej 15 000 zł: płatność w 3 transzach (30/40/30). Faktura VAT, przelew bankowy, termin 7 dni. Stripe (karta) na życzenie.'
+  },
+  {
+    q: 'Co jeśli projekt nie mieści się w widełkach cenowych?',
+    a: 'Widełki na tej stronie obejmują 80% typowych projektów. Jeśli Twój projekt jest większy, bardziej złożony lub wymaga niestandardowego podejścia — wyceń indywidualnie. Wycena jest bezpłatna i niezobowiązująca, przygotujemy ją w 24h.'
+  },
+  {
+    q: 'Czy wycena jest bezpłatna?',
+    a: 'Tak — wycena jest zawsze bezpłatna i niezobowiązująca. Opisz projekt (cel, zakres, format, termin), a my odpowiemy z wyceną, propozycją podejścia i harmonogramem w ciągu 24 godzin.'
+  }
+];
+
+// ── Schema.org ──
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/cennik/#webpage",
+      "url": "https://www.ecopywriting.pl/cennik/",
+      "name": "Cennik — Ceny usług copywriterskich | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Cennik usług eCopywriting.pl. Transparentne ceny copywritingu, SEO, treści na stronę, ebooków, materiałów szkoleniowych, dokumentacji technicznej, landing page i więcej.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/cennik/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/cennik/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Cennik", "item": "https://www.ecopywriting.pl/cennik/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Cennik — Ceny usług copywriterskich | eCopywriting.pl"
+  description="Cennik usług eCopywriting.pl. Transparentne ceny copywritingu, treści na stronę, artykułów, ebooków, materiałów szkoleniowych, dokumentacji, landing page. Wycena w 24h."
+  keywords="cennik copywriting, ceny copywriting, ile kosztuje copywriter, cennik agencja copywriterska, cena tekstu na stronę, cennik artykułów, cennik SEO copywriting"
+  schema={schema}
+  canonical="https://www.ecopywriting.pl/cennik/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li aria-current="page">Cennik</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="price-hero" aria-labelledby="price-hero-title">
+    <div class="price-hero__bg" aria-hidden="true"><div class="price-hero__grain"></div><div class="price-hero__gradient"></div></div>
+    <div class="container price-hero__inner">
+      <div class="price-hero__badge"><span class="price-hero__badge-dot"></span>Cennik</div>
+      <h1 id="price-hero-title" class="price-hero__title">
+        Transparentne ceny,<br><em>zero niespodzianek</em>
+      </h1>
+      <p class="price-hero__subtitle">
+        Orientacyjne widełki cenowe dla każdej usługi. Dokładną wycenę
+        przygotowujemy w&nbsp;ciągu 24&nbsp;godzin — bezpłatnie
+        i&nbsp;bez&nbsp;zobowiązań.
+      </p>
+      <p class="price-hero__note">
+        Wszystkie ceny netto. Obejmują: brief, research, copywriting, redakcję
+        i&nbsp;jedną rundę poprawek (chyba że zaznaczono inaczej). Design, skład,
+        development — w&nbsp;cenie tam, gdzie wskazano.
+      </p>
+    </div>
+  </section>
+
+  <!-- NAV (anchor links) -->
+  <nav class="price-nav" aria-label="Kategorie usług">
+    <div class="container">
+      <div class="price-nav__inner">
+        {pricingGroups.map((g) => (
+          <a href={`#${g.id}`} class="price-nav__link">{g.group}</a>
+        ))}
+      </div>
+    </div>
+  </nav>
+
+  <!-- PRICING GROUPS -->
+  {pricingGroups.map((group) => (
+    <section class="price-group" id={group.id} aria-labelledby={`${group.id}-title`}>
+      <div class="container">
+        <h2 id={`${group.id}-title`} class="price-group__title reveal">{group.group}</h2>
+        <div class="price-group__list">
+          {group.services.map((srv, i) => (
+            <div class="price-card reveal" style={`--delay: ${i * 0.05}s`}>
+              <div class="price-card__header">
+                <div class="price-card__title-row">
+                  <a href={srv.href} class="price-card__title">{srv.title}</a>
+                  <span class="price-card__unit">{srv.unit}</span>
+                </div>
+                <span class="price-card__price">{srv.price}</span>
+              </div>
+              <p class="price-card__scope">{srv.scope}</p>
+              <div class="price-card__includes">
+                <span class="price-card__includes-label">W cenie:</span>
+                <div class="price-card__includes-list">
+                  {srv.includes.map((item) => (
+                    <span class="price-card__includes-item">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              {srv.note && (
+                <p class="price-card__note">{srv.note}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- WHAT AFFECTS PRICE -->
+  <section class="price-factors" aria-labelledby="price-factors-title">
+    <div class="container">
+      <div class="price-factors__inner reveal">
+        <span class="price-factors__label">Od czego zależy cena</span>
+        <h2 id="price-factors-title" class="price-factors__title">Co wpływa na ostateczną wycenę?</h2>
+        <div class="price-factors__grid">
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Złożoność tematu</span>
+            <span class="price-factors__item-desc">Branża medyczna, prawna, fintech — wymaga głębszego researchu i specjalistycznego języka. Temat ogólny (e-commerce, lifestyle) jest tańszy.</span>
+          </div>
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Objętość i format</span>
+            <span class="price-factors__item-desc">5 stron vs 50 stron. PDF vs EPUB + druk. Jedna podstrona vs kompletna strona 8 podstron. Więcej = więcej pracy, ale niższa cena za jednostkę.</span>
+          </div>
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Zakres prac</span>
+            <span class="price-factors__item-desc">Samo copy (tekst w Google Docs) vs full-stack (copy + design + skład + development + integracje). Im więcej etapów, tym wyższa cena — ale niższy koszt koordynacji.</span>
+          </div>
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Termin realizacji</span>
+            <span class="price-factors__item-desc">Standard: termin wg harmonogramu. Ekspres: +50% do ceny. Planowanie z wyprzedzeniem (2–4 tygodnie) = lepsza cena i lepszy produkt.</span>
+          </div>
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Research i wywiady</span>
+            <span class="price-factors__item-desc">Projekt z gotowymi materiałami źródłowymi vs projekt wymagający wywiadów z ekspertami, researchu branżowego i analizy konkurencji.</span>
+          </div>
+          <div class="price-factors__item">
+            <span class="price-factors__item-title">Stała współpraca</span>
+            <span class="price-factors__item-desc">Jednorazowy projekt vs stała współpraca (min. 3 mies.). Stała współpraca: rabat 15–20%, priorytetowe terminy, dedykowany copywriter.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="price-faq" id="faq" aria-labelledby="price-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Pytania o ceny i&nbsp;płatności" subtitle="Najczęstsze pytania o cennik, wyceny, rabaty i&nbsp;warunki współpracy." />
+      </div>
+      <div class="price-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="price-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="price-faq__question">
+              <span>{faq.q}</span>
+              <svg class="price-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="price-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="price-cta" id="kontakt" aria-labelledby="price-cta-title">
+    <div class="price-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="price-cta__inner reveal">
+        <h2 id="price-cta-title" class="price-cta__title">Potrzebujesz dokładnej wyceny?</h2>
+        <p class="price-cta__desc">
+          Opisz projekt — cel, zakres, format, termin. Odpowiemy z&nbsp;wyceną,
+          propozycją podejścia i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+          Bezpłatnie i&nbsp;bez zobowiązań.
+        </p>
+        <div class="price-cta__actions">
+          <a href="/kontakt/" class="price-cta__button">
+            Zamów bezpłatną wycenę
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="price-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .price-hero { position: relative; padding: var(--space-12) 0 var(--space-14); overflow: hidden; }
+  .price-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .price-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .price-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .price-hero__inner { position: relative; z-index: 1; max-width: 680px; }
+  .price-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: priceFadeUp 0.8s ease 0.1s forwards; }
+  .price-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .price-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); opacity: 0; animation: priceFadeUp 0.9s ease 0.25s forwards; }
+  .price-hero__title em { font-style: italic; color: var(--accent); }
+  .price-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); margin-top: var(--space-5); opacity: 0; animation: priceFadeUp 0.9s ease 0.4s forwards; }
+  .price-hero__note { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-faint); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--rule-light); opacity: 0; animation: priceFadeUp 0.8s ease 0.55s forwards; }
+  @keyframes priceFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* NAV */
+  .price-nav { padding: var(--space-4) 0; border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); background: var(--card-bg); position: sticky; top: 72px; z-index: 90; }
+  .price-nav__inner { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .price-nav__inner::-webkit-scrollbar { display: none; }
+  .price-nav__link {
+    flex-shrink: 0;
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.04em; color: var(--ink-muted);
+    padding: 8px 16px; border-radius: var(--radius-sm);
+    border: 1px solid var(--rule-light); background: var(--paper);
+    text-decoration: none; white-space: nowrap;
+    transition: all var(--transition-fast);
+  }
+  .price-nav__link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* PRICING GROUPS */
+  .price-group { padding: var(--space-16) 0 var(--space-8); }
+  .price-group + .price-group { padding-top: var(--space-8); }
+
+  .price-group__title {
+    font-family: var(--font-display); font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-6); padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .price-group__list { display: flex; flex-direction: column; gap: 0; }
+
+  /* PRICE CARD */
+  .price-card {
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .price-card__header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: var(--space-4); margin-bottom: var(--space-3); flex-wrap: wrap;
+  }
+
+  .price-card__title-row { display: flex; flex-direction: column; gap: 2px; }
+
+  .price-card__title {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    text-decoration: none; transition: color var(--transition-fast);
+    line-height: var(--lh-snug);
+  }
+  .price-card__title:hover { color: var(--accent); }
+
+  .price-card__unit {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.04em; color: var(--ink-faint);
+  }
+
+  .price-card__price {
+    font-family: var(--font-display); font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: var(--fw-bold); color: var(--accent);
+    white-space: nowrap; line-height: 1;
+  }
+
+  .price-card__scope {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 640px; margin-bottom: var(--space-3);
+  }
+
+  .price-card__includes { margin-bottom: var(--space-3); }
+
+  .price-card__includes-label {
+    display: block; font-family: var(--font-mono); font-size: 0.55rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: var(--space-1);
+  }
+
+  .price-card__includes-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .price-card__includes-item {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--card-bg);
+    border: 1px solid var(--rule-light);
+    padding: 3px 8px; border-radius: var(--radius-sm);
+  }
+  .price-card__includes-item svg { color: var(--accent); flex-shrink: 0; }
+
+  .price-card__note {
+    font-size: var(--fs-xs); color: var(--ink-faint); line-height: var(--lh-relaxed);
+    padding-left: var(--space-3); border-left: 2px solid var(--rule-light);
+    max-width: 580px;
+  }
+
+  /* FACTORS */
+  .price-factors { padding: var(--space-20) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .price-factors::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .price-factors__inner { position: relative; }
+  .price-factors__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: var(--space-4); }
+  .price-factors__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-8); }
+
+  .price-factors__grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5);
+  }
+  @media (max-width: 900px) { .price-factors__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .price-factors__grid { grid-template-columns: 1fr; } }
+
+  .price-factors__item {
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-md); padding: var(--space-5);
+    transition: border-color 0.3s ease;
+  }
+  .price-factors__item:hover { border-color: rgba(255,255,255,0.12); }
+
+  .price-factors__item-title {
+    display: block; font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2);
+  }
+  .price-factors__item-desc {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* FAQ */
+  .price-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .price-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .price-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .price-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .price-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .price-faq__question::-webkit-details-marker { display: none; }
+  .price-faq__question::marker { display: none; content: ''; }
+  .price-faq__question:hover { color: var(--accent); }
+  .price-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .price-faq__item[open] .price-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .price-faq__answer { padding: 0 0 var(--space-6); }
+  .price-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* CTA */
+  .price-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .price-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .price-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .price-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .price-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .price-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .price-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .price-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .price-cta__button svg { transition: transform var(--transition-fast); }
+  .price-cta__button:hover svg { transform: translateX(3px); }
+  .price-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .price-cta__email:hover { color: var(--accent); }
+</style>

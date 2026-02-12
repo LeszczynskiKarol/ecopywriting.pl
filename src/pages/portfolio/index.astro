@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+// ── Portfolio items — reframed as copywriting/content projects ──
+const projects = [
+  {
+    category: 'Materiały szkoleniowe',
+    title: '11 zeszytów ćwiczeń dla szkół policealnych',
+    client: 'Wydawnictwo edukacyjne',
+    desc: 'Kompleksowy projekt obejmujący tworzenie treści merytorycznych i redakcję 11 zeszytów ćwiczeń dla uczniów szkół policealnych — od opiekuna medycznego po technika sterylizacji. Ponad 1500 stron materiałów dydaktycznych: pytania zamknięte i otwarte, case study, procedury, ćwiczenia praktyczne. Skład typograficzny w LaTeX/Quarto, rendering print-ready PDF.',
+    services: ['Tworzenie treści edukacyjnych', 'Redakcja merytoryczna', 'Skład LaTeX/Quarto', 'Print-ready PDF'],
+    result: '11 publikacji · 1500+ stron',
+    accent: true
+  },
+  {
+    category: 'Treści edukacyjne & platforma',
+    title: 'MaturaPolski.pl — baza pytań i opracowań lektur',
+    client: 'Projekt własny',
+    desc: 'Opracowanie kompletnej sekcji edukacyjnej platformy do nauki przed maturą z języka polskiego: tworzenie bazy pytań (zamknięte, otwarte, uzupełnianie luk, łączenie elementów), pisanie szczegółowych opracowań lektur obowiązkowych (Lalka, Pan Tadeusz, Antygona, Wesele i in.), analiza postaci, motywów, kontekstów interpretacyjnych. Setki pytań z kluczami odpowiedzi i wyjaśnieniami.',
+    services: ['Tworzenie pytań egzaminacyjnych', 'Opracowania lektur', 'Content edukacyjny', 'Redakcja merytoryczna'],
+    result: 'Setki pytań · kilkanaście opracowań lektur'
+  },
+  {
+    category: 'Ebook',
+    title: 'Jak napisać pracę magisterską — poradnik',
+    client: 'Projekt własny',
+    desc: 'Autorski ebook (250 stron) dla studentów przygotowujących pracę dyplomową. Treść od zera: struktura pracy, metodologia badań, pisanie rozdziałów, bibliografia, cytowania, formatowanie, obrona. Język przystępny, bez akademickiego żargonu. Skład typograficzny w LaTeX, rendering PDF + EPUB.',
+    services: ['Copywriting', 'Redakcja', 'Skład LaTeX', 'Ebook PDF + EPUB'],
+    result: '250 stron · bestseller w kategorii'
+  },
+  {
+    category: 'Ebook',
+    title: 'Jak tworzyć treści z AI — poradnik dla marketerów',
+    client: 'Projekt własny',
+    desc: 'Poradnik ekspercki (45 stron) dla specjalistów od content marketingu i copywritingu. Praktyczne techniki wykorzystania AI w procesie tworzenia treści: promptowanie, weryfikacja, edycja, workflow. Zero buzzwordów — konkretne metody i przykłady. Skład LaTeX, PDF do pobrania.',
+    services: ['Copywriting ekspercki', 'Redakcja', 'Skład LaTeX', 'Ebook PDF'],
+    result: '45 stron · lead magnet'
+  },
+  {
+    category: 'Podręcznik',
+    title: 'Opiekun medyczny — podręcznik + zeszyt ćwiczeń',
+    client: 'Wydawnictwo edukacyjne',
+    desc: 'Dwuczęściowy projekt wydawniczy: podręcznik (206 stron) i zeszyt ćwiczeń (198 stron) dla przyszłych opiekunów medycznych. Tworzenie treści merytorycznych we współpracy z ekspertami medycznymi, redakcja, korekta, skład typograficzny. Materiały zgodne z podstawą programową szkoły policealnej.',
+    services: ['Tworzenie treści', 'Współpraca z SME', 'Redakcja', 'Skład LaTeX'],
+    result: '404 strony · 2 publikacje'
+  },
+  {
+    category: 'Katalog produktowy',
+    title: 'Aplikacje medyczne VR — katalog produktowy',
+    client: 'Firma medtech',
+    desc: 'Katalog produktowy (71 stron) dla interaktywnej aplikacji medycznej VR. Copywriting produktowy: opisy funkcjonalności, specyfikacje techniczne, scenariusze użycia, benefity dla placówek medycznych. Język korzyści dostosowany do odbiorcy B2B (szpitale, uczelnie medyczne). Skład LaTeX, print-ready PDF.',
+    services: ['Copywriting produktowy', 'Język korzyści B2B', 'Skład LaTeX', 'Print-ready PDF'],
+    result: '71 stron · PDF + druk'
+  },
+  {
+    category: 'Dokumentacja techniczna',
+    title: 'Stoły anatomiczne — instrukcja obsługi',
+    client: 'Firma medtech',
+    desc: 'Instrukcja obsługi (55 stron) medycznych stołów anatomicznych. Technical writing: procedury krok po kroku, specyfikacje techniczne, schematy, ostrzeżenia BHP, konserwacja. Język precyzyjny, zgodny ze standardami dokumentacji medycznej. Skład LaTeX, PDF.',
+    services: ['Technical writing', 'Dokumentacja techniczna', 'Skład LaTeX', 'PDF'],
+    result: '55 stron · instrukcja obsługi'
+  },
+  {
+    category: 'Baza wiedzy & content',
+    title: 'Praca-Magisterska.pl — portal edukacyjny',
+    client: 'Projekt własny',
+    desc: 'Tworzenie kompletnej bazy wiedzy dla studentów piszących prace dyplomowe. Autorskie artykuły: metodologia badań, struktura prac naukowych, zasady cytowania, tworzenie bibliografii, pisanie wstępów i zakończeń. Ponad 30 artykułów z rozbudowaną sekcją metodologii (16 poradników). SEO copywriting z optymalizacją pod frazy kluczowe.',
+    services: ['SEO copywriting', 'Baza wiedzy', 'Content marketing', 'Artykuły eksperckie'],
+    result: '30+ artykułów · 16 poradników metodologii'
+  },
+  {
+    category: 'Opisy produktów & e-commerce',
+    title: 'Silniki-Elektryczne.com.pl — sklep e-commerce',
+    client: 'Stojan Shop',
+    desc: 'Tworzenie i optymalizacja opisów produktów dla sklepu z silnikami elektrycznymi. Opisy techniczne z językiem korzyści, specyfikacje, porównania, FAQ per produkt. System automatycznego generowania opisów z AI z ludzką redakcją. Synchronizacja treści między sklepem a Allegro. Rezultat: wzrost sprzedaży o 40% po wdrożeniu nowych opisów.',
+    services: ['Opisy produktów', 'SEO e-commerce', 'Content + AI', 'Redakcja'],
+    result: 'Setki opisów · +40% sprzedaży'
+  },
+  {
+    category: 'Treści na stronę',
+    title: 'Nadamel.pl — strona firmy stolarskiej',
+    client: 'Nadamel',
+    desc: 'Copywriting na kompletną stronę firmową: 8 podstron usługowych z rozbudowaną treścią SEO, nagłówki, opisy usług, FAQ, sekcje benefitów. Teksty zoptymalizowane pod frazy kluczowe z branży stolarskiej. Język korzyści, adresowanie obiekcji klienta, lokalne SEO.',
+    services: ['Copywriting na stronę', 'SEO copywriting', 'FAQ', 'Teksty usługowe'],
+    result: '8 podstron · treści SEO'
+  },
+  {
+    category: 'Treści na stronę',
+    title: 'GrandKuchnie.pl — producent mebli kuchennych',
+    client: 'GrandKuchnie',
+    desc: 'Tworzenie treści na stronę producenta mebli kuchennych: opisy realizacji, teksty usługowe, treści do portfolio z kategoryzacją według stylu i materiałów. Copy sprzedażowy dopasowany do segmentu premium — język aspiracyjny, konkrety zamiast ogólników.',
+    services: ['Copywriting na stronę', 'Opisy realizacji', 'Copy sprzedażowy'],
+    result: 'Kompletna treść strony'
+  },
+  {
+    category: 'Treści na stronę',
+    title: 'UniaTorun.pl — akademia piłkarska',
+    client: 'Unia Toruń',
+    desc: 'Copywriting na 17-stronicowy serwis akademii piłkarskiej dla dzieci 3–13 lat. Teksty na podstrony grup wiekowych (5 grup), cennik, lokalizacja, zapisy, o nas. 4 landing page SEO na frazy lokalne. Ton: profesjonalny, ale ciepły — pisany do rodziców. Adresowanie obiekcji, budowanie zaufania.',
+    services: ['Copywriting na stronę', 'SEO landing pages', 'Teksty usługowe', 'Lokalne SEO'],
+    result: '17 podstron · 4 SEO landing pages'
+  },
+  {
+    category: 'Baza wiedzy',
+    title: 'Interpunkcja.com.pl — baza wiedzy o interpunkcji',
+    client: 'Projekt własny',
+    desc: 'Tworzenie rozbudowanej bazy wiedzy o zasadach polskiej interpunkcji: artykuły o przecinku przed „że", „który", „gdy", „jak", „aby" i in. Każdy artykuł: wyjaśnienie reguły, przykłady poprawne i niepoprawne, wyjątki, ćwiczenia. Content edukacyjny pisany przystępnym językiem — nie podręcznikowym.',
+    services: ['Content edukacyjny', 'Baza wiedzy', 'SEO copywriting', 'Artykuły'],
+    result: 'Rozbudowana baza artykułów'
+  }
+];
+
+// ── Categories for filter ──
+const categories = [...new Set(projects.map(p => p.category))];
+
+// ── Schema.org ──
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/portfolio/#webpage",
+      "url": "https://www.ecopywriting.pl/portfolio/",
+      "name": "Portfolio — Realizacje | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Portfolio realizacji eCopywriting.pl. Ebooki, materiały szkoleniowe, treści na strony, opisy produktów, dokumentacja techniczna, bazy wiedzy, katalogi produktowe.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/portfolio/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/portfolio/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.ecopywriting.pl/portfolio/" }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Portfolio — Realizacje | eCopywriting.pl"
+  description="Portfolio realizacji eCopywriting.pl. Ebooki, materiały szkoleniowe, podręczniki, treści na strony, opisy produktów, dokumentacja techniczna, bazy wiedzy, katalogi. Zobacz nasze projekty."
+  keywords="portfolio copywriting, realizacje copywriting, portfolio agencja copywriterska, przykłady tekstów, realizacje content marketing"
+  schema={schema}
+  canonical="https://www.ecopywriting.pl/portfolio/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li aria-current="page">Portfolio</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="port-hero" aria-labelledby="port-hero-title">
+    <div class="port-hero__bg" aria-hidden="true"><div class="port-hero__grain"></div><div class="port-hero__gradient"></div></div>
+    <div class="container port-hero__inner">
+      <div class="port-hero__badge"><span class="port-hero__badge-dot"></span>Portfolio</div>
+      <h1 id="port-hero-title" class="port-hero__title">
+        Realizacje, które mówią<br><em>więcej niż obietnice</em>
+      </h1>
+      <p class="port-hero__subtitle">
+        Ebooki, podręczniki, materiały szkoleniowe, treści na strony, opisy produktów,
+        dokumentacja techniczna, bazy wiedzy, katalogi. Od&nbsp;jednorazowych projektów
+        po&nbsp;wielomiesięczne współprace — oto wybrane realizacje naszego zespołu.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="port-stats" aria-label="Statystyki">
+    <div class="container">
+      <div class="port-stats__grid">
+        <div class="port-stats__item">
+          <span class="port-stats__value">1500+</span>
+          <span class="port-stats__label">stron materiałów szkoleniowych</span>
+        </div>
+        <div class="port-stats__item">
+          <span class="port-stats__value">11</span>
+          <span class="port-stats__label">zeszytów ćwiczeń w jednym projekcie</span>
+        </div>
+        <div class="port-stats__item">
+          <span class="port-stats__value">30+</span>
+          <span class="port-stats__label">artykułów w bazach wiedzy</span>
+        </div>
+        <div class="port-stats__item">
+          <span class="port-stats__value">+40%</span>
+          <span class="port-stats__label">wzrost sprzedaży po nowych opisach</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS GRID -->
+  <section class="port-projects" id="realizacje" aria-labelledby="port-projects-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Wybrane realizacje"
+          title="Od ebooków po bazy wiedzy — wybrane projekty"
+          subtitle="Każdy projekt to inna branża, inny format, inny odbiorca. Łączy je jedno: solidny fundament copywriterski i&nbsp;profesjonalne wykonanie od&nbsp;A&nbsp;do&nbsp;Z."
+        />
+      </div>
+
+      <div class="port-projects__list">
+        {projects.map((project, i) => (
+          <article class={`port-project reveal ${project.accent ? 'port-project--accent' : ''}`} style={`--delay: ${i * 0.04}s`}>
+            <div class="port-project__header">
+              <span class="port-project__category">{project.category}</span>
+              <span class="port-project__client">{project.client}</span>
+            </div>
+            <h3 class="port-project__title">{project.title}</h3>
+            <p class="port-project__desc">{project.desc}</p>
+            <div class="port-project__footer">
+              <div class="port-project__services">
+                {project.services.map((s) => (
+                  <span class="port-project__service">{s}</span>
+                ))}
+              </div>
+              <span class="port-project__result">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                {project.result}
+              </span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES COVERED -->
+  <section class="port-coverage" aria-labelledby="port-coverage-title">
+    <div class="container">
+      <div class="port-coverage__inner reveal">
+        <span class="port-coverage__label">Pokryte usługi</span>
+        <h2 id="port-coverage-title" class="port-coverage__title">Jakie usługi reprezentują te realizacje?</h2>
+        <div class="port-coverage__grid">
+          <a href="/uslugi/materialy-szkoleniowe/" class="port-coverage__item">Materiały szkoleniowe</a>
+          <a href="/uslugi/ebooki/" class="port-coverage__item">Ebooki</a>
+          <a href="/uslugi/dokumentacja-techniczna/" class="port-coverage__item">Dokumentacja techniczna</a>
+          <a href="/uslugi/katalogi-broszury/" class="port-coverage__item">Katalogi i broszury</a>
+          <a href="/uslugi/opisy-produktow/" class="port-coverage__item">Opisy produktów</a>
+          <a href="/uslugi/teksty-na-strone/" class="port-coverage__item">Teksty na stronę</a>
+          <a href="/uslugi/seo-copywriting/" class="port-coverage__item">SEO copywriting</a>
+          <a href="/uslugi/artykuly-blogowe/" class="port-coverage__item">Artykuły i bazy wiedzy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="port-cta" id="kontakt" aria-labelledby="port-cta-title">
+    <div class="port-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="port-cta__inner reveal">
+        <h2 id="port-cta-title" class="port-cta__title">Twój projekt może być następny</h2>
+        <p class="port-cta__desc">
+          Opisz cel, zakres i&nbsp;format — odpowiemy z&nbsp;wyceną
+          i&nbsp;propozycją podejścia w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="port-cta__actions">
+          <a href="/kontakt/" class="port-cta__button">
+            Zamów wycenę
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="port-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .port-hero { position: relative; padding: var(--space-12) 0 var(--space-16); overflow: hidden; }
+  .port-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .port-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .port-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .port-hero__inner { position: relative; z-index: 1; max-width: 720px; }
+  .port-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: portFadeUp 0.8s ease 0.1s forwards; }
+  .port-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .port-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); opacity: 0; animation: portFadeUp 0.9s ease 0.25s forwards; }
+  .port-hero__title em { font-style: italic; color: var(--accent); }
+  .port-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); margin-top: var(--space-5); opacity: 0; animation: portFadeUp 0.9s ease 0.4s forwards; }
+  @keyframes portFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* STATS BAR */
+  .port-stats { padding: var(--space-10) 0; border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); background: var(--card-bg); }
+  .port-stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .port-stats__grid { grid-template-columns: repeat(2, 1fr); } }
+  .port-stats__item { text-align: center; }
+  .port-stats__value { display: block; font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-bold); color: var(--accent); line-height: 1; margin-bottom: var(--space-1); }
+  .port-stats__label { font-size: var(--fs-xs); color: var(--ink-muted); line-height: var(--lh-snug); }
+
+  /* PROJECTS LIST */
+  .port-projects { padding: var(--space-24) 0; }
+
+  .port-projects__list { display: flex; flex-direction: column; gap: 0; }
+
+  .port-project {
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition: all var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+  .port-project:first-child { border-top: 1px solid var(--rule); }
+
+  .port-project--accent {
+    background: var(--paper-warm);
+    margin: 0 calc(-1 * var(--space-6));
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .port-project__header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-4); margin-bottom: var(--space-3); flex-wrap: wrap;
+  }
+
+  .port-project__category {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    font-weight: var(--fw-bold); color: var(--accent);
+  }
+
+  .port-project__client {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.04em; color: var(--ink-faint);
+  }
+
+  .port-project__title {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    line-height: var(--lh-snug); margin-bottom: var(--space-3);
+  }
+
+  .port-project__desc {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 720px; margin-bottom: var(--space-4);
+  }
+
+  .port-project__footer {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: var(--space-4); flex-wrap: wrap;
+  }
+
+  .port-project__services { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .port-project__service {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: var(--fw-medium);
+    color: var(--ink-faint); background: var(--card-bg); border: 1px solid var(--rule-light);
+    padding: 3px 8px; border-radius: var(--radius-sm);
+  }
+
+  .port-project__result {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 0.68rem;
+    font-weight: var(--fw-semibold); color: var(--ink);
+    white-space: nowrap;
+  }
+  .port-project__result svg { color: var(--accent); flex-shrink: 0; }
+
+  /* COVERAGE */
+  .port-coverage { padding: var(--space-20) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .port-coverage::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .port-coverage__inner { position: relative; max-width: 700px; }
+  .port-coverage__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); margin-bottom: var(--space-4); }
+  .port-coverage__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-6); }
+
+  .port-coverage__grid { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  .port-coverage__item {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: var(--fw-medium);
+    color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1);
+    padding: 8px 16px; border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  .port-coverage__item:hover { color: #fff; border-color: var(--accent-light); background: rgba(255,255,255,0.04); }
+
+  /* CTA */
+  .port-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .port-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .port-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .port-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .port-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .port-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .port-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .port-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .port-cta__button svg { transition: transform var(--transition-fast); }
+  .port-cta__button:hover svg { transform: translateX(3px); }
+  .port-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .port-cta__email:hover { color: var(--accent); }
+</style>

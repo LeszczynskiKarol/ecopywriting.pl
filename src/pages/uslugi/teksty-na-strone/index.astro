@@ -1,0 +1,956 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje napisanie tekstów na stronę internetową?',
+    a: 'Cena zależy od liczby podstron, złożoności branży i zakresu researchu. Teksty na stronę główną to zazwyczaj 1000–2500 zł, strona usługowa 600–1500 zł, strona „O nas" 500–1200 zł. Kompletny pakiet tekstów na stronę firmową (5–8 podstron) to 3000–8000 zł. Przy każdym projekcie przygotowujemy indywidualną wycenę w ciągu 24 godzin.'
+  },
+  {
+    q: 'Jak długo trwa napisanie tekstów na stronę?',
+    a: 'Kompletny zestaw tekstów na stronę firmową (5–8 podstron) dostarczamy w 7–14 dni roboczych, w zależności od złożoności branży i zakresu researchu. Pojedyncza podstrona to 3–5 dni. W cenę wliczony jest research, pisanie, redakcja i dwie rundy poprawek. W pilnych przypadkach oferujemy tryb ekspresowy.'
+  },
+  {
+    q: 'Czy piszecie teksty pod konkretny CMS (WordPress, Webflow itp.)?',
+    a: 'Tak — dostarczamy teksty w formacie dopasowanym do Twojego CMS. Możemy też wdrożyć treści bezpośrednio na stronę — nasz zespół programistów pracuje z WordPress, Webflow, Astro, Next.js i innymi platformami. To eliminuje etap „wklejania tekstów" i zapewnia, że treść jest poprawnie sformatowana z właściwą hierarchią nagłówków.'
+  },
+  {
+    q: 'Czy teksty na stronę będą zoptymalizowane pod SEO?',
+    a: 'Tak — każdy tekst na stronę jest domyślnie zoptymalizowany pod wyszukiwarki. Dobieramy frazy kluczowe, planujemy strukturę nagłówków H1–H6, piszemy meta title i description, planujemy linkowanie wewnętrzne. Jeśli potrzebujesz zaawansowanej strategii SEO z audytem i content planem, sprawdź naszą usługę SEO Copywriting.'
+  },
+  {
+    q: 'Co jest potrzebne do rozpoczęcia pracy?',
+    a: 'Na start potrzebujemy: krótkiego briefu (kim jesteś, co robisz, dla kogo, czym się wyróżniasz), informacji o grupie docelowej, dostępu do obecnej strony (jeśli istnieje) i ewentualnych materiałów firmowych (prezentacje, oferty, case studies). Przygotowaliśmy prosty formularz briefu, który ułatwia ten proces — wypełnienie zajmuje 10–15 minut.'
+  },
+  {
+    q: 'Czy mogę zamówić teksty na pojedynczą podstronę?',
+    a: 'Oczywiście. Możesz zamówić teksty na jedną podstronę (np. nową stronę usługową lub „O nas"), kilka wybranych podstron lub kompletny zestaw na całą stronę internetową. Rekomendujemy jednak spójne podejście do całej strony — teksty pisane w jednym procesie są bardziej spójne tonalnie i strategicznie.'
+  },
+  {
+    q: 'Ile rund poprawek jest w cenie?',
+    a: 'Każde zlecenie obejmuje dwie rundy poprawek w cenie. Dzięki szczegółowemu briefowi i etapowi akceptacji struktury przed pisaniem, w praktyce rzadko potrzebna jest druga runda. Dodatkowe poprawki wykraczające poza pierwotny zakres briefu wyceniamy osobno.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/#service",
+      "name": "Teksty na stronę internetową",
+      "description": "Profesjonalne pisanie tekstów na strony internetowe. Strony firmowe, usługowe, produktowe, O nas, landing page. Treści zoptymalizowane pod SEO i konwersję.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Website copywriting",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/",
+      "name": "Teksty na Stronę — Pisanie Treści na Strony WWW | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne teksty na strony internetowe. Pisanie treści na strony firmowe, usługowe, produktowe i landing page. SEO + konwersja. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Teksty na stronę", "item": "https://www.ecopywriting.pl/uslugi/teksty-na-strone/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Page types ──
+const pageTypes = [
+  {
+    title: 'Strona główna',
+    desc: 'Pierwszych 5 sekund decyduje, czy odwiedzający zostanie. Strona główna musi natychmiast komunikować: kim jesteś, co robisz, dlaczego Ty, i co zrobić dalej. Piszemy strony główne z jasną hierarchią informacji, przekonującym value proposition i mocnym CTA.',
+    icon: '🏠'
+  },
+  {
+    title: 'Strony usługowe',
+    desc: 'Każda usługa zasługuje na dedykowaną podstronę — to podstawa SEO i konwersji. Piszemy strony usługowe, które łączą opis wartości z adresowaniem obiekcji, social proof i jasnym wezwaniem do działania. Zoptymalizowane pod frazy „usługa + miasto".',
+    icon: '⚡'
+  },
+  {
+    title: 'Strona „O nas" / „O firmie"',
+    desc: 'Jedna z najczęściej odwiedzanych podstron — i najczęściej zmarnowanych. Dobra strona „O nas" to nie sucha historia firmy, ale strategicznie napisana narracja budująca zaufanie: kto stoi za firmą, dlaczego robicie to, co robicie, i jakie macie doświadczenie.',
+    icon: '👥'
+  },
+  {
+    title: 'Strony produktowe',
+    desc: 'Teksty na strony produktowe dla SaaS, e-commerce i firm technologicznych. Opis funkcji przetłumaczony na język korzyści, porównania planów, sekcje FAQ, social proof. Treści, które edukują i konwertują jednocześnie.',
+    icon: '📦'
+  },
+  {
+    title: 'Landing page',
+    desc: 'Strony lądowania z jednym celem — konwersją. Headline, który zatrzymuje, copy, które przekonuje, CTA, które domyka. Struktura oparta na sprawdzonych frameworkach (PAS, AIDA, StoryBrand) dopasowana do Twojego odbiorcy i oferty.',
+    icon: '🎯'
+  },
+  {
+    title: 'FAQ i bazy wiedzy',
+    desc: 'Strony z pytaniami i odpowiedziami, cenniki, bazy wiedzy, strony pomocy. Treści, które odciążają dział obsługi klienta, budują zaufanie i — dzięki schema markup FAQ — mogą zająć znacznie więcej miejsca w wynikach Google.',
+    icon: '❓'
+  },
+  {
+    title: 'Strony „Kariera" i employer branding',
+    desc: 'Teksty na strony rekrutacyjne, opisy kultury firmy, EVP (Employee Value Proposition). Treści przyciągające talenty i budujące wizerunek pracodawcy. Każda strona pisana pod konkretną grupę docelową — inaczej do dewelopera, inaczej do handlowca.',
+    icon: '🤝'
+  },
+  {
+    title: 'Strony portfolio i case studies',
+    desc: 'Prezentacja Twoich realizacji w sposób, który sprzedaje. Nie lista logotypów klientów, a strategicznie napisane case studies: kontekst, wyzwanie, rozwiązanie, rezultat. Format, który buduje social proof i wspiera decyzję zakupową.',
+    icon: '📊'
+  }
+];
+
+// ── Problems we solve ──
+const problems = [
+  {
+    before: 'Strona jest, ale nie konwertuje',
+    after: 'Teksty z jasnym CTA, strukturą i językiem korzyści — konwersja zamiast bounce rate',
+    label: 'Konwersja'
+  },
+  {
+    before: 'Odwiedzający nie rozumie, czym się zajmujesz',
+    after: 'Czytelne value proposition w 5 sekund — od hero section po footer',
+    label: 'Klarowność'
+  },
+  {
+    before: 'Strona nie widoczna w Google',
+    after: 'Teksty zoptymalizowane pod frazy, z nagłówkami, meta tagami i linkowaniem',
+    label: 'SEO'
+  },
+  {
+    before: 'Teksty pisane „kiedyś" przez kogoś z zespołu',
+    after: 'Profesjonalny, spójny ton komunikacji na każdej podstronie',
+    label: 'Spójność'
+  },
+  {
+    before: 'Treść nie wyróżnia marki na tle konkurencji',
+    after: 'Unikalne USP, storytelling marki i komunikacja, której nie da się skopiować',
+    label: 'Wyróżnienie'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Brief i immersja',
+    desc: 'Poznajemy Twoją firmę od środka — usługi, produkty, grupę docelową, konkurencję, wyróżniki. Wypełniasz brief, rozmawiamy, analizujemy obecną stronę. Na tym etapie zanurzamy się w Twój biznes, żeby pisać z pozycji eksperta, nie turysty.'
+  },
+  {
+    num: '02',
+    title: 'Research i architektura treści',
+    desc: 'Analizujemy frazy kluczowe, język Twoich klientów, komunikację konkurencji. Projektujemy architekturę treści — jakie podstrony, w jakiej kolejności, z jaką hierarchią informacji. Mapa strony do akceptacji przed pisaniem.'
+  },
+  {
+    num: '03',
+    title: 'Wireframe tekstowy',
+    desc: 'Dla każdej podstrony przygotowujemy wireframe tekstowy — struktura sekcji, nagłówki, kluczowe przekazy, CTA. To szkielet strony w formie tekstu, który pozwala zobaczyć flow przed pisaniem pełnego copy. Do akceptacji i feedbacku.'
+  },
+  {
+    num: '04',
+    title: 'Pisanie i optymalizacja',
+    desc: 'Na podstawie zatwierdzonego wireframe\'u piszemy pełne teksty — każda sekcja, każdy nagłówek, każde CTA. Optymalizujemy pod SEO (frazy, nagłówki, meta tagi) i pod UX (czytelność, skanowanie, hierarchia). Ton dopasowany do Twojej marki.'
+  },
+  {
+    num: '05',
+    title: 'Dostawa i wdrożenie',
+    desc: 'Dostarczamy teksty w ustalonym formacie (Google Docs, Markdown, Figma annotations) lub wdrażamy bezpośrednio w CMS. Nasz zespół programistów zapewnia poprawną hierarchię nagłówków, schema markup i optymalizację techniczną. Dwie rundy poprawek w cenie.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Wireframe tekstowy, nie tylko „tekst"',
+    desc: 'Nie dostarczamy luźnego tekstu w dokumencie. Każda podstrona zaczyna się od wireframe\'u — struktury sekcji, nagłówków i kluczowych przekazów. Dzięki temu widzisz flow strony zanim napiszemy pojedyncze zdanie. To oszczędza czas i eliminuje niespodzianki.'
+  },
+  {
+    title: 'Tekst + wdrożenie = jeden dostawca',
+    desc: 'Nie zostawiamy Cię z dokumentem, który musisz sam wkleić na stronę. Nasz zespół programistów może wdrożyć teksty bezpośrednio w CMS z poprawną hierarchią nagłówków, schema markup i formatowaniem. Albo zaprojektować całą stronę od zera.'
+  },
+  {
+    title: 'SEO natywnie w każdym tekście',
+    desc: 'Każdy tekst na stronę jest pisany z myślą o widoczności w Google — research fraz, optymalna struktura nagłówków, meta tagi, linkowanie wewnętrzne. Strona, która dobrze wygląda, ale nie jest widoczna w wyszukiwarce, to zmarnowana inwestycja.'
+  },
+  {
+    title: 'Spójność komunikacji',
+    desc: 'Gdy piszemy teksty na całą stronę, dbamy o spójność tonu, terminologii i stylu na każdej podstronie. Efekt: profesjonalna, jednolita komunikacja, która buduje zaufanie — nie kolekcja tekstów pisanych przez różne osoby w różnym czasie.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Copywriting', href: '/uslugi/copywriting/', desc: 'Teksty sprzedażowe, oferty handlowe, slogany i hasła reklamowe' },
+  { title: 'SEO Copywriting', href: '/uslugi/seo-copywriting/', desc: 'Zaawansowana optymalizacja treści z researchem fraz i wdrożeniem' },
+  { title: 'Landing page', href: '/uslugi/landing-page/', desc: 'Strony lądowania z tekstem, designem i wdrożeniem technicznym' },
+  { title: 'Opisy produktów', href: '/uslugi/opisy-produktow/', desc: 'Teksty e-commerce — opisy produktów i kategorii' }
+];
+---
+
+<BaseLayout
+  title="Teksty na Stronę — Pisanie Treści na Strony WWW | eCopywriting.pl"
+  description="Profesjonalne teksty na strony internetowe. Pisanie treści na strony firmowe, usługowe, produktowe, O nas i landing page. Zoptymalizowane pod SEO i konwersję. Od wireframe'u tekstowego po wdrożenie. Wycena w 24h."
+  keywords="teksty na stronę, pisanie tekstów na stronę, tworzenie tekstów na strony www, teksty na stronę internetową, treści na stronę, teksty www, copywriting stron internetowych, teksty na stronę firmową"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/teksty-na-strone/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Teksty na stronę</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true">
+      <div class="srv-hero__grain"></div>
+      <div class="srv-hero__gradient"></div>
+    </div>
+
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge">
+        <span class="srv-hero__badge-dot"></span>
+        Content & Copywriting
+      </div>
+
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Teksty na stronę, które<br>
+        <em>budują zaufanie i&nbsp;konwertują</em>
+      </h1>
+
+      <p class="srv-hero__subtitle">
+        Profesjonalne pisanie tekstów na strony internetowe — od strony głównej
+        po FAQ. Treści, które jasno komunikują wartość, wyróżniają Twoją markę
+        i&nbsp;zamieniają odwiedzających w&nbsp;klientów.
+      </p>
+
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#podstrony" class="srv-hero__cta-secondary">
+          Jakie podstrony piszemy
+        </a>
+      </div>
+
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item">
+          <strong>Wireframe</strong> tekstowy przed pisaniem
+        </div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item">
+          <strong>SEO + konwersja</strong> w standardzie
+        </div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item">
+          <strong>Tekst + wdrożenie</strong> w CMS
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROBLEMS WE SOLVE
+       ═══════════════════════════════════════ -->
+  <section class="srv-problems" aria-label="Problemy, które rozwiązujemy">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Rozwiązujemy problemy"
+          title="Rozpoznajesz któryś z&nbsp;tych problemów?"
+          subtitle="Większość stron firmowych ma treści pisane &bdquo;na szybko&rdquo; przez kogoś z&nbsp;zespołu, a&nbsp;potem nigdy nie aktualizowane. Oto co zmieniamy."
+        />
+      </div>
+
+      <div class="srv-problems__grid">
+        {problems.map((p, i) => (
+          <div class="srv-problems__card reveal" style={`--delay: ${i * 0.06}s`}>
+            <span class="srv-problems__label">{p.label}</span>
+            <div class="srv-problems__before">
+              <span class="srv-problems__marker srv-problems__marker--before" aria-hidden="true">✕</span>
+              <p>{p.before}</p>
+            </div>
+            <div class="srv-problems__divider" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+            <div class="srv-problems__after">
+              <span class="srv-problems__marker srv-problems__marker--after" aria-hidden="true">✓</span>
+              <p>{p.after}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PAGE TYPES
+       ═══════════════════════════════════════ -->
+  <section class="srv-pages" id="podstrony" aria-labelledby="srv-pages-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Zakres usług"
+          title="Jakie podstrony piszemy?"
+          subtitle="Tworzenie tekstów na strony WWW obejmuje każdą podstronę, która wpływa na decyzję klienta — od pierwszego kontaktu na stronie głównej po FAQ i&nbsp;case studies."
+        />
+      </div>
+
+      <div class="srv-pages__grid">
+        {pageTypes.map((p, i) => (
+          <div class="srv-pages__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-pages__card-icon" aria-hidden="true">{p.icon}</span>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROCESS
+       ═══════════════════════════════════════ -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od briefu po gotowe teksty na&nbsp;stronę"
+          subtitle="Nasz proces zaczyna się od zrozumienia Twojego biznesu, a&nbsp;kończy na gotowych tekstach wdrożonych na stronę. Wireframe tekstowy do akceptacji przed pisaniem — żadnych niespodzianek."
+          inverted
+        />
+      </div>
+
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WIREFRAME EXPLAINER
+       ═══════════════════════════════════════ -->
+  <section class="srv-wireframe" id="wireframe" aria-labelledby="srv-wireframe-title">
+    <div class="container">
+      <div class="srv-wireframe__inner reveal">
+        <span class="srv-wireframe__label">Nasze podejście</span>
+        <h2 id="srv-wireframe-title" class="srv-wireframe__title">
+          Wireframe tekstowy —<br>
+          <em>zanim napiszemy słowo</em>
+        </h2>
+        <p class="srv-wireframe__desc">
+          Nie zaczynamy od pisania. Zaczynamy od struktury. Dla każdej podstrony
+          przygotowujemy wireframe tekstowy — szkielet z nagłówkami, kluczowymi przekazami,
+          CTA i flow informacji. Dopiero po jego akceptacji przechodzimy do pełnego copy.
+        </p>
+
+        <div class="srv-wireframe__example" aria-label="Przykład wireframe tekstowego">
+          <div class="srv-wireframe__section">
+            <span class="srv-wireframe__tag">Hero</span>
+            <div class="srv-wireframe__block srv-wireframe__block--lg"></div>
+            <div class="srv-wireframe__block srv-wireframe__block--md"></div>
+            <div class="srv-wireframe__block srv-wireframe__block--btn"></div>
+          </div>
+          <div class="srv-wireframe__section">
+            <span class="srv-wireframe__tag">Value proposition</span>
+            <div class="srv-wireframe__row">
+              <div class="srv-wireframe__block srv-wireframe__block--card"></div>
+              <div class="srv-wireframe__block srv-wireframe__block--card"></div>
+              <div class="srv-wireframe__block srv-wireframe__block--card"></div>
+            </div>
+          </div>
+          <div class="srv-wireframe__section">
+            <span class="srv-wireframe__tag">Social proof</span>
+            <div class="srv-wireframe__block srv-wireframe__block--md"></div>
+          </div>
+          <div class="srv-wireframe__section">
+            <span class="srv-wireframe__tag">CTA</span>
+            <div class="srv-wireframe__block srv-wireframe__block--sm"></div>
+            <div class="srv-wireframe__block srv-wireframe__block--btn"></div>
+          </div>
+        </div>
+
+        <p class="srv-wireframe__benefit">
+          Dlaczego to ważne? Bo struktura strony determinuje 80% jej skuteczności.
+          Najlepsze copy nie pomoże, jeśli informacje są w złej kolejności, CTA jest
+          w złym miejscu, a użytkownik gubi się po trzech scrollach.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       BENEFITS
+       ═══════════════════════════════════════ -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Więcej niż &bdquo;ładne teksty&rdquo;"
+          subtitle="Pisanie tekstów na stronę to nie tylko copywriting. To strategia, architektura informacji, SEO i&nbsp;wdrożenie. Dlatego warto zlecić to zespołowi, który łączy wszystkie te kompetencje."
+        />
+      </div>
+
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="FAQ"
+          title="Najczęściej zadawane pytania"
+          subtitle="Odpowiedzi na pytania o&nbsp;pisaniu tekstów na stronę, które słyszymy najczęściej."
+        />
+      </div>
+
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" />
+      </div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3>
+            <p>{r.desc}</p>
+            <span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz tekstów na stronę?</h2>
+        <p class="srv-cta__desc">
+          Opisz swój projekt — odpowiemy z&nbsp;wyceną i&nbsp;propozycją struktury
+          w&nbsp;ciągu 24&nbsp;godzin. Jedna podstrona czy cała strona — wyceniamy indywidualnie.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę tekstów
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o pisaniu tekstów na stronę">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Pisanie tekstów na stronę — profesjonalne treści na strony internetowe</h2>
+
+        <p>
+          <strong>Pisanie tekstów na stronę</strong> internetową to jeden z najważniejszych elementów budowania
+          obecności online. Profesjonalne <strong>teksty na stronę</strong> nie tylko informują o usługach
+          i produktach — budują zaufanie, komunikują wartość marki, prowadzą użytkownika przez stronę
+          i zamieniają odwiedzających w klientów. To inwestycja, która pracuje na Twój biznes 24/7.
+        </p>
+
+        <h3>Dlaczego tworzenie tekstów na strony WWW warto zlecić specjalistom?</h3>
+
+        <p>
+          <strong>Tworzenie tekstów na strony WWW</strong> wymaga połączenia kilku kompetencji: copywritingu
+          (perswazyjny, angażujący język), SEO (widoczność w Google), UX writingu (czytelność i nawigacja)
+          i strategii (architektura informacji, flow użytkownika). Profesjonalista łączy te umiejętności
+          w spójny proces, który daje <strong>teksty na stronę internetową</strong> jednocześnie czytelne
+          dla ludzi i widoczne dla wyszukiwarek.
+        </p>
+
+        <h3>Teksty na stronę w eCopywriting.pl</h3>
+
+        <p>
+          Nasze podejście do <strong>pisania tekstów na stronę</strong> zaczyna się od wireframe'u tekstowego
+          — struktury strony z nagłówkami, kluczowymi przekazami i CTA. Dopiero po akceptacji wireframe'u
+          piszemy pełne copy. Każdy tekst jest zoptymalizowany pod SEO i gotowy do publikacji. A dzięki
+          programistom w zespole możemy wdrożyć treści bezpośrednio w CMS — z poprawną hierarchią
+          nagłówków, schema markup i optymalizacją techniczną. Jeden dostawca od <strong>tworzenia
+          tekstów na strony WWW</strong> po ich wdrożenie.
+        </p>
+
+        <h3>Kiedy potrzebujesz nowych tekstów na stronę?</h3>
+
+        <p>
+          Profesjonalne <strong>teksty na stronę firmową</strong> są potrzebne, gdy: uruchamiasz nową stronę
+          i potrzebujesz treści od zera; przeprojektowujesz stronę i chcesz uaktualnić komunikację; Twoje
+          obecne treści nie konwertują mimo dobrego ruchu; zmieniła się oferta, positioning lub grupa docelowa;
+          chcesz uporządkować i ujednolicić komunikację na wszystkich podstronach.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════
+     SHARED: breadcrumbs, hero, process, benefits, faq, related, cta, seo
+     Same patterns as copywriting/seo-copywriting pages
+     ═══════════════════════════════════════ */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list {
+    display: flex; align-items: center; font-family: var(--font-mono);
+    font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap;
+  }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%);
+  }
+  .srv-hero__grain {
+    position: absolute; inset: 0; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards;
+  }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title {
+    font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards;
+  }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle {
+    font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 560px; margin-top: var(--space-5);
+    opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards;
+  }
+  .srv-hero__actions {
+    display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+    margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards;
+  }
+  .srv-hero__cta-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 26px; background: var(--ink); color: var(--paper);
+    font-size: var(--fs-base); font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm); transition: all var(--transition-base);
+  }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary {
+    font-weight: var(--fw-medium); color: var(--ink-muted);
+    border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast);
+  }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof {
+    display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;
+    margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light);
+    opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards;
+  }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) {
+    .srv-hero__proof-sep { display: none; }
+    .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ═══════════════════════════════════════
+     PROBLEMS — Before/After cards
+     ═══════════════════════════════════════ */
+  .srv-problems {
+    padding: var(--space-20) 0;
+    background: var(--card-bg);
+    border-top: 1px solid var(--rule-light);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .srv-problems__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-5);
+  }
+
+  .srv-problems__card {
+    background: var(--paper);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-problems__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .srv-problems__label {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    background: var(--accent-bg); padding: 2px 8px; border-radius: var(--radius-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .srv-problems__before, .srv-problems__after {
+    display: flex; gap: var(--space-3); align-items: flex-start;
+  }
+
+  .srv-problems__before p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-faint);
+    text-decoration: line-through; text-decoration-color: var(--rule);
+  }
+
+  .srv-problems__after p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink);
+    font-weight: var(--fw-medium);
+  }
+
+  .srv-problems__marker {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: var(--fw-bold); margin-top: 2px;
+  }
+
+  .srv-problems__marker--before {
+    background: var(--rule-light); color: var(--ink-faint);
+  }
+
+  .srv-problems__marker--after {
+    background: var(--accent); color: #fff;
+  }
+
+  .srv-problems__divider {
+    display: flex; justify-content: center; padding: var(--space-2) 0;
+    color: var(--rule);
+  }
+
+  /* ═══════════════════════════════════════
+     PAGE TYPES — Grid cards
+     ═══════════════════════════════════════ */
+  .srv-pages { padding: var(--space-24) 0; }
+
+  .srv-pages__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 768px) { .srv-pages__grid { grid-template-columns: 1fr; } }
+
+  .srv-pages__card {
+    background: var(--card-bg);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-pages__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .srv-pages__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+
+  .srv-pages__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-2); line-height: var(--lh-snug);
+  }
+
+  .srv-pages__card p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted);
+  }
+
+  /* ═══════════════════════════════════════
+     PROCESS (dark)
+     ═══════════════════════════════════════ */
+  .srv-process {
+    padding: var(--space-24) 0; background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  .srv-process::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step {
+    display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5);
+    padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num {
+    font-family: var(--font-mono); font-size: var(--fs-sm);
+    color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right;
+  }
+  .srv-process__step-content h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2);
+  }
+  .srv-process__step-content p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: rgba(255,255,255,0.5); max-width: 580px;
+  }
+
+  /* ═══════════════════════════════════════
+     WIREFRAME EXPLAINER
+     ═══════════════════════════════════════ */
+  .srv-wireframe {
+    padding: var(--space-24) 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .srv-wireframe__inner { max-width: 740px; }
+
+  .srv-wireframe__label {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.68rem;
+    font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--space-4);
+  }
+
+  .srv-wireframe__title {
+    font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: var(--fw-semibold); line-height: var(--lh-snug);
+    color: var(--ink); margin-bottom: var(--space-4);
+  }
+
+  .srv-wireframe__title em { font-style: italic; color: var(--accent); }
+
+  .srv-wireframe__desc {
+    font-size: var(--fs-base); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8);
+  }
+
+  .srv-wireframe__example {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-5);
+  }
+
+  .srv-wireframe__section { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .srv-wireframe__tag {
+    font-family: var(--font-mono); font-size: 0.58rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: var(--space-1);
+  }
+
+  .srv-wireframe__block {
+    border-radius: 3px;
+    background: var(--rule-light);
+  }
+
+  .srv-wireframe__block--lg { height: 20px; width: 70%; }
+  .srv-wireframe__block--md { height: 12px; width: 55%; opacity: 0.6; }
+  .srv-wireframe__block--sm { height: 12px; width: 40%; opacity: 0.6; }
+  .srv-wireframe__block--btn { height: 28px; width: 140px; background: var(--accent); opacity: 0.4; border-radius: var(--radius-sm); }
+  .srv-wireframe__block--card { height: 60px; flex: 1; border: 1px dashed var(--rule); background: transparent; }
+
+  .srv-wireframe__row { display: flex; gap: var(--space-3); }
+
+  @media (max-width: 640px) {
+    .srv-wireframe__row { flex-direction: column; }
+  }
+
+  .srv-wireframe__benefit {
+    margin-top: var(--space-8);
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 600px;
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ═══════════════════════════════════════
+     BENEFITS
+     ═══════════════════════════════════════ */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-8);
+    position: relative; overflow: hidden;
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease;
+  }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-3); line-height: var(--lh-snug);
+  }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* ═══════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════ */
+  .srv-faq { padding: var(--space-24) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer;
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none;
+  }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* ═══════════════════════════════════════
+     RELATED / CTA / SEO
+     ═══════════════════════════════════════ */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--rule-light);
+    border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden;
+  }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card {
+    background: var(--card-bg); padding: var(--space-6);
+    text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column;
+  }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-2); transition: color var(--transition-fast);
+  }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow {
+    display: inline-block; margin-top: var(--space-3); color: var(--accent);
+    font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease;
+  }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%);
+  }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title {
+    font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4);
+  }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; background: var(--ink); color: var(--paper);
+    font-size: var(--fs-base); font-weight: var(--fw-medium);
+    border-radius: var(--radius-sm); transition: all var(--transition-base);
+  }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 {
+    font-family: var(--font-display); font-size: var(--fs-2xl);
+    font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink);
+  }
+  .srv-seo__article h3 {
+    font-family: var(--font-display); font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink);
+  }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

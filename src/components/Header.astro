@@ -4,7 +4,10 @@
 <header class="header" id="header">
   <div class="header__inner container-wide">
     <a href="/" class="header__logo" aria-label="eCopywriting — strona główna">
-      <span class="header__logo-mark">e</span><span class="header__logo-text">Copywriting</span>
+      <span class="header__logo-name">
+        <span class="header__logo-mark">e</span><span class="header__logo-text">Copywriting</span><span class="header__logo-mark">.pl</span>
+      </span>
+      <span class="header__logo-claim">Agencja content marketingu</span>
     </a>
 
     <nav class="header__nav" aria-label="Menu główne">
@@ -26,7 +29,6 @@
                 <a href="/uslugi/email-marketing/">Email marketing</a>
                 <a href="/uslugi/social-media/">Social media</a>
                 <a href="/uslugi/strategia-content-marketingowa/">Strategia contentowa</a>
-                
               </div>
               <div class="header__dropdown-col">
                 <span class="header__dropdown-label">Publikacje & Materiały</span>
@@ -41,18 +43,68 @@
             </div>
           </div>
         </li>
+        <li class="header__item"><a href="/o-nas/" class="header__link">O nas</a></li>
         <li class="header__item"><a href="/portfolio/" class="header__link">Portfolio</a></li>
         <li class="header__item"><a href="/blog/" class="header__link">Blog</a></li>
         <li class="header__item"><a href="/cennik/" class="header__link">Cennik</a></li>
       </ul>
     </nav>
 
-    <a href="/kontakt/" class="header__cta">Kontakt</a>
+    <div class="header__actions">
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Przełącz motyw kolorystyczny"
+        title="Przełącz motyw"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
 
-    <button class="header__burger" aria-label="Otwórz menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-    </button>
+      <a href="/kontakt/" class="header__cta">Kontakt</a>
+    </div>
+
+    <div class="header__mobile-actions">
+      <button
+        class="theme-toggle"
+        id="theme-toggle-mobile"
+        type="button"
+        aria-label="Przełącz motyw kolorystyczny"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <button class="header__burger" id="header-burger" aria-label="Otwórz menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -72,7 +124,6 @@
           <a href="/uslugi/email-marketing/">Email marketing</a>
           <a href="/uslugi/social-media/">Social media</a>
           <a href="/uslugi/strategia-content-marketingowa/">Strategia contentowa</a>
-          
           <span class="mobile-nav__label">Publikacje & Materiały</span>
           <a href="/uslugi/ebooki/">Ebooki</a>
           <a href="/uslugi/white-papers/">White papers</a>
@@ -91,54 +142,90 @@
   </nav>
 </div>
 
+<!-- Theme: set before paint to prevent FOUC -->
+<script is:inline>
+  (function() {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
 <script>
-  // Header scroll effect
-  const header = document.getElementById('header');
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('header--scrolled', y > 60);
-    header.classList.toggle('header--hidden', y > 400 && y > lastScroll);
-    lastScroll = y;
+  function toggleTheme(): void {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+
+  // Both toggle buttons (desktop + mobile)
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // Sync with OS if no explicit preference
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e: MediaQueryListEvent) => {
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
   });
 
-  // Desktop dropdown
-  const dropdownBtn = document.querySelector('.header__item--dropdown > .header__link');
-  const dropdownItem = document.querySelector('.header__item--dropdown');
-  if (dropdownBtn && dropdownItem) {
+  // ── Header scroll ──
+  const header = document.getElementById('header');
+  if (header) {
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('header--scrolled', y > 60);
+      header.classList.toggle('header--hidden', y > 400 && y > lastScroll);
+      lastScroll = y;
+    });
+  }
+
+  // ── Desktop dropdown ──
+  const dropdownItem = document.querySelector<HTMLElement>('.header__item--dropdown');
+  const dropdownBtn = dropdownItem?.querySelector<HTMLButtonElement>(':scope > .header__link');
+
+  if (dropdownItem && dropdownBtn) {
     dropdownBtn.addEventListener('click', () => {
       const expanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
       dropdownBtn.setAttribute('aria-expanded', String(!expanded));
       dropdownItem.classList.toggle('open');
     });
-    document.addEventListener('click', (e) => {
-      if (!dropdownItem.contains(e.target)) {
+
+    document.addEventListener('click', (e: MouseEvent) => {
+      const target = e.target as Node | null;
+      if (target && !dropdownItem.contains(target)) {
         dropdownBtn.setAttribute('aria-expanded', 'false');
         dropdownItem.classList.remove('open');
       }
     });
   }
 
-  // Mobile menu
-  const burger = document.querySelector('.header__burger');
+  // ── Mobile menu ──
+  const burger = document.getElementById('header-burger');
   const mobileNav = document.getElementById('mobile-nav');
-  burger?.addEventListener('click', () => {
-    const open = burger.getAttribute('aria-expanded') === 'true';
-    burger.setAttribute('aria-expanded', String(!open));
-    burger.classList.toggle('active');
-    if (open) {
-      mobileNav.setAttribute('hidden', '');
-      document.body.style.overflow = '';
-    } else {
-      mobileNav.removeAttribute('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-  });
 
-  // Mobile sub-toggle
-  document.querySelectorAll('.mobile-nav__toggle').forEach(btn => {
+  if (burger && mobileNav) {
+    burger.addEventListener('click', () => {
+      const open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!open));
+      burger.classList.toggle('active');
+      if (open) {
+        mobileNav.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      } else {
+        mobileNav.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.mobile-nav__toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const sub = btn.nextElementSibling;
+      const sub = btn.nextElementSibling as HTMLElement | null;
+      if (!sub) return;
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!expanded));
       if (expanded) sub.setAttribute('hidden', '');
@@ -159,7 +246,7 @@
   }
 
   .header--scrolled {
-    background: rgba(250, 248, 245, 0.95);
+    background: var(--header-bg);
     backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 var(--rule-light);
   }
@@ -178,20 +265,42 @@
   /* Logo */
   .header__logo {
     display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-decoration: none;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .header__logo-name {
+    display: flex;
     align-items: baseline;
     gap: 1px;
     font-family: var(--font-display);
     font-size: 1.4rem;
     font-weight: var(--fw-semibold);
     letter-spacing: -0.02em;
-    text-decoration: none;
-    color: var(--ink);
   }
 
   .header__logo-mark {
     color: var(--accent);
     font-weight: var(--fw-bold);
     font-style: italic;
+  }
+
+  .header__logo-claim {
+    font-family: var(--font-mono);
+    font-size: 0.53rem;
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 5.5px;
+    transition: color var(--transition-fast);
+  }
+
+  .header__logo:hover .header__logo-claim {
+    color: var(--ink-muted);
   }
 
   /* Nav */
@@ -267,7 +376,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
-    background: var(--white);
+    background: var(--dropdown-bg);
     border: 1px solid var(--rule-light);
     border-radius: var(--radius-md);
     padding: var(--space-6) var(--space-8);
@@ -306,9 +415,64 @@
     background: var(--paper-warm);
   }
 
+  /* Actions (desktop: theme + CTA) */
+  .header__actions {
+    display: none;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 900px) {
+    .header__actions { display: flex; }
+  }
+
+  /* Mobile actions (theme + burger) */
+  .header__mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  @media (min-width: 900px) {
+    .header__mobile-actions { display: none; }
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    color: var(--ink-muted);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--ink);
+    background: var(--paper-warm);
+  }
+
+  /* In light mode: show moon (switch to dark), hide sun */
+  .theme-toggle__icon--light {
+    display: none;
+  }
+  .theme-toggle__icon--dark {
+    display: block;
+  }
+
+  /* In dark mode: show sun (switch to light), hide moon */
+  :global([data-theme="dark"]) .theme-toggle__icon--light {
+    display: block;
+  }
+  :global([data-theme="dark"]) .theme-toggle__icon--dark {
+    display: none;
+  }
+
   /* CTA */
   .header__cta {
-    display: none;
     padding: 8px 20px;
     background: var(--ink);
     color: var(--paper);
@@ -316,10 +480,6 @@
     font-weight: var(--fw-medium);
     border-radius: var(--radius-sm);
     transition: all var(--transition-base);
-  }
-
-  @media (min-width: 900px) {
-    .header__cta { display: inline-flex; }
   }
 
   .header__cta:hover {
@@ -338,10 +498,6 @@
     cursor: pointer;
   }
 
-  @media (min-width: 900px) {
-    .header__burger { display: none; }
-  }
-
   .header__burger span {
     display: block;
     width: 100%;
@@ -351,11 +507,11 @@
     transform-origin: center;
   }
 
-  .header__burger.active span:first-child {
+  .header__burger:global(.active) span:first-child {
     transform: translateY(3.5px) rotate(45deg);
   }
 
-  .header__burger.active span:last-child {
+  .header__burger:global(.active) span:last-child {
     transform: translateY(-3.5px) rotate(-45deg);
   }
 

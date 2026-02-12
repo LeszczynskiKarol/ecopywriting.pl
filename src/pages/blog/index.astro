@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://www.ecopywriting.pl/blog/",
+      "url": "https://www.ecopywriting.pl/blog/",
+      "name": "Blog — eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Artykuły o content marketingu, copywritingu, SEO i profesjonalnych publikacjach.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/blog/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/blog/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog" }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Blog o content marketingu i copywritingu — eCopywriting.pl"
+  description="Artykuły o content marketingu, copywritingu, SEO i profesjonalnych publikacjach. Wiedza od praktyków z 15-letnim doświadczeniem."
+  keywords="blog content marketing, copywriting blog, SEO copywriting, artykuły o copywritingu"
+  schema={blogSchema}
+>
+  <section class="blog-hero" aria-labelledby="blog-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Blog"
+          title="Wiedza o&nbsp;content marketingu"
+          subtitle="Artykuły o strategii treści, copywritingu, SEO i profesjonalnych publikacjach. Wiedza od praktyków z ponad 15-letnim doświadczeniem."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-list" aria-label="Lista artykułów">
+    <div class="container">
+      <div class="blog-list__grid">
+        {posts.map((post) => {
+          const formattedDate = post.data.date.toLocaleDateString('pl-PL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+          return (
+            <a href={`/blog/${post.slug}/`} class="blog-card reveal">
+              <div class="blog-card__inner">
+                <div class="blog-card__meta">
+                  <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+                  {post.data.readingTime && (
+                    <span>{post.data.readingTime} min czytania</span>
+                  )}
+                </div>
+                <h2 class="blog-card__title">{post.data.title}</h2>
+                {post.data.description && (
+                  <p class="blog-card__desc">{post.data.description}</p>
+                )}
+                <span class="blog-card__link">
+                  Czytaj dalej
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding: var(--space-16) 0 var(--space-8);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .blog-list {
+    padding: var(--space-12) 0 var(--space-20);
+  }
+
+  .blog-list__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .blog-list__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .blog-card {
+    background: var(--white);
+    text-decoration: none;
+    transition: background var(--transition-base);
+  }
+
+  .blog-card:hover {
+    background: var(--paper-warm);
+  }
+
+  .blog-card__inner {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    margin-bottom: var(--space-3);
+  }
+
+  .blog-card__meta span::before {
+    content: '·';
+    margin-right: var(--space-3);
+  }
+
+  .blog-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+    transition: color var(--transition-fast);
+  }
+
+  .blog-card:hover .blog-card__title {
+    color: var(--accent);
+  }
+
+  .blog-card__desc {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: var(--lh-relaxed);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover .blog-card__link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>

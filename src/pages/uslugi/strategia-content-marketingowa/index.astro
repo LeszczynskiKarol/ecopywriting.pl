@@ -1,0 +1,784 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje strategia content marketingowa?',
+    a: 'Cena zależy od zakresu i złożoności projektu. Audyt treści z rekomendacjami to 2000–4000 zł. Kompletna strategia contentowa (audyt, research fraz, content plan, kalendarz, style guide) to 4000–10 000 zł. Stała obsługa strategiczna (comiesięczna analiza, aktualizacja planu, koordynacja produkcji) to 2000–5000 zł/miesiąc. Wycenę przygotowujemy w 24h.'
+  },
+  {
+    q: 'Czym strategia contentowa różni się od content planu?',
+    a: 'Content plan to lista tematów do napisania. Strategia contentowa to system — audyt obecnych treści, analiza luk, research fraz z podziałem na intencje, architektura content clusterów, priorytetyzacja tematów, kalendarz publikacji, dystrybucja, KPI i plan mierzenia efektów. Plan mówi CO pisać. Strategia mówi CO, DLACZEGO, DLA KOGO, KIEDY i JAK MIERZYĆ.'
+  },
+  {
+    q: 'Jak długo trwa przygotowanie strategii?',
+    a: 'Kompletna strategia content marketingowa wymaga 2–4 tygodni pracy — audyt, research, analiza, planowanie. Przy prostszych projektach (mała strona, jedna branża) możliwe jest 1–2 tygodnie. Nie skracamy tego procesu, bo pośpiech na etapie strategii kosztuje miesiące błędnych publikacji. Lepiej 3 tygodnie strategii niż 6 miesięcy pisania nie tych tekstów.'
+  },
+  {
+    q: 'Czy po strategii zajmujecie się też realizacją?',
+    a: 'Tak — i to rekomendujemy. Strategia bez realizacji to dokument na półkę. Oferujemy pełny cykl: strategia → produkcja treści → publikacja → monitoring → optymalizacja. Możemy też przekazać strategię Twojemu zespołowi — ze szczegółowymi wytycznymi, briefami i checklistami, żeby mogli ją realizować samodzielnie.'
+  },
+  {
+    q: 'Dla jakiego typu firm jest strategia contentowa?',
+    a: 'Strategia contentowa przynosi najlepsze efekty firmom, które: chcą budować widoczność organiczną w Google, mają budżet na regularną produkcję treści (min. 4 artykuły/miesiąc), działają w branży, gdzie klienci szukają informacji przed zakupem (B2B, SaaS, e-commerce, usługi profesjonalne). Jeśli Twój klient googla przed kontaktem — potrzebujesz strategii.'
+  },
+  {
+    q: 'Czy audytujecie istniejące treści?',
+    a: 'Tak — audyt treści to pierwszy krok każdej strategii. Analizujemy wszystkie istniejące treści: pozycje, ruch, konwersje, kanibalizację fraz, thin content, outdated content. Na tej podstawie rekomendujemy: co zostawić, co zaktualizować, co połączyć, co usunąć i co napisać od zera. Często optymalizacja istniejących treści daje szybszy ROI niż pisanie nowych.'
+  },
+  {
+    q: 'Jakich narzędzi używacie do strategii?',
+    a: 'Ahrefs i Semrush (research fraz, analiza konkurencji, luki contentowe), Google Search Console i GA4 (dane o obecnym ruchu), Surfer SEO (optymalizacja on-page), własne narzędzia AI (SERP analysis, keyword clustering, content gap analysis). Przy audycie analizujemy setki stron i tysiące fraz — narzędzia pozwalają skalować ten proces.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/#service",
+      "name": "Strategia content marketingowa",
+      "description": "Profesjonalna strategia content marketingowa — audyt treści, research fraz, content plan, architektura clusterów, kalendarz publikacji, KPI i monitoring. Od analizy po realizację.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Content strategy",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/",
+      "name": "Strategia Contentowa — Strategia Content Marketingowa | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalna strategia contentowa. Audyt treści, research fraz, content plan, architektura clusterów, kalendarz publikacji. Od analizy po realizację. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Strategia contentowa", "item": "https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Deliverables ──
+const deliverables = [
+  {
+    title: 'Audyt treści',
+    desc: 'Analiza wszystkich istniejących treści na stronie — pozycje, ruch, konwersje, kanibalizacja fraz, thin content, outdated content. Mapowanie content gap — tematy, na które rankuje konkurencja, a Ty nie. Rekomendacje: co zostawić, zaktualizować, połączyć, usunąć.',
+    output: 'Raport audytowy + lista rekomendacji',
+    icon: '🔍'
+  },
+  {
+    title: 'Research fraz kluczowych',
+    desc: 'Kompleksowy research fraz z podziałem na intencje (informacyjna, nawigacyjna, transakcyjna). Analiza wolumenu, trudności, potencjału konwersji. Keyword clustering — grupowanie fraz w tematy i klastry. Identyfikacja quick wins i long-term targets.',
+    output: 'Baza fraz z priorytetyzacją',
+    icon: '🔑'
+  },
+  {
+    title: 'Architektura content clusterów',
+    desc: 'Projektowanie struktury pillar-cluster — artykuły filarowe + supporting content + linkowanie wewnętrzne. Mapa topical authority budująca ekspercki wizerunek w wybranych tematach. Wizualizacja powiązań między treściami.',
+    output: 'Mapa clusterów + schemat linkowania',
+    icon: '🏗️'
+  },
+  {
+    title: 'Content plan z priorytetyzacją',
+    desc: 'Lista tematów z frazami docelowymi, rekomendowanym formatem, intencją, trudnością i priorytetem. Priorytetyzacja na podstawie: potencjału ruchu, trudności pozycjonowania, wartości biznesowej i content gap. Plan, który mówi CO pisać i W JAKIEJ KOLEJNOŚCI.',
+    output: 'Spreadsheet z 50–200+ tematami',
+    icon: '📋'
+  },
+  {
+    title: 'Kalendarz publikacji',
+    desc: 'Harmonogram publikacji na 3–6 miesięcy z podziałem na kanały (blog, social media, newsletter). Kadencja dopasowana do budżetu i zasobów. Kalendarz, który zamienia plan w działanie — z konkretnymi datami, formatami i odpowiedzialnościami.',
+    output: 'Kalendarz 3–6 miesięcy',
+    icon: '📅'
+  },
+  {
+    title: 'Style guide i wytyczne',
+    desc: 'Tone of voice, zasady pisania, struktura artykułów, formatowanie, SEO checklist. Dokument, który pozwala każdemu copywriterowi pisać spójnie z Twoją marką — niezależnie od tego, czy pisze wewnętrzny zespół czy zewnętrzna agencja.',
+    output: 'Dokument style guide',
+    icon: '📐'
+  }
+];
+
+// ── Without vs With strategy ──
+const contrasts = [
+  {
+    without: 'Losowe tematy artykułów na podstawie przeczuć',
+    with: 'Tematy oparte na researchu fraz i analizie luk contentowych'
+  },
+  {
+    without: 'Brak priorytetów — pisanie w przypadkowej kolejności',
+    with: 'Priorytetyzacja na podstawie potencjału ruchu i wartości biznesowej'
+  },
+  {
+    without: 'Artykuły kanibalizujące się nawzajem w Google',
+    with: 'Architektura clusterów eliminująca kanibalizację'
+  },
+  {
+    without: 'Brak linkowania wewnętrznego i topical authority',
+    with: 'Strategiczne linkowanie budujące autorytet tematyczny'
+  },
+  {
+    without: 'Nie wiadomo, czy treści działają — brak KPI',
+    with: 'Mierzalne cele, monitoring pozycji, raportowanie ROI'
+  },
+  {
+    without: 'Treści istnieją, ale nie generują ruchu ani leadów',
+    with: 'Każdy tekst ma cel — ruch, lead, konwersja, autorytet'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Discovery i brief',
+    desc: 'Poznajemy Twój biznes — usługi, produkty, grupę docelową, konkurencję, cele. Zbieramy dane z GSC, GA4, Ahrefs. Definiujemy zakres strategii i oczekiwane rezultaty. Brief do potwierdzenia — żebyśmy mówili tym samym językiem.'
+  },
+  {
+    num: '02',
+    title: 'Audyt i analiza',
+    desc: 'Audyt istniejących treści, analiza konkurencji (kto rankuje na Twoje frazy i dlaczego), identyfikacja content gap. Wykorzystujemy Ahrefs, Semrush, GSC i własne narzędzia do przeskanowania setek stron i tysięcy fraz.'
+  },
+  {
+    num: '03',
+    title: 'Research i clustering',
+    desc: 'Kompleksowy research fraz kluczowych z podziałem na intencje. Keyword clustering — grupowanie fraz w tematy i klastry tematyczne. Identyfikacja pillar topics i supporting content. Priorytetyzacja na podstawie danych.'
+  },
+  {
+    num: '04',
+    title: 'Strategia i content plan',
+    desc: 'Projektowanie architektury content clusterów, mapowanie linkowania wewnętrznego, definiowanie content planu z priorytetyzacją. Kalendarz publikacji na 3–6 miesięcy. Style guide i wytyczne dla copywriterów. Prezentacja strategii do akceptacji.'
+  },
+  {
+    num: '05',
+    title: 'Realizacja i monitoring',
+    desc: 'Strategia bez realizacji to dokument na półkę. Przejmujemy produkcję treści lub przekazujemy plan Twojemu zespołowi z briefami i checklistami. Monitorujemy wyniki — pozycje, ruch, konwersje. Kwartalnie aktualizujemy strategię na podstawie danych.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Dane zamiast przeczuć',
+    desc: 'Każda decyzja w strategii oparta na danych — wolumeny fraz, trudność pozycjonowania, ruch konkurencji, content gap, potencjał konwersji. Nie zgadujemy, co pisać. Analizujemy, co ma największy potencjał i w jakiej kolejności to realizować.'
+  },
+  {
+    title: 'Topical authority, nie losowe artykuły',
+    desc: 'Budujemy klastry tematyczne — pillar content + supporting articles + strategiczne linkowanie. Google nagradza strony, które pokrywają temat kompleksowo. Pojedynczy artykuł ma szanse, klaster tematyczny dominuje.'
+  },
+  {
+    title: 'Od strategii po realizację',
+    desc: 'Nie zostawiamy Cię z 50-stronowym PDFem. Przejmujemy realizację strategii — pisanie artykułów, redakcję, optymalizację, publikację. Albo przekazujemy plan z takimi szczegółami, że Twój zespół może go realizować samodzielnie.'
+  },
+  {
+    title: 'Szybsze wyniki przez quick wins',
+    desc: 'Pierwszym krokiem w realizacji strategii nie jest pisanie nowych treści — to optymalizacja istniejących. Artykuły na pozycjach 5–20 często wymagają drobnych zmian, żeby wskoczyć do top 3. Quick wins dają efekty w tygodniach, nie miesiącach.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'SEO Copywriting', href: '/uslugi/seo-copywriting/', desc: 'Realizacja strategii — artykuły zoptymalizowane pod SEO' },
+  { title: 'Artykuły blogowe', href: '/uslugi/artykuly-blogowe/', desc: 'Eksperckie treści realizujące content plan' },
+  { title: 'Teksty na stronę', href: '/uslugi/teksty-na-strone/', desc: 'Treści na strony firmowe i usługowe' },
+  { title: 'Social media', href: '/uslugi/social-media/', desc: 'Dystrybucja treści w kanałach społecznościowych' }
+];
+---
+
+<BaseLayout
+  title="Strategia Contentowa — Strategia Content Marketingowa | eCopywriting.pl"
+  description="Profesjonalna strategia contentowa. Audyt treści, research fraz, architektura content clusterów, content plan z priorytetyzacją, kalendarz publikacji, KPI. Od analizy po realizację. Wycena w 24h."
+  keywords="strategia contentowa, strategia content marketingowa, content plan, plan contentowy, audyt treści, content marketing strategia, content cluster, topical authority, kalendarz publikacji"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/strategia-content-marketingowa/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Strategia contentowa</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Strategia & Analiza</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Strategia contentowa,<br>która <em>daje&nbsp;kierunek</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Audyt treści, research fraz, architektura clusterów, content plan
+        z&nbsp;priorytetyzacją i&nbsp;kalendarz publikacji. Żebyś wiedział
+        CO pisać, DLACZEGO i&nbsp;W&nbsp;JAKIEJ KOLEJNOŚCI — zamiast zgadywać.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#deliverables" class="srv-hero__cta-secondary">Co dostarczamy</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Dane</strong> zamiast przeczuć</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>50–200+</strong> tematów w planie</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Od strategii</strong> po realizację</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WITHOUT vs WITH -->
+  <section class="srv-contrast" aria-labelledby="srv-contrast-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego strategia"
+          title="Content marketing bez strategii vs&nbsp;ze&nbsp;strategią"
+          subtitle="Większość firm publikuje treści bez planu — losowe tematy, brak priorytetów, zero mierzenia. Oto różnica, którą robi strategia contentowa."
+        />
+      </div>
+
+      <div class="srv-contrast__table reveal">
+        <div class="srv-contrast__header">
+          <span class="srv-contrast__header-label srv-contrast__header-label--without">Bez strategii</span>
+          <span class="srv-contrast__header-label srv-contrast__header-label--with">Ze strategią</span>
+        </div>
+        {contrasts.map((c) => (
+          <div class="srv-contrast__row">
+            <div class="srv-contrast__cell srv-contrast__cell--without">
+              <span class="srv-contrast__marker srv-contrast__marker--without" aria-hidden="true">✕</span>
+              <p>{c.without}</p>
+            </div>
+            <div class="srv-contrast__cell srv-contrast__cell--with">
+              <span class="srv-contrast__marker srv-contrast__marker--with" aria-hidden="true">✓</span>
+              <p>{c.with}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="srv-deliverables" id="deliverables" aria-labelledby="srv-deliverables-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co dostarczamy"
+          title="Elementy strategii contentowej"
+          subtitle="Strategia content marketingowa to nie &bdquo;dokument z rekomendacjami&rdquo;. To komplet narzędzi, które pozwalają podejmować decyzje i&nbsp;działać."
+        />
+      </div>
+
+      <div class="srv-deliverables__grid">
+        {deliverables.map((d, i) => (
+          <div class="srv-deliverables__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-deliverables__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-deliverables__card-output">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              {d.output}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLUSTER EXPLAINER -->
+  <section class="srv-cluster" id="klastry" aria-labelledby="srv-cluster-title">
+    <div class="container">
+      <div class="srv-cluster__inner reveal">
+        <span class="srv-cluster__label">Kluczowa koncepcja</span>
+        <h2 id="srv-cluster-title" class="srv-cluster__title">
+          Content clusters —<br><em>topical authority w&nbsp;praktyce</em>
+        </h2>
+        <p class="srv-cluster__desc">
+          Google nie rankuje pojedynczych artykułów — rankuje strony, które pokrywają temat
+          kompleksowo. Content cluster to struktura: jeden artykuł filarowy (pillar) otoczony
+          artykułami wspierającymi (supporting), połączony strategicznym linkowaniem wewnętrznym.
+        </p>
+
+        <div class="srv-cluster__visual" aria-label="Schemat content clustera">
+          <div class="srv-cluster__pillar">
+            <span class="srv-cluster__pillar-label">Pillar</span>
+            <span class="srv-cluster__pillar-title">Ultimate Guide:<br>Email Marketing</span>
+          </div>
+          <div class="srv-cluster__spokes" aria-hidden="true">
+            <span class="srv-cluster__spoke"></span>
+            <span class="srv-cluster__spoke"></span>
+            <span class="srv-cluster__spoke"></span>
+            <span class="srv-cluster__spoke"></span>
+            <span class="srv-cluster__spoke"></span>
+          </div>
+          <div class="srv-cluster__supports">
+            <span class="srv-cluster__support">Jak zbudować listę mailingową</span>
+            <span class="srv-cluster__support">Sekwencje powitalne — guide</span>
+            <span class="srv-cluster__support">A/B testy w email marketingu</span>
+            <span class="srv-cluster__support">Porzucone koszyki — automatyzacja</span>
+            <span class="srv-cluster__support">Email marketing KPI — co mierzyć</span>
+          </div>
+        </div>
+
+        <p class="srv-cluster__benefit">
+          Efekt: Google widzi, że Twoja strona jest ekspertem od email marketingu —
+          i nagradza ją wyższymi pozycjami na WSZYSTKIE powiązane frazy. Pojedynczy
+          artykuł walczy sam. Klaster dominuje niszę.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od discovery po realizację strategii"
+          subtitle="Nasz proces łączy analitykę z&nbsp;pragmatyzmem. Strategia to nie 50-stronowy PDF, który ląduje na&nbsp;półce — to żywy dokument z&nbsp;konkretnymi priorytetami i&nbsp;planem działania."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Strategia, która się realizuje"
+          subtitle="Największy problem ze strategiami contentowymi? Nikt ich nie realizuje. Nasze podejście rozwiązuje ten problem — od pierwszego dnia."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="srv-tools" aria-label="Narzędzia strategii contentowej">
+    <div class="container">
+      <div class="srv-tools__inner reveal">
+        <span class="srv-tools__label">Narzędzia</span>
+        <h2 class="srv-tools__title">Strategia oparta na profesjonalnych narzędziach</h2>
+        <p class="srv-tools__desc">
+          Nie pracujemy na przeczuciach. Każda rekomendacja oparta jest na danych
+          z&nbsp;profesjonalnych narzędzi SEO i content marketingu.
+        </p>
+        <div class="srv-tools__list">
+          <div class="srv-tools__group">
+            <span class="srv-tools__group-label">Research & analiza</span>
+            <div class="srv-tools__items">
+              <span class="srv-tools__item">Ahrefs</span>
+              <span class="srv-tools__item">Semrush</span>
+              <span class="srv-tools__item">Google Search Console</span>
+              <span class="srv-tools__item">Google Analytics 4</span>
+            </div>
+          </div>
+          <div class="srv-tools__group">
+            <span class="srv-tools__group-label">Optymalizacja & AI</span>
+            <div class="srv-tools__items">
+              <span class="srv-tools__item">Surfer SEO</span>
+              <span class="srv-tools__item">Własne narzędzia AI</span>
+              <span class="srv-tools__item">SERP analysis tools</span>
+              <span class="srv-tools__item">Keyword clustering tools</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;strategii contentowej, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Chcesz content marketing oparty na&nbsp;strategii?</h2>
+        <p class="srv-cta__desc">
+          Opisz swoje cele i&nbsp;obecną sytuację — odpowiemy z&nbsp;wyceną,
+          propozycją zakresu i&nbsp;rekomendacjami w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów strategię contentową
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o strategii contentowej">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Strategia contentowa — fundament skutecznego content marketingu</h2>
+        <p>
+          <strong>Strategia contentowa</strong> to dokument i proces, który odpowiada na kluczowe pytania
+          content marketingu: jakie treści tworzyć, dla kogo, w jakiej kolejności i jak mierzyć efekty.
+          Profesjonalna <strong>strategia content marketingowa</strong> zamienia losowe publikacje
+          w&nbsp;system generowania ruchu, leadów i&nbsp;sprzedaży — oparty na danych, nie przeczuciach.
+        </p>
+        <h3>Dlaczego potrzebujesz strategii content marketingowej?</h3>
+        <p>
+          Bez <strong>strategii contentowej</strong> content marketing to strzały w ciemno — losowe tematy,
+          brak priorytetów, kanibalizacja fraz, zero mierzenia efektów. <strong>Content plan</strong>
+          oparty na researchu fraz, analizie konkurencji i architekturze clusterów pozwala inwestować
+          czas i budżet tam, gdzie potencjał jest największy. Firmy ze strategią contentową generują
+          3× więcej leadów niż firmy bez strategii (wg Content Marketing Institute).
+        </p>
+        <h3>Strategia contentowa w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>strategii content marketingowej</strong> łączy analitykę z pragmatyzmem.
+          Zaczynamy od audytu treści i researchu fraz, projektujemy architekturę content clusterów budujących
+          <strong>topical authority</strong>, tworzymy <strong>plan contentowy</strong> z priorytetyzacją
+          i kalendarz publikacji na 3–6 miesięcy. A potem realizujemy — bo strategia bez realizacji
+          to dokument na półkę. Własne narzędzia AI pozwalają skalować research na tysiące fraz
+          i setki stron konkurencji.
+        </p>
+        <h3>Kiedy potrzebujesz strategii contentowej?</h3>
+        <p>
+          Profesjonalna <strong>strategia contentowa</strong> jest potrzebna, gdy: publikujesz treści,
+          ale nie widzisz efektów w Google; nie wiesz, jakie tematy mają największy potencjał; Twoje
+          artykuły kanibalizują się nawzajem; chcesz budować <strong>topical authority</strong>
+          w&nbsp;wybranych tematach; planujesz skalowanie content marketingu i potrzebujesz planu.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CONTRAST TABLE */
+  .srv-contrast { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); }
+
+  .srv-contrast__table { max-width: 840px; }
+
+  .srv-contrast__header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+    margin-bottom: var(--space-4); padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--rule-light);
+  }
+
+  .srv-contrast__header-label {
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .srv-contrast__header-label--without { color: var(--ink-faint); }
+  .srv-contrast__header-label--with { color: var(--accent); }
+
+  .srv-contrast__row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+    padding: var(--space-3) 0; border-bottom: 1px solid var(--rule-light);
+  }
+
+  .srv-contrast__cell { display: flex; gap: var(--space-2); align-items: flex-start; }
+
+  .srv-contrast__cell p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); }
+  .srv-contrast__cell--without p { color: var(--ink-faint); }
+  .srv-contrast__cell--with p { color: var(--ink); font-weight: var(--fw-medium); }
+
+  .srv-contrast__marker {
+    flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.55rem; font-weight: var(--fw-bold); margin-top: 3px;
+  }
+
+  .srv-contrast__marker--without { background: var(--rule-light); color: var(--ink-faint); }
+  .srv-contrast__marker--with { background: var(--accent); color: #fff; }
+
+  @media (max-width: 640px) {
+    .srv-contrast__header, .srv-contrast__row { grid-template-columns: 1fr; gap: var(--space-2); }
+    .srv-contrast__header-label--without { display: none; }
+  }
+
+  /* DELIVERABLES */
+  .srv-deliverables { padding: var(--space-24) 0; }
+  .srv-deliverables__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-deliverables__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-deliverables__grid { grid-template-columns: 1fr; } }
+
+  .srv-deliverables__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-6);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+  .srv-deliverables__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-deliverables__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-deliverables__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-deliverables__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  .srv-deliverables__card-output {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: var(--space-3); font-family: var(--font-mono);
+    font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em;
+  }
+  .srv-deliverables__card-output svg { flex-shrink: 0; }
+
+  /* CLUSTER EXPLAINER */
+  .srv-cluster { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-cluster__inner { max-width: 760px; }
+  .srv-cluster__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-cluster__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cluster__title em { font-style: italic; color: var(--accent); }
+  .srv-cluster__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; margin-bottom: var(--space-8); }
+
+  .srv-cluster__visual {
+    display: flex; align-items: center; gap: var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (max-width: 640px) {
+    .srv-cluster__visual { flex-direction: column; align-items: stretch; }
+    .srv-cluster__spokes { display: none; }
+  }
+
+  .srv-cluster__pillar {
+    flex-shrink: 0; text-align: center;
+    background: var(--accent); border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6); color: #fff;
+    min-width: 180px;
+  }
+
+  .srv-cluster__pillar-label {
+    display: block; font-family: var(--font-mono); font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
+    margin-bottom: var(--space-1);
+  }
+
+  .srv-cluster__pillar-title {
+    font-family: var(--font-display); font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold); line-height: var(--lh-snug);
+  }
+
+  .srv-cluster__spokes {
+    display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;
+  }
+
+  .srv-cluster__spoke {
+    display: block; width: 24px; height: 1px; background: var(--accent); opacity: 0.4;
+  }
+
+  .srv-cluster__supports {
+    display: flex; flex-wrap: wrap; gap: var(--space-2); flex: 1;
+  }
+
+  .srv-cluster__support {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--card-bg); border: 1px solid var(--rule-light);
+    padding: 6px 12px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .srv-cluster__support:hover { border-color: var(--accent); color: var(--accent); }
+
+  .srv-cluster__benefit {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: var(--ink-muted); max-width: 600px;
+    padding-left: var(--space-4); border-left: 3px solid var(--accent);
+  }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* TOOLS */
+  .srv-tools { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-tools__inner { max-width: 740px; }
+  .srv-tools__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-tools__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); }
+  .srv-tools__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 540px; margin-bottom: var(--space-6); }
+  .srv-tools__list { display: flex; flex-direction: column; gap: var(--space-5); }
+  .srv-tools__group-label { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: var(--space-2); }
+  .srv-tools__items { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .srv-tools__item {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 6px 14px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .srv-tools__item:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

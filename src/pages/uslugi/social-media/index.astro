@@ -1,0 +1,686 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje prowadzenie social media?',
+    a: 'Cena zależy od liczby kanałów, częstotliwości publikacji i zakresu obsługi. Podstawowy pakiet (1 kanał, 8–12 postów/miesiąc, grafiki + copy) to 1500–3000 zł/miesiąc. Pakiet rozszerzony (2–3 kanały, 16–24 posty, strategia + raportowanie) to 3000–6000 zł/miesiąc. Kompleksowa obsługa z moderacją i kampaniami płatnymi wyceniamy indywidualnie. Wycenę przygotowujemy w 24h.'
+  },
+  {
+    q: 'Na jakich platformach pracujecie?',
+    a: 'Specjalizujemy się w platformach, gdzie content marketing przynosi najlepsze efekty: LinkedIn (B2B, personal branding, employer branding), Instagram (wizualne marki, e-commerce, lifestyle), Facebook (community, lokalne biznesy, kampanie), X/Twitter (thought leadership, real-time marketing). Wspieramy też TikTok i YouTube w zakresie skryptów i copywritingu.'
+  },
+  {
+    q: 'Czy zajmujecie się tylko pisaniem postów, czy też strategią?',
+    a: 'Jedno i drugie. Możemy napisać posty na zadany temat, ale najlepsze efekty daje współpraca strategiczna — audyt obecnych kanałów, analiza grupy docelowej, content plan z filiarami tematycznymi, kalendarz publikacji i systematyczna obsługa z raportowaniem. Strategia zamienia losowe publikacje w spójną komunikację z mierzalnymi efektami.'
+  },
+  {
+    q: 'Czy tworzycie też grafiki i kreacje wizualne?',
+    a: 'Tak — dostarczamy kompletne posty: copy + grafika/kreacja. Projektujemy szablony graficzne w identyfikacji wizualnej Twojej marki, które zapewniają spójność i przyspieszają produkcję. Przy bardziej zaawansowanych projektach (reelsy, animacje, video) współpracujemy z grafikami i motion designerami.'
+  },
+  {
+    q: 'Jak mierzycie efektywność social media?',
+    a: 'Śledzimy metryki dopasowane do celów: zasięg i impressions (awareness), engagement rate (zaangażowanie), kliknięcia i ruch na stronie (traffic), leady i konwersje (sprzedaż), wzrost followerów (community). Raportujemy co miesiąc z konkretnymi wnioskami i rekomendacjami — nie „ładnym PDFem z wykresami".'
+  },
+  {
+    q: 'Czy obsługujecie kampanie płatne (Meta Ads, LinkedIn Ads)?',
+    a: 'Obsługujemy kampanie płatne w zakresie kreacji — copy reklamowe, grafiki, warianty A/B. Możemy też doradzić w strategii targetowania i budżetowania. Nie prowadzimy jednak kompleksowego performance marketingu (zarządzanie budżetem, bidding, retargeting) — to domena agencji performance. Chętnie współpracujemy z Twoją agencją performance, dostarczając kreacje.'
+  },
+  {
+    q: 'Ile postów miesięcznie powinno wychodzić?',
+    a: 'Zależy od platformy i celów. LinkedIn: 3–5 postów tygodniowo dla najlepszych efektów. Instagram: 3–5 feedów + 5–10 stories tygodniowo. Facebook: 3–4 posty tygodniowo. Ważniejsza od ilości jest jakość i regularność. Lepiej 3 wartościowe posty tygodniowo niż codzienny spam bez wartości. Pomagamy ustalić optymalną kadencję.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/social-media/#service",
+      "name": "Social media",
+      "description": "Profesjonalne prowadzenie social media — strategia, copywriting, kreacje graficzne, kalendarz publikacji i raportowanie. LinkedIn, Instagram, Facebook, X/Twitter.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Social media management",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/social-media/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/social-media/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/social-media/",
+      "name": "Social Media — Prowadzenie i Obsługa Kanałów Social Media | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne prowadzenie social media. Strategia, copywriting, kreacje, kalendarz publikacji. LinkedIn, Instagram, Facebook. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/social-media/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/social-media/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Social media", "item": "https://www.ecopywriting.pl/uslugi/social-media/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Platforms ──
+const platforms = [
+  {
+    name: 'LinkedIn',
+    desc: 'Platforma #1 dla B2B, personal branding i employer branding. Posty eksperckie, artykuły, karuzele, dokumenty. Organiczny zasięg wciąż żyje — dobrze napisany post na LinkedIn może dotrzeć do tysięcy decydentów bez złotówki na reklamy.',
+    best: 'B2B, SaaS, usługi, rekrutacja, thought leadership',
+    formats: 'Posty tekstowe, karuzele, artykuły, newslettery LinkedIn',
+    icon: '💼'
+  },
+  {
+    name: 'Instagram',
+    desc: 'Wizualna platforma dla marek lifestyle, e-commerce, HoReCa, beauty i fashion. Feed buduje wizerunek, Stories budują relację, Reels budują zasięg. Kluczem jest spójność wizualna i wartościowe podpisy — nie same zdjęcia.',
+    best: 'E-commerce, lifestyle, beauty, HoReCa, design',
+    formats: 'Posty, karuzele, Stories, Reels, captions',
+    icon: '📸'
+  },
+  {
+    name: 'Facebook',
+    desc: 'Wciąż największa platforma w Polsce — 26 mln użytkowników. Najlepsza do budowania community (grupy), komunikacji lokalnych biznesów i eventów. Organiczny zasięg jest niski, ale strategiczna kombinacja contentu i kampanii płatnych wciąż daje wyniki.',
+    best: 'Lokalne biznesy, eventy, community, grupy',
+    formats: 'Posty, wydarzenia, grupy, live, stories',
+    icon: '👥'
+  },
+  {
+    name: 'X / Twitter',
+    desc: 'Platforma real-time — thought leadership, komentarze branżowe, szybka komunikacja. Idealna dla CEO, ekspertów, firm technologicznych. Krótka forma wymaga precyzyjnego copywritingu — każde słowo musi pracować.',
+    best: 'Tech, SaaS, personal branding, real-time marketing',
+    formats: 'Tweety, wątki (threads), cytaty, ankiety',
+    icon: '𝕏'
+  }
+];
+
+// ── Content pillars ──
+const pillars = [
+  {
+    title: 'Treści edukacyjne',
+    desc: 'How-to, porady, tipy, wyjaśnienia. Treści, które rozwiązują problemy Twojej grupy docelowej i budują pozycję eksperta. Najwyższy potencjał zapisu i udostępnienia.',
+    pct: '40%'
+  },
+  {
+    title: 'Treści wizerunkowe',
+    desc: 'Behind the scenes, zespół, kultura firmy, wartości. Treści, które humanizują markę i budują zaufanie. Ludzie kupują od ludzi — pokaż, kto stoi za firmą.',
+    pct: '20%'
+  },
+  {
+    title: 'Treści sprzedażowe',
+    desc: 'Case studies, rezultaty, oferty, social proof. Treści, które prowadzą do konwersji — ale nie więcej niż 20% całości. Za dużo sprzedaży = unfollow.',
+    pct: '20%'
+  },
+  {
+    title: 'Treści angażujące',
+    desc: 'Pytania, ankiety, kontrowersyjne tezy, memy branżowe. Treści generujące komentarze i dyskusje. Algorytm nagradza zaangażowanie — a engagement buduje zasięg.',
+    pct: '20%'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Audyt i strategia',
+    desc: 'Analizujemy obecne kanały, konkurencję, grupę docelową i tone of voice. Definiujemy cele, KPI, filary tematyczne i platformy docelowe. Strategia do akceptacji przed startem — z jasnym planem, czego się spodziewać.'
+  },
+  {
+    num: '02',
+    title: 'Identyfikacja i szablony',
+    desc: 'Projektujemy system wizualny dla social media — szablony graficzne, paleta kolorów, typografia, styl zdjęć. Spójność wizualna to podstawa rozpoznawalności. Szablony przyspieszają produkcję i zapewniają jakość na skali.'
+  },
+  {
+    num: '03',
+    title: 'Kalendarz i produkcja',
+    desc: 'Tworzymy miesięczny kalendarz publikacji — tematy, formaty, daty. Piszemy copy, projektujemy grafiki, przygotowujemy warianty. Wszystko do akceptacji w arkuszu lub narzędziu (Notion, Trello, Asana) z wyprzedzeniem 1–2 tygodni.'
+  },
+  {
+    num: '04',
+    title: 'Publikacja i moderacja',
+    desc: 'Publikujemy posty w optymalnych godzinach. Monitorujemy komentarze, odpowiadamy w imieniu marki (w ramach ustalonych reguł), reagujemy na wzmianki. Moderacja buduje community — ignorowanie komentarzy je niszczy.'
+  },
+  {
+    num: '05',
+    title: 'Analiza i optymalizacja',
+    desc: 'Raportujemy wyniki co miesiąc — metryki, wnioski, rekomendacje. Analizujemy, co działa (i dlaczego), co nie działa (i co zmienić). Optymalizujemy strategię na podstawie danych, nie przeczuć. Iteracja to klucz do wzrostu.'
+  }
+];
+
+// ── Differentiators ──
+const diffs = [
+  {
+    title: 'Copywriting, nie lorem ipsum',
+    desc: 'Jesteśmy agencją copywriterską — pisanie to nasze DNA. Każdy post jest napisany z taką samą uwagą jak tekst na stronę czy oferta handlowa. Precyzyjny hook, wartościowa treść, jasne CTA. Nie lorem ipsum z ładną grafiką.'
+  },
+  {
+    title: 'Strategia zamiast losowych postów',
+    desc: 'Nie publikujemy „bo trzeba coś wrzucić". Każdy post ma swoje miejsce w strategii — realizuje cel, trafia w filar tematyczny, buduje spójną narrację. Kalendarz zamiast improwizacji, system zamiast chaosu.'
+  },
+  {
+    title: 'Content repurposing — jeden temat, wiele formatów',
+    desc: 'Artykuł blogowy zamienia się w 5 postów na LinkedIn, karuzelę na Instagramie i thread na X. Ebook staje się serią postów edukacyjnych. Maksymalizujemy zwrot z każdego contentu, zamiast za każdym razem zaczynać od zera.'
+  },
+  {
+    title: 'Dane, nie przeczucia',
+    desc: 'Każda decyzja oparta na danych — od wyboru godzin publikacji, przez formaty, po filary tematyczne. Testujemy, mierzymy, optymalizujemy. Miesięczne raporty z konkretnymi rekomendacjami, nie „ładne PDFy z wykresami".'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Copywriting', href: '/uslugi/copywriting/', desc: 'Teksty sprzedażowe, slogany i hasła reklamowe' },
+  { title: 'Artykuły blogowe', href: '/uslugi/artykuly-blogowe/', desc: 'Eksperckie treści do repurposingu w social media' },
+  { title: 'Email marketing', href: '/uslugi/email-marketing/', desc: 'Dystrybucja treści w newsletterach i sekwencjach' },
+  { title: 'Strategia contentowa', href: '/uslugi/strategia-content-marketingowa/', desc: 'Spójna strategia obejmująca blog, social i email' }
+];
+---
+
+<BaseLayout
+  title="Social Media — Prowadzenie i Obsługa Kanałów Social Media | eCopywriting.pl"
+  description="Profesjonalne prowadzenie social media. Strategia, copywriting, kreacje graficzne, kalendarz publikacji i raportowanie wyników. LinkedIn, Instagram, Facebook, X/Twitter. Wycena w 24h."
+  keywords="social media, prowadzenie social media, obsługa social media, treści social media, posty social media, social media marketing, social media agencja, prowadzenie profili social media, copywriting social media"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/social-media/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Social media</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Social Media & Content</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Social media, które<br><em>buduje markę i&nbsp;sprzedaje</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Profesjonalne prowadzenie social media — strategia, copywriting, kreacje
+        i&nbsp;publikacja. Treści, które angażują, budują community i&nbsp;przekładają się
+        na&nbsp;realne wyniki biznesowe. Nie „ładne posty" — mierzalny marketing.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#platformy" class="srv-hero__cta-secondary">Platformy i formaty</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Strategia</strong> + copy + grafika</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Kalendarz</strong> z wyprzedzeniem</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Raport</strong> z wnioskami co miesiąc</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="srv-platforms" id="platformy" aria-labelledby="srv-platforms-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Platformy"
+          title="Gdzie prowadzmy social media?"
+          subtitle="Nie musisz być wszędzie. Dobieramy platformy do Twojej grupy docelowej i&nbsp;celów biznesowych — zamiast rozpraszać budżet na 5 kanałów, skupiamy się na 1–2, które dają najlepszy zwrot."
+        />
+      </div>
+      <div class="srv-platforms__grid">
+        {platforms.map((p, i) => (
+          <div class="srv-platforms__card reveal" style={`--delay: ${i * 0.06}s`}>
+            <div class="srv-platforms__card-head">
+              <span class="srv-platforms__card-icon" aria-hidden="true">{p.icon}</span>
+              <h3>{p.name}</h3>
+            </div>
+            <p class="srv-platforms__card-desc">{p.desc}</p>
+            <div class="srv-platforms__card-meta">
+              <div class="srv-platforms__card-row">
+                <span class="srv-platforms__card-label">Najlepsze dla:</span>
+                <span>{p.best}</span>
+              </div>
+              <div class="srv-platforms__card-row">
+                <span class="srv-platforms__card-label">Formaty:</span>
+                <span>{p.formats}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT PILLARS -->
+  <section class="srv-pillars" id="filary" aria-labelledby="srv-pillars-title">
+    <div class="container">
+      <div class="srv-pillars__inner reveal">
+        <span class="srv-pillars__label">Nasze podejście</span>
+        <h2 id="srv-pillars-title" class="srv-pillars__title">
+          Filary tematyczne —<br><em>system zamiast chaosu</em>
+        </h2>
+        <p class="srv-pillars__desc">
+          Każda strategia social media opiera się na filarach tematycznych — kategoriach treści
+          z jasnym podziałem procentowym. To zamienia „co dziś wrzucić?" w przewidywalny system,
+          który buduje markę i&nbsp;generuje wyniki.
+        </p>
+        <div class="srv-pillars__grid">
+          {pillars.map((pil) => (
+            <div class="srv-pillars__card">
+              <div class="srv-pillars__card-header">
+                <span class="srv-pillars__card-pct">{pil.pct}</span>
+                <h3>{pil.title}</h3>
+              </div>
+              <p>{pil.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od strategii po miesięczny raport"
+          subtitle="Przejrzysty proces, w&nbsp;którym wiesz, co się dzieje na każdym etapie. Kalendarz do akceptacji z&nbsp;wyprzedzeniem, posty gotowe do publikacji, raport z&nbsp;wnioskami co&nbsp;miesiąc."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REPURPOSING -->
+  <section class="srv-repurpose" id="repurposing" aria-labelledby="srv-repurpose-title">
+    <div class="container">
+      <div class="srv-repurpose__inner reveal">
+        <span class="srv-repurpose__label">Efektywność</span>
+        <h2 id="srv-repurpose-title" class="srv-repurpose__title">
+          Jeden content,<br><em>dziesięć formatów</em>
+        </h2>
+        <p class="srv-repurpose__desc">
+          Nie tworzymy każdego postu od zera. Strategicznie przetwarzamy treści
+          między kanałami — artykuł blogowy, ebook, webinar czy case study staje
+          się dziesiątkami postów social media. Więcej contentu, mniej wysiłku, niższy koszt.
+        </p>
+        <div class="srv-repurpose__flow" aria-label="Schemat content repurposingu">
+          <div class="srv-repurpose__source">
+            <span class="srv-repurpose__source-label">Źródło</span>
+            <div class="srv-repurpose__source-item">Artykuł blogowy</div>
+          </div>
+          <div class="srv-repurpose__arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="srv-repurpose__outputs">
+            <span class="srv-repurpose__output">5× post LinkedIn</span>
+            <span class="srv-repurpose__output">3× karuzela Instagram</span>
+            <span class="srv-repurpose__output">1× thread X/Twitter</span>
+            <span class="srv-repurpose__output">2× story Instagram</span>
+            <span class="srv-repurpose__output">1× newsletter snippet</span>
+            <span class="srv-repurpose__output">1× infografika</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Social media prowadzone przez copywriterów"
+          subtitle="Na rynku nie brakuje &bdquo;agencji social media&rdquo;. Oto dlaczego warto powierzyć social media agencji, której DNA to copywriting i&nbsp;content marketing."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {diffs.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;prowadzeniu social media, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Chcesz social media, które pracuje na&nbsp;markę?</h2>
+        <p class="srv-cta__desc">
+          Opisz swoje kanały i&nbsp;cele — odpowiemy z&nbsp;wyceną, propozycją strategii
+          i&nbsp;wstępnym kalendarzem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę social media
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o prowadzeniu social media">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Prowadzenie social media — profesjonalna obsługa kanałów społecznościowych</h2>
+        <p>
+          <strong>Prowadzenie social media</strong> to jeden z kluczowych elementów nowoczesnego marketingu.
+          Profesjonalna <strong>obsługa social media</strong> obejmuje nie tylko publikowanie postów,
+          ale przede wszystkim strategię komunikacji, tworzenie wartościowych <strong>treści social media</strong>,
+          budowanie community i&nbsp;mierzenie efektów. To systematyczna praca, która wymaga spójności,
+          regularności i&nbsp;głębokiego zrozumienia grupy docelowej.
+        </p>
+        <h3>Dlaczego warto zlecić prowadzenie social media agencji?</h3>
+        <p>
+          Skuteczne <strong>prowadzenie profili social media</strong> wymaga połączenia kilku kompetencji:
+          copywritingu (angażujące <strong>posty social media</strong>), grafiki (spójne kreacje wizualne),
+          strategii (filary tematyczne, kalendarz, KPI) i&nbsp;analityki (mierzenie i&nbsp;optymalizacja).
+          Profesjonalna <strong>agencja social media</strong> łączy te umiejętności w&nbsp;spójny proces
+          — od audytu i&nbsp;strategii, przez produkcję i&nbsp;publikację, po raportowanie i&nbsp;optymalizację.
+        </p>
+        <h3>Social media w eCopywriting.pl — copywriting to nasze DNA</h3>
+        <p>
+          Nasze podejście do <strong>obsługi social media</strong> wyróżnia się jednym: copywriting.
+          Jesteśmy agencją content marketingową z 15+ lat doświadczenia w pisaniu — i to widać w każdym
+          poście. Precyzyjne hooki, wartościowe treści, jasne CTA. Łączymy to ze strategią opartą
+          na filarach tematycznych, <strong>content repurposingiem</strong> (jeden temat, wiele formatów)
+          i&nbsp;miesięcznym raportowaniem z konkretnymi rekomendacjami. <strong>Social media marketing</strong>,
+          który buduje markę i przekłada się na wyniki.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnego prowadzenia social media?</h3>
+        <p>
+          Profesjonalna <strong>obsługa social media</strong> jest potrzebna, gdy: Twoje kanały są
+          nieaktywne lub publikujesz nieregularnie; posty nie generują zaangażowania ani zasięgu;
+          brakuje Ci czasu lub kompetencji do systematycznego <strong>prowadzenia social media</strong>;
+          chcesz zbudować personal brand lub employer brand na LinkedIn; potrzebujesz spójnej komunikacji
+          marki we wszystkich kanałach społecznościowych.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* PLATFORMS — detailed cards */
+  .srv-platforms { padding: var(--space-24) 0; }
+  .srv-platforms__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+  @media (max-width: 768px) { .srv-platforms__grid { grid-template-columns: 1fr; } }
+
+  .srv-platforms__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-6);
+    transition: border-color var(--transition-base), transform var(--transition-base);
+    transition-delay: var(--delay, 0s);
+  }
+  .srv-platforms__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .srv-platforms__card-head { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+  .srv-platforms__card-icon { font-size: 1.4rem; line-height: 1; }
+  .srv-platforms__card-head h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); }
+  .srv-platforms__card-desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+
+  .srv-platforms__card-meta { display: flex; flex-direction: column; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--rule-light); }
+  .srv-platforms__card-row { font-size: var(--fs-xs); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-platforms__card-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-right: 0.4rem; }
+
+  /* CONTENT PILLARS */
+  .srv-pillars { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-pillars__inner { max-width: 800px; }
+  .srv-pillars__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-pillars__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-pillars__title em { font-style: italic; color: var(--accent); }
+  .srv-pillars__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8); }
+
+  .srv-pillars__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  @media (max-width: 640px) { .srv-pillars__grid { grid-template-columns: 1fr; } }
+
+  .srv-pillars__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-5);
+  }
+
+  .srv-pillars__card-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); }
+
+  .srv-pillars__card-pct {
+    font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-bold);
+    color: var(--accent); line-height: 1;
+  }
+
+  .srv-pillars__card-header h3 {
+    font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug);
+  }
+
+  .srv-pillars__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* REPURPOSING */
+  .srv-repurpose { padding: var(--space-24) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-repurpose__inner { max-width: 760px; }
+  .srv-repurpose__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-repurpose__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-repurpose__title em { font-style: italic; color: var(--accent); }
+  .srv-repurpose__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8); }
+
+  .srv-repurpose__flow {
+    display: flex; align-items: center; gap: var(--space-5);
+  }
+
+  @media (max-width: 640px) {
+    .srv-repurpose__flow { flex-direction: column; align-items: stretch; }
+    .srv-repurpose__arrow { transform: rotate(90deg); align-self: center; }
+  }
+
+  .srv-repurpose__source {
+    flex-shrink: 0; text-align: center;
+  }
+
+  .srv-repurpose__source-label {
+    display: block; font-family: var(--font-mono); font-size: 0.58rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: var(--space-2);
+  }
+
+  .srv-repurpose__source-item {
+    background: var(--paper); border: 2px solid var(--accent);
+    border-radius: var(--radius-md); padding: var(--space-4) var(--space-5);
+    font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink);
+  }
+
+  .srv-repurpose__arrow { color: var(--accent); flex-shrink: 0; }
+
+  .srv-repurpose__outputs {
+    display: flex; flex-wrap: wrap; gap: var(--space-2); flex: 1;
+  }
+
+  .srv-repurpose__output {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 5px 12px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .srv-repurpose__output:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

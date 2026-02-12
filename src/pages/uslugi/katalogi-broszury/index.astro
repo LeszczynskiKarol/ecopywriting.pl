@@ -1,0 +1,681 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje stworzenie katalogu lub broszury?',
+    a: 'Cena zależy od objętości, złożoności i zakresu prac. Broszura firmowa (8–16 stron, copy + design + skład) to 3000–7000 zł. Katalog produktowy (20–60 stron, opisy produktów, zdjęcia, tabele) to 6000–15 000 zł. Katalog premium (60–150+ stron, pełny copywriting, sesja zdjęciowa, skład, rendering) to 15 000–35 000 zł. W cenę wliczone: strategia, copywriting, projekt graficzny, skład i rendering do druku i/lub wersji cyfrowej.'
+  },
+  {
+    q: 'Jak długo trwa stworzenie katalogu?',
+    a: 'Broszura firmowa (8–16 stron) to 2–3 tygodnie. Katalog produktowy (20–60 stron) to 3–5 tygodni. Katalog premium (60–150+ stron) to 6–10 tygodni. Czas obejmuje: brief, copywriting, redakcję, projekt graficzny, skład typograficzny, rendering, testy i korektę. Przy sezonowych katalogach (np. kolekcja wiosna/lato) rekomendujemy start 8–12 tygodni przed deadlinem.'
+  },
+  {
+    q: 'Czy dostarczacie pliki gotowe do druku?',
+    a: 'Tak — dostarczamy print-ready PDF z profilem kolorów CMYK, spadami (bleed), znacznikami cięcia i osadzonymi fontami. Pliki zgodne ze standardami drukarni offsetowej i cyfrowej. Współpracujemy z drukarnią Twojego wyboru lub rekomendujemy sprawdzonych partnerów. Na życzenie dostarczamy też wersję cyfrową (RGB, interaktywną) do dystrybucji online.'
+  },
+  {
+    q: 'Czy mogę zamówić sam skład (mam już teksty i zdjęcia)?',
+    a: 'Tak — oferujemy sam skład i rendering z gotowych materiałów. Dostarczasz teksty i zdjęcia, a my zajmujemy się: redakcją, projektem graficznym, składem typograficznym i renderingiem do druku i/lub wersji cyfrowej. To opcja dla firm, które mają wewnętrzny copywriting, ale potrzebują profesjonalnego DTP.'
+  },
+  {
+    q: 'Czy tworzycie też wersje cyfrowe katalogów?',
+    a: 'Tak — oprócz print-ready PDF tworzymy wersje cyfrowe: interaktywny PDF (klikalne linki, spis treści, zakładki), flipbook online (do osadzenia na stronie), EPUB (czytniki), a nawet dedykowane landing page z katalogiem produktów. Wersja cyfrowa może mieć inny layout niż drukowana — zoptymalizowany pod ekran zamiast kartki A4.'
+  },
+  {
+    q: 'Czy pomagacie z aktualizacją istniejących katalogów?',
+    a: 'Tak — przejmujemy istniejące katalogi i aktualizujemy: nowe produkty, zmienione ceny, odświeżony design, nowe zdjęcia. Jeśli masz pliki źródłowe (InDesign, Figma) — pracujemy na nich. Jeśli nie — odtwarzamy layout i tworzymy nowe źródło, które ułatwi przyszłe aktualizacje. Rekomendujemy systematyczny cykl aktualizacji (kwartalny lub półroczny).'
+  },
+  {
+    q: 'Jakich narzędzi używacie do składu katalogów?',
+    a: 'Adobe InDesign i Figma (katalogi wizualne, lifestyle, produktowe), LaTeX/Quarto (katalogi techniczne z dużą ilością danych, tabel, specyfikacji). Przy dużych katalogach (100+ produktów) wykorzystujemy automatyzację — import danych z CSV/bazy produktowej do szablonu, co eliminuje ręczne wklejanie i redukuje ryzyko błędów.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/#service",
+      "name": "Katalogi i broszury",
+      "description": "Profesjonalne tworzenie katalogów produktowych i broszur firmowych. Copywriting, projekt graficzny, skład typograficzny, rendering do druku (CMYK) i wersji cyfrowej. Od briefu po print-ready PDF.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Catalog and brochure creation",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/",
+      "name": "Katalogi i Broszury — Tworzenie Katalogów Produktowych i Broszur | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne tworzenie katalogów produktowych i broszur firmowych. Copywriting, design, skład DTP, print-ready PDF. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Katalogi i broszury", "item": "https://www.ecopywriting.pl/uslugi/katalogi-broszury/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Publication types ──
+const pubTypes = [
+  {
+    title: 'Katalogi produktowe',
+    desc: 'Kompletne katalogi z opisami produktów, specyfikacjami technicznymi, zdjęciami i cennikami. Od 20 do 300+ stron. Struktura ułatwiająca nawigację — spis treści, sekcje, indeksy. Język korzyści zamiast suchej specyfikacji.',
+    format: 'A4 / A5 / niestandardowy',
+    icon: '📦'
+  },
+  {
+    title: 'Broszury firmowe',
+    desc: 'Kompaktowe prezentacje firmy, usług lub oferty — 8–16 stron, które mówią wszystko, co klient musi wiedzieć. Idealne na targi, spotkania biznesowe i mailingi. Copy, które sprzedaje, nie opisuje.',
+    format: 'A4 / A5 / DL / składane',
+    icon: '📑'
+  },
+  {
+    title: 'Lookbooki i katalogi lifestyle',
+    desc: 'Wizualne publikacje dla marek fashion, beauty, HoReCa i design. Nacisk na fotografię, storytelling i estetykę. Minimalistyczny copy, maksymalny impact wizualny. Format drukowany i cyfrowy.',
+    format: 'Dowolny / premium print',
+    icon: '✨'
+  },
+  {
+    title: 'Katalogi techniczne',
+    desc: 'Publikacje z dużą ilością danych — specyfikacje, tabele, schematy, rysunki techniczne. Precyzyjny skład z automatycznym importem danych z bazy produktowej. Dla branż: przemysł, budownictwo, elektronika, automotive.',
+    format: 'A4 / A3 rozkładówka',
+    icon: '⚙️'
+  },
+  {
+    title: 'Cenniki i ofertowniki',
+    desc: 'Profesjonalne cenniki produktów i usług — z tabelami, wariantami, pakietami. Struktura umożliwiająca szybkie aktualizacje (modularny layout). Wersja drukowana + interaktywny PDF z kalkulatorem lub formularzem.',
+    format: 'A4 / A5 / cyfrowy',
+    icon: '💰'
+  },
+  {
+    title: 'Foldery i ulotki premium',
+    desc: 'Materiały 1–6 stron — składane foldery, ulotki, inserty. Kompaktowa forma, maksymalny przekaz. Idealne do dystrybucji na eventach, w paczkach e-commerce, w punktach sprzedaży. Copy + design + print-ready w jednym.',
+    format: 'DL / A5 / A4 składane',
+    icon: '📄'
+  }
+];
+
+// ── Print vs Digital ──
+const printVsDigital = [
+  {
+    type: 'Druk',
+    label: 'Print-ready PDF',
+    specs: [
+      'Profil kolorów CMYK',
+      'Spady 3–5 mm (bleed)',
+      'Znaczniki cięcia (crop marks)',
+      'Osadzone fonty i grafiki',
+      'Rozdzielczość 300 DPI',
+      'Zgodność z normami drukarni'
+    ]
+  },
+  {
+    type: 'Cyfrowy',
+    label: 'Wersja online',
+    specs: [
+      'Profil kolorów RGB (ekran)',
+      'Klikalne linki i spis treści',
+      'Zakładki i nawigacja PDF',
+      'Zoptymalizowany rozmiar pliku',
+      'Flipbook do osadzenia na stronie',
+      'Opcjonalnie: EPUB / landing page'
+    ]
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Brief i struktura',
+    desc: 'Definiujemy cel publikacji, grupę docelową, format, objętość i kanał dystrybucji (druk, digital, oba). Projektujemy strukturę — spis treści, podział na sekcje, hierarchię informacji. Flatplan (schemat rozkładówek) do akceptacji przed startem produkcji.'
+  },
+  {
+    num: '02',
+    title: 'Copywriting i redakcja',
+    desc: 'Piszemy opisy produktów, teksty wizerunkowe, nagłówki, CTA. Język korzyści zamiast suchych specyfikacji. Dwuetapowa redakcja: merytoryczna (fakty, spójność) i językowa (styl, gramatyka). Przy katalogach technicznych — import danych z bazy z weryfikacją.'
+  },
+  {
+    num: '03',
+    title: 'Projekt graficzny i skład',
+    desc: 'Projektowanie layoutu — siatka, typografia, paleta kolorów, traktowanie zdjęć. Skład typograficzny w InDesign lub Figma (wizualne) lub LaTeX (techniczne). Profesjonalny DTP: kerning, leading, hierarchia, paginacja, wdowy/sieroty, tabele, infografiki.'
+  },
+  {
+    num: '04',
+    title: 'Rendering i dostawa',
+    desc: 'Rendering do print-ready PDF (CMYK, spady, crop marks, 300 DPI) i/lub wersji cyfrowej (RGB, interaktywny PDF, flipbook). Testy na urządzeniach i proof drukarski (softproof lub hardproof). Dostawa plików finalnych + źródłowych (InDesign/Figma) do przyszłych edycji.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Copy + design + DTP — jeden zespół',
+    desc: 'Nie musisz koordynować copywritera, fotografa, grafika i składacza. Jeden zespół prowadzi projekt od briefu po print-ready PDF — z jednym harmonogramem i jednym punktem kontaktu. Zero luk między „tekst jest gotowy" a „grafik potrzebuje tekstu".'
+  },
+  {
+    title: 'Język korzyści, nie specyfikacji',
+    desc: 'Jesteśmy agencją copywriterską — pisanie to nasze DNA. Opisy produktów w katalogu piszemy tak, jak opisy na stronę czy ofertę handlową. Każdy produkt ma hook, benefit i powód do działania. Specyfikacja jest — ale wspiera, nie zastępuje język sprzedażowy.'
+  },
+  {
+    title: 'Druk i digital w jednym projekcie',
+    desc: 'Projektujemy katalog raz — renderujemy dwa razy. Print-ready PDF do drukarni (CMYK, spady, 300 DPI) i wersja cyfrowa na stronę (RGB, interaktywna, zoptymalizowana). Dwa kanały dystrybucji z jednego projektu — bez podwójnych kosztów.'
+  },
+  {
+    title: 'Skalowalność i aktualizacje',
+    desc: 'Przy dużych katalogach (100+ produktów) automatyzujemy import danych z CSV/bazy produktowej. Modularny layout umożliwia szybkie aktualizacje — nowe produkty, zmienione ceny, sezonowe kolekcje. Systematyczny cykl aktualizacji zamiast tworzenia od zera co rok.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Opisy produktów', href: '/uslugi/opisy-produktow/', desc: 'Profesjonalne opisy do katalogów i sklepów' },
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Publikacje cyfrowe i lead magnety' },
+  { title: 'Copywriting', href: '/uslugi/copywriting/', desc: 'Teksty sprzedażowe i oferty handlowe' },
+  { title: 'Teksty na stronę', href: '/uslugi/teksty-na-strone/', desc: 'Copy na strony firmowe i produktowe' }
+];
+---
+
+<BaseLayout
+  title="Katalogi i Broszury — Tworzenie Katalogów Produktowych i Broszur | eCopywriting.pl"
+  description="Profesjonalne tworzenie katalogów produktowych i broszur firmowych. Copywriting, projekt graficzny, skład DTP, rendering do druku (CMYK, print-ready PDF) i wersji cyfrowej. Od briefu po gotowy plik. Wycena w 24h."
+  keywords="katalogi produktowe, broszury firmowe, tworzenie katalogów, składanie katalogów, katalog produktowy, broszura firmowa, DTP, skład katalogu, print-ready PDF, katalog druk"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/katalogi-broszury/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Katalogi i broszury</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Katalogi & DTP</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Katalogi i&nbsp;broszury,<br>które <em>sprzedają na papierze</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Profesjonalne tworzenie katalogów produktowych i&nbsp;broszur firmowych —
+        copywriting, projekt graficzny, skład typograficzny i&nbsp;rendering do&nbsp;druku
+        i&nbsp;wersji cyfrowej. Od&nbsp;briefu po&nbsp;print-ready PDF.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#rodzaje" class="srv-hero__cta-secondary">Rodzaje publikacji</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Copy + design + DTP</strong> w jednym zespole</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Print-ready</strong> CMYK + spady + 300 DPI</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Druk + digital</strong> z jednego projektu</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATION TYPES -->
+  <section class="srv-types" id="rodzaje" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co tworzymy"
+          title="Rodzaje katalogów i&nbsp;broszur"
+          subtitle="Od 8-stronowej broszury firmowej po 300-stronowy katalog techniczny. Dobieramy format, objętość i&nbsp;styl do&nbsp;celu — sprzedaż, prezentacja, targi, mailing, dystrybucja online."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {pubTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-format">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+              {d.format}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINT vs DIGITAL -->
+  <section class="srv-output" id="formaty" aria-labelledby="srv-output-title">
+    <div class="container">
+      <div class="srv-output__inner reveal">
+        <span class="srv-output__label">Formaty wyjściowe</span>
+        <h2 id="srv-output-title" class="srv-output__title">
+          Jeden projekt —<br><em>druk i&nbsp;digital</em>
+        </h2>
+        <p class="srv-output__desc">
+          Projektujemy katalog raz, renderujemy dwa razy. Print-ready PDF do drukarni
+          i&nbsp;wersja cyfrowa na stronę — z jednego projektu, bez podwójnych kosztów.
+        </p>
+
+        <div class="srv-output__grid">
+          {printVsDigital.map((col) => (
+            <div class="srv-output__col">
+              <div class="srv-output__col-header">
+                <span class="srv-output__col-type">{col.type}</span>
+                <span class="srv-output__col-label">{col.label}</span>
+              </div>
+              <ul class="srv-output__col-specs">
+                {col.specs.map((spec) => (
+                  <li>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{spec}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od briefu po print-ready PDF"
+          subtitle="Cztery etapy, jeden zespół. Flatplan → copywriting → design i&nbsp;skład → rendering do druku i&nbsp;wersji cyfrowej. Z&nbsp;jednym punktem kontaktu i&nbsp;harmonogramem."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Katalogi tworzone przez copywriterów, nie tylko grafików"
+          subtitle="Większość agencji DTP robi piękny layout z&nbsp;kiepskim copy. My robimy piękny layout z&nbsp;copy, które sprzedaje — bo jesteśmy agencją copywriterską z&nbsp;zespołem DTP."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMATION CALLOUT -->
+  <section class="srv-auto" aria-labelledby="srv-auto-title">
+    <div class="container">
+      <div class="srv-auto__inner reveal">
+        <span class="srv-auto__label">Duże katalogi?</span>
+        <h2 id="srv-auto-title" class="srv-auto__title">
+          100+ produktów?<br><em>Automatyzujemy skład.</em>
+        </h2>
+        <p class="srv-auto__desc">
+          Przy katalogach z dużą liczbą produktów ręczne wklejanie opisów, cen i zdjęć
+          to strata czasu i źródło błędów. Nasz zespół programistów automatyzuje import
+          danych z&nbsp;CSV, bazy produktowej lub PIM do&nbsp;szablonu InDesign/LaTeX.
+        </p>
+        <div class="srv-auto__points">
+          <div class="srv-auto__point">
+            <span class="srv-auto__point-num">1</span>
+            <div>
+              <strong>Import z bazy danych</strong>
+              <p>CSV, Excel, PIM, API sklepu — dane produktowe trafiają bezpośrednio do szablonu składu</p>
+            </div>
+          </div>
+          <div class="srv-auto__point">
+            <span class="srv-auto__point-num">2</span>
+            <div>
+              <strong>Modularny layout</strong>
+              <p>Szablony stron z wariantami — produkty, kategorie, porównania. Raz zaprojektowane, wielokrotnie użyte</p>
+            </div>
+          </div>
+          <div class="srv-auto__point">
+            <span class="srv-auto__point-num">3</span>
+            <div>
+              <strong>Szybkie aktualizacje</strong>
+              <p>Nowe produkty, zmienione ceny, sezonowe kolekcje — aktualizacja katalogu w godzinach, nie tygodniach</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;tworzeniu katalogów i&nbsp;broszur, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz katalogu lub broszury?</h2>
+        <p class="srv-cta__desc">
+          Opisz projekt — format, orientacyjna objętość, cel i&nbsp;kanał dystrybucji.
+          Odpowiemy z&nbsp;wyceną, propozycją struktury i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę katalogu
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o tworzeniu katalogów i broszur">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Tworzenie katalogów produktowych i&nbsp;broszur firmowych</h2>
+        <p>
+          <strong>Tworzenie katalogów produktowych</strong> to kompleksowy proces łączący copywriting,
+          projekt graficzny, <strong>skład katalogów</strong> i rendering do druku. Profesjonalny
+          <strong>katalog produktowy</strong> to nie lista produktów ze zdjęciami — to narzędzie
+          sprzedażowe z przemyślaną strukturą, językiem korzyści i designem, który buduje wizerunek marki.
+          Podobnie <strong>broszura firmowa</strong> — kompaktowa prezentacja, która musi powiedzieć
+          wszystko w 8–16 stronach.
+        </p>
+        <h3>Dlaczego składanie katalogów warto zlecić profesjonalistom?</h3>
+        <p>
+          Profesjonalne <strong>składanie katalogów</strong> wymaga połączenia kilku kompetencji:
+          copywriting (opisy produktów w języku korzyści), grafika (layout, typografia, traktowanie
+          zdjęć), DTP (skład typograficzny, tabele, specyfikacje) i prepress (print-ready PDF,
+          CMYK, spady). Koordynacja tych etapów między freelancerami to ryzyko opóźnień i niespójności.
+          Agencja pokrywająca cały pipeline dostarcza spójny rezultat szybciej i taniej.
+        </p>
+        <h3>Katalogi i broszury w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>tworzenia katalogów</strong> i <strong>broszur firmowych</strong>
+          łączy copywriting z profesjonalnym DTP. Piszemy opisy produktów, które sprzedają (nie
+          kopiujemy specyfikacji), projektujemy layout i składamy w InDesign, Figma lub LaTeX,
+          renderujemy do <strong>print-ready PDF</strong> (CMYK, 300 DPI) i wersji cyfrowej.
+          Przy dużych katalogach automatyzujemy import danych z bazy produktowej. Jeden zespół,
+          jeden harmonogram, zero luk.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnego katalogu?</h3>
+        <p>
+          Profesjonalne <strong>tworzenie katalogów</strong> jest potrzebne, gdy: przygotowujesz się
+          do targów branżowych; potrzebujesz materiału dla handlowców; chcesz zaprezentować pełną
+          ofertę produktową w spójnej formie; Twój obecny katalog jest nieaktualny lub amatorski;
+          potrzebujesz <strong>broszury firmowej</strong> na spotkania B2B; chcesz wersję drukowaną
+          i cyfrową z jednego projektu.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 580px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* PUBLICATION TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-format { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-format svg { flex-shrink: 0; }
+
+  /* PRINT vs DIGITAL */
+  .srv-output { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-output__inner { max-width: 800px; }
+  .srv-output__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-output__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-output__title em { font-style: italic; color: var(--accent); }
+  .srv-output__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8); }
+
+  .srv-output__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+  @media (max-width: 640px) { .srv-output__grid { grid-template-columns: 1fr; } }
+
+  .srv-output__col {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-5); overflow: hidden;
+  }
+
+  .srv-output__col-header {
+    display: flex; align-items: center; gap: var(--space-3);
+    margin-bottom: var(--space-4); padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .srv-output__col-type {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: var(--fw-bold);
+    letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
+    background: var(--accent); padding: 3px 8px; border-radius: var(--radius-sm);
+  }
+
+  .srv-output__col-label {
+    font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink);
+  }
+
+  .srv-output__col-specs { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .srv-output__col-specs li {
+    display: flex; align-items: center; gap: var(--space-2);
+    font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed);
+  }
+
+  .srv-output__col-specs svg { flex-shrink: 0; color: var(--accent); }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* AUTOMATION */
+  .srv-auto { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-auto__inner { max-width: 740px; }
+  .srv-auto__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-auto__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-auto__title em { font-style: italic; color: var(--accent); }
+  .srv-auto__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-bottom: var(--space-6); }
+
+  .srv-auto__points { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .srv-auto__point {
+    display: flex; gap: var(--space-4); align-items: flex-start;
+  }
+
+  .srv-auto__point-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-family: var(--font-mono); font-size: 0.7rem;
+    font-weight: var(--fw-bold); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+
+  .srv-auto__point strong {
+    display: block; font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: 2px;
+  }
+
+  .srv-auto__point p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

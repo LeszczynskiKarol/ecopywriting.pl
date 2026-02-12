@@ -1,0 +1,735 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje stworzenie ebooka?',
+    a: 'Cena zależy od objętości, złożoności tematu i zakresu prac. Krótki ebook (15–25 stron, lead magnet) to 3000–6000 zł. Ebook ekspercki (30–60 stron, pogłębiony temat) to 6000–12 000 zł. Publikacja premium (80–150+ stron, pełny research, wywiady, case studies) to 12 000–25 000 zł. W cenę wliczone: strategia, pisanie, redakcja, skład, projekt graficzny i rendering do wybranych formatów.'
+  },
+  {
+    q: 'Jak długo trwa stworzenie ebooka?',
+    a: 'Krótki lead magnet (15–25 stron) to 2–3 tygodnie. Ebook ekspercki (30–60 stron) to 3–5 tygodni. Publikacja premium (80–150+ stron) to 6–10 tygodni. Czas obejmuje: brief, research, pisanie, redakcję merytoryczną i językową, skład i projekt graficzny, rendering i testy. Przy pilnych projektach oferujemy tryb ekspresowy.'
+  },
+  {
+    q: 'W jakich formatach dostarczacie gotowy ebook?',
+    a: 'Dostarczamy ebooki w dowolnych formatach: PDF (druk + ekran), EPUB (czytniki, Apple Books), MOBI/KF8 (Kindle), a także pliki źródłowe (LaTeX/Quarto) do przyszłych edycji. Standardowo dostarczamy PDF + EPUB. Format dobieramy do kanału dystrybucji — inny do pobrania ze strony, inny do Amazon Kindle, inny do druku.'
+  },
+  {
+    q: 'Czy mogę zamówić sam skład i projekt graficzny (mam już tekst)?',
+    a: 'Tak — oferujemy sam skład i rendering ebooków z gotowego tekstu. Dostarczasz treść w dowolnym formacie (Docs, Word, Markdown), a my zajmujemy się: redakcją, projektem graficznym, składem typograficznym i renderingiem do PDF/EPUB/MOBI. To opcja dla firm, które mają copywritera, ale potrzebują profesjonalnego składu.'
+  },
+  {
+    q: 'Czy ebook może być lead magnetem na stronie?',
+    a: 'Tak — i to jedno z najskuteczniejszych zastosowań. Projektujemy ebooki jako lead magnety: wartościowa treść w zamian za adres email. Pomagamy też z landing page, formularzem zapisu i integracją z platformą email (Mailchimp, MailerLite, ConvertKit i inne). Ebook + landing page + sekwencja powitalna = kompletny lejek pozyskiwania leadów.'
+  },
+  {
+    q: 'Jakich narzędzi używacie do składu ebooków?',
+    a: 'Pracujemy z profesjonalnymi narzędziami DTP i publishing: LaTeX i Quarto (publikacje techniczne, akademickie, raporty z danymi, publikacje wizualne, lifestyle, marketing), własne pipeline\'y renderingu do PDF/EPUB/MOBI. Przeważnie korzystamy z LaTeX dla precyzji typograficznej i swobody wizualnej.'
+  },
+  {
+    q: 'Czy pomagacie z dystrybucją ebooka?',
+    a: 'Tak — doradzamy w strategii dystrybucji: landing page z formularzem zapisu (lead magnet), publikacja na Amazon Kindle (KDP), dystrybucja przez newsletter, promocja w social media, gated content na stronie. Możemy też przygotować materiały promocyjne — grafiki social media, fragmenty do newslettera, landing page z copy i wdrożeniem.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/ebooki/#service",
+      "name": "Tworzenie ebooków",
+      "description": "Profesjonalne tworzenie ebooków na zamówienie. Kompleksowa usługa: strategia, pisanie, redakcja, projekt graficzny, skład typograficzny i rendering do PDF, EPUB, MOBI. Lead magnety, publikacje eksperckie, raporty branżowe.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Ebook creation",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/ebooki/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/ebooki/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/ebooki/",
+      "name": "Ebooki — Tworzenie Ebooków na Zamówienie | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne tworzenie ebooków na zamówienie. Pisanie, redakcja, skład, projekt graficzny, rendering PDF/EPUB/MOBI. Lead magnety, publikacje eksperckie. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/ebooki/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/ebooki/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Ebooki", "item": "https://www.ecopywriting.pl/uslugi/ebooki/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Ebook types ──
+const ebookTypes = [
+  {
+    title: 'Lead magnety',
+    desc: 'Kompaktowe ebooki (15–25 stron) zaprojektowane jako narzędzie pozyskiwania leadów. Wartościowa treść w zamian za adres email. Checklisty, mini-poradniki, szablony, frameworki. Projektowane pod szybkie czytanie i natychmiastową wartość.',
+    best: 'Pozyskiwanie subskrybentów i leadów',
+    icon: '🧲'
+  },
+  {
+    title: 'Ebooki eksperckie',
+    desc: 'Pogłębione publikacje (30–60 stron) budujące autorytet w branży. Kompleksowe omówienie tematu z danymi, case studies i praktycznymi rekomendacjami. Pozycjonują firmę jako eksperta i stanowią trwałe aktywo content marketingowe.',
+    best: 'Budowanie autorytetu i thought leadership',
+    icon: '📘'
+  },
+  {
+    title: 'Raporty branżowe',
+    desc: 'Publikacje oparte na danych — wyniki badań, analizy rynku, trendy, benchmarki. Profesjonalny skład z wykresami, tabelami i infografikami. Raporty generują backlinki, cytowania w mediach i pozycję lidera opinii w branży.',
+    best: 'Dane, PR i backlinki',
+    icon: '📊'
+  },
+  {
+    title: 'White papers',
+    desc: 'Techniczne lub biznesowe dokumenty (15–30 stron) adresujące konkretny problem i proponujące rozwiązanie. Format popularny w B2B, SaaS i enterprise. Skuteczne w środku i na dole lejka sprzedażowego — edukują i przesuwają lead bliżej decyzji.',
+    best: 'B2B, SaaS, enterprise sales',
+    icon: '📄'
+  },
+  {
+    title: 'Poradniki i kursy',
+    desc: 'Obszerne publikacje edukacyjne (60–150+ stron) — step-by-step guides, podręczniki, materiały szkoleniowe. Struktura modułowa z ćwiczeniami, checklistami i podsumowaniami. Mogą być produktem płatnym lub elementem onboardingu klientów.',
+    best: 'Edukacja, onboarding, produkty cyfrowe',
+    icon: '🎓'
+  },
+  {
+    title: 'Repurposing — blog → ebook',
+    desc: 'Przekształcenie istniejących artykułów blogowych w spójną publikację. Selekcja najlepszych treści, redakcja, uzupełnienie, nowa struktura, profesjonalny skład. Maksymalizacja ROI z treści, które już masz — bez pisania od zera.',
+    best: 'Maksymalizacja istniejącego contentu',
+    icon: '♻️'
+  }
+];
+
+// ── Full-stack pipeline ──
+const pipeline = [
+  {
+    num: '01',
+    title: 'Strategia i brief',
+    desc: 'Definiujemy cel ebooka (lead magnet, autorytet, sprzedaż), grupę docelową, ton, zakres i format. Research tematu, analiza konkurencyjnych publikacji, plan rozdziałów. Brief do akceptacji — żebyśmy pisali dokładnie to, czego potrzebujesz.',
+    tag: 'Planowanie'
+  },
+  {
+    num: '02',
+    title: 'Research i pisanie',
+    desc: 'Głęboki research tematu — dane, źródła, wywiady z ekspertami (jeśli potrzeba). Pisanie rozdziałów przez copywritera specjalizującego się w Twojej branży. AI wspiera research i drafting, człowiek finalizuje i nadaje eksperckość. Tekst do akceptacji przed składem.',
+    tag: 'Content'
+  },
+  {
+    num: '03',
+    title: 'Redakcja merytoryczna i językowa',
+    desc: 'Dwuetapowa redakcja: najpierw merytoryczna (fakty, logika, spójność argumentacji), potem językowa (styl, gramatyka, interpunkcja). Korekta eliminuje błędy, redakcja podnosi jakość. Każdy ebook przechodzi przez dwóch redaktorów.',
+    tag: 'Redakcja'
+  },
+  {
+    num: '04',
+    title: 'Projekt graficzny i kreacja',
+    desc: 'Projektowanie identyfikacji wizualnej ebooka — okładka, layout stron, typografia, paleta kolorów, ikony, infografiki, wykresy. Spójność z brandingiem Twojej firmy. Kreacja dopasowana do formatu — inny layout dla PDF do pobrania, inny dla EPUB na czytniku.',
+    tag: 'Design'
+  },
+  {
+    num: '05',
+    title: 'Skład typograficzny',
+    desc: 'Profesjonalny skład — łamanie tekstu, hierarchia typograficzna, kerning, leading, wdowy i sieroty, paginacja. Pracujemy z LaTeX/Quarto (publikacje techniczne, raporty z danymi, precyzja typograficzna, publikacje wizualne, lifestyle). Skład na poziomie wydawnictwa, nie „eksport z Worda".',
+    tag: 'Skład'
+  },
+  {
+    num: '06',
+    title: 'Rendering i dostawa',
+    desc: 'Rendering do finalnych formatów: PDF (druk + ekran, z profilem kolorów CMYK/RGB), EPUB (czytniki, Apple Books — reflowable layout), MOBI/KF8 (Amazon Kindle). Testy na urządzeniach, optymalizacja rozmiaru pliku, embedding fontów. Dostawa plików finalnych + źródłowych do przyszłych edycji.',
+    tag: 'Rendering'
+  }
+];
+
+// ── Tech stack ──
+const techStack = [
+  {
+    name: 'LaTeX / Quarto',
+    desc: 'Publikacje techniczne, akademickie i raporty z danymi. Precyzja typograficzna na poziomie profesjonalnego składu. Idealne, gdy ebook zawiera kod, formuły, tabele z danymi lub wymaga perfekcyjnej paginacji.',
+    type: 'Skład techniczny'
+  },  
+  {
+    name: 'Pipeline renderingu',
+    desc: 'Własne narzędzia do automatycznego renderowania z jednego źródła do wielu formatów — PDF, EPUB, MOBI, HTML. Eliminuje ręczne konwersje i zapewnia spójność między formatami. Aktualizacja treści = jedno źródło, wiele outputów.',
+    type: 'Automatyzacja'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Wszystko pod jednym dachem',
+    desc: 'Nie musisz koordynować copywritera, redaktora, grafika i składacza. Jeden zespół prowadzi projekt od briefu po gotowy plik — strategia, pisanie, redakcja, design, skład, rendering. Jeden punkt kontaktu, jeden harmonogram, zero luk między etapami.'
+  },
+  {
+    title: 'Skład na poziomie wydawnictwa',
+    desc: 'Profesjonalny skład typograficzny — nie „eksport z Google Docs z dodaną okładką". LaTeX dla precyzji i swobody wizualnej. Kerning, leading, hierarchia, paginacja, wdowy i sieroty — detale, które odróżniają amatorską publikację od profesjonalnej.'
+  },
+  {
+    title: 'Wieloformatowy rendering',
+    desc: 'Jeden ebook, wiele formatów — PDF do pobrania ze strony, EPUB na czytniki, MOBI na Kindle, HTML do embedowania. Własne pipeline\'y renderingu zapewniają spójność między formatami i eliminują ręczne konwersje, które generują błędy.'
+  },
+  {
+    title: 'Ebook jako element systemu',
+    desc: 'Nie tworzymy ebooka w próżni. Ebook to element większego systemu — lead magnet na landing page, gated content w sekwencji email, materiał do repurposingu na blog i social media. Projektujemy ebooki, które pracują w Twoim lejku marketingowym.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Artykuły blogowe', href: '/uslugi/artykuly-blogowe/', desc: 'Treści blogowe do repurposingu w ebooki' },
+  { title: 'Email marketing', href: '/uslugi/email-marketing/', desc: 'Dystrybucja ebooków jako lead magnety' },
+  { title: 'Landing page', href: '/uslugi/landing-page/', desc: 'Strony lądowania do pobierania ebooków' },
+  { title: 'Strategia contentowa', href: '/uslugi/strategia-content-marketingowa/', desc: 'Ebook jako element strategii content marketingowej' }
+];
+---
+
+<BaseLayout
+  title="Ebooki — Tworzenie Ebooków na Zamówienie | eCopywriting.pl"
+  description="Profesjonalne tworzenie ebooków na zamówienie. Pisanie, redakcja, projekt graficzny, skład typograficzny (LaTeX) i rendering do PDF, EPUB, MOBI. Lead magnety, publikacje eksperckie, raporty. Wycena w 24h."
+  keywords="tworzenie ebooków, tworzenie ebooków na zamówienie, tworzenie ebooków na zlecenie, pisanie ebooków, składanie ebooków, ebook na zamówienie, ebook lead magnet, skład ebooka, rendering ebooka"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/ebooki/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Ebooki</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Ebooki & Publishing</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Tworzenie ebooków —<br><em>od briefu po gotowy plik</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Kompleksowe tworzenie ebooków na zamówienie — planujemy, piszemy, redagujemy,
+        projektujemy, składamy i&nbsp;renderujemy do&nbsp;PDF, EPUB i&nbsp;MOBI. Jeden
+        zespół, zero luk między etapami, profesjonalny rezultat.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#proces" class="srv-hero__cta-secondary">Jak tworzymy ebooki</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>6 etapów</strong> w jednym zespole</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>LaTeX</strong> — profesjonalny skład</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>PDF + EPUB + MOBI</strong> w standardzie</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-STACK PIPELINE — the key differentiator -->
+  <section class="srv-pipeline" id="proces" aria-labelledby="srv-pipeline-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Kompleksowy proces"
+          title="6 etapów — jeden zespół, zero luk"
+          subtitle="Tworzenie ebooka na zamówienie to nie &bdquo;napisanie tekstu i eksport do PDF&rdquo;. To 6 odrębnych etapów wymagających różnych kompetencji. Nasz zespół pokrywa każdy z&nbsp;nich — od&nbsp;strategii po rendering."
+        />
+      </div>
+
+      <div class="srv-pipeline__timeline">
+        {pipeline.map((step, i) => (
+          <div class="srv-pipeline__step reveal" style={`--delay: ${i * 0.06}s`}>
+            <div class="srv-pipeline__step-header">
+              <span class="srv-pipeline__step-num">{step.num}</span>
+              <span class="srv-pipeline__step-tag">{step.tag}</span>
+            </div>
+            <h3>{step.title}</h3>
+            <p>{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EBOOK TYPES -->
+  <section class="srv-types" id="rodzaje" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co tworzymy"
+          title="Rodzaje ebooków na zamówienie"
+          subtitle="Od kompaktowego lead magnetu po 150-stronowy poradnik. Dobieramy format, objętość i&nbsp;głębokość do celu — pozyskiwanie leadów, budowanie autorytetu, edukacja czy sprzedaż."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {ebookTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-best">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              {d.best}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK — publishing tools -->
+  <section class="srv-tech" id="narzedzia" aria-labelledby="srv-tech-title">
+    <div class="container">
+      <div class="srv-tech__inner reveal">
+        <span class="srv-tech__label">Nasz stack publishingowy</span>
+        <h2 id="srv-tech-title" class="srv-tech__title">
+          Profesjonalne narzędzia —<br><em>skład na poziomie wydawnictwa</em>
+        </h2>
+        <p class="srv-tech__desc">
+          Nie eksportujemy z Google Docs i nie nazywamy tego ebookiem.
+          Pracujemy z profesjonalnymi narzędziami DTP i publishing — dobranymi
+          do typu publikacji, nie na zasadzie „co mamy pod ręką".
+        </p>
+
+        <div class="srv-tech__grid">
+          {techStack.map((t) => (
+            <div class="srv-tech__card">
+              <span class="srv-tech__card-type">{t.type}</span>
+              <h3>{t.name}</h3>
+              <p>{t.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="srv-tech__formats">
+          <span class="srv-tech__formats-label">Formaty wyjściowe:</span>
+          <div class="srv-tech__formats-list">
+            <span class="srv-tech__format">PDF <small>(druk + ekran)</small></span>
+            <span class="srv-tech__format">EPUB <small>(czytniki)</small></span>
+            <span class="srv-tech__format">MOBI / KF8 <small>(Kindle)</small></span>
+            <span class="srv-tech__format">HTML <small>(web embed)</small></span>
+            <span class="srv-tech__format">Pliki źródłowe <small>(edycja)</small></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Full-stack publishing, nie &bdquo;pisanie ebooków&rdquo;"
+          subtitle="Na rynku nie brakuje copywriterów, którzy &bdquo;napiszą ebooka&rdquo;. Oto dlaczego warto zlecić tworzenie ebooka zespołowi, który pokrywa cały łańcuch — od&nbsp;strategii po rendering."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLO LAYOUT OPTION -->
+  <section class="srv-layout-only" aria-labelledby="srv-layout-title">
+    <div class="container">
+      <div class="srv-layout-only__inner reveal">
+        <span class="srv-layout-only__label">Masz już tekst?</span>
+        <h2 id="srv-layout-title" class="srv-layout-only__title">
+          Sam skład i&nbsp;rendering —<br><em>bez pisania od zera</em>
+        </h2>
+        <p class="srv-layout-only__desc">
+          Jeśli masz gotowy tekst, ale potrzebujesz profesjonalnego składu —
+          przejmujemy od etapu redakcji. Dostarczasz treść w dowolnym formacie
+          (Google Docs, Word, Markdown, LaTeX), a&nbsp;my zajmujemy się resztą:
+        </p>
+        <div class="srv-layout-only__steps">
+          <div class="srv-layout-only__step">
+            <span class="srv-layout-only__step-num">1</span>
+            <span>Redakcja językowa i&nbsp;merytoryczna</span>
+          </div>
+          <div class="srv-layout-only__step-arrow" aria-hidden="true">→</div>
+          <div class="srv-layout-only__step">
+            <span class="srv-layout-only__step-num">2</span>
+            <span>Projekt graficzny i&nbsp;kreacja</span>
+          </div>
+          <div class="srv-layout-only__step-arrow" aria-hidden="true">→</div>
+          <div class="srv-layout-only__step">
+            <span class="srv-layout-only__step-num">3</span>
+            <span>Skład typograficzny</span>
+          </div>
+          <div class="srv-layout-only__step-arrow" aria-hidden="true">→</div>
+          <div class="srv-layout-only__step">
+            <span class="srv-layout-only__step-num">4</span>
+            <span>Rendering do PDF / EPUB / MOBI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;tworzeniu ebooków, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz profesjonalnego ebooka?</h2>
+        <p class="srv-cta__desc">
+          Opisz swój projekt — temat, cel, orientacyjna objętość. Odpowiemy z&nbsp;wyceną,
+          propozycją procesu i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę ebooka
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o tworzeniu ebooków">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Tworzenie ebooków na zamówienie — profesjonalny publishing</h2>
+        <p>
+          <strong>Tworzenie ebooków na zamówienie</strong> to kompleksowy proces obejmujący strategię,
+          <strong>pisanie ebooków</strong>, redakcję, projekt graficzny, <strong>składanie ebooków</strong>
+          i rendering do formatów publikacyjnych. Profesjonalny ebook to nie tekst w PDF — to publikacja
+          z przemyślaną strukturą, profesjonalną typografią i formatem dopasowanym do kanału dystrybucji.
+        </p>
+        <h3>Dlaczego tworzenie ebooków warto zlecić specjalistom?</h3>
+        <p>
+          <strong>Tworzenie ebooków na zlecenie</strong> wymaga połączenia kompetencji copywriterskich
+          (research, pisanie, redakcja), graficznych (layout, typografia, infografiki) i technicznych
+          (<strong>skład ebooka</strong>, rendering do PDF/EPUB/MOBI). Koordynacja tych etapów między
+          freelancerami to strata czasu i ryzyko niespójności. Profesjonalny zespół pokrywa cały łańcuch
+          — od briefu po gotowy plik — z jednym punktem kontaktu i harmonogramem.
+        </p>
+        <h3>Ebooki w eCopywriting.pl — full-stack publishing</h3>
+        <p>
+          Nasze podejście do <strong>tworzenia ebooków</strong> łączy copywriting z technologią publishingową.
+          Planujemy, piszemy, redagujemy, kreujemy, składamy i renderujemy — wszystko wewnętrznie. Pracujemy
+          z LaTeX/Quarto (publikacje techniczne, raporty z danymi, publikacje wizualne,
+          lead magnety). Własne pipeline'y renderingu produkują PDF, EPUB i MOBI z jednego źródła.
+          <strong>Składanie ebooków</strong> na poziomie profesjonalnego wydawnictwa — nie eksport z Worda.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnego ebooka?</h3>
+        <p>
+          Profesjonalne <strong>tworzenie ebooków na zamówienie</strong> jest potrzebne, gdy: chcesz
+          pozyskiwać leady za pomocą lead magnetu; budujesz autorytet w branży publikacją ekspercką;
+          przygotowujesz raport branżowy z danymi i infografikami; potrzebujesz materiału szkoleniowego
+          lub onboardingowego; chcesz przekształcić artykuły blogowe w spójną publikację. <strong>Pisanie
+          ebooków</strong> z profesjonalnym zespołem to inwestycja w trwałe aktywo marketingowe.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 580px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* PIPELINE — 6-step timeline */
+  .srv-pipeline { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-pipeline::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .srv-pipeline__timeline {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5);
+    position: relative;
+  }
+
+  @media (max-width: 900px) { .srv-pipeline__timeline { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-pipeline__timeline { grid-template-columns: 1fr; } }
+
+  .srv-pipeline__step {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-md); padding: var(--space-5);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition-delay: var(--delay, 0s);
+  }
+
+  .srv-pipeline__step:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .srv-pipeline__step-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--space-3);
+  }
+
+  .srv-pipeline__step-num {
+    font-family: var(--font-mono); font-size: var(--fs-sm);
+    color: var(--accent-light); letter-spacing: 0.06em;
+  }
+
+  .srv-pipeline__step-tag {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: var(--fw-medium);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05);
+    padding: 2px 8px; border-radius: var(--radius-sm);
+  }
+
+  .srv-pipeline__step h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: #fff;
+    margin-bottom: var(--space-2); line-height: var(--lh-snug);
+  }
+
+  .srv-pipeline__step p {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed);
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* EBOOK TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-best { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-best svg { flex-shrink: 0; }
+
+  /* TECH STACK */
+  .srv-tech { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-tech__inner { max-width: 800px; }
+  .srv-tech__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-tech__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-tech__title em { font-style: italic; color: var(--accent); }
+  .srv-tech__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; margin-bottom: var(--space-8); }
+
+  .srv-tech__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-8); }
+  @media (max-width: 768px) { .srv-tech__grid { grid-template-columns: 1fr; } }
+
+  .srv-tech__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-5);
+  }
+
+  .srv-tech__card-type {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.58rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+    background: var(--accent-bg); padding: 2px 8px; border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+  }
+
+  .srv-tech__card h3 {
+    font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .srv-tech__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  .srv-tech__formats { padding-top: var(--space-6); border-top: 1px solid var(--rule-light); }
+
+  .srv-tech__formats-label {
+    display: block; font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: var(--space-3);
+  }
+
+  .srv-tech__formats-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  .srv-tech__format {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 6px 14px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+
+  .srv-tech__format:hover { border-color: var(--accent); color: var(--accent); }
+  .srv-tech__format small { font-weight: var(--fw-regular); color: var(--ink-faint); margin-left: 2px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* LAYOUT-ONLY OPTION */
+  .srv-layout-only { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-layout-only__inner { max-width: 760px; }
+  .srv-layout-only__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-layout-only__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-layout-only__title em { font-style: italic; color: var(--accent); }
+  .srv-layout-only__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-bottom: var(--space-6); }
+
+  .srv-layout-only__steps {
+    display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  }
+
+  .srv-layout-only__step {
+    display: flex; align-items: center; gap: var(--space-2);
+    background: var(--paper); border: 1px solid var(--rule-light);
+    padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm);
+    font-size: var(--fs-sm); color: var(--ink-muted);
+  }
+
+  .srv-layout-only__step-num {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-family: var(--font-mono); font-size: 0.65rem;
+    font-weight: var(--fw-bold); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+
+  .srv-layout-only__step-arrow { color: var(--accent); font-size: var(--fs-sm); }
+
+  @media (max-width: 640px) {
+    .srv-layout-only__step-arrow { display: none; }
+    .srv-layout-only__steps { flex-direction: column; align-items: stretch; }
+  }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

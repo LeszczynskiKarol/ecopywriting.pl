@@ -4,14 +4,14 @@
    ═══════════════════════════════════════════════ */
 
 /* ── Google Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 /* ── Design Tokens ── */
 :root {
   /* Typography */
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   --fw-light: 300;
   --fw-regular: 400;
@@ -59,6 +59,13 @@
   --rule: #d4cfc7;
   --rule-light: #e8e3db;
 
+  /* Semantic tokens (theme-aware) */
+  --header-bg: rgba(250, 248, 245, 0.95);
+  --dropdown-bg: var(--white);
+  --card-bg: var(--white);
+  --pub-card-bg: rgba(255, 255, 255, 0.05);
+  --pub-card-border: rgba(255, 255, 255, 0.08);
+
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -84,10 +91,10 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-  --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
   --transition-fast: 0.2s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
@@ -119,7 +126,8 @@ body {
   overflow-x: hidden;
 }
 
-img, svg {
+img,
+svg {
   display: block;
   max-width: 100%;
 }
@@ -137,7 +145,8 @@ button {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -164,7 +173,9 @@ ul, ol {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.visible {
@@ -172,10 +183,18 @@ ul, ol {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
 
 /* ── Selection ── */
 ::selection {
@@ -184,10 +203,19 @@ ul, ol {
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
 
 /* ── Skip Link ── */
 .skip-link {
@@ -204,4 +232,63 @@ ul, ol {
 
 .skip-link:focus {
   top: var(--space-2);
+}
+
+/* ═══════════════════════════════════════════════
+   DARK THEME
+   ═══════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --ink: #e8e4de;
+  --ink-soft: #d4cfc7;
+  --ink-muted: #9e9890;
+  --ink-light: #807a72;
+  --ink-faint: #5e5850;
+
+  --paper: #141210;
+  --paper-warm: #1a1816;
+  --paper-dark: #0f0d0b;
+  --white: #1e1c1a;
+
+  --accent: #e8836a;
+  --accent-hover: #d4715a;
+  --accent-light: #f0a08a;
+  --accent-bg: #2a1a14;
+
+  --navy: #0d1218;
+  --navy-light: #141c24;
+
+  --rule: #302c28;
+  --rule-light: #252220;
+
+  --header-bg: rgba(20, 18, 16, 0.95);
+  --dropdown-bg: #1e1c1a;
+  --card-bg: #1e1c1a;
+  --pub-card-bg: rgba(255, 255, 255, 0.03);
+  --pub-card-border: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}
+
+/* Smooth theme transition */
+html {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+[data-theme="dark"] ::selection {
+  background: var(--accent);
+  color: #141210;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #141210;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #302c28;
 }

@@ -1,0 +1,647 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje stworzenie dokumentacji technicznej?',
+    a: 'Cena zależy od złożoności, objętości i formatu. Instrukcja obsługi produktu (20–40 stron, jedno urządzenie/system) to 3000–8000 zł. Dokumentacja API/SDK (endpointy, przykłady kodu, integracje) to 5000–15 000 zł. Baza wiedzy / help center (20–60 artykułów, struktura, wyszukiwanie) to 8000–25 000 zł. Kompletna dokumentacja produktowa (user guide + admin guide + API + release notes) to 15 000–40 000 zł. Wycenę przygotowujemy w 24h.'
+  },
+  {
+    q: 'Czy piszecie dokumentację od zera, czy potrzebujecie materiały źródłowe?',
+    a: 'Jedno i drugie. Możemy napisać dokumentację od zera — na podstawie briefu, dostępu do produktu, rozmów z inżynierami i własnych testów. Możemy też przepisać/zredagować istniejącą dokumentację: uporządkować strukturę, uprościć język, ustandaryzować format, dodać przykłady i screenshoty. Najczęstsza opcja: klient daje dostęp do produktu + eksperta technicznego, a my piszemy, redagujemy i składamy.'
+  },
+  {
+    q: 'W jakich formatach dostarczacie dokumentację?',
+    a: 'Dobieramy format do kontekstu: Markdown/MDX (docs-as-code, Git-friendly, do generatorów statycznych), HTML (baza wiedzy, help center, Docusaurus/GitBook/ReadTheDocs), PDF (instrukcje do druku, manuali, offline), LaTeX/Quarto (dokumentacja z kodem, formułami, danymi), Notion/Confluence (wiki firmowe), DITA XML (duże systemy dokumentacji, lokalizacja). Standardowo dostarczamy Markdown + PDF.'
+  },
+  {
+    q: 'Czy tworzycie dokumentację API?',
+    a: 'Tak — piszemy dokumentację REST API, GraphQL, SDK i bibliotek. Endpointy z opisami, parametry, kody odpowiedzi, przykłady requestów i responsów w kilku językach (cURL, Python, JavaScript, PHP). Integrujemy z OpenAPI/Swagger. Dokumentacja API to nie auto-generowany spec — to przewodnik, który pozwala developerowi zintegrować się w godziny, nie dni.'
+  },
+  {
+    q: 'Jak długo trwa stworzenie dokumentacji?',
+    a: 'Instrukcja obsługi (20–40 stron) to 2–4 tygodnie. Dokumentacja API to 3–6 tygodni (zależnie od liczby endpointów). Baza wiedzy (20–60 artykułów) to 4–8 tygodni. Kompletna dokumentacja produktowa to 6–16 tygodni. Czas zależy od: złożoności produktu, dostępności ekspertów, liczby formatów i rund akceptacji. Przy produktach z frequent releases rekomendujemy stałą współpracę.'
+  },
+  {
+    q: 'Czy pomagacie z docs-as-code i CI/CD dla dokumentacji?',
+    a: 'Tak — nasz zespół programistów wdraża pipeline docs-as-code: dokumentacja w Markdown/MDX w repozytorium Git, automatyczny build przez CI/CD (GitHub Actions, GitLab CI), deploy na platformę (Docusaurus, Astro Starlight, GitBook, ReadTheDocs). Każda zmiana w kodzie może triggerować aktualizację dokumentacji. Docs-as-code = dokumentacja, która żyje z produktem.'
+  },
+  {
+    q: 'Dla jakich branż tworzycie dokumentację techniczną?',
+    a: 'Najczęściej pracujemy z: SaaS i platformy technologiczne (dokumentacja produktowa, API, SDK), fintech (compliance, procedury, integracje), IoT i hardware (instrukcje obsługi, specyfikacje), przemysł i manufacturing (instrukcje montażu, procedury BHP, specyfikacje techniczne), medtech (dokumentacja regulacyjna, instrukcje użytkowania). Ale format dokumentacji technicznej sprawdza się wszędzie, gdzie produkt wymaga wyjaśnienia.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/#service",
+      "name": "Dokumentacja techniczna",
+      "description": "Profesjonalne tworzenie dokumentacji technicznej. Instrukcje obsługi, dokumentacja API, bazy wiedzy, manuali, SOP. Technical writing, redakcja, skład, wdrożenie docs-as-code.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Technical documentation",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/",
+      "name": "Dokumentacja Techniczna — Tworzenie Dokumentacji Technicznej na Zamówienie | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne tworzenie dokumentacji technicznej. Instrukcje obsługi, dokumentacja API, bazy wiedzy, help center. Technical writing + development. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Dokumentacja techniczna", "item": "https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Doc types ──
+const docTypes = [
+  {
+    title: 'Instrukcje obsługi',
+    desc: 'User guides, manuali, getting started guides. Krok po kroku — od instalacji po zaawansowane funkcje. Screenshoty, diagramy, callouty, tabelki. Język użytkownika, nie inżyniera. Wersja PDF do druku i/lub online.',
+    audience: 'Użytkownicy końcowi',
+    icon: '📘'
+  },
+  {
+    title: 'Dokumentacja API i SDK',
+    desc: 'REST API, GraphQL, SDK, biblioteki. Endpointy, parametry, kody odpowiedzi, przykłady kodu w kilku językach. Integracja z OpenAPI/Swagger. Quickstart guide, który pozwala zintegrować się w godziny. Docs, które developerzy chcą czytać.',
+    audience: 'Developerzy',
+    icon: '⚡'
+  },
+  {
+    title: 'Bazy wiedzy i help center',
+    desc: 'Zorganizowany zbiór artykułów z wyszukiwaniem — FAQ, troubleshooting, how-to, best practices. Struktura kategorii, tagowanie, cross-linking. Redukuje liczbę ticketów supportowych o 30–60%. Platforma: Docusaurus, GitBook, Zendesk, Intercom.',
+    audience: 'Klienci i support',
+    icon: '🏗️'
+  },
+  {
+    title: 'Dokumentacja produktowa',
+    desc: 'Kompletna dokumentacja SaaS/platformy — user guide + admin guide + release notes + changelog + migration guide. Modularnie: każdy moduł produktu = jeden rozdział. Wersjonowanie docs per release. Docs, które rosną z produktem.',
+    audience: 'Użytkownicy i admini',
+    icon: '📦'
+  },
+  {
+    title: 'Specyfikacje techniczne',
+    desc: 'Dokumenty techniczne dla inżynierów — specyfikacje produktów, schematy, parametry, standardy. Precyzyjny język, tabelki z danymi, rysunki techniczne, normy. Format: PDF, LaTeX, DITA. Dla branż: przemysł, IoT, hardware, budownictwo.',
+    audience: 'Inżynierowie i technicy',
+    icon: '⚙️'
+  },
+  {
+    title: 'Procedury i SOP',
+    desc: 'Standardowe procedury operacyjne — step-by-step instrukcje procesów. Decision trees, flowcharty, checklisty, role i odpowiedzialności. Dokumenty, które pozwalają skalować operacje bez utraty jakości. Compliance-ready.',
+    audience: 'Zespoły operacyjne',
+    icon: '📋'
+  }
+];
+
+// ── Good vs Bad docs ──
+const goodVsBad = [
+  { bad: 'Żargon inżyniera', good: 'Język dopasowany do odbiorcy', desc: 'Dokumentacja pisana przez devów dla devów, gdy odbiorcą jest product manager. Piszemy na poziomie odbiorcy — nie niżej (to obraża), nie wyżej (to wyłącza).' },
+  { bad: 'Ściana tekstu bez struktury', good: 'Skanowalność i hierarchia', desc: 'Nagłówki, callouty, tabelki, numbered steps, code blocks. Czytelnik skanuje, nie czyta od deski do deski. Struktura musi pozwalać znaleźć odpowiedź w 30 sekund.' },
+  { bad: 'Dokumentacja pisana raz — nigdy aktualizowana', good: 'Docs-as-code i wersjonowanie', desc: 'Dokumentacja w Git, automatyczny build, wersja per release. Zmiana w produkcie = zmiana w docs. Nie PDF z 2021 roku na sharepoinie.' },
+  { bad: 'Brak przykładów', good: 'Przykłady na każdym kroku', desc: 'Każde wyjaśnienie poparte przykładem: screenshot, code snippet, scenariusz. „Pokaż, nie mów". Jeden dobry przykład zastępuje paragraf opisu.' },
+  { bad: 'Zero kontekstu — co, ale nie dlaczego', good: 'Kontekst: co, jak i dlaczego', desc: 'Dobra dokumentacja wyjaśnia nie tylko jak coś zrobić, ale DLACZEGO tak, a nie inaczej. Kontekst redukuje błędy i buduje zrozumienie systemu.' }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Audyt i planowanie',
+    desc: 'Audyt istniejącej dokumentacji (lub zakresu nowej), analiza produktu, identyfikacja odbiorców i ich potrzeb. Information architecture — mapa dokumentów, struktura kategorii, naming convention. Content plan do akceptacji.'
+  },
+  {
+    num: '02',
+    title: 'Research i wywiady',
+    desc: 'Dostęp do produktu, rozmowy z inżynierami/product managerami (SME interviews), własne testy i eksploracja. Zbieramy wiedzę, którą zamieniamy w zrozumiałą dokumentację. Nie piszemy z „głowy" — piszemy z produktu i ekspertów.'
+  },
+  {
+    num: '03',
+    title: 'Technical writing i redakcja',
+    desc: 'Pisanie w języku odbiorcy — step-by-step, z przykładami, screenshotami, code snippetami. Dwuetapowa redakcja: merytoryczna (z SME — czy to technicznie poprawne?) i językowa (czy to zrozumiałe?). Style guide dla spójności terminologii.'
+  },
+  {
+    num: '04',
+    title: 'Design i skład',
+    desc: 'Projekt graficzny dopasowany do kontekstu — callout boxy, tabele, diagramy, code blocks z syntax highlighting. Skład w Markdown/MDX (docs-as-code), LaTeX (PDF/druk), HTML (baza wiedzy). Spójny design system dokumentacji.'
+  },
+  {
+    num: '05',
+    title: 'Wdrożenie i maintenance',
+    desc: 'Wdrożenie na platformie: Docusaurus, Astro Starlight, GitBook, ReadTheDocs, Confluence, Notion lub dedykowany system. Pipeline CI/CD dla automatycznego build. Opcjonalnie: stała współpraca i aktualizacja docs per release cycle.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Technical writers + programiści',
+    desc: 'Nasz zespół łączy technical writing z programowaniem. Piszemy dokumentację API i testujemy endpointy. Tworzymy instrukcje i sprawdzamy je na produkcie. Wdrażamy docs-as-code i pipeline CI/CD. Nie „piszemy o technologii" — rozumiemy technologię.'
+  },
+  {
+    title: 'Język użytkownika, nie inżyniera',
+    desc: 'Jesteśmy agencją copywriterską — pisanie zrozumiałych tekstów to nasze DNA. Dokumentacja techniczna nie musi być sucha i niezrozumiała. Piszemy na poziomie odbiorcy: inaczej dla developera (code-first), inaczej dla end usera (task-based), inaczej dla admina (config-focused).'
+  },
+  {
+    title: 'Docs-as-code: dokumentacja, która żyje',
+    desc: 'Dokumentacja w Markdown w repozytorium Git, automatyczny build przez CI/CD, deploy na wybraną platformę. Każdy release triggeruje aktualizację docs. Wersjonowanie, branching, code review na dokumentacji — tak jak na kodzie. Zero stale docs.'
+  },
+  {
+    title: 'Mniej ticketów, szybszy onboarding',
+    desc: 'Dobra dokumentacja to najlepsza inwestycja w customer success: redukuje tickety supportowe o 30–60%, skraca czas onboardingu, zmniejsza obciążenie zespołu. Każdy artykuł w bazie wiedzy to support agent, który pracuje 24/7 i nigdy nie bierze L4.'
+  }
+];
+
+// ── Tech/platforms ──
+const platforms = [
+  { group: 'Docs-as-code', items: ['Docusaurus', 'Astro Starlight', 'GitBook', 'ReadTheDocs', 'MkDocs', 'VitePress'] },
+  { group: 'Wiki & knowledge base', items: ['Confluence', 'Notion', 'Zendesk Guide', 'Intercom Articles', 'HelpScout'] },
+  { group: 'Formaty', items: ['Markdown / MDX', 'LaTeX / Quarto', 'HTML / CSS', 'PDF (druk + ekran)', 'DITA XML', 'OpenAPI / Swagger'] },
+  { group: 'Tooling', items: ['Git + CI/CD', 'GitHub Actions', 'GitLab CI', 'Vale (linting)', 'Mermaid (diagramy)', 'Algolia (search)'] }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Materiały szkoleniowe', href: '/uslugi/materialy-szkoleniowe/', desc: 'Szkolenia i onboarding' },
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Publikacje techniczne i eksperckie' },
+  { title: 'White papers', href: '/uslugi/white-papers/', desc: 'Dokumenty eksperckie B2B' },
+  { title: 'Teksty na stronę', href: '/uslugi/teksty-na-strone/', desc: 'Copy na strony produktowe' }
+];
+---
+
+<BaseLayout
+  title="Dokumentacja Techniczna — Tworzenie Dokumentacji Technicznej na Zamówienie | eCopywriting.pl"
+  description="Profesjonalne tworzenie dokumentacji technicznej. Instrukcje obsługi, dokumentacja API, bazy wiedzy, help center, specyfikacje, SOP. Technical writing, docs-as-code, wdrożenie. Wycena w 24h."
+  keywords="dokumentacja techniczna, tworzenie dokumentacji technicznej, instrukcja obsługi, dokumentacja API, baza wiedzy, help center, technical writing, docs-as-code, dokumentacja produktowa, instrukcje techniczne"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/dokumentacja-techniczna/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Dokumentacja techniczna</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Dokumentacja & Technical Writing</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Dokumentacja techniczna,<br>którą <em>ludzie naprawdę czytają</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Instrukcje obsługi, dokumentacja API, bazy wiedzy, help center, specyfikacje
+        i&nbsp;procedury. Technical writing + programiści = dokumentacja, która redukuje
+        tickety, skraca onboarding i&nbsp;żyje z&nbsp;produktem.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#rodzaje" class="srv-hero__cta-secondary">Rodzaje dokumentacji</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Technical writers</strong> + programiści</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Docs-as-code</strong> — Git + CI/CD</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>−30–60%</strong> ticketów supportowych</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOD vs BAD DOCS -->
+  <section class="srv-compare" aria-labelledby="srv-compare-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Zła vs dobra dokumentacja"
+          title="5 różnic między dokumentacją, która frustruje, a&nbsp;dokumentacją, która pomaga"
+          subtitle="Większość dokumentacji technicznej jest pisana przez inżynierów dla inżynierów. Problem: odbiorcy to nie zawsze inżynierowie."
+        />
+      </div>
+
+      <div class="srv-compare__table reveal">
+        <div class="srv-compare__header">
+          <span class="srv-compare__header-bad">✕ Zła dokumentacja</span>
+          <span class="srv-compare__header-good">✓ Dobra dokumentacja</span>
+        </div>
+        {goodVsBad.map((row) => (
+          <div class="srv-compare__row">
+            <div class="srv-compare__cell srv-compare__cell--bad">{row.bad}</div>
+            <div class="srv-compare__cell srv-compare__cell--good">{row.good}</div>
+            <div class="srv-compare__cell srv-compare__cell--desc">{row.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DOC TYPES -->
+  <section class="srv-types" id="rodzaje" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co tworzymy"
+          title="Rodzaje dokumentacji technicznej"
+          subtitle="Od 20-stronowej instrukcji obsługi po kompletną dokumentację platformy SaaS z&nbsp;bazą wiedzy, API docs i&nbsp;release notes. Dobieramy format do odbiorcy."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {docTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-audience">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              {d.audience}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od audytu po wdrożenie i&nbsp;maintenance"
+          subtitle="Pięć etapów, jeden zespół. Audyt → research → technical writing → design i&nbsp;skład → wdrożenie na platformie. Opcjonalnie: stała współpraca z&nbsp;aktualizacją per release."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Dokumentacja od technical writerów z&nbsp;zespołem dev"
+          subtitle="Freelance technical writer pisze dobrze, ale nie wdroży docs-as-code. Agencja webowa wdroży platformę, ale nie napisze dobrej dokumentacji. My robimy jedno i&nbsp;drugie."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS & TECH -->
+  <section class="srv-tech" id="technologia" aria-label="Platformy i technologie">
+    <div class="container">
+      <div class="srv-tech__inner reveal">
+        <span class="srv-tech__label">Platformy i narzędzia</span>
+        <h2 class="srv-tech__title">Stack technologiczny dokumentacji</h2>
+        <p class="srv-tech__desc">
+          Dobieramy platformę i format do kontekstu — Docusaurus dla open source,
+          Confluence dla enterprise, Markdown + Git dla docs-as-code, LaTeX dla
+          dokumentacji z formułami i kodem. Plus pełen zestaw narzędzi do lintingu,
+          diagramów i wyszukiwania.
+        </p>
+        <div class="srv-tech__groups">
+          {platforms.map((group) => (
+            <div class="srv-tech__group">
+              <span class="srv-tech__group-label">{group.group}</span>
+              <div class="srv-tech__items">
+                {group.items.map((item) => (
+                  <span class="srv-tech__item">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;dokumentacji technicznej, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz dokumentacji technicznej?</h2>
+        <p class="srv-cta__desc">
+          Opisz produkt, odbiorców i&nbsp;zakres — odpowiemy z&nbsp;wyceną,
+          propozycją struktury i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę dokumentacji
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o dokumentacji technicznej">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Tworzenie dokumentacji technicznej na zamówienie</h2>
+        <p>
+          <strong>Dokumentacja techniczna</strong> to fundament każdego produktu technologicznego — od
+          instrukcji obsługi, przez dokumentację API, po bazy wiedzy i help center. Profesjonalne
+          <strong>tworzenie dokumentacji technicznej</strong> łączy technical writing (jasny, zrozumiały
+          język dopasowany do odbiorcy), information architecture (struktura, nawigacja, wyszukiwalność)
+          i development (docs-as-code, CI/CD, platformy dokumentacyjne).
+        </p>
+        <h3>Dlaczego tworzenie dokumentacji warto zlecić specjalistom?</h3>
+        <p>
+          Największy problem z <strong>dokumentacją techniczną</strong> tworzoną wewnętrznie? Inżynierowie
+          piszą dla inżynierów — żargonem, bez struktury, bez przykładów. Albo dokumentacja jest pisana raz
+          i nigdy aktualizowana. Profesjonalne <strong>instrukcje techniczne</strong> i <strong>dokumentacja
+          produktowa</strong> wymagają podejścia user-centric: pisania na poziomie odbiorcy, task-based
+          structure, docs-as-code pipeline dla aktualizacji. Technical writer + programista to zespół,
+          który dostarcza dokumentację żywą, nie martwą.
+        </p>
+        <h3>Dokumentacja techniczna w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>tworzenia dokumentacji technicznej na zamówienie</strong> łączy
+          technical writing z programowaniem. Zaczynamy od audytu i information architecture, prowadzimy
+          wywiady z ekspertami merytorycznymi (SME), piszemy w języku odbiorcy z przykładami na każdym
+          kroku, projektujemy i składamy w Markdown/LaTeX/HTML, wdrażamy na platformie dokumentacyjnej
+          (Docusaurus, GitBook, ReadTheDocs, Confluence) z pipeline CI/CD. Opcjonalnie: stała współpraca
+          z aktualizacją dokumentacji per release cycle.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnej dokumentacji?</h3>
+        <p>
+          Profesjonalne <strong>tworzenie dokumentacji technicznej</strong> jest potrzebne, gdy: Twój
+          produkt SaaS rośnie i klienci potrzebują <strong>bazy wiedzy</strong>; udostępniasz API i
+          potrzebujesz <strong>dokumentacji API</strong> dla developerów; Twoja istniejąca dokumentacja
+          jest nieaktualna, niespójna lub niezrozumiała; chcesz zredukować liczbę ticketów supportowych;
+          potrzebujesz <strong>instrukcji obsługi</strong> dla nowego produktu; wdrażasz docs-as-code
+          i potrzebujesz zespołu, który to ogarnie end-to-end.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 580px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* GOOD vs BAD COMPARISON TABLE */
+  .srv-compare { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); }
+
+  .srv-compare__table { max-width: 800px; background: var(--paper); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+
+  .srv-compare__header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--navy); color: #fff;
+  }
+  .srv-compare__header span {
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-mono); font-size: 0.68rem;
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--fw-bold);
+  }
+  .srv-compare__header-bad { color: rgba(255,255,255,0.5); }
+  .srv-compare__header-good { color: var(--accent-light); border-left: 1px solid rgba(255,255,255,0.08); }
+
+  .srv-compare__row { border-bottom: 1px solid var(--rule-light); }
+  .srv-compare__row:last-child { border-bottom: none; }
+
+  .srv-compare__row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    transition: background 0.2s ease;
+  }
+  .srv-compare__row:hover { background: var(--paper-warm); }
+
+  .srv-compare__cell {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--fs-sm); line-height: var(--lh-snug);
+  }
+  .srv-compare__cell--bad { color: var(--ink-faint); font-weight: var(--fw-medium); border-right: 1px solid var(--rule-light); }
+  .srv-compare__cell--good { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-compare__cell--desc {
+    grid-column: 1 / -1; padding: 0 var(--space-5) var(--space-3);
+    font-size: var(--fs-xs); color: var(--ink-muted); line-height: var(--lh-relaxed);
+  }
+
+  @media (max-width: 640px) {
+    .srv-compare__header, .srv-compare__row { grid-template-columns: 1fr; }
+    .srv-compare__header-good { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+    .srv-compare__cell--bad { border-right: none; border-bottom: none; padding-bottom: var(--space-1); }
+    .srv-compare__cell--good { padding-top: 0; }
+  }
+
+  /* DOC TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-audience { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-audience svg { flex-shrink: 0; }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* TECH STACK */
+  .srv-tech { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-tech__inner { max-width: 780px; }
+  .srv-tech__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-tech__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); }
+  .srv-tech__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-bottom: var(--space-6); }
+  .srv-tech__groups { display: flex; flex-direction: column; gap: var(--space-5); }
+  .srv-tech__group-label { display: block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: var(--space-2); }
+  .srv-tech__items { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .srv-tech__item {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 6px 14px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .srv-tech__item:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

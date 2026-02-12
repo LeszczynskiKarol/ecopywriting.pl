@@ -1,0 +1,672 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje obsługa email marketingu?',
+    a: 'Cena zależy od zakresu: pojedynczy newsletter to 300–600 zł, sekwencja powitalna (5–7 maili) to 1500–3000 zł, a stała obsługa email marketingu (strategia + 4–8 kampanii miesięcznie) to 2000–5000 zł/miesiąc. Przy kompleksowych projektach z automatyzacjami i segmentacją wyceniamy indywidualnie. Wycenę przygotowujemy w 24h.'
+  },
+  {
+    q: 'Na jakich platformach pracujecie?',
+    a: 'Pracujemy ze wszystkimi popularnymi platformami: Mailchimp, MailerLite, ConvertKit, ActiveCampaign, GetResponse, Klaviyo, HubSpot, Brevo (dawniej Sendinblue). Jeśli korzystasz z innej platformy — dostosujemy się. Nasz zespół programistów potrafi też zintegrować narzędzie email z Twoim CRM, e-commerce czy stroną.'
+  },
+  {
+    q: 'Czy zajmujecie się tylko pisaniem maili, czy też strategią?',
+    a: 'Jedno i drugie. Możemy napisać pojedynczy newsletter na Twój temat, ale najlepsze efekty daje współpraca strategiczna — audyt obecnego email marketingu, segmentacja listy, zaplanowanie sekwencji automatycznych, kalendarz kampanii i systematyczna obsługa. Strategia zamienia losowe wysyłki w system generowania przychodów.'
+  },
+  {
+    q: 'Czy pomagacie w budowaniu listy mailingowej?',
+    a: 'Tak — projektujemy lead magnety (ebooki, checklisty, szablony), formularze zapisu, pop-upy i landing page zoptymalizowane pod konwersję. Piszemy copy, a nasz zespół programistów wdraża formularze i integruje je z platformą email. Pomagamy też w strategii pozyskiwania subskrybentów z bloga, social media i płatnych kampanii.'
+  },
+  {
+    q: 'Jak mierzycie efektywność kampanii email?',
+    a: 'Śledzimy kluczowe metryki: open rate, click-through rate (CTR), conversion rate, unsubscribe rate i revenue per email. Przy e-commerce mierzymy bezpośredni przychód z kampanii. Raportujemy wyniki co miesiąc z rekomendacjami optymalizacji. A/B testujemy tematy, treści i CTA, żeby systematycznie poprawiać wyniki.'
+  },
+  {
+    q: 'Jak często powinien wychodzić newsletter?',
+    a: 'Optymalna częstotliwość zależy od branży i oczekiwań subskrybentów. Dla większości firm B2B to 1–2 razy w tygodniu, dla e-commerce 2–4 razy. Ważniejsza od częstotliwości jest regularność i wartość — lepiej wysyłać raz w tygodniu coś wartościowego niż codziennie coś bezwartościowego. Pomagamy ustalić optymalną kadencję.'
+  },
+  {
+    q: 'Czy możecie przejąć obsługę istniejącego email marketingu?',
+    a: 'Tak — zaczynamy od audytu obecnego stanu: analiza listy, segmentacji, dotychczasowych kampanii, automatyzacji i wyników. Na tej podstawie przygotowujemy plan optymalizacji i płynnie przejmujemy obsługę. Nie zaczynamy od zera — budujemy na tym, co już działa, i naprawiamy to, co nie działa.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/email-marketing/#service",
+      "name": "Email marketing",
+      "description": "Profesjonalna obsługa email marketingu — newslettery, sekwencje automatyczne, kampanie sprzedażowe. Strategia, copywriting, design, wdrożenie i raportowanie.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Email marketing",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/email-marketing/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/email-marketing/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/email-marketing/",
+      "name": "Email Marketing — Newslettery, Sekwencje i Kampanie Mailowe | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalny email marketing. Newslettery, sekwencje powitalne, kampanie sprzedażowe, automatyzacje. Strategia + copywriting + wdrożenie. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/email-marketing/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/email-marketing/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Email marketing", "item": "https://www.ecopywriting.pl/uslugi/email-marketing/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Email types ──
+const emailTypes = [
+  {
+    title: 'Newslettery',
+    desc: 'Regularne wysyłki budujące relację z subskrybentami — wartościowe treści, nowości, porady eksperckie. Newsletter, który ludzie otwierają, bo wiedzą, że dostaną coś wartościowego, a nie kolejny spam.',
+    metric: 'Średni OR: 25–45%',
+    icon: '📬'
+  },
+  {
+    title: 'Sekwencje powitalne',
+    desc: 'Automatyczna seria maili po zapisie na listę — od potwierdzenia, przez dostarczenie lead magnetu, po budowanie zaufania i prowadzenie do pierwszego zakupu. 5–7 maili, które zamieniają subskrybenta w klienta.',
+    metric: 'Najwyższy OR w email marketingu',
+    icon: '👋'
+  },
+  {
+    title: 'Kampanie sprzedażowe',
+    desc: 'Sekwencje mailowe pod launch produktu, promocję, Black Friday, wyprzedaż sezonową. Struktura: teaser → oferta → social proof → urgency → last call. Sprawdzone frameworki, które generują przychód na żądanie.',
+    metric: 'Bezpośredni revenue z kampanii',
+    icon: '💰'
+  },
+  {
+    title: 'Automatyzacje e-commerce',
+    desc: 'Maile transakcyjne i behawioralne: porzucony koszyk, przeglądane produkty, cross-sell po zakupie, win-back nieaktywnych klientów, urodziny, rocznice. Raz ustawione — pracują 24/7 bez Twojego udziału.',
+    metric: 'Revenue on autopilot',
+    icon: '🤖'
+  },
+  {
+    title: 'Drip campaigns / nurturing',
+    desc: 'Sekwencje edukacyjne prowadzące lead przez lejek — od świadomości problemu, przez rozważanie rozwiązań, po decyzję zakupową. Każdy mail przesuwa odbiorcę bliżej konwersji z treścią dopasowaną do etapu.',
+    metric: 'Lead → klient w autopilot',
+    icon: '🌊'
+  },
+  {
+    title: 'Re-engagement i win-back',
+    desc: 'Sekwencje odzyskiwania nieaktywnych subskrybentów i klientów. Zanim usuniesz ich z listy — daj im szansę wrócić. Strategicznie zaplanowane kampanie, które odzyskują 5–15% „martwej" bazy.',
+    metric: 'Odzyskanie 5–15% nieaktywnych',
+    icon: '🔄'
+  }
+];
+
+// ── Why email ──
+const whyEmail = [
+  {
+    stat: '36:1',
+    label: 'ROI z email marketingu',
+    desc: 'Każda złotówka zainwestowana w email marketing zwraca średnio 36 zł (wg Litmus). Żaden inny kanał marketingowy nie oferuje takiego zwrotu z inwestycji.'
+  },
+  {
+    stat: '4,4 mld',
+    label: 'użytkowników email na świecie',
+    desc: 'Email to największy kanał komunikacji cyfrowej — większy niż Facebook, Instagram i TikTok razem wzięte. I w przeciwieństwie do social media, Ty jesteś właścicielem swojej listy.'
+  },
+  {
+    stat: '3×',
+    label: 'wyższa konwersja niż social media',
+    desc: 'Email generuje 3× więcej konwersji niż social media (wg McKinsey). Odbiorca, który dał Ci swój adres email, jest wielokrotnie bardziej zaangażowany niż follower na Instagramie.'
+  }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Audyt i strategia',
+    desc: 'Analizujemy obecny stan email marketingu — listę, segmentację, dotychczasowe kampanie, wyniki. Definiujemy cele, grupę docelową, tone of voice. Tworzymy strategię: jakie sekwencje, jakie kampanie, jaka kadencja, jakie KPI.'
+  },
+  {
+    num: '02',
+    title: 'Architektura automatyzacji',
+    desc: 'Projektujemy mapę automatyzacji — welcome series, nurturing, e-commerce flows, re-engagement. Definiujemy triggery, warunki, segmenty. Wizualna mapa flowów do akceptacji przed wdrożeniem.'
+  },
+  {
+    num: '03',
+    title: 'Copywriting i design',
+    desc: 'Piszemy treści maili — tematy (subject lines), preheadery, body copy, CTA. Projektujemy szablony dopasowane do Twojej marki. A/B testy tematów i wariantów treści od pierwszej kampanii.'
+  },
+  {
+    num: '04',
+    title: 'Wdrożenie techniczne',
+    desc: 'Nasz zespół programistów wdraża sekwencje i automatyzacje w Twojej platformie email. Konfigurujemy segmentację, tagi, triggery, integracje z CRM i e-commerce. Testujemy deliverability i renderowanie na różnych klientach pocztowych.'
+  },
+  {
+    num: '05',
+    title: 'Wysyłka, analiza, optymalizacja',
+    desc: 'Obsługujemy regularne wysyłki lub monitorujemy automatyzacje. Analizujemy wyniki — open rate, CTR, konwersje, revenue. A/B testujemy systematycznie. Raportujemy co miesiąc z konkretnymi rekomendacjami na kolejny okres.'
+  }
+];
+
+// ── Differentiators ──
+const diffs = [
+  {
+    title: 'Strategia, nie losowe wysyłki',
+    desc: 'Nie piszemy „kolejnego newslettera". Projektujemy system — sekwencje, automatyzacje, segmentacja, kalendarz kampanii. Każdy mail ma swoje miejsce w lejku i konkretny cel. Strategia zamienia email w przewidywalny kanał przychodu.'
+  },
+  {
+    title: 'Copy, które otwierają i klikają',
+    desc: '15+ lat doświadczenia w copywritingu oznacza, że piszemy tematy maili, które ludzie otwierają, i treści, które prowadzą do kliknięcia. Subject line to najważniejszy tekst w email marketingu — i traktujemy go z taką samą uwagą jak headline na landing page.'
+  },
+  {
+    title: 'Technologia + copywriting',
+    desc: 'Programiści w zespole oznaczają, że nie kończymy na tekście w Google Docs. Wdrażamy automatyzacje, konfigurujemy segmentację, integrujemy z CRM i e-commerce, dbamy o deliverability. Jeden dostawca zamiast agencji copywriterskiej + freelancera od Mailchimpa.'
+  },
+  {
+    title: 'Mierzalne wyniki, nie „ładne maile"',
+    desc: 'Każda kampania ma przypisane KPI — open rate, CTR, konwersja, revenue. Raportujemy wyniki, A/B testujemy systematycznie i optymalizujemy na podstawie danych. Widzisz, co działa — i ile na tym zarabiasz.'
+  }
+];
+
+// ── Anatomy ──
+const anatomyParts = [
+  { label: 'Temat (subject line)', desc: 'Najważniejszy element maila — decyduje o otwarciu. Testujemy 2–3 warianty na każdą kampanię.', highlight: true },
+  { label: 'Preheader', desc: 'Tekst widoczny w podglądzie skrzynki. Uzupełnia temat i zwiększa open rate o 10–20%.', highlight: false },
+  { label: 'Lead / hook', desc: 'Pierwsze 2 zdania — muszą zatrzymać czytelnika. Personalizacja, pytanie, kontrowersja, historia.', highlight: true },
+  { label: 'Body copy', desc: 'Treść główna — krótko, konkretnie, z jednym jasnym przekazem. Jeden mail = jeden cel.', highlight: false },
+  { label: 'CTA', desc: 'Wezwanie do działania — widoczne, jednoznaczne, z językiem korzyści. „Odbierz -30%" > „Kliknij tutaj".', highlight: true },
+  { label: 'PS / postscriptum', desc: 'Drugie najczęściej czytane miejsce w mailu (po temacie). Idealne na urgency lub alternatywne CTA.', highlight: false }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Copywriting', href: '/uslugi/copywriting/', desc: 'Teksty sprzedażowe, oferty handlowe, slogany reklamowe' },
+  { title: 'Artykuły blogowe', href: '/uslugi/artykuly-blogowe/', desc: 'Eksperckie treści do dystrybucji w newsletterach' },
+  { title: 'Landing page', href: '/uslugi/landing-page/', desc: 'Strony lądowania pod kampanie email i lead magnety' },
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Lead magnety przyciągające subskrybentów na listę' }
+];
+---
+
+<BaseLayout
+  title="Email Marketing — Newslettery, Sekwencje i Kampanie Mailowe | eCopywriting.pl"
+  description="Profesjonalny email marketing. Newslettery, sekwencje powitalne, kampanie sprzedażowe, automatyzacje e-commerce. Strategia, copywriting, wdrożenie techniczne i raportowanie wyników. Wycena w 24h."
+  keywords="email marketing, newsletter, newslettery, kampanie email, sekwencje mailowe, automatyzacje email, email marketing agencja, obsługa email marketingu, copywriting email"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/email-marketing/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Email marketing</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Email & Automatyzacja</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Email marketing, który<br><em>generuje przychód</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Newslettery, sekwencje automatyczne, kampanie sprzedażowe — strategia, copywriting
+        i&nbsp;wdrożenie techniczne w&nbsp;jednym zespole. Maile, które ludzie otwierają,
+        klikają i&nbsp;kupują.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#uslugi" class="srv-hero__cta-secondary">Co robimy</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Strategia</strong> + copy + wdrożenie</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>A/B testy</strong> od pierwszej kampanii</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>ROI</strong> mierzony w złotówkach</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY EMAIL — ROI stats -->
+  <section class="srv-roi" aria-label="Dlaczego email marketing">
+    <div class="container">
+      <div class="srv-roi__grid reveal">
+        {whyEmail.map((r) => (
+          <div class="srv-roi__card">
+            <div class="srv-roi__stat">
+              <span class="srv-roi__stat-value">{r.stat}</span>
+              <span class="srv-roi__stat-label">{r.label}</span>
+            </div>
+            <p class="srv-roi__desc">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL TYPES -->
+  <section class="srv-types" id="uslugi" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co robimy"
+          title="Rodzaje kampanii i&nbsp;automatyzacji email"
+          subtitle="Od jednorazowego newslettera po kompleksowy system automatyzacji e-commerce. Dobieramy typ kampanii do celu — budowanie relacji, sprzedaż, retencja czy odzyskiwanie klientów."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {emailTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-metric">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              {d.metric}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ANATOMY OF A GREAT EMAIL -->
+  <section class="srv-anatomy" id="anatomia" aria-labelledby="srv-anatomy-title">
+    <div class="container">
+      <div class="srv-anatomy__inner reveal">
+        <span class="srv-anatomy__label">Nasze podejście</span>
+        <h2 id="srv-anatomy-title" class="srv-anatomy__title">Anatomia maila,<br>który <em>konwertuje</em></h2>
+        <p class="srv-anatomy__desc">
+          Każdy element maila ma swoją funkcję. Optymalizujemy każdy z nich osobno
+          — od tematu po PS — i testujemy warianty na prawdziwych odbiorcach.
+        </p>
+
+        <div class="srv-anatomy__mail">
+          {anatomyParts.map((part) => (
+            <div class={`srv-anatomy__part ${part.highlight ? 'srv-anatomy__part--hl' : ''}`}>
+              <span class="srv-anatomy__part-label">{part.label}</span>
+              <span class="srv-anatomy__part-desc">{part.desc}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od audytu po&nbsp;miesięczne raportowanie"
+          subtitle="Nasz proces obejmuje całość — od strategii i&nbsp;architektury automatyzacji, przez copywriting i&nbsp;design, po wdrożenie techniczne i&nbsp;optymalizację na&nbsp;podstawie danych."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Email marketing oparty na&nbsp;strategii i&nbsp;danych"
+          subtitle="Na rynku nie brakuje freelancerów od Mailchimpa. Oto dlaczego warto pracować z&nbsp;agencją, która łączy copywriting, technologię i&nbsp;analitykę."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {diffs.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="srv-platforms" aria-label="Platformy email marketing">
+    <div class="container">
+      <div class="srv-platforms__inner reveal">
+        <span class="srv-platforms__label">Platformy</span>
+        <h2 class="srv-platforms__title">Pracujemy z Twoim narzędziem</h2>
+        <p class="srv-platforms__desc">
+          Nie narzucamy platformy. Wdrażamy i optymalizujemy email marketing
+          na narzędziu, z którego już korzystasz — lub pomagamy wybrać najlepsze.
+        </p>
+        <div class="srv-platforms__list">
+          <span class="srv-platforms__item">Mailchimp</span>
+          <span class="srv-platforms__item">MailerLite</span>
+          <span class="srv-platforms__item">ConvertKit</span>
+          <span class="srv-platforms__item">ActiveCampaign</span>
+          <span class="srv-platforms__item">GetResponse</span>
+          <span class="srv-platforms__item">Klaviyo</span>
+          <span class="srv-platforms__item">HubSpot</span>
+          <span class="srv-platforms__item">Brevo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;email marketingu, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Chcesz email marketing, który zarabia?</h2>
+        <p class="srv-cta__desc">
+          Opisz swój projekt — odpowiemy z&nbsp;wyceną, propozycją strategii
+          i&nbsp;rekomendacjami w&nbsp;ciągu 24&nbsp;godzin. Bez zobowiązań.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę email marketingu
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o email marketingu">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Email marketing — kanał o&nbsp;najwyższym ROI w&nbsp;marketingu cyfrowym</h2>
+        <p>
+          <strong>Email marketing</strong> to najskuteczniejszy kanał komunikacji z&nbsp;klientami pod względem
+          zwrotu z&nbsp;inwestycji. Przy średnim ROI na poziomie 36:1, profesjonalne <strong>kampanie email</strong>
+          generują przychód wielokrotnie przewyższający koszt ich realizacji. W&nbsp;przeciwieństwie do social media,
+          email to kanał, którego jesteś właścicielem — algorytmy nie decydują, kto zobaczy Twój komunikat.
+        </p>
+        <h3>Dlaczego warto zlecić obsługę email marketingu agencji?</h3>
+        <p>
+          Skuteczny <strong>email marketing</strong> to więcej niż wysyłanie <strong>newsletterów</strong>.
+          Wymaga strategii segmentacji, projektowania <strong>sekwencji mailowych</strong>, pisania
+          angażujących treści, konfiguracji automatyzacji, testowania wariantów i&nbsp;analizy wyników.
+          Profesjonalna <strong>agencja email marketingu</strong> łączy te kompetencje w&nbsp;spójny proces
+          — od audytu i&nbsp;strategii, przez copywriting, po wdrożenie techniczne i&nbsp;raportowanie.
+        </p>
+        <h3>Email marketing w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>obsługi email marketingu</strong> łączy copywriting z&nbsp;technologią.
+          Piszemy <strong>newslettery</strong> i&nbsp;<strong>kampanie email</strong>, które ludzie otwierają
+          i&nbsp;klikają. Projektujemy <strong>sekwencje mailowe</strong> i&nbsp;automatyzacje, które pracują
+          24/7. A&nbsp;nasz zespół programistów wdraża wszystko w&nbsp;Twojej platformie — od Mailchimpa po
+          Klaviyo — z&nbsp;integracjami CRM i&nbsp;e-commerce. Jeden dostawca zamiast copywritera, designera
+          i&nbsp;specjalisty od marketing automation.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnego email marketingu?</h3>
+        <p>
+          Profesjonalny <strong>email marketing</strong> jest potrzebny, gdy: chcesz budować bazę
+          subskrybentów i&nbsp;systematycznie ją monetyzować; Twoje <strong>newslettery</strong> mają
+          niski open rate i&nbsp;nie generują kliknięć; potrzebujesz automatyzacji e-commerce (porzucone
+          koszyki, cross-sell, win-back); planujesz launch produktu i&nbsp;potrzebujesz kampanii
+          sprzedażowej; chcesz zamienić losowe wysyłki w&nbsp;przewidywalny kanał przychodu.
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 560px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ROI */
+  .srv-roi { padding: var(--space-12) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light); }
+  .srv-roi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-roi__grid { grid-template-columns: 1fr; gap: var(--space-4); } }
+  .srv-roi__card { padding: var(--space-6); text-align: center; }
+  .srv-roi__stat { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-bottom: var(--space-3); }
+  .srv-roi__stat-value { font-family: var(--font-display); font-size: var(--fs-5xl); font-weight: var(--fw-bold); line-height: 1; color: var(--accent); }
+  .srv-roi__stat-label { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .srv-roi__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 320px; margin: 0 auto; }
+
+  /* EMAIL TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-metric { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-metric svg { flex-shrink: 0; }
+
+  /* ANATOMY */
+  .srv-anatomy { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-anatomy__inner { max-width: 740px; }
+  .srv-anatomy__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-anatomy__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-anatomy__title em { font-style: italic; color: var(--accent); }
+  .srv-anatomy__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 600px; margin-bottom: var(--space-8); }
+
+  .srv-anatomy__mail {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); overflow: hidden;
+  }
+
+  .srv-anatomy__part {
+    display: flex; gap: var(--space-4); align-items: flex-start;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s ease;
+  }
+
+  .srv-anatomy__part:last-child { border-bottom: none; }
+  .srv-anatomy__part:hover { background: var(--paper-warm); }
+
+  .srv-anatomy__part--hl {
+    border-left: 3px solid var(--accent);
+  }
+
+  .srv-anatomy__part-label {
+    flex-shrink: 0; width: 160px;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    font-weight: var(--fw-medium); color: var(--ink);
+    letter-spacing: 0.02em; padding-top: 2px;
+  }
+
+  .srv-anatomy__part-desc {
+    font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted);
+  }
+
+  @media (max-width: 640px) {
+    .srv-anatomy__part { flex-direction: column; gap: var(--space-1); }
+    .srv-anatomy__part-label { width: auto; }
+  }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* PLATFORMS */
+  .srv-platforms { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); background: var(--card-bg); }
+  .srv-platforms__inner { max-width: 740px; }
+  .srv-platforms__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-platforms__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); }
+  .srv-platforms__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 540px; margin-bottom: var(--space-6); }
+  .srv-platforms__list { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .srv-platforms__item {
+    font-family: var(--font-mono); font-size: 0.75rem; font-weight: var(--fw-medium);
+    color: var(--ink-muted); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 6px 14px; border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .srv-platforms__item:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -46,7 +47,7 @@ const currentUrl = canonical || Astro.url.href;
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   )}
 
-  <!-- Preconnect -->
+  <!-- Preconnect — only to fonts (NOT to Google Analytics before consent) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
@@ -58,19 +59,27 @@ const currentUrl = canonical || Astro.url.href;
   </main>
   <Footer />
 
+  <!-- Cookie Consent Banner (GDPR + Google Consent Mode v2) -->
+  <CookieBanner />
+
   <!-- Reveal on scroll -->
   <script>
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    function initReveal() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    }
+
+    initReveal();
+    document.addEventListener('astro:after-swap', initReveal);
   </script>
 </body>
 </html>

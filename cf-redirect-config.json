@@ -1,0 +1,49 @@
+{
+  "CallerReference": "ecopywriting-pl-redirect-2026",
+  "Aliases": {
+    "Quantity": 1,
+    "Items": ["ecopywriting.pl"]
+  },
+  "DefaultRootObject": "",
+  "Origins": {
+    "Quantity": 1,
+    "Items": [{
+      "Id": "S3-redirect-ecopywriting-pl",
+      "DomainName": "ecopywriting.pl.s3-website.eu-central-1.amazonaws.com",
+      "CustomOriginConfig": {
+        "HTTPPort": 80,
+        "HTTPSPort": 443,
+        "OriginProtocolPolicy": "http-only"
+      }
+    }]
+  },
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-redirect-ecopywriting-pl",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "AllowedMethods": {
+      "Quantity": 2,
+      "Items": ["GET", "HEAD"],
+      "CachedMethods": {
+        "Quantity": 2,
+        "Items": ["GET", "HEAD"]
+      }
+    },
+    "Compress": true,
+    "ForwardedValues": {
+      "QueryString": false,
+      "Cookies": { "Forward": "none" }
+    },
+    "MinTTL": 0,
+    "DefaultTTL": 86400,
+    "MaxTTL": 31536000
+  },
+  "ViewerCertificate": {
+    "ACMCertificateArn": "arn:aws:acm:us-east-1:381492300277:certificate/a632aae0-9958-47d6-951c-ae5789f73b78",
+    "SSLSupportMethod": "sni-only",
+    "MinimumProtocolVersion": "TLSv1.2_2021"
+  },
+  "Enabled": true,
+  "Comment": "ecopywriting.pl redirect to www",
+  "PriceClass": "PriceClass_100",
+  "HttpVersion": "http2and3"
+}

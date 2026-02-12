@@ -1,6 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+
+// Get 3 latest blog posts
+const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -44,6 +50,60 @@ const homeSchema = {
       "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
       "about": { "@id": "https://www.ecopywriting.pl/#organization" },
       "description": "Agencja content marketingowa, która łączy copywriting, technologię i profesjonalny skład. Od strategii treści po gotowy ebook, katalog czy landing page."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.ecopywriting.pl/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Ile kosztuje copywriting / content marketing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ceny zależą od rodzaju i zakresu projektu. Pojedynczy artykuł blogowy to koszt od 400–800 zł, kompleksowa strategia contentowa od 3000 zł, ebook z profesjonalnym składem od 5000 zł. Każdy projekt wyceniamy indywidualnie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak wygląda proces współpracy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Zaczynamy od briefu i analizy potrzeb. Następnie przygotowujemy strategię lub outline treści do akceptacji. Po zatwierdzeniu kierunku piszemy teksty, przeprowadzamy redakcję, a w przypadku publikacji — składamy materiał."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy mogę zamówić tylko copywriting, bez składu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oczywiście. Oferujemy zarówno pełen pakiet (treść + skład), jak i same usługi copywriterskie. Jeśli potrzebujesz tylko tekstów na stronę, artykułów blogowych czy opisów produktów — dostarczymy je w formacie Google Docs lub Word."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak długo trwa realizacja projektu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pojedynczy artykuł to zwykle 3–5 dni roboczych. Kompleksowa strategia contentowa 2–3 tygodnie. Ebook z profesjonalnym składem 3–6 tygodni, w zależności od objętości i złożoności."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy korzystacie z AI do pisania tekstów?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wykorzystujemy AI jako narzędzie wspierające — do researchu, generowania outline'ów, sprawdzania spójności. Ale każdy tekst jest pisany i redagowany przez doświadczonych copywriterów. Gwarantujemy oryginalność i unikalny styl."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Czy oferujecie stałą współpracę / abonament?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tak, wielu klientów współpracuje z nami w modelu abonamentowym — stała liczba artykułów miesięcznie, prowadzenie bloga, regularne newslettery. Przy stałej współpracy oferujemy preferencyjne stawki i priorytetową realizację."
+          }
+        }
+      ]
     }
   ]
 };
@@ -144,6 +204,68 @@ const diffs = [
     unit: '+ human',
     title: 'Technologia, która skaluje jakość',
     desc: 'Własne narzędzia, umiejętności programistyczne i profesjonalny skład tekstu. Łączymy kreatywność i skuteczność marketingową z technologią i estetyką, żeby dostarczać gotowe produkty spełniający najwyższe kryteria — bez kompromisów na jakości.'
+  }
+];
+
+// Industries
+const industries = [
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+    title: 'SaaS & Technologia',
+    desc: 'Dokumentacja produktowa, blogi techniczne, case studies, white papers dla firm software\'owych i startupów.'
+  },
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+    title: 'E-commerce',
+    desc: 'Opisy produktów, kategorie, poradniki zakupowe, content marketing wspierający sprzedaż online.'
+  },
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+    title: 'Medycyna & Zdrowie',
+    desc: 'Treści medyczne, artykuły zdrowotne, materiały edukacyjne dla klinik, firm farmaceutycznych i wellness.'
+  },
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    title: 'Edukacja & Szkolenia',
+    desc: 'Materiały kursowe, ebooki edukacyjne, skrypty szkoleniowe, treści dla platform e-learningowych.'
+  },
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+    title: 'B2B & Usługi profesjonalne',
+    desc: 'Treści dla firm konsultingowych, kancelarii, agencji — budowanie eksperckiego wizerunku.'
+  },
+  {
+    icon: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
+    title: 'Produkcja & Przemysł',
+    desc: 'Katalogi produktowe, dokumentacja techniczna, materiały targowe, treści B2B dla sektora przemysłowego.'
+  }
+];
+
+// FAQ items
+const faqItems = [
+  {
+    q: 'Ile kosztuje copywriting / content marketing?',
+    a: 'Ceny zależą od rodzaju i zakresu projektu. Pojedynczy artykuł blogowy to koszt od 400–800 zł, kompleksowa strategia contentowa od 3000 zł, ebook z profesjonalnym składem od 5000 zł. Każdy projekt wyceniamy indywidualnie — <a href="/kontakt/">napisz do nas</a> z briefem, a przygotujemy bezpłatną wycenę.'
+  },
+  {
+    q: 'Jak wygląda proces współpracy?',
+    a: 'Zaczynamy od briefu i analizy potrzeb. Następnie przygotowujemy strategię lub outline treści do akceptacji. Po zatwierdzeniu kierunku piszemy teksty, przeprowadzamy redakcję, a w przypadku publikacji — składamy materiał. Klient otrzymuje gotowy produkt z możliwością poprawek.'
+  },
+  {
+    q: 'Czy mogę zamówić tylko copywriting, bez składu?',
+    a: 'Oczywiście. Oferujemy zarówno pełen pakiet (treść + skład), jak i same usługi copywriterskie. Jeśli potrzebujesz tylko tekstów na stronę, artykułów blogowych czy opisów produktów — dostarczymy je w formacie Google Docs lub Word.'
+  },
+  {
+    q: 'Jak długo trwa realizacja projektu?',
+    a: 'Pojedynczy artykuł to zwykle 3–5 dni roboczych. Kompleksowa strategia contentowa 2–3 tygodnie. Ebook z profesjonalnym składem 3–6 tygodni, w zależności od objętości i złożoności. Przy pilnych projektach możemy przyspieszyć — pytaj o opcję express.'
+  },
+  {
+    q: 'Czy korzystacie z AI do pisania tekstów?',
+    a: 'Wykorzystujemy AI jako narzędzie wspierające — do researchu, generowania outline\'ów, sprawdzania spójności. Ale każdy tekst jest pisany i redagowany przez doświadczonych copywriterów. Gwarantujemy oryginalność, unikalny styl i brak „AI-owego" brzmienia.'
+  },
+  {
+    q: 'Czy oferujecie stałą współpracę / abonament?',
+    a: 'Tak, wielu klientów współpracuje z nami w modelu abonamentowym — stała liczba artykułów miesięcznie, prowadzenie bloga, regularne newslettery. Przy stałej współpracy oferujemy preferencyjne stawki i priorytetową realizację.'
   }
 ];
 ---
@@ -304,6 +426,39 @@ const diffs = [
   </section>
 
   <!-- ═══════════════════════════════════════
+       INDUSTRIES — Dla kogo pracujemy
+       ═══════════════════════════════════════ -->
+  <section class="industries" id="branze" aria-labelledby="industries-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Branże"
+          title="Dla kogo tworzymy treści?"
+          subtitle="Współpracujemy z firmami, które rozumieją wartość profesjonalnego content marketingu. Każda branża ma swoją specyfikę — znamy je i dostosowujemy przekaz."
+          centered
+        />
+      </div>
+
+      <div class="industries__grid reveal">
+        {industries.map((ind) => (
+          <div class="industry-card">
+            <div class="industry-card__icon" set:html={ind.icon} />
+            <h3 class="industry-card__title">{ind.title}</h3>
+            <p class="industry-card__desc">{ind.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="industries__note reveal">
+        <p>
+          <strong>Nie widzisz swojej branży?</strong> To nie problem. Nasz proces researchu pozwala szybko
+          zgłębić specyfikę każdego sektora. <a href="/kontakt/">Porozmawiajmy</a> o Twoich potrzebach.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        WHY US — Differentiators
        ═══════════════════════════════════════ -->
   <section class="why" id="dlaczego-my" aria-labelledby="why-title">
@@ -332,20 +487,85 @@ const diffs = [
   </section>
 
   <!-- ═══════════════════════════════════════
-       BLOG placeholder
+       BLOG — Latest posts
        ═══════════════════════════════════════ -->
-  <section class="blog-preview" id="blog" aria-labelledby="blog-title">
+  <section class="blog-section" id="blog" aria-labelledby="blog-title">
     <div class="container">
-      <div class="reveal">
+      <div class="blog-section__header reveal">
         <SectionHeading
           label="Blog"
           title="Wiedza o&nbsp;content marketingu"
-          subtitle="Artykuły o strategii treści, copywritingu, SEO i profesjonalnych publikacjach. Wkrótce."
+          subtitle="Artykuły o strategii treści, copywritingu, SEO i profesjonalnych publikacjach."
+        />
+        <a href="/blog/" class="blog-section__all-link">
+          Wszystkie artykuły
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <div class="blog-section__grid reveal">
+        {latestPosts.map((post, index) => {
+          const formattedDate = post.data.date.toLocaleDateString('pl-PL', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+          return (
+            <a href={`/blog/${post.slug}/`} class={`blog-card ${index === 0 ? 'blog-card--featured' : ''}`}>
+              <div class="blog-card__number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              <div class="blog-card__content">
+                <div class="blog-card__meta">
+                  <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+                  {post.data.readingTime && (
+                    <span class="blog-card__reading">{post.data.readingTime} min</span>
+                  )}
+                </div>
+                <h3 class="blog-card__title">{post.data.title}</h3>
+                {post.data.description && (
+                  <p class="blog-card__desc">{post.data.description}</p>
+                )}
+                <span class="blog-card__link">
+                  Czytaj artykuł
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+                </span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQ — Najczęstsze pytania
+       ═══════════════════════════════════════ -->
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="FAQ"
+          title="Najczęściej zadawane pytania"
+          subtitle="Odpowiedzi na pytania, które najczęściej słyszymy od klientów."
+          centered
         />
       </div>
-      <div class="blog-preview__placeholder reveal">
-        <p>Blog jest w&nbsp;przygotowaniu. Będziemy pisać o&nbsp;tym, co znamy najlepiej — o&nbsp;treściach, które działają.</p>
-        <span class="blog-preview__tag">Wkrótce</span>
+
+      <div class="faq__list reveal">
+        {faqItems.map((item) => (
+          <details class="faq__item">
+            <summary class="faq__question">
+              <span>{item.q}</span>
+              <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </summary>
+            <div class="faq__answer">
+              <p set:html={item.a} />
+            </div>
+          </details>
+        ))}
       </div>
     </div>
   </section>
@@ -931,6 +1151,97 @@ const diffs = [
   }
 
   /* ═══════════════════════════════════════
+     INDUSTRIES
+     ═══════════════════════════════════════ */
+  .industries {
+    padding: var(--space-24) 0;
+    background: var(--paper);
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .industries__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 900px) {
+    .industries__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .industries__grid { grid-template-columns: 1fr; }
+  }
+
+  .industry-card {
+    background: var(--white);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    transition: all var(--transition-base);
+  }
+
+  .industry-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(196, 90, 60, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .industry-card__icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper-warm);
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    margin-bottom: var(--space-5);
+  }
+
+  .industry-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .industry-card__desc {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: var(--lh-relaxed);
+  }
+
+  .industries__note {
+    margin-top: var(--space-10);
+    padding: var(--space-6) var(--space-8);
+    background: var(--white);
+    border: 1px dashed var(--rule);
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+
+  .industries__note p {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+  }
+
+  .industries__note strong {
+    color: var(--ink);
+  }
+
+  .industries__note a {
+    color: var(--accent);
+    font-weight: var(--fw-medium);
+  }
+
+  .industries__note a:hover {
+    text-decoration: underline;
+  }
+
+  /* ═══════════════════════════════════════
      WHY US
      ═══════════════════════════════════════ */
   .why {
@@ -995,41 +1306,271 @@ const diffs = [
   }
 
   /* ═══════════════════════════════════════
-     BLOG PREVIEW
+     BLOG SECTION — Latest posts
      ═══════════════════════════════════════ */
-  .blog-preview {
-    padding: var(--space-20) 0;
+  .blog-section {
+    padding: var(--space-24) 0;
+    background: var(--white);
     border-top: 1px solid var(--rule-light);
   }
 
-  .blog-preview__placeholder {
-    padding: var(--space-10) var(--space-8);
-    background: var(--white);
-    border: 1px dashed var(--rule);
-    border-radius: var(--radius-md);
-    text-align: center;
-    position: relative;
+  .blog-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
   }
 
-  .blog-preview__placeholder p {
-    font-size: var(--fs-base);
-    color: var(--ink-muted);
-    font-style: italic;
+  @media (max-width: 768px) {
+    .blog-section__header {
+      flex-direction: column;
+    }
   }
 
-  .blog-preview__tag {
-    position: absolute;
-    top: -10px;
-    right: var(--space-6);
+  .blog-section__all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    white-space: nowrap;
+    margin-top: var(--space-2);
+    transition: gap var(--transition-fast);
+  }
+
+  .blog-section__all-link:hover {
+    gap: 10px;
+  }
+
+  .blog-section__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .blog-section__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Blog card */
+  .blog-card {
+    display: flex;
+    background: var(--paper);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    overflow: hidden;
+    transition: all var(--transition-base);
+  }
+
+  .blog-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 32px rgba(196, 90, 60, 0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Featured card - spans full width on first row */
+  .blog-card--featured {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 900px) {
+    .blog-card--featured {
+      grid-column: auto;
+    }
+  }
+
+  .blog-card__number {
+    flex-shrink: 0;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper-warm);
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    color: var(--accent);
+    opacity: 0.3;
+    border-right: 1px solid var(--rule-light);
+    transition: all var(--transition-base);
+  }
+
+  .blog-card:hover .blog-card__number {
+    opacity: 0.6;
+    background: rgba(196, 90, 60, 0.08);
+  }
+
+  @media (max-width: 480px) {
+    .blog-card__number {
+      display: none;
+    }
+  }
+
+  .blog-card__content {
+    flex: 1;
+    padding: var(--space-6) var(--space-8);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    margin-bottom: var(--space-3);
+  }
+
+  .blog-card__reading::before {
+    content: '·';
+    margin-right: var(--space-4);
+  }
+
+  .blog-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold);
+    line-height: var(--lh-snug);
+    color: var(--ink);
+    margin-bottom: var(--space-3);
+    transition: color var(--transition-fast);
+  }
+
+  .blog-card--featured .blog-card__title {
+    font-size: var(--fs-2xl);
+  }
+
+  .blog-card:hover .blog-card__title {
+    color: var(--accent);
+  }
+
+  .blog-card__desc {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: var(--lh-relaxed);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card--featured .blog-card__desc {
+    -webkit-line-clamp: 3;
+  }
+
+  .blog-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover .blog-card__link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ═══════════════════════════════════════
+     FAQ
+     ═══════════════════════════════════════ */
+  .faq {
+    padding: var(--space-24) 0;
+    background: var(--paper);
+    border-top: 1px solid var(--rule-light);
+  }
+
+  .faq__list {
+    max-width: 800px;
+    margin: var(--space-8) auto 0;
+  }
+
+  .faq__item {
+    background: var(--white);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-3);
+    overflow: hidden;
+    transition: all var(--transition-base);
+  }
+
+  .faq__item:hover {
+    border-color: var(--rule);
+  }
+
+  .faq__item[open] {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(196, 90, 60, 0.08);
+  }
+
+  .faq__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-5) var(--space-6);
+    cursor: pointer;
+    list-style: none;
     font-weight: var(--fw-medium);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: var(--accent);
-    padding: 3px 10px;
-    border-radius: var(--radius-sm);
+    color: var(--ink);
+    transition: color var(--transition-fast);
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question:hover {
+    color: var(--accent);
+  }
+
+  .faq__question span {
+    flex: 1;
+    padding-right: var(--space-4);
+  }
+
+  .faq__chevron {
+    flex-shrink: 0;
+    color: var(--ink-muted);
+    transition: transform 0.3s ease;
+  }
+
+  .faq__item[open] .faq__chevron {
+    transform: rotate(180deg);
+    color: var(--accent);
+  }
+
+  .faq__answer {
+    padding: 0 var(--space-6) var(--space-6);
+  }
+
+  .faq__answer p {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    line-height: var(--lh-relaxed);
+  }
+
+  .faq__answer a {
+    color: var(--accent);
+    font-weight: var(--fw-medium);
+  }
+
+  .faq__answer a:hover {
+    text-decoration: underline;
   }
 
   /* ═══════════════════════════════════════

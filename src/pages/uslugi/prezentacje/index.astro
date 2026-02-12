@@ -1,0 +1,676 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionHeading from '../../../components/SectionHeading.astro';
+
+// ── FAQ ──
+const faqs = [
+  {
+    q: 'Ile kosztuje stworzenie prezentacji?',
+    a: 'Cena zależy od objętości, złożoności i zakresu prac. Prezentacja firmowa (15–25 slajdów, copy + design) to 2000–5000 zł. Pitch deck / prezentacja inwestorska (20–35 slajdów, storytelling + dane + design premium) to 5000–12 000 zł. Szablon prezentacji (master template z wariantami slajdów do wielokrotnego użytku) to 3000–8000 zł. W cenę wliczone: strategia, copywriting, projekt graficzny i rendering do wybranych formatów.'
+  },
+  {
+    q: 'W jakich formatach dostarczacie prezentacje?',
+    a: 'Dostarczamy prezentacje w dowolnym formacie: PowerPoint (.pptx) — edytowalny, najczęściej wybierany; Google Slides — do współpracy w chmurze; Keynote — dla użytkowników Apple; PDF — do wysyłki, druku i archiwizacji; PDF interaktywny — z klikalną nawigacją i animacjami. Standardowo dostarczamy PPTX + PDF. Format dobieramy do kontekstu — inny do prezentowania na żywo, inny do wysyłki mailem.'
+  },
+  {
+    q: 'Czy mogę samodzielnie edytować gotową prezentację?',
+    a: 'Tak — każda prezentacja w formacie PPTX/Google Slides/Keynote jest w pełni edytowalna. Dostarczamy master template z zdefiniowanymi layoutami slajdów, paletą kolorów, typografią i placeholderami. Dzięki temu Twój zespół może tworzyć nowe slajdy w spójnym designie bez grafika. Na życzenie przygotowujemy też instrukcję użytkowania szablonu.'
+  },
+  {
+    q: 'Czy piszecie treści prezentacji, czy potrzebujecie gotowy tekst?',
+    a: 'Jedno i drugie. Możemy napisać prezentację od zera — na podstawie briefu, rozmów i materiałów źródłowych. Możemy też przeprojektować istniejącą prezentację: zredagować copy, uporządkować strukturę, zaprojektować nowy layout. Najczęstsza opcja: klient dostarcza surowe materiały (notatki, dane, stara prezentacja), a my budujemy storytelling, piszemy copy i projektujemy slajdy.'
+  },
+  {
+    q: 'Jak długo trwa stworzenie prezentacji?',
+    a: 'Standardowa prezentacja firmowa (15–25 slajdów) to 5–10 dni roboczych. Pitch deck z pogłębionym storytellingiem to 7–14 dni. Szablon prezentacji (master template) to 7–14 dni. Czas obejmuje: brief, copywriting, design, jedną rundę poprawek i rendering. Przy pilnych projektach oferujemy tryb ekspresowy (3–5 dni, +50% do ceny).'
+  },
+  {
+    q: 'Czy tworzycie szablony prezentacji do wielokrotnego użytku?',
+    a: 'Tak — master template to jedna z naszych najpopularniejszych usług. Projektujemy komplet wariantów slajdów (tytułowy, treściowy, dane/wykresy, cytat, porównanie, timeline, CTA, divider) w spójnym designie. Twój zespół wybiera odpowiedni layout i wypełnia treścią — bez grafika, bez ryzyka „zepsucia" designu. Template w PPTX, Google Slides lub Keynote.'
+  },
+  {
+    q: 'Czy pomagacie z prezentacjami do konkretnych sytuacji?',
+    a: 'Tak — każdą prezentację projektujemy pod konkretny kontekst: pitch deck dla inwestorów (storytelling, problem-solution, traction, ask), prezentacja sprzedażowa (benefit-driven, obiekcje, CTA), prezentacja konferencyjna (speaker support, storytelling wizualny), raport kwartalny (dane, wykresy, wnioski), onboarding / szkolenie (struktura dydaktyczna). Kontekst determinuje strukturę, ton i format.'
+  }
+];
+
+// ── Schema.org ──
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://www.ecopywriting.pl/uslugi/prezentacje/#service",
+      "name": "Prezentacje",
+      "description": "Profesjonalne tworzenie prezentacji. PowerPoint, Google Slides, Keynote, PDF. Pitch decki, prezentacje firmowe, sprzedażowe, konferencyjne. Copywriting, storytelling, design, szablony. Od briefu po gotowy plik.",
+      "provider": { "@id": "https://www.ecopywriting.pl/#organization" },
+      "serviceType": "Presentation design",
+      "areaServed": "PL",
+      "url": "https://www.ecopywriting.pl/uslugi/prezentacje/"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.ecopywriting.pl/uslugi/prezentacje/#webpage",
+      "url": "https://www.ecopywriting.pl/uslugi/prezentacje/",
+      "name": "Prezentacje — Tworzenie Prezentacji PowerPoint, PDF i Google Slides | eCopywriting.pl",
+      "isPartOf": { "@id": "https://www.ecopywriting.pl/#website" },
+      "description": "Profesjonalne tworzenie prezentacji. PowerPoint, Google Slides, PDF, Keynote. Pitch decki, prezentacje firmowe i sprzedażowe. Copywriting + design. Wycena w 24h.",
+      "breadcrumb": { "@id": "https://www.ecopywriting.pl/uslugi/prezentacje/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.ecopywriting.pl/uslugi/prezentacje/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://www.ecopywriting.pl/" },
+        { "@type": "ListItem", "position": 2, "name": "Usługi", "item": "https://www.ecopywriting.pl/uslugi/" },
+        { "@type": "ListItem", "position": 3, "name": "Prezentacje", "item": "https://www.ecopywriting.pl/uslugi/prezentacje/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    }
+  ]
+};
+
+// ── Presentation types ──
+const presTypes = [
+  {
+    title: 'Pitch decki',
+    desc: 'Prezentacje inwestorskie i sprzedażowe — storytelling od problemu, przez rozwiązanie, po ask. Struktura, która prowadzi słuchacza do konkluzji. Dane, traction, team, roadmap. Format, który decyduje o finansowaniu.',
+    context: 'Inwestorzy, VCs, partnerzy',
+    icon: '🚀'
+  },
+  {
+    title: 'Prezentacje firmowe',
+    desc: 'Wizytówka firmy w formacie slajdów — misja, usługi, kompetencje, portfolio, zespół. Do spotkań B2B, przetargów, onboardingu klientów. Copy, które pozycjonuje firmę, nie opisuje jej.',
+    context: 'Klienci B2B, przetargi, partnerzy',
+    icon: '🏢'
+  },
+  {
+    title: 'Prezentacje sprzedażowe',
+    desc: 'Narzędzie dla handlowców — benefit-driven, adresujące obiekcje, z jasnym CTA. Struktura: problem klienta → rozwiązanie → dowody → następny krok. Customizowalne per prospect.',
+    context: 'Sales team, spotkania handlowe',
+    icon: '💼'
+  },
+  {
+    title: 'Prezentacje konferencyjne',
+    desc: 'Speaker support dla prelegentów — wizualny storytelling, minimalistyczne slajdy, punchline\'y. Prezentacja, która wspiera mówcę, nie zastępuje go. Speaker notes z timingiem i podpowiedziami.',
+    context: 'Konferencje, webinary, keynote',
+    icon: '🎤'
+  },
+  {
+    title: 'Raporty i dashboardy',
+    desc: 'Prezentacje danych — raporty kwartalne, podsumowania projektów, dashboardy strategiczne. Wykresy, tabele, KPI, trendy. Dane, które opowiadają historię, nie przytłaczają tabelami.',
+    context: 'Zarząd, stakeholderzy, board',
+    icon: '📊'
+  },
+  {
+    title: 'Szablony prezentacji',
+    desc: 'Master template z kompletem wariantów slajdów — tytułowy, treściowy, dane, cytat, porównanie, timeline, CTA, divider. Twój zespół tworzy nowe prezentacje w spójnym designie bez grafika. Inwestycja jednorazowa, użytek wielokrotny.',
+    context: 'Cała firma, wielokrotne użycie',
+    icon: '🎨'
+  }
+];
+
+// ── Formats ──
+const formats = [
+  {
+    name: 'PowerPoint',
+    ext: '.pptx',
+    desc: 'Najczęściej wybierany format. W pełni edytowalny, kompatybilny z Windows i Mac. Idealne do prezentacji na żywo i edycji przez zespół.',
+    features: ['Edytowalny', 'Animacje', 'Speaker notes', 'Master slides']
+  },
+  {
+    name: 'Google Slides',
+    ext: 'cloud',
+    desc: 'Do współpracy w chmurze — edycja zespołowa w real-time, komentarze, history. Idealne dla rozproszonych zespołów i firm na Google Workspace.',
+    features: ['Współpraca online', 'Real-time edycja', 'Komentarze', 'Version history']
+  },
+  {
+    name: 'PDF',
+    ext: '.pdf',
+    desc: 'Do wysyłki mailem, archiwizacji i druku. Wygląda identycznie na każdym urządzeniu. Opcjonalnie: interaktywny PDF z klikalnymi linkami i nawigacją.',
+    features: ['Pixel-perfect', 'Uniwersalny', 'Druk', 'Interaktywny (opcja)']
+  },
+  {
+    name: 'Keynote',
+    ext: '.key',
+    desc: 'Natywny format Apple. Płynniejsze animacje i lepsze renderowanie na Mac/iPad. Dla firm i prelegentów w ekosystemie Apple.',
+    features: ['Animacje Apple', 'Retina', 'iPad support', 'Export do PPTX']
+  }
+];
+
+// ── Slide anatomy ──
+const slideRules = [
+  { rule: 'Jeden slajd = jedna myśl', desc: 'Nigdy dwa kluczowe przesłania na jednym slajdzie. Publiczność zapamiętuje jedno — dajemy jej to jedno.' },
+  { rule: 'Copy, nie zdania', desc: 'Slajd to wizualny support, nie dokument do czytania. Nagłówki, frazy, punchline\'y — nie paragrafy tekstu.' },
+  { rule: 'Hierarchia wizualna', desc: 'Oko musi wiedzieć, gdzie patrzeć najpierw. Tytuł → key message → supporting detail. Rozmiar, kolor, przestrzeń.' },
+  { rule: 'Dane jako historia', desc: 'Wykres bez kontekstu to szum. Każdy chart ma headline: „Wzrost o 47% w Q3" zamiast „Przychody 2024". Dane opowiadają, nie raportują.' },
+  { rule: 'Przestrzeń = profesjonalizm', desc: 'White space to nie marnowanie miejsca — to sygnał jakości. Zatłoczone slajdy wyglądają amatorsko i przeciążają odbiorcę.' }
+];
+
+// ── Process ──
+const steps = [
+  {
+    num: '01',
+    title: 'Brief i strategia',
+    desc: 'Definiujemy: kto jest odbiorcą, jaki jest cel (przekonać, poinformować, sprzedać), kontekst (na żywo, wysyłka, konferencja), format i objętość. Analiza istniejących materiałów. Outline — struktura slajdów do akceptacji przed designem.'
+  },
+  {
+    num: '02',
+    title: 'Copywriting i storytelling',
+    desc: 'Pisanie treści prezentacji — nagłówki, key messages, punchline\'y, speaker notes. Budowanie narracji: problem → napięcie → rozwiązanie → dowód → CTA. Każdy slajd ma jeden cel i jedno przesłanie. Copy do akceptacji przed designem.'
+  },
+  {
+    num: '03',
+    title: 'Projekt graficzny',
+    desc: 'Projektowanie layoutu slajdów — siatka, typografia, paleta kolorów, ikony, wykresy, infografiki. Spójność z brandingiem firmy. Design dopasowany do kontekstu: prezentacja na żywo wymaga innego layoutu niż deck wysyłany mailem.'
+  },
+  {
+    num: '04',
+    title: 'Rendering i dostawa',
+    desc: 'Rendering do wybranych formatów: PowerPoint (edytowalny, z master slides), Google Slides (z udostępnieniem), PDF (pixel-perfect, opcjonalnie interaktywny), Keynote. Testy na projektorze/ekranie. Dostawa plików finalnych + źródłowych.'
+  }
+];
+
+// ── Benefits ──
+const benefits = [
+  {
+    title: 'Storytelling, nie bullet pointy',
+    desc: 'Największy problem prezentacji firmowych? Bullet pointy, ściany tekstu, zero narracji. Budujemy prezentacje jako historię — problem, napięcie, rozwiązanie, dowód, CTA. Publiczność zapamiętuje historie, nie listy wypunktowane.'
+  },
+  {
+    title: 'Copy + design w jednym zespole',
+    desc: 'Nie projektujemy „ładnych slajdów do Twojego tekstu". Piszemy copy I projektujemy slajdy — razem, jednocześnie. Treść i forma powstają wspólnie, nie sekwencyjnie. Efekt: spójność, która jest niemożliwa, gdy copywriter i grafik pracują osobno.'
+  },
+  {
+    title: 'Dowolny format — PPTX, Slides, PDF, Keynote',
+    desc: 'Dostarczamy w formacie, którego potrzebujesz — PowerPoint do edycji, Google Slides do współpracy, PDF do wysyłki, Keynote dla Apple. Każdy format ma swoją specyfikę i optymalizujemy pod niego. Nie „eksportujemy" — renderujemy natywnie.'
+  },
+  {
+    title: 'Szablony, które żyją dalej',
+    desc: 'Master template to inwestycja jednorazowa, użytek wielokrotny. Twój zespół tworzy nowe prezentacje w spójnym designie — bez grafika, bez ryzyka „zepsucia" layoutu. Zdefiniowane warianty slajdów, paleta, typografia, placeholdery.'
+  }
+];
+
+// ── Related ──
+const related = [
+  { title: 'Materiały szkoleniowe', href: '/uslugi/materialy-szkoleniowe/', desc: 'Prezentacje szkoleniowe i edukacyjne' },
+  { title: 'Katalogi i broszury', href: '/uslugi/katalogi-broszury/', desc: 'Materiały drukowane i cyfrowe' },
+  { title: 'Copywriting', href: '/uslugi/copywriting/', desc: 'Teksty sprzedażowe i wizerunkowe' },
+  { title: 'Ebooki', href: '/uslugi/ebooki/', desc: 'Publikacje cyfrowe i lead magnety' }
+];
+---
+
+<BaseLayout
+  title="Prezentacje — Tworzenie Prezentacji PowerPoint, PDF i Google Slides | eCopywriting.pl"
+  description="Profesjonalne tworzenie prezentacji. PowerPoint, Google Slides, PDF, Keynote. Pitch decki, prezentacje firmowe, sprzedażowe, konferencyjne. Copywriting, storytelling, design. Szablony do wielokrotnego użytku. Wycena w 24h."
+  keywords="tworzenie prezentacji, prezentacje PowerPoint, prezentacje firmowe, pitch deck, prezentacja sprzedażowa, prezentacje Google Slides, prezentacje PDF, szablon prezentacji, prezentacje na zamówienie, design prezentacji"
+  schema={serviceSchema}
+  canonical="https://www.ecopywriting.pl/uslugi/prezentacje/"
+>
+
+  <!-- BREADCRUMBS -->
+  <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
+    <div class="container">
+      <ol class="breadcrumbs__list">
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/uslugi/">Usługi</a></li>
+        <li aria-current="page">Prezentacje</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="srv-hero" aria-labelledby="srv-hero-title">
+    <div class="srv-hero__bg" aria-hidden="true"><div class="srv-hero__grain"></div><div class="srv-hero__gradient"></div></div>
+    <div class="container srv-hero__inner">
+      <div class="srv-hero__badge"><span class="srv-hero__badge-dot"></span>Prezentacje & Pitch Decki</div>
+      <h1 id="srv-hero-title" class="srv-hero__title">
+        Prezentacje, które<br><em>przekonują i&nbsp;zostają w&nbsp;głowie</em>
+      </h1>
+      <p class="srv-hero__subtitle">
+        Pitch decki, prezentacje firmowe, sprzedażowe i&nbsp;konferencyjne.
+        Storytelling, copywriting i&nbsp;design — w&nbsp;PowerPoint, Google Slides,
+        PDF, Keynote lub dowolnym innym formacie.
+      </p>
+      <div class="srv-hero__actions">
+        <a href="/kontakt/" class="srv-hero__cta-primary">
+          Zamów wycenę
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#formaty" class="srv-hero__cta-secondary">Dostępne formaty</a>
+      </div>
+      <div class="srv-hero__proof">
+        <div class="srv-hero__proof-item"><strong>Storytelling</strong> nie bullet pointy</div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>PPTX + PDF + Slides + Keynote</strong></div>
+        <div class="srv-hero__proof-sep" aria-hidden="true"></div>
+        <div class="srv-hero__proof-item"><strong>Copy + design</strong> w jednym zespole</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESENTATION TYPES -->
+  <section class="srv-types" id="rodzaje" aria-labelledby="srv-types-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Co tworzymy"
+          title="Rodzaje prezentacji"
+          subtitle="Od pitch decka dla inwestorów po szablon do wielokrotnego użytku. Każdą prezentację projektujemy pod konkretny kontekst — odbiorca, cel, format, kanał."
+        />
+      </div>
+      <div class="srv-types__grid">
+        {presTypes.map((d, i) => (
+          <div class="srv-types__card reveal" style={`--delay: ${i * 0.05}s`}>
+            <span class="srv-types__card-icon" aria-hidden="true">{d.icon}</span>
+            <h3>{d.title}</h3>
+            <p>{d.desc}</p>
+            <span class="srv-types__card-context">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              {d.context}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATS -->
+  <section class="srv-formats" id="formaty" aria-labelledby="srv-formats-title">
+    <div class="container">
+      <div class="srv-formats__inner reveal">
+        <span class="srv-formats__label">Formaty</span>
+        <h2 id="srv-formats-title" class="srv-formats__title">
+          Dowolny format —<br><em>natywnie, nie „eksport"</em>
+        </h2>
+        <p class="srv-formats__desc">
+          Nie tworzymy w jednym narzędziu i nie eksportujemy do reszty. Każdy format
+          renderujemy natywnie — żeby PowerPoint wyglądał jak PowerPoint, a PDF jak PDF.
+          Bo eksportowany PPTX→PDF to nie to samo co zaprojektowany PDF.
+        </p>
+
+        <div class="srv-formats__grid">
+          {formats.map((f) => (
+            <div class="srv-formats__card">
+              <div class="srv-formats__card-header">
+                <h3>{f.name}</h3>
+                <span class="srv-formats__card-ext">{f.ext}</span>
+              </div>
+              <p>{f.desc}</p>
+              <div class="srv-formats__card-features">
+                {f.features.map((feat) => (
+                  <span class="srv-formats__card-chip">{feat}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE RULES -->
+  <section class="srv-rules" id="zasady" aria-labelledby="srv-rules-title">
+    <div class="container">
+      <div class="srv-rules__inner reveal">
+        <span class="srv-rules__label">Nasze zasady</span>
+        <h2 id="srv-rules-title" class="srv-rules__title">5 zasad dobrego slajdu</h2>
+        <p class="srv-rules__desc">
+          Każdą prezentację tworzymy w oparciu o sprawdzone zasady, które odróżniają
+          profesjonalny deck od „slajdów z dużą ilością tekstu".
+        </p>
+
+        <div class="srv-rules__list">
+          {slideRules.map((r, i) => (
+            <div class="srv-rules__item">
+              <span class="srv-rules__item-num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <strong>{r.rule}</strong>
+                <p>{r.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS (dark) -->
+  <section class="srv-process" id="proces" aria-labelledby="srv-process-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Jak pracujemy"
+          title="Od briefu po gotową prezentację"
+          subtitle="Cztery etapy, jeden zespół. Strategia → copywriting → design → rendering do wybranego formatu. Copy i design powstają razem, nie sekwencyjnie."
+          inverted
+        />
+      </div>
+      <div class="srv-process__steps">
+        {steps.map((step) => (
+          <div class="srv-process__step reveal">
+            <div class="srv-process__step-num">{step.num}</div>
+            <div class="srv-process__step-content">
+              <h3>{step.title}</h3>
+              <p>{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="srv-benefits" id="dlaczego" aria-labelledby="srv-benefits-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading
+          label="Dlaczego my"
+          title="Prezentacje od copywriterów, nie tylko grafików"
+          subtitle="Piękne slajdy z kiepskim copy nie przekonują. Brzydkie slajdy z dobrym copy — też nie. Łączymy storytelling z designem, bo jedno bez drugiego nie działa."
+        />
+      </div>
+      <div class="srv-benefits__grid">
+        {benefits.map((b, i) => (
+          <div class="srv-benefit reveal" style={`--delay: ${i * 0.08}s`}>
+            <div class="srv-benefit__accent" aria-hidden="true"></div>
+            <h3>{b.title}</h3>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="srv-faq" id="faq" aria-labelledby="srv-faq-title">
+    <div class="container">
+      <div class="reveal">
+        <SectionHeading label="FAQ" title="Najczęściej zadawane pytania" subtitle="Odpowiedzi na pytania o&nbsp;tworzeniu prezentacji, które słyszymy najczęściej." />
+      </div>
+      <div class="srv-faq__list">
+        {faqs.map((faq, i) => (
+          <details class="srv-faq__item reveal" style={`--delay: ${i * 0.04}s`}>
+            <summary class="srv-faq__question">
+              <span>{faq.q}</span>
+              <svg class="srv-faq__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="srv-faq__answer"><p>{faq.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="srv-related" id="powiazane">
+    <div class="container">
+      <div class="reveal"><SectionHeading label="Powiązane usługi" title="Może Cię zainteresować" /></div>
+      <div class="srv-related__grid reveal">
+        {related.map((r) => (
+          <a href={r.href} class="srv-related__card">
+            <h3>{r.title}</h3><p>{r.desc}</p><span class="srv-related__arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="srv-cta" id="kontakt" aria-labelledby="srv-cta-title">
+    <div class="srv-cta__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="srv-cta__inner reveal">
+        <h2 id="srv-cta-title" class="srv-cta__title">Potrzebujesz prezentacji, która przekonuje?</h2>
+        <p class="srv-cta__desc">
+          Opisz kontekst — odbiorca, cel, format, orientacyjna objętość. Odpowiemy
+          z&nbsp;wyceną, propozycją struktury i&nbsp;harmonogramem w&nbsp;ciągu 24&nbsp;godzin.
+        </p>
+        <div class="srv-cta__actions">
+          <a href="/kontakt/" class="srv-cta__button">
+            Zamów wycenę prezentacji
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="mailto:kontakt@ecopywriting.pl" class="srv-cta__email">kontakt@ecopywriting.pl</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT -->
+  <section class="srv-seo" aria-label="Informacje o tworzeniu prezentacji">
+    <div class="container-narrow">
+      <article class="srv-seo__article">
+        <h2>Tworzenie prezentacji — PowerPoint, PDF, Google Slides, Keynote</h2>
+        <p>
+          Profesjonalne <strong>tworzenie prezentacji</strong> to więcej niż „ładne slajdy". To połączenie
+          storytellingu (narracja, która prowadzi odbiorcę do konkluzji), copywritingu (frazy, które
+          zostają w głowie, nie ściany tekstu) i designu (hierarchia wizualna, dane jako historia,
+          przestrzeń). Dostarczamy <strong>prezentacje PowerPoint</strong>, Google Slides,
+          <strong>prezentacje PDF</strong> i Keynote — w formacie dopasowanym do kontekstu.
+        </p>
+        <h3>Dlaczego tworzenie prezentacji warto zlecić?</h3>
+        <p>
+          Większość <strong>prezentacji firmowych</strong> to bullet pointy na białym tle — zero narracji,
+          za dużo tekstu, brak hierarchii. Profesjonalne <strong>prezentacje na zamówienie</strong>
+          łączą copywriting z designem: budujemy storytelling (problem → napięcie → rozwiązanie → dowód),
+          piszemy copy w języku slajdu (nagłówki i punchline'y, nie paragrafy), projektujemy layout,
+          który kieruje uwagę. Efekt: prezentacja, która przekonuje, nie usypia.
+        </p>
+        <h3>Prezentacje w eCopywriting.pl</h3>
+        <p>
+          Nasze podejście do <strong>tworzenia prezentacji</strong> łączy copywriting z designem
+          w jednym zespole. Zaczynamy od briefu i strategii (cel, odbiorca, kontekst), piszemy
+          storytelling i copy, projektujemy slajdy, renderujemy do wybranych formatów:
+          <strong>PowerPoint</strong> (edytowalny, z master slides), <strong>Google Slides</strong>
+          (współpraca w chmurze), <strong>PDF</strong> (wysyłka, druk, archiwizacja), Keynote (Apple).
+          Tworzymy też <strong>szablony prezentacji</strong> do wielokrotnego użytku przez zespół.
+        </p>
+        <h3>Kiedy potrzebujesz profesjonalnej prezentacji?</h3>
+        <p>
+          Profesjonalne <strong>tworzenie prezentacji na zamówienie</strong> jest potrzebne, gdy:
+          szukasz finansowania i potrzebujesz <strong>pitch decka</strong>; przygotowujesz się
+          do ważnego spotkania B2B; występujesz na konferencji; Twój zespół sprzedażowy potrzebuje
+          spójnych materiałów; chcesz szablon, który pozwoli tworzyć nowe prezentacje bez grafika;
+          Twoje obecne slajdy to „ściany tekstu na białym tle".
+        </p>
+      </article>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* BREADCRUMBS */
+  .breadcrumbs { padding-top: calc(72px + var(--space-6)); padding-bottom: var(--space-4); }
+  .breadcrumbs__list { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-faint); flex-wrap: wrap; }
+  .breadcrumbs__list li { display: flex; align-items: center; }
+  .breadcrumbs__list li:not(:last-child)::after { content: '/'; margin: 0 0.5rem; color: var(--rule); }
+  .breadcrumbs__list a { color: var(--ink-faint); text-decoration: none; transition: color var(--transition-fast); }
+  .breadcrumbs__list a:hover { color: var(--accent); }
+  .breadcrumbs__list [aria-current="page"] { color: var(--ink-muted); }
+
+  /* HERO */
+  .srv-hero { position: relative; padding: var(--space-12) 0 var(--space-20); overflow: hidden; }
+  .srv-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .srv-hero__gradient { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 15% 80%, rgba(196,90,60,0.06) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 85% 20%, rgba(28,42,58,0.04) 0%, transparent 50%); }
+  .srv-hero__grain { position: absolute; inset: 0; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-hero__inner { position: relative; z-index: 1; }
+  .srv-hero__badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: var(--fw-medium); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-5); opacity: 0; animation: srvFadeUp 0.8s ease 0.1s forwards; }
+  .srv-hero__badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .srv-hero__title { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: var(--fw-semibold); line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: 700px; opacity: 0; animation: srvFadeUp 0.9s ease 0.25s forwards; }
+  .srv-hero__title em { font-style: italic; color: var(--accent); }
+  .srv-hero__subtitle { font-size: clamp(1rem, 1.6vw, 1.1rem); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 580px; margin-top: var(--space-5); opacity: 0; animation: srvFadeUp 0.9s ease 0.4s forwards; }
+  .srv-hero__actions { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-8); opacity: 0; animation: srvFadeUp 0.9s ease 0.55s forwards; }
+  .srv-hero__cta-primary { display: inline-flex; align-items: center; gap: 10px; padding: 13px 26px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-hero__cta-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-hero__cta-primary svg { transition: transform var(--transition-fast); }
+  .srv-hero__cta-primary:hover svg { transform: translateX(3px); }
+  .srv-hero__cta-secondary { font-weight: var(--fw-medium); color: var(--ink-muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: all var(--transition-fast); }
+  .srv-hero__cta-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  .srv-hero__proof { display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap; margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--rule-light); opacity: 0; animation: srvFadeUp 0.8s ease 0.7s forwards; }
+  .srv-hero__proof-item { font-size: var(--fs-sm); color: var(--ink-light); }
+  .srv-hero__proof-item strong { color: var(--ink); font-weight: var(--fw-semibold); }
+  .srv-hero__proof-sep { width: 1px; height: 18px; background: var(--rule); }
+  @media (max-width: 640px) { .srv-hero__proof-sep { display: none; } .srv-hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @keyframes srvFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* PRESENTATION TYPES */
+  .srv-types { padding: var(--space-24) 0; }
+  .srv-types__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  @media (max-width: 900px) { .srv-types__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-types__grid { grid-template-columns: 1fr; } }
+  .srv-types__card { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-6); transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-types__card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .srv-types__card-icon { font-size: 1.5rem; display: block; margin-bottom: var(--space-3); line-height: 1; }
+  .srv-types__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); line-height: var(--lh-snug); }
+  .srv-types__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+  .srv-types__card-context { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.02em; }
+  .srv-types__card-context svg { flex-shrink: 0; }
+
+  /* FORMATS */
+  .srv-formats { padding: var(--space-24) 0; background: var(--paper-warm); border-top: 1px solid var(--rule-light); }
+  .srv-formats__inner { max-width: 860px; }
+  .srv-formats__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-formats__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: var(--fw-semibold); line-height: var(--lh-snug); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-formats__title em { font-style: italic; color: var(--accent); }
+  .srv-formats__desc { font-size: var(--fs-base); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; margin-bottom: var(--space-8); }
+
+  .srv-formats__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  @media (max-width: 640px) { .srv-formats__grid { grid-template-columns: 1fr; } }
+
+  .srv-formats__card {
+    background: var(--card-bg); border: 1px solid var(--rule-light);
+    border-radius: var(--radius-md); padding: var(--space-5);
+    transition: border-color var(--transition-base);
+  }
+  .srv-formats__card:hover { border-color: var(--accent); }
+
+  .srv-formats__card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--space-3);
+  }
+
+  .srv-formats__card-header h3 {
+    font-family: var(--font-display); font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold); color: var(--ink);
+  }
+
+  .srv-formats__card-ext {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: var(--fw-bold);
+    letter-spacing: 0.05em; color: var(--accent); background: var(--accent-bg);
+    padding: 2px 8px; border-radius: var(--radius-sm);
+  }
+
+  .srv-formats__card p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-3); }
+
+  .srv-formats__card-features { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .srv-formats__card-chip {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: var(--fw-medium);
+    color: var(--ink-faint); background: var(--paper); border: 1px solid var(--rule-light);
+    padding: 3px 8px; border-radius: var(--radius-sm);
+  }
+
+  /* SLIDE RULES */
+  .srv-rules { padding: var(--space-20) 0; background: var(--card-bg); border-top: 1px solid var(--rule-light); }
+  .srv-rules__inner { max-width: 700px; }
+  .srv-rules__label { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: var(--fw-medium); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4); }
+  .srv-rules__title { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); }
+  .srv-rules__desc { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 540px; margin-bottom: var(--space-6); }
+
+  .srv-rules__list { display: flex; flex-direction: column; }
+
+  .srv-rules__item {
+    display: flex; gap: var(--space-4); align-items: flex-start;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .srv-rules__item:last-child { border-bottom: none; }
+
+  .srv-rules__item-num {
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent);
+    letter-spacing: 0.06em; padding-top: 3px; flex-shrink: 0; width: 28px; text-align: right;
+  }
+
+  .srv-rules__item strong {
+    display: block; font-family: var(--font-display); font-size: var(--fs-base);
+    font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: 2px;
+  }
+
+  .srv-rules__item p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* PROCESS (dark) */
+  .srv-process { padding: var(--space-24) 0; background: var(--navy); position: relative; overflow: hidden; }
+  .srv-process::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .srv-process__steps { display: flex; flex-direction: column; position: relative; max-width: 720px; }
+  .srv-process__step { display: grid; grid-template-columns: 48px 1fr; gap: var(--space-5); padding: var(--space-6) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .srv-process__step:last-child { border-bottom: none; }
+  .srv-process__step-num { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--accent-light); letter-spacing: 0.06em; padding-top: 3px; text-align: right; }
+  .srv-process__step-content h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+  .srv-process__step-content p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.5); max-width: 580px; }
+
+  /* BENEFITS */
+  .srv-benefits { padding: var(--space-24) 0; }
+  .srv-benefits__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .srv-benefits__grid { grid-template-columns: 1fr; } }
+  .srv-benefit { background: var(--card-bg); border: 1px solid var(--rule-light); border-radius: var(--radius-md); padding: var(--space-8); position: relative; overflow: hidden; transition: border-color var(--transition-base), transform var(--transition-base); transition-delay: var(--delay, 0s); }
+  .srv-benefit:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .srv-benefit__accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; }
+  .srv-benefit:hover .srv-benefit__accent { transform: scaleX(1); }
+  .srv-benefit h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-3); line-height: var(--lh-snug); }
+  .srv-benefit p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); }
+
+  /* FAQ */
+  .srv-faq { padding: var(--space-24) 0; border-top: 1px solid var(--rule-light); }
+  .srv-faq__list { max-width: 740px; display: flex; flex-direction: column; }
+  .srv-faq__item { border-bottom: 1px solid var(--rule-light); transition-delay: var(--delay, 0s); }
+  .srv-faq__item:first-child { border-top: 1px solid var(--rule); }
+  .srv-faq__question { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-5) 0; cursor: pointer; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); line-height: var(--lh-snug); transition: color var(--transition-fast); list-style: none; }
+  .srv-faq__question::-webkit-details-marker { display: none; }
+  .srv-faq__question::marker { display: none; content: ''; }
+  .srv-faq__question:hover { color: var(--accent); }
+  .srv-faq__chevron { flex-shrink: 0; color: var(--ink-faint); transition: transform 0.3s ease, color 0.3s ease; }
+  .srv-faq__item[open] .srv-faq__chevron { transform: rotate(180deg); color: var(--accent); }
+  .srv-faq__answer { padding: 0 0 var(--space-6); }
+  .srv-faq__answer p { font-size: var(--fs-sm); line-height: var(--lh-relaxed); color: var(--ink-muted); max-width: 620px; }
+
+  /* RELATED / CTA / SEO */
+  .srv-related { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-related__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); border-radius: var(--radius-md); overflow: hidden; }
+  @media (max-width: 900px) { .srv-related__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .srv-related__grid { grid-template-columns: 1fr; } }
+  .srv-related__card { background: var(--card-bg); padding: var(--space-6); text-decoration: none; transition: background var(--transition-base); display: flex; flex-direction: column; }
+  .srv-related__card:hover { background: var(--paper-warm); }
+  .srv-related__card h3 { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: var(--fw-semibold); color: var(--ink); margin-bottom: var(--space-2); transition: color var(--transition-fast); }
+  .srv-related__card:hover h3 { color: var(--accent); }
+  .srv-related__card p { font-size: var(--fs-sm); color: var(--ink-muted); line-height: var(--lh-relaxed); flex: 1; }
+  .srv-related__arrow { display: inline-block; margin-top: var(--space-3); color: var(--accent); font-size: var(--fs-lg); opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
+  .srv-related__card:hover .srv-related__arrow { opacity: 1; transform: translateX(0); }
+
+  .srv-cta { padding: var(--space-24) 0; background: var(--paper); position: relative; overflow: hidden; }
+  .srv-cta__bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(196,90,60,0.04) 0%, transparent 60%); }
+  .srv-cta__inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; }
+  .srv-cta__title { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-semibold); line-height: var(--lh-tight); color: var(--ink); margin-bottom: var(--space-4); }
+  .srv-cta__desc { font-size: var(--fs-base); color: var(--ink-muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-8); }
+  .srv-cta__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .srv-cta__button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--ink); color: var(--paper); font-size: var(--fs-base); font-weight: var(--fw-medium); border-radius: var(--radius-sm); transition: all var(--transition-base); }
+  .srv-cta__button:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,90,60,0.25); }
+  .srv-cta__button svg { transition: transform var(--transition-fast); }
+  .srv-cta__button:hover svg { transform: translateX(3px); }
+  .srv-cta__email { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-faint); transition: color var(--transition-fast); }
+  .srv-cta__email:hover { color: var(--accent); }
+
+  .srv-seo { padding: var(--space-20) 0; border-top: 1px solid var(--rule-light); }
+  .srv-seo__article h2 { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: var(--fw-semibold); margin-bottom: var(--space-6); color: var(--ink); }
+  .srv-seo__article h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-semibold); margin-top: var(--space-10); margin-bottom: var(--space-3); color: var(--ink); }
+  .srv-seo__article p { font-size: 0.95rem; line-height: var(--lh-relaxed); color: var(--ink-muted); margin-bottom: var(--space-4); }
+  .srv-seo__article strong { color: var(--ink-soft); font-weight: var(--fw-medium); }
+</style>
