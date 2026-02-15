@@ -49,14 +49,14 @@ sytuacji, gdy klient jest niezadowolony, bo otrzymał treści, których w ogóle
 nie potrzebuje. Jak temu zaradzić?
 
 - Dokładnie zapoznaj się z wymaganiami i
- oczekiwaniami klienta. Lepiej zadać o jedno nieistotne pytanie za dużo niż
- jedno za mało, od którego zależy powodzenie projektu.
+  oczekiwaniami klienta. Lepiej zadać o jedno nieistotne pytanie za dużo niż
+  jedno za mało, od którego zależy powodzenie projektu.
 - Wolne chwile wykorzystuj na lekturę poradników i
- branżowych portali. Poszerzaj wiedzę na temat form używanych w content
- marketingu i pokrewnych dziedzinach.
+  branżowych portali. Poszerzaj wiedzę na temat form używanych w content
+  marketingu i pokrewnych dziedzinach.
 - Do każdego klienta podchodź indywidualnie,
- traktując jego zlecenie wyjątkowo i dokładnie interpretując cel, jaki ma
- przynieść publikacja wybranych treści.
+  traktując jego zlecenie wyjątkowo i dokładnie interpretując cel, jaki ma
+  przynieść publikacja wybranych treści.
 
 ## 3. Niewłaściwie dobrany język
 
@@ -124,7 +124,7 @@ obrębie danego tematu, nie wyklucza to większego nacisku położonego na kwest
 SEO. Wiele zleceń wymaga stosowania kluczowych fraz, ale trzeba jeszcze
 wiedzieć, gdzie je umieszczać, z jaką częstotliwością i tak dalej. Przeczytaj
 więcej [o
-słowach kluczowych w copywritingu](http://www.blog.ecopywriting.pl/slowa-kluczowe-seo-copywritingu-poradnik-stosowac/).
+słowach kluczowych w copywritingu](https://www.ecopywriting.pl/blog/slowa-kluczowe-seo-copywritingu-poradnik-stosowac/).
 
 Do tego dochodzi cały szereg
 elementów, jak:
@@ -194,7 +194,7 @@ unikać podobnych sytuacji.
 - Jeśli wiesz, że dany temat to na 100% nie Twoja bajka, po prostu nie podejmuj się danego zlecenia. Lepiej, żeby wykonał je ktoś, kto włoży w nie więcej pasji.
 - Każdy temat można interesująco opracować, to jedynie kwestia odpowiedniego researchu informacji i kreatywności w ich przekazywaniu. Dlatego czytaj, czytaj i jeszcze raz czytaj.
 - Masz problem z weną? Po prostu postaw się w roli odbiorcy, przedstawiciela grupy docelowej treści. Czego oczekujesz, będąc w jego perspektywie? Czego chcesz się dowiedzieć? Jakie formaty treści interesują Cię najbardziej? Te pomocnicze pytania są bardzo użyteczne.
-- Jeśli to nie jest Twój dzień na pisanie, wykorzystaj metodę „recyklingu treści”. Z tego może się urodzić całkiem dobry materiał, na pewno lepszy niż napisany byle jak, byle był. Przeczytaj więcej [o recyklingu treści](http://www.blog.ecopywriting.pl/recykling-tresci-czyli-tworzyc-tekstow-jeden-temat/).
+- Jeśli to nie jest Twój dzień na pisanie, wykorzystaj metodę „recyklingu treści”. Z tego może się urodzić całkiem dobry materiał, na pewno lepszy niż napisany byle jak, byle był. Przeczytaj więcej [o recyklingu treści](https://www.ecopywriting.pl/blog/recykling-tresci-czyli-tworzyc-tekstow-jeden-temat/).
 
 ## 10. Brak dystansu
 

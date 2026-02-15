@@ -11,7 +11,7 @@ readingTime: 5
 
 ## Co to jest social proof
 
-Social proof, czyli społeczny dowód słuszności, jest pojęciem zdefiniowanym przez doktora Roberta Cialdiniego w 1984 roku, w książce „*Wywieranie wpływu na ludzi. Teoria i praktyka*”. Określona ono zjawisko polegające na tym, że ludzie podejmują różnego rodzaju decyzje (w tym zakupowe), kierując się opiniami i sugestiami innych osób. Tę wiedzę można skutecznie wykorzystać w sprzedaży i marketingu.
+Social proof, czyli społeczny dowód słuszności, jest pojęciem zdefiniowanym przez doktora Roberta Cialdiniego w 1984 roku, w książce „_Wywieranie wpływu na ludzi. Teoria i praktyka_”. Określona ono zjawisko polegające na tym, że ludzie podejmują różnego rodzaju decyzje (w tym zakupowe), kierując się opiniami i sugestiami innych osób. Tę wiedzę można skutecznie wykorzystać w sprzedaży i marketingu.
 
 Innymi słowy, zgodnie z koncepcją społecznego dowodu słuszności, kupując przez Internet odkurzacz i nie mając specjalistycznej wiedzy ani sprecyzowanych oczekiwań, najprawdopodobniej wybierzesz ten, który ma najwięcej pozytywnych ocen i jest najkorzystniej zrecenzowany.
 
@@ -23,7 +23,7 @@ Czytaj dalej i dowiedz się, czym jest społeczny dowód społeczny w praktyce m
 
 Czy wiesz, że już w 2011 roku aż [63% internautów](https://econsultancy.com/ecommerce-consumer-reviews-why-you-need-them-and-how-to-use-them/#i.35yv7v2okfp7yq) bardziej skłaniało się ku zakupom na stronach, które posiadają opinie użytkowników? Jeżeli nie chcesz zostać w tyle, wykorzystaj tę wiedzę i również w swoim sklepie internetowym umożliw użytkownikom recenzowanie Twoich produktów.
 
-Na zasadzie social proof (społecznego dowodu słuszności) bazują reklamy radiowe i telewizyjne, w których np. kobieta poleca koleżance lekarstwo, używając najprostszego argumentu „*mnie pomógł, to i Tobie pomoże!*”. Książkowy przykład zastosowania społecznego dowodu słuszności.
+Na zasadzie social proof (społecznego dowodu słuszności) bazują reklamy radiowe i telewizyjne, w których np. kobieta poleca koleżance lekarstwo, używając najprostszego argumentu „_mnie pomógł, to i Tobie pomoże!_”. Książkowy przykład zastosowania społecznego dowodu słuszności.
 
 Social proof działa wtedy, gdy wybieramy hotel w porównywarce, nie patrząc w pierwszej kolejności na cenę, lokalizację czy liczbę gwiazdek, ale przede wszystkim na średnią ocen użytkowników i liczbę zamieszczonych recenzji. To samo z wyborem prywatnego lekarza. I lokalu na randkę. I gry pod choinkę dla chrześniaka. I getrów piłkarskich na nowy sezon amatorskich rozgrywek. I odkurzacza, i… mam wymieniać dalej?
 
@@ -67,4 +67,4 @@ Przykład? Poproś o opinię przypadkowego klienta. Nie musisz zlecać wysokobud
 
 Cenimy autentyczność, więc opinia powinna być uzupełniona zdjęciem, krótkim opisem klienta. Albo po prostu eksponuj część poświęconą komentarzom. Jeśli są krytyczne – nie obrażaj się, nie usuwaj. Przemyśl ich merytoryczne sedno i ulepszaj swój produkt lub usługę.
 
-Jako [agencja copywriterska eCopywriting](http://www.ecopywriting.pl) wykorzystujemy mechanizm społecznego dowodu słuszności w copywritingu – w treściach sprzedażowych, tekstach na strony WWW, artykułach czy opisach produktów, dzięki czemu zwiększamy ich skuteczność. Skontaktuj się z nami, jeśli potrzebujesz tekstów – nie tylko sprzedażowych.
+Jako [agencja content marketingu](https://www.ecopywriting.pl) wykorzystujemy mechanizm społecznego dowodu słuszności w copywritingu – w treściach sprzedażowych, tekstach na strony WWW, artykułach czy opisach produktów, dzięki czemu zwiększamy ich skuteczność. Skontaktuj się z nami, jeśli potrzebujesz tekstów – nie tylko sprzedażowych.

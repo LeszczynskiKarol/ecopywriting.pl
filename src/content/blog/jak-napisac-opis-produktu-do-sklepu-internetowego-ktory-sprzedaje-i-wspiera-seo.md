@@ -29,7 +29,7 @@ Skoro prowadzisz e-sklep z wędkami i spławikami, nie trzeba wyjaśniać, kto j
 
 Ma to wpływ nie tylko na sam dobór produktów czy działania promocyjne, ale też opisy produktów.  W jednym przypadku możesz bez obaw używać specjalistycznych pojęć, bo zostaną zrozumiane. W drugim stosujesz bardziej uproszczony język, aby każdy wiedział, do czego służy wybrany produkt i jakie jest jego przeznaczenie. Wszystko zależy od tego, kto ma dokonać zakupu, a co za tym – **dla kogo jest przygotowywany opis.**
 
-![](http://www.blog.ecopywriting.pl/wp-content/uploads/2020/04/obraz.png)Opis zawiera słownictwo ściśle dostosowane do grupy odbiorców – w tym przypadku klientów internetowego skateshopu.
+![](https://www.ecopywriting.pl/blog/wp-content/uploads/2020/04/obraz.png)Opis zawiera słownictwo ściśle dostosowane do grupy odbiorców – w tym przypadku klientów internetowego skateshopu.
 
 ## 2. Patrz na produkt oczami klienta
 
@@ -45,7 +45,7 @@ Chcesz skutecznie opisywać produkty? W takim razie nie staraj się reklamować 
 
 Tworząc opis, skup się na produkcie i powiąż go z korzyściami, które z jego użytkowania odnosi klient. Skoncentruj się na nim, a nie na sobie i swojej firmie. Zamiast narracji „my” **zaproponuj klientowi perspektywę „ty”**.
 
-![](http://www.blog.ecopywriting.pl/wp-content/uploads/2020/04/sklep-sfd-1-1024x559.png)opis jest skierowany bezpośrednio do odbiorcy, zawiera konkretne i przydatne informacje poszukiwane przez docelowego klienta sklepu, jest skupiony na praktycznych korzyściach.
+![](https://www.ecopywriting.pl/blog/wp-content/uploads/2020/04/sklep-sfd-1-1024x559.png)opis jest skierowany bezpośrednio do odbiorcy, zawiera konkretne i przydatne informacje poszukiwane przez docelowego klienta sklepu, jest skupiony na praktycznych korzyściach.
 
 ## 3. Działaj na zmysły
 
@@ -91,7 +91,7 @@ Google docenia nawet pozornie drobne detale, które są przydatne dla użytkowni
 
 Strategia pisania treści produktowych zależy w dużej mierze od całościowego spojrzenia na biznes, na sklep internetowy jako markę. Załóżmy, że promujesz swój sklep z wykorzystaniem elementów **storytellingu**, z lekkim humorem, chcąc wyróżnić się na tle konkurencji. Wniosek? **Opisy powinny być spójne z pozostałymi przekazami marketingowymi.**
 
-![](http://www.blog.ecopywriting.pl/wp-content/uploads/2020/04/Decathlon-1-1024x542.png)Opis obuwia piłkarskiego zawiera wyjaśnienie korzyści, jakie dają poszczególne elementy: wypustki, asymetryczny system sznurowania czy podeszwa.
+![](https://www.ecopywriting.pl/blog/wp-content/uploads/2020/04/Decathlon-1-1024x542.png)Opis obuwia piłkarskiego zawiera wyjaśnienie korzyści, jakie dają poszczególne elementy: wypustki, asymetryczny system sznurowania czy podeszwa.
 
 **Działaj według strategii**, zgodnie z planem. Przygotuj się na to, że skoro każdy produkt wymaga unikatowego opisu, a masz szeroki asortyment, proces wdrażania treści rozłożysz w czasie. Jeśli chcesz mieć pewność, że przygotowane teksty spełniają trzy podstawowe założenia, a więc:
 
@@ -99,4 +99,4 @@ Strategia pisania treści produktowych zależy w dużej mierze od całościowego
 - budują pozytywny wizerunek,
 - wspierają pozycjonowanie sklepu w wynikach wyszukiwania,
 
-**skontaktuj się z naszą agencją copywritingu**. [Opisy produktów](http://www.ecopywriting.pl/uslugi/opisy-produktow.html) to jedna z naszych kluczowych usług.
+**skontaktuj się z naszą agencją copywritingu**. [Opisy produktów](https://www.ecopywriting.pl/uslugi/opisy-produktow.html) to jedna z naszych kluczowych usług.

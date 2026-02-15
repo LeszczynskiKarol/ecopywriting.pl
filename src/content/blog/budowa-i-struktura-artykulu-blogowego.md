@@ -19,15 +19,15 @@ Unikaj częstych błędów popełnianych przez copywriterów na tym etapie, jak 
 
 ### Przykłady dobrych tytułów
 
-- „*10 sprawdzonych sposobów na optymalizację SEO strony firmowej*” – tytuł jest krótki i zwięzły, zawiera słowa kluczowe („optymalizacja SEO”, „strona firmowa”) i precyzyjnie informuje o treści artykułu.
-- „*Jak stworzyć skuteczny tunel sprzedażowy – poradnik krok po kroku*” – tytuł ma charakter informacyjny i zawiera frazy, które potencjalny czytelnik mógłby wpisać w wyszukiwarkę („skuteczny tunel sprzedażowy”, „poradnik krok po kroku”).
-- „*Czy warto inwestować w kryptowaluty w 2023 roku?*” – tytuł jest aktualny i stawia konkretne pytanie, na które czytelnik chce poznać odpowiedź. Słowa kluczowe („jak inwestować”, „kryptowaluty”, „2023”, poradnik) są również obecne.
+- „_10 sprawdzonych sposobów na optymalizację SEO strony firmowej_” – tytuł jest krótki i zwięzły, zawiera słowa kluczowe („optymalizacja SEO”, „strona firmowa”) i precyzyjnie informuje o treści artykułu.
+- „_Jak stworzyć skuteczny tunel sprzedażowy – poradnik krok po kroku_” – tytuł ma charakter informacyjny i zawiera frazy, które potencjalny czytelnik mógłby wpisać w wyszukiwarkę („skuteczny tunel sprzedażowy”, „poradnik krok po kroku”).
+- „_Czy warto inwestować w kryptowaluty w 2023 roku?_” – tytuł jest aktualny i stawia konkretne pytanie, na które czytelnik chce poznać odpowiedź. Słowa kluczowe („jak inwestować”, „kryptowaluty”, „2023”, poradnik) są również obecne.
 
 ### **Przykłady nieprawidłowych tytułów:**
 
-- „*O tym, jak zająć się pewnym aspektem marketingu cyfrowego*” – tytuł jest zbyt ogólny i niezrozumiały, a do tego brakuje w nim słów kluczowych i nie informuje, o czym dokładnie jest artykuł.
-- „*Czy Twoja strona jest fajna? Oto, co możesz zrobić, żeby była jeszcze fajniejsza!*” – tytuł jest zbyt infantylny i nieprofesjonalny i nie informuje czytelnika o konkretnym problemie czy rozwiązaniu, a słowa kluczowe są niejasne.
-- „*10+1 sposobów na osiągnięcie sukcesu w SEO, tunelach sprzedażowych, social media, PPC, content marketingu i wiele innych!*” – tytuł jest zbyt długi i rozwlekły, próbuje objąć zbyt wiele tematów, co sprawia, że trudno go zrozumieć i zlokalizować w wynikach wyszukiwania.
+- „_O tym, jak zająć się pewnym aspektem marketingu cyfrowego_” – tytuł jest zbyt ogólny i niezrozumiały, a do tego brakuje w nim słów kluczowych i nie informuje, o czym dokładnie jest artykuł.
+- „_Czy Twoja strona jest fajna? Oto, co możesz zrobić, żeby była jeszcze fajniejsza!_” – tytuł jest zbyt infantylny i nieprofesjonalny i nie informuje czytelnika o konkretnym problemie czy rozwiązaniu, a słowa kluczowe są niejasne.
+- „_10+1 sposobów na osiągnięcie sukcesu w SEO, tunelach sprzedażowych, social media, PPC, content marketingu i wiele innych!_” – tytuł jest zbyt długi i rozwlekły, próbuje objąć zbyt wiele tematów, co sprawia, że trudno go zrozumieć i zlokalizować w wynikach wyszukiwania.
 
 ## Grafika wyróżniająca
 
@@ -59,13 +59,13 @@ Zawsze na pierwszym planie miej swojego odbiorcę. Zabierając się za tworzenie
 
 ### Przykład dobrego wstępu:
 
-„*Twoja strona internetowa nie przyciąga wystarczającej liczby odwiedzających, mimo że spędzasz godziny na optymalizacji SEO? Być może problem tkwi w jakości Twoich treści. W tym artykule pokażemy, jak skutecznie przyciągnąć więcej ruchu na stronę, korzystając z zaawansowanych technik tworzenia contentu. Zaczynamy od podstaw, ale szybko przejdziemy do bardziej zaawansowanych wskazówek. Czytaj dalej, jeśli chcesz, aby Twoja strona stała się magnesem dla potencjalnych klientów*!”
+„_Twoja strona internetowa nie przyciąga wystarczającej liczby odwiedzających, mimo że spędzasz godziny na optymalizacji SEO? Być może problem tkwi w jakości Twoich treści. W tym artykule pokażemy, jak skutecznie przyciągnąć więcej ruchu na stronę, korzystając z zaawansowanych technik tworzenia contentu. Zaczynamy od podstaw, ale szybko przejdziemy do bardziej zaawansowanych wskazówek. Czytaj dalej, jeśli chcesz, aby Twoja strona stała się magnesem dla potencjalnych klientów_!”
 
 - Wstęp jest krótki i zrozumiały. Od razu stawia problem, który czytelnik może rozwiązać dzięki przeczytaniu artykułu. Jest też zachęta do dalszego czytania (CTA).
 
 ### Przykład niewłaściwego wstępu:
 
-„*Marketing to fascynujący świat pełen niespodzianek. Czasami działania, które podejmujemy, przynoszą efekty, a czasami nie. To zależy od wielu czynników. W dzisiejszym artykule porozmawiamy o kilku z nich.*”
+„_Marketing to fascynujący świat pełen niespodzianek. Czasami działania, które podejmujemy, przynoszą efekty, a czasami nie. To zależy od wielu czynników. W dzisiejszym artykule porozmawiamy o kilku z nich._”
 
 - Wstęp jest zbyt ogólny i nieinformacyjny. Nie wskazuje, o czym dokładnie będzie artykuł, brakuje w nim konkretnej problematyki, która zainteresuje czytelnika. Nie ma też zachęty do dalszego czytania.
 
@@ -109,7 +109,7 @@ Pomimo że tabele są bardzo użytecznym narzędziem, warto pamiętać o kilku i
 
 ## Multimedia – grafiki, zdjęcia i materiały wideo
 
-[Różne formy multimediów](https://www.blog.ecopywriting.pl/nie-tylko-tekst-czyli-jak-wzbogacic-artykul-aby-byc-czytany/), takie jak grafiki, zdjęcia i filmy wideo, są nieodłącznym elementem artykułu blogowego. Pomagają wizualizować i zilustrować omawiane tematy, przyciągają uwagę czytelnika i mogą zwiększyć jego angażowanie. Urozmaicają treść, umożliwiając czytelnikowi doświadczenie tematu w bardziej interaktywny sposób.
+[Różne formy multimediów](https://www.ecopywriting.pl/blog/nie-tylko-tekst-czyli-jak-wzbogacic-artykul-aby-byc-czytany/), takie jak grafiki, zdjęcia i filmy wideo, są nieodłącznym elementem artykułu blogowego. Pomagają wizualizować i zilustrować omawiane tematy, przyciągają uwagę czytelnika i mogą zwiększyć jego angażowanie. Urozmaicają treść, umożliwiając czytelnikowi doświadczenie tematu w bardziej interaktywny sposób.
 
 Multimedia powinny być wysokiej jakości – niejasne, rozmazane lub źle zaprojektowane grafiki mogą zniechęcić czytelnika. Poza tym każda grafika, zdjęcie czy film wideo powinny mieć bezpośredni związek z tematem omawianym w tekście. Umieszczenie niepowiązanych multimedialnych treści tylko dla ich samego bytu może spowodować dezorientację czytelnika i źle wpłynąć na pozycjonowanie.
 
@@ -127,7 +127,7 @@ Meta opis (description) powinien być też krótki, choć nieco dłuższy niż t
 
 ## FAQ – często zadawane pytania
 
-Sekcja FAQ, czyli często zadawane pytania, to kolejny element, który decyduje o wartości i użyteczności artykułu blogowego. Wbrew pozorom nie chodzi tu jedynie o zaspokojenie ciekawości czytelników. FAQ pozwala na bowiem budowanie zaufania do marki i wspomaga [optymalizację tekstów SEO](https://www.blog.ecopywriting.pl/optymalizacja-tresci-pod-seo-skuteczne-pozycjonowanie-i-wysokie-pozycje-dzieki-copywritingowi/).
+Sekcja FAQ, czyli często zadawane pytania, to kolejny element, który decyduje o wartości i użyteczności artykułu blogowego. Wbrew pozorom nie chodzi tu jedynie o zaspokojenie ciekawości czytelników. FAQ pozwala na bowiem budowanie zaufania do marki i wspomaga [optymalizację tekstów SEO](https://www.ecopywriting.pl/blog/optymalizacja-tresci-pod-seo-skuteczne-pozycjonowanie-i-wysokie-pozycje-dzieki-copywritingowi/).
 
 Utworzenie takiej sekcji to idealny sposób na pokazanie swojej wiedzy i kompetencji. Odpowiadając na pytania, które mogą pojawić się u czytelników, pokazujesz, że znamy temat od A do Z i jesteś w stanie dostarczyć wszystkich niezbędnych informacji. To buduje zaufanie do marki, jeśli artykuł jest elementem większej [strategii content marketingowej](https://www.ecopywriting.pl/strategia-content-marketingowa-jak-ja-zaplanowac-przygotowac-i-wdrozyc/).
 

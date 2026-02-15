@@ -8,7 +8,7 @@ readingTime: 2
 
 **Świadomość roli treści w marketingu rośnie. To dobra wiadomość; Stowarzyszenie Prasy Firmowej jest już Stowarzyszeniem Content Marketing, a zainteresowani nie są już uzależnieni wyłącznie od zagranicznych źródeł lub pojedynczych blogów – mogą sięgać nawet po badania zrealizowane przez agencję badawczą IRCenter.**
 
-Stowarzyszenie Content Marketing Polska i agencja IRcenter opublikowały w czerwcu raport „[Czas na content](http://badaniacontentmarketing.pl/)”, będący rodzimą edycją FCP-Barometer. Opracowanie dotyczy roli contentu w komunikacji i zostało przeprowadzone na próbie usługodawców oraz klientów usług strategii komunikacyjnej. Zwróćmy uwagę na najważniejsze wnioski.
+Stowarzyszenie Content Marketing Polska i agencja IRcenter opublikowały w czerwcu raport „[Czas na content](https://badaniacontentmarketing.pl/)”, będący rodzimą edycją FCP-Barometer. Opracowanie dotyczy roli contentu w komunikacji i zostało przeprowadzone na próbie usługodawców oraz klientów usług strategii komunikacyjnej. Zwróćmy uwagę na najważniejsze wnioski.
 
 1. 90% badanych uważa, że w ich firmach w perspektywie najbliższych trzech lat **zacznie przeważać strategia zorientowana na treść**, choć warto dodać, że 2/3 z tej grupy już stosuje rozwiązania oparte o content, a nie tradycyjną promocję.
 2. Z drugiej strony, badani zauważają zasadniczą **trudność w pomiarze efektywności** rozwiązań opartych o content (70%); stosunkowo niełatwą zdaje się też być ocena strategii (47%), kreacji (42%) i dystrybucji (40%).

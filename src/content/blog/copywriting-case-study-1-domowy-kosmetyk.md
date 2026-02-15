@@ -10,7 +10,7 @@ readingTime: 4
 
 ## O firmie
 
-[Domowy Kosmetyk](http://www.domowykosmetyk.pl/) jest niezależną marką kosmetyków naturalnych, tworzonych w domowej pracowni przez toruniankę – Ewę Rusin-Gazdę. Kosmetyki, komponowane wyłącznie z organicznych, czyli roślinnych i mineralnych substancji, są sprzedawane za pomocą sklepu internetowego oraz na regionalnych targach rękodzieła i zdrowej żywności. Współpracę z Domowym Kosmetykiem nawiązaliśmy w marcu 2016 roku. Sklep posiadał stronę internetową, nie miał jednak oryginalnych opisów produktów i kategorii. Z kolei brak wcześniejszych działań w zakresie SEO/SEM skutkował z kolei niskimi pozycjami w wyszukiwarce Google pod tak kluczowymi frazami, jak „kosmetyki naturalne”, „kosmetyki ekologiczne” czy „kosmetyki organiczne”.
+[Domowy Kosmetyk](https://www.domowykosmetyk.pl/) jest niezależną marką kosmetyków naturalnych, tworzonych w domowej pracowni przez toruniankę – Ewę Rusin-Gazdę. Kosmetyki, komponowane wyłącznie z organicznych, czyli roślinnych i mineralnych substancji, są sprzedawane za pomocą sklepu internetowego oraz na regionalnych targach rękodzieła i zdrowej żywności. Współpracę z Domowym Kosmetykiem nawiązaliśmy w marcu 2016 roku. Sklep posiadał stronę internetową, nie miał jednak oryginalnych opisów produktów i kategorii. Z kolei brak wcześniejszych działań w zakresie SEO/SEM skutkował z kolei niskimi pozycjami w wyszukiwarce Google pod tak kluczowymi frazami, jak „kosmetyki naturalne”, „kosmetyki ekologiczne” czy „kosmetyki organiczne”.
 
 Przed podjęciem konkretnych działań przeanalizowaliśmy takie czynniki jak:
 
@@ -29,7 +29,7 @@ Korzystając z informacji udzielonych przez firmę, przygotowaliśmy ujednolicon
 
 ## Blog firmowy
 
-Niejednokrotnie wspominaliśmy, że praktycznie każdej firmie w Internecie przydaje się oficjalny, regularnie aktualizowany blog. [Sprawdź 10 powodów, by go prowadzić](http://www.blog.ecopywriting.pl/10-powodow-dla-ktorych-warto-prowadzic-firmowego-bloga/)! Dlatego od początku współpracy z Domowym Kosmetykiem dostarczamy wpisy opierające się o źródła naukowe, prasowe oraz internetowe. W przystępnych słowach dzielimy się z czytelnikami przydatnymi i praktycznymi informacjami na temat poszczególnych substancji, domowych sposobów pielęgnacji czy kulis branży kosmetycznej. Dbamy o łączenie poprawności językowej ze stosunkowo swobodnym i przyjaznym czytelnikowi stylem pisania.
+Niejednokrotnie wspominaliśmy, że praktycznie każdej firmie w Internecie przydaje się oficjalny, regularnie aktualizowany blog. [Sprawdź 10 powodów, by go prowadzić](https://www.ecopywriting.pl/blog/10-powodow-dla-ktorych-warto-prowadzic-firmowego-bloga/)! Dlatego od początku współpracy z Domowym Kosmetykiem dostarczamy wpisy opierające się o źródła naukowe, prasowe oraz internetowe. W przystępnych słowach dzielimy się z czytelnikami przydatnymi i praktycznymi informacjami na temat poszczególnych substancji, domowych sposobów pielęgnacji czy kulis branży kosmetycznej. Dbamy o łączenie poprawności językowej ze stosunkowo swobodnym i przyjaznym czytelnikowi stylem pisania.
 
 ## Zaplecze SEO
 

@@ -10,7 +10,7 @@ readingTime: 3
 
 ### 1. Grupa docelowa
 
-Wyobraź sobie swojego statystycznego klienta. Zastanów się, ile ma lat, jakie są jego zainteresowania, jaki posiada status społeczny, ile zarabia, jakie ma cele życiowe itd. **Im więcej dowiesz się o swojej grupie docelowej i im lepiej zrozumiesz zachowanie przeciętnego klienta, tym skuteczniej do niej trafisz**. Zupełnie innym językiem opisze się bowiem młodzieżową czapką aniżeli dystyngowany kapelusz z drogiego materiału, mimo że ich przeznaczenie jest takie samo. Pamiętaj, aby [opisy produktów](http://www.ecopywriting.pl/uslugi/opisy-produktow.html) nie były kierowane do wszystkich, bo wówczas nie trafią do nikogo. Dokładnie pomyśl, kto jest Twoim potencjalnym odbiorcą, a następnie zwróć się do niego w sposób bezpośredni, np. *„Piekielnie szybki i ekskluzywny samochód kabriolet dla prawdziwego macho”* lub *„Systemy informatyczne dla firm”*.
+Wyobraź sobie swojego statystycznego klienta. Zastanów się, ile ma lat, jakie są jego zainteresowania, jaki posiada status społeczny, ile zarabia, jakie ma cele życiowe itd. **Im więcej dowiesz się o swojej grupie docelowej i im lepiej zrozumiesz zachowanie przeciętnego klienta, tym skuteczniej do niej trafisz**. Zupełnie innym językiem opisze się bowiem młodzieżową czapką aniżeli dystyngowany kapelusz z drogiego materiału, mimo że ich przeznaczenie jest takie samo. Pamiętaj, aby [opisy produktów](https://www.ecopywriting.pl/uslugi/opisy-produktow) nie były kierowane do wszystkich, bo wówczas nie trafią do nikogo. Dokładnie pomyśl, kto jest Twoim potencjalnym odbiorcą, a następnie zwróć się do niego w sposób bezpośredni, np. _„Piekielnie szybki i ekskluzywny samochód kabriolet dla prawdziwego macho”_ lub _„Systemy informatyczne dla firm”_.
 
 ### 2. Korzyści
 
@@ -28,8 +28,8 @@ Zapomnij o „najlepszym”, „najtańszym”, „wyjątkowym”, „jedynym w 
 
 Nie rozpisuj się. Zdania opisujące produkt powinny być krótkie i treściwe – bez zbędnego lania wody. **Przekaz trzeba skondensować i zwięźle**, ale skutecznie przekonać klienta, dlaczego przyda mu się Twój produkt. Nie zanudzaj fachowym słownictwem ani branżowym slangiem, mów prosto i zrozumiale dla każdego. Zastanów się sam, która z wersji opisu tego samego produktu brzmi lepiej:
 
-*Lodówka z system Extra Frost&Fresh o mocy 130 W i klasie energetycznej A+*
+_Lodówka z system Extra Frost&Fresh o mocy 130 W i klasie energetycznej A+_
 czy
-*Świeżość posiłków przez wiele miesięcy dzięki oszczędnej i wydajnej lodówce*
+_Świeżość posiłków przez wiele miesięcy dzięki oszczędnej i wydajnej lodówce_
 
 Pamiętaj, że nawet jeśli nie zastosujesz się do wszystkich powyższych wskazówek, **nigdy nie kopiuj gotowych opisów** od producenta ani tym bardziej od konkurencji. Grozi to zduplikowaniem treści i otrzymaniem kary od Google, dlatego lepsze są nawet opisy zrobione przez laika.

@@ -40,4 +40,4 @@ Zdjęcia? Tylko w dobrej jakości, ukazujące prawdziwy stan przedmiotu! Tytuł?
 
 Ostatni punkt wzbudził Twój uśmiech? Niestety, język allegrowiczów wciąż pozostawia wiele do życzenia, co widać również w korespondencji i komentarzach, ale to już temat na osobny artykuł…
 
-Podobne tematy: [jak stworzyć opis produktu](http://www.blog.ecopywriting.pl/5-krokow-do-idealnego-opisu-produktu/), [treść do sklepu internetowego](http://www.blog.ecopywriting.pl/tresc-dla-sklepu-internetowego-jak-zwiekszyc-sprzedaz-poprzez-copywriting/).
+Podobne tematy: [jak stworzyć opis produktu](https://www.ecopywriting.pl/blog/5-krokow-do-idealnego-opisu-produktu/), [treść do sklepu internetowego](https://www.ecopywriting.pl/blog/tresc-dla-sklepu-internetowego-jak-zwiekszyc-sprzedaz-poprzez-copywriting/).

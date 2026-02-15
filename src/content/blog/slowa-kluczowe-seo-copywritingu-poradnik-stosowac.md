@@ -12,7 +12,7 @@ readingTime: 4
 
 Być może już to gdzieś słyszałeś – dobry tekst sobie poradzi bez wstawienia kluczowych fraz. Oczywiście, jest taka możliwość, ale nie dbając o słowa kluczowe, po prostu ograniczasz swoje szanse. Z drugiej strony, choćbyś po mistrzowsku rozdysponował keywordsami, układając je niczym figury na szachownicy, jeżeli tekst nie jest wartościowy i dobrze napisany, Google to zauważy, nie mówiąc o odbiorcach, a pozycja w wynikach wyszukiwania wcale nie urośnie.
 
-Dlatego pisz zgodnie z tematem, sięgając po źródła, czytelnie planując poszczególne akapity i pamiętając o maksymalnej poprawności interpunkcyjnej, stylistycznej, ortograficznej, gramatycznej. Najpierw [pisanie tekstów](http://www.ecopywriting.pl), perswazja i inne podstawowe założenia treści, dopiero potem działania SEO!
+Dlatego pisz zgodnie z tematem, sięgając po źródła, czytelnie planując poszczególne akapity i pamiętając o maksymalnej poprawności interpunkcyjnej, stylistycznej, ortograficznej, gramatycznej. Najpierw pisanie tekstów, perswazja i inne podstawowe założenia treści, dopiero potem działania SEO!
 
 ## 2. Keep it real
 

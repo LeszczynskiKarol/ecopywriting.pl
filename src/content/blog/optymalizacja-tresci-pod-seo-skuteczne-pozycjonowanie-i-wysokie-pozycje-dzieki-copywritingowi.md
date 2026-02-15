@@ -10,7 +10,7 @@ readingTime: 6
 
 ## Google – podstawowe źródło ruchu
 
-Wyszukiwarka Google to główne narzędzie do pozyskiwania ruchu na stronie internetowej. Witryna, która znajduje się na wysokich pozycjach w wynikach wyszukiwania, z powodzeniem dociera z przekazem do swoich odbiorców. Dzięki działaniom SEO (z ang. *serach engine optimization*, pl. optymalizacja stron internetowych pod wyszukiwarki) sklep internetowy może skutecznie zaoferować swoje produkty, firma usługowa pozyskać klientów, a bloger zdobyć czytelników.
+Wyszukiwarka Google to główne narzędzie do pozyskiwania ruchu na stronie internetowej. Witryna, która znajduje się na wysokich pozycjach w wynikach wyszukiwania, z powodzeniem dociera z przekazem do swoich odbiorców. Dzięki działaniom SEO (z ang. _serach engine optimization_, pl. optymalizacja stron internetowych pod wyszukiwarki) sklep internetowy może skutecznie zaoferować swoje produkty, firma usługowa pozyskać klientów, a bloger zdobyć czytelników.
 
 Jednym z podstawowych elementów SEO jest optymalizacja treści na stronie, o czym przeczytasz poniżej. Sprawdź, jak sobie z poradzić z tym zadaniem i zwiększyć swoje szanse na zajęcie wysokich pozycji w wynikach wyszukiwania na interesujące Cię słowa kluczowe. Z niniejszego artykułu dowiesz się, na co zwrócić uwagę, tworząc treści i optymalizując je pod SEO. Zaczynajmy.
 
@@ -20,27 +20,27 @@ Bez względu na to, czy chcesz opublikować jeden wpis na blogu, czy planujesz t
 
 Mówiąc ściślej, jeśli dysponujesz środkami umożliwiającymi pozycjonowanie strony na wiele popularnych fraz, możesz sobie pozwolić na konkurowanie z najlepszymi. Jeżeli jednak Twój budżet jest ograniczony, wybierz kilka średnio lub mało poszukiwanych słów kluczowych, w przypadku których zdobycie wysokich pozycji w wynikach wyszukiwania nie wymaga dużych nakładów finansowych.
 
-Przykładowo, zamiast orientować sklep internetowy z obuwiem na słowo kluczowe *buty*, lepiej ograniczyć się do fraz *buty zimowe*, *sklep internetowy z butami* czy *tanie i wygodne buty*. Znajdź swoją niszę i staraj się w niej pozycjonować. Nie zapominaj, że nawet przy dużych środkach nie zawsze opłaca się wybierać najpopularniejsze frazy, ponieważ często nie przekładają się one na konwersję. W końcu użytkownik, który wpisuje w Google *buty*, niekoniecznie jest zainteresowany ich kupnem.
+Przykładowo, zamiast orientować sklep internetowy z obuwiem na słowo kluczowe _buty_, lepiej ograniczyć się do fraz _buty zimowe_, _sklep internetowy z butami_ czy _tanie i wygodne buty_. Znajdź swoją niszę i staraj się w niej pozycjonować. Nie zapominaj, że nawet przy dużych środkach nie zawsze opłaca się wybierać najpopularniejsze frazy, ponieważ często nie przekładają się one na konwersję. W końcu użytkownik, który wpisuje w Google _buty_, niekoniecznie jest zainteresowany ich kupnem.
 
 W celu znalezienia słów kluczowych do optymalizacji treści skorzystaj z takich narzędzi jak [Google Keyword Planner](https://adwords.google.com/intl/pl_pl/home/tools/keyword-planner/), [Keywordtool.io](https://keywordtool.io/), [Ubersuggest](https://ubersuggest.io/) czy [Soovle](https://soovle.com/). Ponadto żeby sprawdzić, jakich fraz poszukują internauci, wpisz dane słowo kluczowe w wyszukiwarkę Google i poczekaj na podpowiedzi, które zostaną wyświetlone. Mogą one Cię skutecznie nakierować na kolejne frazy. Warto też samemu przemyśleć, czego poszukują Twoi użytkownicy i jakimi słowami kluczowymi się posługują, żeby odnaleźć w Sieci Twoja witrynę.
 
 ## Umieszczanie słów kluczowych w treści
 
-Umieszczając słowa kluczowe w tekście, nakierowujesz roboty wyszukiwarek na treści, z którymi powinny kojarzyć Twoją witrynę. Rób to jednak z głową i w jak najbardziej naturalny sposób używaj fraz, tak aby nie przeszkadzały w płynności czytania i żeby użytkownik nie zwracał na nie uwagi. Umieszczaj słowa kluczowe zarówno w podstawowej formie (np. *buty*), jak i w różnych odmianach gramatycznych (np. *butów*, *butami*, *butach*, *butom*). Nie przesadzaj jednak z ich natężeniem – gęstość występowania fraz nie powinna przekraczać 5%, co daje maksymalnie 5 słów kluczowych na każde 100 słów. Żeby zwiększyć ich skuteczność, umieszczaj je w następujących miejscach:
+Umieszczając słowa kluczowe w tekście, nakierowujesz roboty wyszukiwarek na treści, z którymi powinny kojarzyć Twoją witrynę. Rób to jednak z głową i w jak najbardziej naturalny sposób używaj fraz, tak aby nie przeszkadzały w płynności czytania i żeby użytkownik nie zwracał na nie uwagi. Umieszczaj słowa kluczowe zarówno w podstawowej formie (np. _buty_), jak i w różnych odmianach gramatycznych (np. _butów_, _butami_, _butach_, _butom_). Nie przesadzaj jednak z ich natężeniem – gęstość występowania fraz nie powinna przekraczać 5%, co daje maksymalnie 5 słów kluczowych na każde 100 słów. Żeby zwiększyć ich skuteczność, umieszczaj je w następujących miejscach:
 
 - treść;
-- tytuł (znacznik *meta title*);
+- tytuł (znacznik _meta title_);
 - nagłówki;
 - wstęp, początek tekstu;
-- znaczniki *alt* obrazów.
+- znaczniki _alt_ obrazów.
 
-Dowiedz się więcej, [jak stosować słowa kluczowe w treści](http://www.blog.ecopywriting.pl/slowa-kluczowe-seo-copywritingu-poradnik-stosowac/).
+Dowiedz się więcej, [jak stosować słowa kluczowe w treści](https://www.ecopywriting.pl/blog/slowa-kluczowe-seo-copywritingu-poradnik-stosowac/).
 
 ## Zawartość merytoryczna, wartość treści
 
 Niezależnie od tego, czy Google potrafi już samodzielnie ocenić wartość treści, nie da się zaprzeczyć, że wartościowe treści, które są interesujące dla użytkowników, mają większe szanse na zajęcie wysokich pozycji w wynikach wyszukiwania niż teksty kiepskiej jakości, pisane przez amatorów i pozbawione atrakcyjnej zawartości. Chcąc przebić się w Google i innych wyszukiwarkach, staraj się serwować użytkownikom jak najlepsze treści.
 
-Zanim opublikujesz tekst, zastanów się, jaką niesie wartość dla odbiorców. Czy udziela odpowiedzi na nurtujące ich pytania? Czy jest pomocna? Czy zaspokoją potrzeby użytkowników i oferuje im to, czego poszukują? Czy jesteś zadowolony z tekstu i sam byś go z zaciekawieniem przeczytał, gdybyś był użytkownikiem? Jeśli odpowiedź na wszystkie postawionej wyżej pytania brzmi *tak*, możesz z czystym sumieniem opublikować tekst w nadziei na wysokie pozycje w Google.
+Zanim opublikujesz tekst, zastanów się, jaką niesie wartość dla odbiorców. Czy udziela odpowiedzi na nurtujące ich pytania? Czy jest pomocna? Czy zaspokoją potrzeby użytkowników i oferuje im to, czego poszukują? Czy jesteś zadowolony z tekstu i sam byś go z zaciekawieniem przeczytał, gdybyś był użytkownikiem? Jeśli odpowiedź na wszystkie postawionej wyżej pytania brzmi _tak_, możesz z czystym sumieniem opublikować tekst w nadziei na wysokie pozycje w Google.
 
 ## Długość tekstu
 
@@ -62,7 +62,7 @@ W tym celu dziel je na krótkie akapity, które łatwo skanować wzorkiem. Stosu
 
 ## Różnicowanie treści w obrębie witryny
 
-Zasada jest prosta – im więcej wartościowej treści na Twojej stronie, tym bardziej widoczna jest ona w wynikach wyszukiwania. Chcąc wciąż poprawiać pozycję w Google i pozyskiwać klientów, regularnie publikuj różnego rodzaju content. Nie poprzestawaj na jednej formie i staraj się różnicować treści – w zależności od charakteru witryny publikuj wpisy blogowe, twórz poradniki, pisz recenzje, dodawaj referencje od innych klientów, powiększaj portfolio. Pamiętaj, że inwestycja w treść i dobry [copywriting](http://www.ecopywriting.pl) zwraca się wielokrotnie.
+Zasada jest prosta – im więcej wartościowej treści na Twojej stronie, tym bardziej widoczna jest ona w wynikach wyszukiwania. Chcąc wciąż poprawiać pozycję w Google i pozyskiwać klientów, regularnie publikuj różnego rodzaju content. Nie poprzestawaj na jednej formie i staraj się różnicować treści – w zależności od charakteru witryny publikuj wpisy blogowe, twórz poradniki, pisz recenzje, dodawaj referencje od innych klientów, powiększaj portfolio. Pamiętaj, że inwestycja w treść i dobry [content marketing](https://www.ecopywriting.pl) zwraca się wielokrotnie.
 
 ## Linkowanie wewnętrzne i zewnętrzne
 

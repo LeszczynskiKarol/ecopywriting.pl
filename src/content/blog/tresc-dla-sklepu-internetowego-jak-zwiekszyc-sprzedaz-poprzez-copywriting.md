@@ -16,7 +16,7 @@ Do sprzedania konkretnego produktu – obojętnie, czy jest to paczka żyletek, 
 - konkretny
 - wykorzystujący konkretne przykłady
 
-Dowiedz się więcej, czym są profesjonalne [opisy produktów](http://www.ecopywriting.pl/uslugi/opisy-produktow.html).
+Dowiedz się więcej, czym są profesjonalne [opisy produktów](https://www.ecopywriting.pl/uslugi/opisy-produktow).
 
 ## Recenzje produktów
 
@@ -34,7 +34,7 @@ Skoro już jesteśmy przy pytaniach – w każdej branży i przy każdym produkc
 
 O bieżących i przydatnych dla klientów sprawach warto informować na dodatkowej platformie, jaką może być sklepowy blog. W takim miejscu możesz sobie pozwolić na większy luz i bezpośrednie relacje z klientami. Skoro o produktach można poczytać na setkach stron, dlaczego nie miałbyś samemu dostarczać dodatkowych, przydatnych informacji? Blog pozwala nawiązać osobistą komunikację z klientem, buduje wizerunek marki i pozytywnie wpływa na pozycjonowanie strony internetowej.
 
-Sprawdź, dlaczego warto zainwestować w [blog firmowy](http://www.blog.ecopywriting.pl/10-powodow-dla-ktorych-warto-prowadzic-firmowego-bloga/).
+Sprawdź, dlaczego warto zainwestować w [blog firmowy](https://www.ecopywriting.pl/blog/10-powodow-dla-ktorych-warto-prowadzic-firmowego-bloga/).
 
 ## Cennik, dostawa, regulamin
 

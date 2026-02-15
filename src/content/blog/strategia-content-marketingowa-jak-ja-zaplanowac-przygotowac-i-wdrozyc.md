@@ -25,7 +25,7 @@ Wydawałoby się, że każdy przedsiębiorca myśli strategicznie, ale – jak p
 
 ## Content marketing a strategia
 
-Content marketing sam w sobie stanowi rodzaj działań, które polegają na tworzeniu i wykorzystywaniu treści dla osiągania konkretnych korzyści – zarówno sprzedażowych, jak i wizerunkowych. Dowiedz się więcej, [dlaczego warto inwestować w content marketing](http://www.blog.ecopywriting.pl/7-powodow-dla-ktorych-warto-inwestowac-w-content-marketing/). W dobie mediów społecznościowych i rozwiniętych technologii umiejętność docierania do odbiorców z treścią (obrazami, wideo, tekstami itd.) jest podstawą budowania rozpoznawalności i obustronnej komunikacji.
+Content marketing sam w sobie stanowi rodzaj działań, które polegają na tworzeniu i wykorzystywaniu treści dla osiągania konkretnych korzyści – zarówno sprzedażowych, jak i wizerunkowych. Dowiedz się więcej, [dlaczego warto inwestować w content marketing](https://www.ecopywriting.pl/blog/7-powodow-dla-ktorych-warto-inwestowac-w-content-marketing/). W dobie mediów społecznościowych i rozwiniętych technologii umiejętność docierania do odbiorców z treścią (obrazami, wideo, tekstami itd.) jest podstawą budowania rozpoznawalności i obustronnej komunikacji.
 
 Dobry marketing treści jest przede wszystkim spójny, a co za tym idzie – wynika z przyjętej strategii. Teoretycznie można sobie wyobrazić, że promujesz swój produkt lub usługę przypadkowym contentem, ale czy jest to recepta na sukces? Nie, ponieważ chaos nie sprzyja osiąganiu założonych celów. Można łączyć różne formy treści, jednego dnia publikując mem, drugiego e-book, a trzeciego materiał wideo, ale powinno być to starannie przemyślane, zaplanowane i dostosowane do potrzeb grupy docelowej, a także specyfiki branży.
 
@@ -34,7 +34,7 @@ Praktycznie każda firma ma dostęp do wielu kanałów i nośników marketingu t
 - **online**: media społecznościowe, blogi, platformy video, podcasty, strona WWW, e-booki,
 - tradycyjne: prasa branżowa, czasopisma, foldery reklamowe, plakaty, katalogi.
 
-Kluczowa jest więc optymalna selekcja i rozsądne wykorzystanie poszczególnych kanałów komunikacji. Być może zainteresuje Cię również tekst o tym, jak mierzona jest [skuteczność w content marketingu](http://www.blog.ecopywriting.pl/skutecznosc-w-content-marketingu-czym-jest-jak-mierzyc/#comments).
+Kluczowa jest więc optymalna selekcja i rozsądne wykorzystanie poszczególnych kanałów komunikacji. Być może zainteresuje Cię również tekst o tym, jak mierzona jest [skuteczność w content marketingu](https://www.ecopywriting.pl/blog/skutecznosc-w-content-marketingu-czym-jest-jak-mierzyc/#comments).
 
 ## Jak tworzyć strategię content marketingową
 
@@ -42,7 +42,7 @@ Jeżeli chcesz skutecznie operować treścią według określonej strategii, mo�
 
 ### 1. Współpraca z agencją
 
-W pierwszym wariancie powierzasz marketing treści wyspecjalizowanej [agencji copywriterskiej](http://www.ecopywriting.pl/), która zaczyna od przygotowania planu na bazie dostarczonych informacji na temat Twojej działalności, statystyk, wiedzy branżowej czy wykonanych badań. W efekcie powstaje profesjonalna strategia, która po Twojej akceptacji jest wdrażana przez grafików, copywriterów czy specjalistów ds. social media.
+W pierwszym wariancie powierzasz marketing treści wyspecjalizowanej [agencji content marketingowej](https://www.ecopywriting.pl/), która zaczyna od przygotowania planu na bazie dostarczonych informacji na temat Twojej działalności, statystyk, wiedzy branżowej czy wykonanych badań. W efekcie powstaje profesjonalna strategia, która po Twojej akceptacji jest wdrażana przez grafików, copywriterów czy specjalistów ds. social media.
 
 **Plusy:**
 
@@ -56,7 +56,7 @@ W pierwszym wariancie powierzasz marketing treści wyspecjalizowanej [agencji co
 
 ### 2. Samodzielna strategia i wdrażanie
 
-Możesz też zdecydować się na samodzielne, strategiczne działania z wykorzystaniem treści – tak robią przede wszystkim firmy z sektora MŚP. Pytanie jednak, czy masz czas oraz umiejętności, aby skutecznie zaplanować, a przede wszystkim wdrożyć wybrane koncepcje. Umiejętne wykorzystanie Instagrama to coś więcej niż dodanie grafiki z oszczędnym opisem raz na dwa tygodnie. Dobre [teksty na blogi](http://www.ecopywriting.pl/uslugi/blogi.html) to problem dla wielu aspirujących copywriterów bez doświadczenia, a co dopiero osób, które ostatni raz napisały dłuższy tekst w ramach szkolnego wypracowania.
+Możesz też zdecydować się na samodzielne, strategiczne działania z wykorzystaniem treści – tak robią przede wszystkim firmy z sektora MŚP. Pytanie jednak, czy masz czas oraz umiejętności, aby skutecznie zaplanować, a przede wszystkim wdrożyć wybrane koncepcje. Umiejętne wykorzystanie Instagrama to coś więcej niż dodanie grafiki z oszczędnym opisem raz na dwa tygodnie. Dobre [teksty na blogi](https://www.ecopywriting.pl/uslugi/blogi.html) to problem dla wielu aspirujących copywriterów bez doświadczenia, a co dopiero osób, które ostatni raz napisały dłuższy tekst w ramach szkolnego wypracowania.
 
 Nie chodzi o to, żeby zniechęcać do podejmowania samodzielnych prób zastosowania content marketingu w praktyce, ale o uświadomienie, jak trudne jest to wyzwanie. Niemniej jednak możliwe, ale przy założeniu, że da się osiągnąć zdefiniowane cele bez szkody dla podstawowej działalności. Firmy, które stawiają na content i copywriting, a nie chcą współpracować z agencjami, mogą budować własne działy promocji, zatrudniając copywriterów, grafików, fotografów itp. Powstaje zatem pytanie, na ile to opłacalny wybór, zwłaszcza że wysokiej klasy specjalistom nie można proponować najniższych stawek na rynku.
 

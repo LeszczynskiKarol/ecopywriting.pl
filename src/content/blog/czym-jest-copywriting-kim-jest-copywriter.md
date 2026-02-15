@@ -50,7 +50,7 @@ Początki są żmudne i z reguły trzeba zapłacić przysłowiowe frycowe, aby z
 - **stworzyć własne portfolio tekstów**: publikować treści w serwisach z dziennikarstwem obywatelskim lub na stronach z artykułami do przedruku; wykonać dla kogoś hasło reklamowe bądź inną usługę „po kosztach” lub nawet za darmo, aby móc coś wpisać do CV;
 - **czytać informacje na temat copywritingu i dzielić się tą wiedzą** np. na blogu lub w social media. Następnie tę wiedzę będzie można sprzedać jako specjalista w swojej branży;
 - **wysyłać CV** do agencji copywriterskich, marketingowych i interaktywnych w nadziei na znalezienie zatrudnienia. Nie mając doświadczenia, warto wyraźnie podkreślić swoją kreatywność, aby zostać zauważonym;
-- **poszukiwać zleceń** na stronach typu [freelancer.com](http://freelancer.com) czy [oferia.pl](http://oferia.pl).
+- **poszukiwać zleceń** na stronach typu [freelancer.com](https://freelancer.com) czy [oferia.pl](https://oferia.pl).
 
 ## Zarobki
 

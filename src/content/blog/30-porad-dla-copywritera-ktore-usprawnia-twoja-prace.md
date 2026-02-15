@@ -8,8 +8,6 @@ readingTime: 9
 
 **Daleko mi do doskonałości. Wiem, ile jeszcze przede mną, jak dużo mi brakuje do najlepszych copywriterów i jak wiele muszę się nauczyć. Jeśli mimo tego chcesz poznać 30 moich porad dotyczących codziennej pracy copywritera i pisania różnego rodzaju tekstów na zamówienie, zapraszam do lektury.**
 
-Znajdziesz tu 30 luźno rzuconych i chaotycznie poukładanych wskazówek, które sam stosuję jako copywriter. Z jakim skutkiem? Cóż, nie mnie to oceniać – zapoznaj się z [moimi tekstami](http://www.blog.ecopywriting.pl/author/blogcopywritera1/) i sprawdź osobiście.
-
 Zdaję sobie sprawę, że duża część porad jest oczywista, ale taki miałem zamiar – zebrać ich tyle, ile przyjdzie do głowy. Odnoszą się zarówno do długich form, np. artykułów tematycznych, blogowych czy poradnikowych, jak i krótkich treści reklamowych. Zapraszam do lektury.
 
 ## 1. Wzbogacaj słownictwo
@@ -18,11 +16,11 @@ Dużo czytaj. Nie tylko książek, choć one oczywiście są świetne w kształt
 
 ## 2. Korzystaj z synonimów
 
-Nie powtarzaj się. Wiem, to wydaje się oczywiste, ale zdarza się nie tylko u mnie. Korzystaj z synonimów. Masz problem z ich dobieraniem? To wcale nie znaczy, że copywriting nie jest dla Ciebie – po prostu wyszukaj je w [słowniku synonimów](https://www.synonimy.pl). Nic bardziej nie irytuje niż powtarzające się w każdym akapicie *natomiast;jednak;także*; *nie tylko, ale również* itd.
+Nie powtarzaj się. Wiem, to wydaje się oczywiste, ale zdarza się nie tylko u mnie. Korzystaj z synonimów. Masz problem z ich dobieraniem? To wcale nie znaczy, że copywriting nie jest dla Ciebie – po prostu wyszukaj je w [słowniku synonimów](https://www.synonimy.pl). Nic bardziej nie irytuje niż powtarzające się w każdym akapicie _natomiast;jednak;także_; _nie tylko, ale również_ itd.
 
 ## 3. Pamiętaj o nagłówkach
 
-Tu nie zamierzam się wiele rozpisywać, odsyłam natomiast do mojego tekstu, [jak tworzyć nagłówki](http://www.blog.ecopywriting.pl/jak-pisac-wyraziste-i-przykuwajace-uwage-naglowki/).
+Tu nie zamierzam się wiele rozpisywać, odsyłam natomiast do mojego tekstu, [jak tworzyć nagłówki](https://www.ecopywriting.pl/blog/jak-pisac-wyraziste-i-przykuwajace-uwage-naglowki/).
 
 ## 4. Bądź na bieżąco
 
@@ -38,11 +36,11 @@ Skuteczny copywriter, z którego tekstów chętnie i regularnie korzystają mał
 
 ## 7. Używaj pomocnych narzędzi
 
-Planowanie? Tylko [Trello](http://www.trello.com). Kiedyś używałem aplikacji Asana, ale Trello wydaje mi się bardziej intuicyjne. O stronie do wyszukiwania synonimów już wspominałem. Obliczanie czasu pracy? [Stoper online](http://www.online-stopwatch.com/), który działa tylko, gdy pracuję. Chcąc odciąć się od świata zewnętrznego i nie słyszeć, co się dzieje dokoła, zakładam słuchawki i włączam [Noisli.com](http://www.noisli.com). Doskonałe narzędzie, gdy w sąsiednim pokoju biegają dzieci, gra muzyka albo dobiegają inne, niechciane dźwięki.
+Planowanie? Tylko [Trello](https://www.trello.com). Kiedyś używałem aplikacji Asana, ale Trello wydaje mi się bardziej intuicyjne. O stronie do wyszukiwania synonimów już wspominałem. Obliczanie czasu pracy? [Stoper online](https://www.online-stopwatch.com/), który działa tylko, gdy pracuję. Chcąc odciąć się od świata zewnętrznego i nie słyszeć, co się dzieje dokoła, zakładam słuchawki i włączam [Noisli.com](https://www.noisli.com). Doskonałe narzędzie, gdy w sąsiednim pokoju biegają dzieci, gra muzyka albo dobiegają inne, niechciane dźwięki.
 
 ## 8. Wyceniaj się rozsądnie
 
-W poszukiwaniu zleceń nie przesadzaj ani w jedną, ani w drugą stronę. Przy zbyt niskiej wycenie umęczysz się i nie zarobisz tyle, ile oczekujesz, a przy zbyt wysokiej zmniejszasz szansę na zdobycie zlecenia. O ile oczywiście obecnie nie masz tylu zleceń lub nie prezentujesz tak wysokiego poziomu, że nie zależy Ci na klientach. W takiej sytuacji możesz proponować zaporowe kwoty i liczyć, że 1 na 20 klientów skorzysta z Twoich usług. Sprawdź, jak wygląda nasz [cennik copywritingu](http://www.ecopywriting.pl/cennik.html).
+W poszukiwaniu zleceń nie przesadzaj ani w jedną, ani w drugą stronę. Przy zbyt niskiej wycenie umęczysz się i nie zarobisz tyle, ile oczekujesz, a przy zbyt wysokiej zmniejszasz szansę na zdobycie zlecenia. O ile oczywiście obecnie nie masz tylu zleceń lub nie prezentujesz tak wysokiego poziomu, że nie zależy Ci na klientach. W takiej sytuacji możesz proponować zaporowe kwoty i liczyć, że 1 na 20 klientów skorzysta z Twoich usług. Sprawdź, jak wygląda nasz [cennik copywritingu](https://www.ecopywriting.pl/cennik).
 
 ## 9. Staraj się być lepszy
 
@@ -54,7 +52,7 @@ Bierz przykład z najlepszych. Korzystaj z metod, sztuczek i technik, których u
 
 ## 11. Nie pisz jak wszyscy
 
-Naśladownictwo jest dobre, ale do czasu. Powielanie schematów, np. rozpoczynanie tekstu zawsze w ten sam sposób, to droga do zguby copywritera. Zamiast zanudzać wciąż tym sam, zaskakuj czytelnika – tylko tak utrzymasz w go w napięciu i zachęcisz do przeczytania całego tekstu. A przecież na tym Ci zależy, prawda? Zdaje się, że każdy copywriter chce, żeby go czytano. Wiesz, ile masz czasu, żeby zainteresować swoim tekstem przeciętnego użytkownika Internetu? Zaledwie 3 sekundy! Sprawdź więcej, [jak się czyta w Internecie](http://www.blog.ecopywriting.pl/jak-sie-czyta-w-internecie/).
+Naśladownictwo jest dobre, ale do czasu. Powielanie schematów, np. rozpoczynanie tekstu zawsze w ten sam sposób, to droga do zguby copywritera. Zamiast zanudzać wciąż tym sam, zaskakuj czytelnika – tylko tak utrzymasz w go w napięciu i zachęcisz do przeczytania całego tekstu. A przecież na tym Ci zależy, prawda? Zdaje się, że każdy copywriter chce, żeby go czytano. Wiesz, ile masz czasu, żeby zainteresować swoim tekstem przeciętnego użytkownika Internetu? Zaledwie 3 sekundy! Sprawdź więcej, [jak się czyta w Internecie](https://www.ecopywriting.pl/blog/jak-sie-czyta-w-internecie/).
 
 ## 12. Nawiązuj interakcję z użytkownikiem
 
@@ -62,11 +60,11 @@ Użytkownicy Internetu są niecierpliwi i wymagający. Chwila nudy i już ich ni
 
 ## 13. Wymyślaj historie
 
-[Storytelling](http://www.blog.ecopywriting.pl/storytelling-historie-narracja-sluzbie-twojej-marce/) to znakomita metoda tworzenia narracji, która angażuje czytelnika. Opowiadanie ciekawych historii jest możliwe nawet w przypadku krótkich tekstów, choć zdaje się, że copywriterzy często o tym zapominają. Tymczasem dzięki obudowaniu przekazu interesującą historią łatwiej zapada w pamięci niż podany jako suche fakty.
+[Storytelling](https://www.ecopywriting.pl/blog/storytelling-historie-narracja-sluzbie-twojej-marce/) to znakomita metoda tworzenia narracji, która angażuje czytelnika. Opowiadanie ciekawych historii jest możliwe nawet w przypadku krótkich tekstów, choć zdaje się, że copywriterzy często o tym zapominają. Tymczasem dzięki obudowaniu przekazu interesującą historią łatwiej zapada w pamięci niż podany jako suche fakty.
 
 ## 14. Podkreślaj korzyści
 
-Opisując produkt czy usługę, nie skupiaj się na kwestiach technicznych. Zamiast tego pokaż ich praktyczne zastosowanie i uświadom odbiorcy, jakie korzyści otrzymuje dzięki sięgnięciu po nie. Przeczytaj więcej, czym jest i jak działa [język korzyści](http://www.copywriting-blog.pl/jezyk-korzysci/).
+Opisując produkt czy usługę, nie skupiaj się na kwestiach technicznych. Zamiast tego pokaż ich praktyczne zastosowanie i uświadom odbiorcy, jakie korzyści otrzymuje dzięki sięgnięciu po nie. Przeczytaj więcej, czym jest i jak działa [język korzyści](https://www.copywriting-blog.pl/jezyk-korzysci/).
 
 ## 15. Dbaj o formę
 
@@ -82,19 +80,19 @@ Długich, wielokrotnie złożonych zdań nie czyta się dobrze – szczególnie 
 
 ## 18. Zrezygnuj z trybu warunkowego
 
-Choć trudno całkowicie wyeliminować tryb warunkowy (*Jeśli…, to…*; *Gdy…, to…*), warto go jak najbardziej ograniczyć. Staraj się jak najczęściej zamieniać zdania w trybie warunkowym na proste zdania oznajmujące, które są bardziej przekonujące i angażujące. Przykład? Zamiast pisać *Jeśli przeczytasz ten tekst, będziesz lepszym copywriterem* ujmij te informacje słowami *Przeczytaj ten tekst i stań się lepszym copywriterem*. Prawda, że ta druga wersja brzmi zdecydowanie lepiej?
+Choć trudno całkowicie wyeliminować tryb warunkowy (_Jeśli…, to…_; _Gdy…, to…_), warto go jak najbardziej ograniczyć. Staraj się jak najczęściej zamieniać zdania w trybie warunkowym na proste zdania oznajmujące, które są bardziej przekonujące i angażujące. Przykład? Zamiast pisać _Jeśli przeczytasz ten tekst, będziesz lepszym copywriterem_ ujmij te informacje słowami _Przeczytaj ten tekst i stań się lepszym copywriterem_. Prawda, że ta druga wersja brzmi zdecydowanie lepiej?
 
 ## 19. …i czasowników modalnych
 
-*Możesz, musisz, powinieneś, należy, trzeba* – to powszechnie (zbyt powszechnie) wykorzystywane czasowniki, które staraj się ograniczać w swoim copywritingu. Dlaczego? Ponieważ są nudne, nadużywane i w większości narzucają odbiorcy jakiś przymus. A przecież nikt nie lubi być zmuszanym do czegokolwiek, zgadza się?
+_Możesz, musisz, powinieneś, należy, trzeba_ – to powszechnie (zbyt powszechnie) wykorzystywane czasowniki, które staraj się ograniczać w swoim copywritingu. Dlaczego? Ponieważ są nudne, nadużywane i w większości narzucają odbiorcy jakiś przymus. A przecież nikt nie lubi być zmuszanym do czegokolwiek, zgadza się?
 
 ## 20. Zapomnij o stronie biernej
 
-Strona bierna, czyli konstrukcje z czasownikiem *zostać*, np. *produkt został stworzony z wysokiej jakości materiałów*, jest mało dynamiczna, a przez to zwyczajnie nudna i nie gwarantuje pełnego skupienia na treści. W dużej mierze ogranicza bezpośredniość i personalizację przekazu – chociażby dlatego rezygnacja z niej wyjdzie Ci na dobre.
+Strona bierna, czyli konstrukcje z czasownikiem _zostać_, np. _produkt został stworzony z wysokiej jakości materiałów_, jest mało dynamiczna, a przez to zwyczajnie nudna i nie gwarantuje pełnego skupienia na treści. W dużej mierze ogranicza bezpośredniość i personalizację przekazu – chociażby dlatego rezygnacja z niej wyjdzie Ci na dobre.
 
 ## 21. Pisz w czasie teraźniejszym
 
-Zauważyłem, że wielu copywriterów pisze nie w czasie teraźniejszym, ale przyszłym. Tymczasem *będziesz szedł* nie jest tak przekonujące jak *idziesz*. Piszesz do odbiorcy tu i teraz, w danym momencie, dlatego zachowaj adekwatną formę, czyli czas teraźniejszy. W ten sposób pobudzasz czytelnika i zwiększa szanse na to, że poczuje się częścią czytanego tekstu.
+Zauważyłem, że wielu copywriterów pisze nie w czasie teraźniejszym, ale przyszłym. Tymczasem _będziesz szedł_ nie jest tak przekonujące jak _idziesz_. Piszesz do odbiorcy tu i teraz, w danym momencie, dlatego zachowaj adekwatną formę, czyli czas teraźniejszy. W ten sposób pobudzasz czytelnika i zwiększa szanse na to, że poczuje się częścią czytanego tekstu.
 
 ## 22. Używaj social media
 
@@ -122,7 +120,7 @@ My, czyli kto? Ja i Ty czy ja i on? My jako firma czy my w rozumieniu klient + f
 
 ## 28. Nie bądź nudny
 
-*Produkt X umożliwiato i to, pozwala na to i to, dzięki czemu gwarantuje to i to.* Ile razy coś takiego wyszło spod Twojej klawiatury? Nudy! Zadbaj o to, żeby każde zdanie i słowo było dopieszczone. Zapomnij o „zużytych” słowach, jak *gwarantować*, *zapewniać*, *przeznaczony*, *funkcjonalny*, *dedykowany* (brrr), *wysoka* (ew. *najwyższa*) *jakość*, *najlepszy*, *jedyny w swoim rodzaju* itd. Pokaż różnorodność i udowodnij klientowi, że copywriting w Twoim wykonaniu to dobra inwestycja.
+_Produkt X umożliwiato i to, pozwala na to i to, dzięki czemu gwarantuje to i to._ Ile razy coś takiego wyszło spod Twojej klawiatury? Nudy! Zadbaj o to, żeby każde zdanie i słowo było dopieszczone. Zapomnij o „zużytych” słowach, jak _gwarantować_, _zapewniać_, _przeznaczony_, _funkcjonalny_, _dedykowany_ (brrr), _wysoka_ (ew. _najwyższa_) _jakość_, _najlepszy_, _jedyny w swoim rodzaju_ itd. Pokaż różnorodność i udowodnij klientowi, że copywriting w Twoim wykonaniu to dobra inwestycja.
 
 ## 29. Pisz bez przerwy
 

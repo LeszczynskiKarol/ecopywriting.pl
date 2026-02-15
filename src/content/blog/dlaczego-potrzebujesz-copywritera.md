@@ -12,13 +12,13 @@ readingTime: 5
 
 Kiedy pojawia się potrzeba naprawienia czegokolwiek – auta, pralki, lodówki, instalacji elektrycznej czy zamka w kurtce – udajesz się do wyspecjalizowanego w konkretnej dziedzinie fachowca, bo po prostu nie znasz się na samochodach, elektryce, sprzęcie RTV i AGD czy krawiectwie. Jest dla Ciebie oczywiste, że korzystasz z usług profesjonalistów z danej branży, prawda?
 
-Podobnie sytuacja wygląda w przypadku usług copywriterskich – zamawiając teksty u copywritera, przekazujesz zlecenie w ręce eksperta wyedukowanego w pisaniu tekstów i posiadającego w tym odpowiednie doświadczenie. Copywriter wie, [jak tworzyć nagłówki](http://www.blog.ecopywriting.pl/jak-pisac-wyraziste-i-przykuwajace-uwage-naglowki/), jak używać perswazji, jak posługiwać się językiem, jak nakłonić odbiorcę do działania itd. Możesz zatem oczekiwać wysokiej jakości realizacji zleconych usług.
+Podobnie sytuacja wygląda w przypadku usług copywriterskich – zamawiając teksty u copywritera, przekazujesz zlecenie w ręce eksperta wyedukowanego w pisaniu tekstów i posiadającego w tym odpowiednie doświadczenie. Copywriter wie, [jak tworzyć nagłówki](https://www.ecopywriting.pl/blog/jak-pisac-wyraziste-i-przykuwajace-uwage-naglowki/), jak używać perswazji, jak posługiwać się językiem, jak nakłonić odbiorcę do działania itd. Możesz zatem oczekiwać wysokiej jakości realizacji zleconych usług.
 
 ## Oszczędzasz czas
 
 Pisanie tekstów, niezależnie od tego, czy chodzi o treści marketingowe, informacyjne, czy pozycjonujące, zajmuje wiele czasu – szczególnie, jeśli nie posiada się doświadczenia na tym polu. W przypadku osób, które nie postrzępiły sobie palców na klawiaturze i nie mają wiedzy na temat copywritingu, czas pisania treści wydłuża się jeszcze bardziej.
 
-To jednak nie wszystko – wyobraź sobie, że spędzasz cały dzień, aby stworzyć [teksty na stronę firmową](http://www.ecopywriting.pl/uslugi/strony-firmowe.html), a mimo to efekty Twojej pracy są niezadowalające i decydujesz się je wyrzucić do przysłowiowego kosza. Ogromna strata czasu, nie sądzisz? Do tego dochodzi frustracja i niezadowolenie z powodu braku satysfakcji z wykonanych zadań. Skutecznym sposobem na uniknięcie tego typu problemów jest wynajęcie copywritera.
+To jednak nie wszystko – wyobraź sobie, że spędzasz cały dzień, aby stworzyć teksty na stronę firmową, a mimo to efekty Twojej pracy są niezadowalające i decydujesz się je wyrzucić do przysłowiowego kosza. Ogromna strata czasu, nie sądzisz? Do tego dochodzi frustracja i niezadowolenie z powodu braku satysfakcji z wykonanych zadań. Skutecznym sposobem na uniknięcie tego typu problemów jest wynajęcie copywritera.
 
 Poza tym nie możesz zajmować się wszystkim, prawda? Jeśli poświęcisz czas na teksty, zabraknie go na inne ważne rzeczy, na których znasz się o wiele lepiej. W tym momencie copywriter po raz kolejny okazuje się pomocny.
 
@@ -40,7 +40,7 @@ W efekcie trudno napisać teksty przystępne dla każdego odbiorcy – szczegól
 
 ## Nie znasz zasad SEO copywritingu ani webwritingu
 
-Jeżeli przygotowujesz treść na stronę internetową – czy to firmową, czy prywatną – musisz znać reguły SEO copywritingu i [webwritingu](http://www.copywriting24.pl/baza-wiedzy/tajemnica-webwritingu-czyli-10-rad-jak-pisac-teksty-online/). Bez wiedzy z tych dwóch gałęzi copywritingu nie da się napisać tekstów zoptymalizowanych pod względem pozycjonowania, które pozytywnie wpływałyby na ranking strony w wyszukiwarkach internetowych. Copywriter dysponuje taką wiedzą i potrafi efektywnie ją wykorzystać z myślą o Twoich realizacji celów.
+Jeżeli przygotowujesz treść na stronę internetową – czy to firmową, czy prywatną – musisz znać reguły SEO copywritingu i [webwritingu](https://www.copywriting24.pl/baza-wiedzy/tajemnica-webwritingu-czyli-10-rad-jak-pisac-teksty-online/). Bez wiedzy z tych dwóch gałęzi copywritingu nie da się napisać tekstów zoptymalizowanych pod względem pozycjonowania, które pozytywnie wpływałyby na ranking strony w wyszukiwarkach internetowych. Copywriter dysponuje taką wiedzą i potrafi efektywnie ją wykorzystać z myślą o Twoich realizacji celów.
 
 ## Nie jesteś językoznawcą
 

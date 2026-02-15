@@ -9,7 +9,7 @@ readingTime: 2
 
 **Korzystanie z usług copywritera zajmującego się tworzeniem treści może przynieść Twojej marce wymierne korzyści. Jednak jak w każdej branży, nie brakuje amatorów i oszustów, którzy nie potrafią lub nie chcą dobrze wywiązać się z powierzonych im zadań. Na szczęście można ich zidentyfikować na podstawie określonych wskazówek.**
 
-O ile [kupno pojedynczego tekstu w Internecie](http://www.blog.ecopywriting.pl/seo-copywriting/jak-kupic-teksty-w-internecie/) można rozwiązać w dość szybki i łatwy sposób, o tyle znalezienie solidnego i kompetentnego copywritera do długotrwałej współpracy jest znacznie trudniejszym zadaniem. Zapoznaj się z 6 aspektami, na które warto zwrócić uwagę, aby zatrudnić copywritera i nie dać się oszukać.
+O ile [kupno pojedynczego tekstu w Internecie](https://www.ecopywriting.pl/blog/seo-copywriting/jak-kupic-teksty-w-internecie/) można rozwiązać w dość szybki i łatwy sposób, o tyle znalezienie solidnego i kompetentnego copywritera do długotrwałej współpracy jest znacznie trudniejszym zadaniem. Zapoznaj się z 6 aspektami, na które warto zwrócić uwagę, aby zatrudnić copywritera i nie dać się oszukać.
 
 ## 1. Cena
 

@@ -6,11 +6,11 @@ author: "Karol Leszczyński"
 readingTime: 4
 ---
 
-**Strona firmowa w Internecie to Twoja wizytówka. Zapewne dobrze o tym wiesz, dlatego zlecasz jej wykonanie fachowcom, dbasz o jej wygląd i starasz się, aby była przyjemna dla oka, prawda? To jednak nie wszystko – równie ważny jest znajdujący się na niej tekst. Treść na firmowej witrynie WWW w dużym stopniu decyduje o jej skuteczności, czyli zdolności do pozyskiwania klientów. [Teksty na strony firmowe](http://www.ecopywriting.pl/uslugi/strony-firmowe.html) nie są łatwe do przygotowania, ale stosując się do kilku ważnych zasad, można podołać temu zadaniu.**
+**Strona firmowa w Internecie to Twoja wizytówka. Zapewne dobrze o tym wiesz, dlatego zlecasz jej wykonanie fachowcom, dbasz o jej wygląd i starasz się, aby była przyjemna dla oka, prawda? To jednak nie wszystko – równie ważny jest znajdujący się na niej tekst. Treść na firmowej witrynie WWW w dużym stopniu decyduje o jej skuteczności, czyli zdolności do pozyskiwania klientów. Teksty na strony firmowe nie są łatwe do przygotowania, ale stosując się do kilku ważnych zasad, można podołać temu zadaniu.**
 
 ## 1. Wykorzystaj hasła i slogany
 
-Użytkownicy Internetu [przeglądają strony WWW powierzchownie](http://www.blog.ecopywriting.pl/jak-sie-czyta-w-internecie/) – jeżeli coś ich szybko nie zainteresuje, opuszczają witrynę. Tym czymś może być slogan reklamowy lub hasło marketingowe – duże, rzucające się w oczy, czytelne i nawiązujące w jakiś sposób do działalności oraz oferty firmy. Jeżeli hasło jest chwytliwe, to może stanowić dobry punkt zaczepiania w celu zatrzymania użytkownika na stronie firmowej.
+Użytkownicy Internetu [przeglądają strony WWW powierzchownie](https://www.ecopywriting.pl/blog/jak-sie-czyta-w-internecie/) – jeżeli coś ich szybko nie zainteresuje, opuszczają witrynę. Tym czymś może być slogan reklamowy lub hasło marketingowe – duże, rzucające się w oczy, czytelne i nawiązujące w jakiś sposób do działalności oraz oferty firmy. Jeżeli hasło jest chwytliwe, to może stanowić dobry punkt zaczepiania w celu zatrzymania użytkownika na stronie firmowej.
 
 ## 2. Opowiedz historię
 
@@ -32,7 +32,7 @@ Posługuj się hasłami, sięgaj po fakty i liczby, używaj jak najkrótszych zd
 
 ## 6. Podkreśl misję i wartości firmy
 
-Ciekawą i skuteczna praktyką jest przygotowanie kilku akapitów opisujących misję firmy i ideały, które przyświecają jej działalności. Dlaczego? Ponieważ w ten sposób dajesz do zrozumienia, że Twoja firma patrzy szerzej niż tylko zyski finansowe osiągane tu i teraz. Sprzedajesz okulary? Podkreśl, że pragniesz pomóc poprawić wzrok jak największej liczbie osób. Oferujesz usługi sprzątające? Zaznacz, że dbasz o komfort przestrzeni. Prowadzisz firmę transportową? Opisz, jak ważnym elementem w łańcuchu dostaw jest Twoja firma. Spójrz, [jak to zrobił Sturbucks](http://www.starbucks.com/about-us/company-information/mission-statement) – prosto, zwięźle i inspirująco.
+Ciekawą i skuteczna praktyką jest przygotowanie kilku akapitów opisujących misję firmy i ideały, które przyświecają jej działalności. Dlaczego? Ponieważ w ten sposób dajesz do zrozumienia, że Twoja firma patrzy szerzej niż tylko zyski finansowe osiągane tu i teraz. Sprzedajesz okulary? Podkreśl, że pragniesz pomóc poprawić wzrok jak największej liczbie osób. Oferujesz usługi sprzątające? Zaznacz, że dbasz o komfort przestrzeni. Prowadzisz firmę transportową? Opisz, jak ważnym elementem w łańcuchu dostaw jest Twoja firma. Spójrz, [jak to zrobił Sturbucks](https://www.starbucks.com/about-us/company-information/mission-statement) – prosto, zwięźle i inspirująco.
 
 ## 7. Sięgnij po perswazyjny język korzyści
 

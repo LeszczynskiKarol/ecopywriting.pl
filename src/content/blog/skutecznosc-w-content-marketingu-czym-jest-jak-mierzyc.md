@@ -6,7 +6,7 @@ author: "Franciszek Budzbon"
 readingTime: 7
 ---
 
-**Zdajesz sobie sprawę, że odpowiednio przygotowana i sformułowana treść to potężna siła w dzisiejszym marketingu. Dobrze wiesz,** [**dlaczego warto inwestować w content marketing**](http://www.blog.ecopywriting.pl/7-powodow-dla-ktorych-warto-inwestowac-w-content-marketing/)**. O ile jest skuteczny, przynosi wymierne zyski i korzyści wizerunkowe. Pojawia się jednak pytanie: jak je zmierzyć? Jak zbadać skuteczność działań content marketingowych? W niniejszym wpisie postaram się omówić tę kwestię, zastanawiając się, czym jest skuteczność w content marketingu, jak ją osiągnąć i w jaki sposób ją mierzyć. Do dzieła!**
+**Zdajesz sobie sprawę, że odpowiednio przygotowana i sformułowana treść to potężna siła w dzisiejszym marketingu. Dobrze wiesz,** [**dlaczego warto inwestować w content marketing**](https://www.ecopywriting.pl/blog/7-powodow-dla-ktorych-warto-inwestowac-w-content-marketing/)**. O ile jest skuteczny, przynosi wymierne zyski i korzyści wizerunkowe. Pojawia się jednak pytanie: jak je zmierzyć? Jak zbadać skuteczność działań content marketingowych? W niniejszym wpisie postaram się omówić tę kwestię, zastanawiając się, czym jest skuteczność w content marketingu, jak ją osiągnąć i w jaki sposób ją mierzyć. Do dzieła!**
 
 ## Co można zmierzyć
 
@@ -16,7 +16,7 @@ W porównaniu z działaniami reklamowymi i sprzedażowymi określenie skuteczno�
 - konwersja;
 - reakcja mediów.
 
-Budując zainteresowanie internautów wokół jakiegoś projektu i próbując zdobyć uwagę grupy docelowej, zwracasz uwagę na wygenerowany ruch, jego źródła, kliknięcia, czas spędzony na stronie itp. Gdy masz konkretny cel, np. chcesz za pomocą artykułu sprzedać zagraniczną wycieczkę – sprawdzasz konwersję. Jeśli działasz zaś jako duża, istotna marka inwestująca duże sumy w PR czy CSR, interesują Cię przede wszystkim głosy mediów, reakcje na wpis czy artykuł. Dlatego oceniając, jak skuteczny jest content marketing lub [copywriting](http://www.ecopywriting.pl), należy uwzględnić punkt widzenia. Pora wskazać, w jaki sposób mierzone są kwestie ruchu, konwersji i reakcji mediów.
+Budując zainteresowanie internautów wokół jakiegoś projektu i próbując zdobyć uwagę grupy docelowej, zwracasz uwagę na wygenerowany ruch, jego źródła, kliknięcia, czas spędzony na stronie itp. Gdy masz konkretny cel, np. chcesz za pomocą artykułu sprzedać zagraniczną wycieczkę – sprawdzasz konwersję. Jeśli działasz zaś jako duża, istotna marka inwestująca duże sumy w PR czy CSR, interesują Cię przede wszystkim głosy mediów, reakcje na wpis czy artykuł. Dlatego oceniając, jak skuteczny jest content marketing lub [copywriting](https://www.ecopywriting.pl), należy uwzględnić punkt widzenia. Pora wskazać, w jaki sposób mierzone są kwestie ruchu, konwersji i reakcji mediów.
 
 ## Klik, klik, czyli jak chodzi się po naszym tekście
 
@@ -48,9 +48,9 @@ Pojęcie konwersji pojawia się zawsze, gdy dyskusja krąży wokół skutecznoś
 
 Miarą konwersji jest współczynnik konwersji, czyli liczba (wyrażona w procentach) podjętych działań podzielona przez liczbę odsłon strony. Umownie – przygotujesz treść, która zawiera możliwość zakupu produktu poprzez kliknięcie. Przeczyta ją 100 osób, a 30 z nich podejmie to działanie, czyli zamówi produkt. Współczynnik konwersji wynosi zatem 30%. To samo dotyczy zapisów do newslettera, udostępnień, wypełnienia ankiety czy wszelkich innych działań, które zostawiają po sobie jakiś mierzalny ślad.
 
-Jak uzyskać konwersję, pisząc artykuł? Cóż, to kwestia kolejnych rozważań, o których pisaliśmy już wielokrotnie. Skuteczne teksty bazują na wyrazistych emocjach, obrazowych przykładach, ciekawych historiach, ale także korzyściach, jakie wynikają z praktycznego zastosowania produktu lub usługi. Stworzenie skutecznej treści wbrew pozorom nie jest oczywiste ani łatwe i wymaga doświadczenia oraz nieustannego rozwoju. Kiedyś, na innym branżowym blogu, mając to na myśli, zatytułowałem wpis [„bądź copywriterem – nie pisz jak copywriter”](http://www.content-blog.pl/badz-copywriterem-nie-pisz-jak-copywriter/). Swoją drogą, jeśli klikniesz w hiperłącze obok, wygenerujesz ruch typu refferal, do czego serdecznie zapraszam. Taki przykład… 🙂
+Jak uzyskać konwersję, pisząc artykuł? Cóż, to kwestia kolejnych rozważań, o których pisaliśmy już wielokrotnie. Skuteczne teksty bazują na wyrazistych emocjach, obrazowych przykładach, ciekawych historiach, ale także korzyściach, jakie wynikają z praktycznego zastosowania produktu lub usługi. Stworzenie skutecznej treści wbrew pozorom nie jest oczywiste ani łatwe i wymaga doświadczenia oraz nieustannego rozwoju. Kiedyś, na innym branżowym blogu, mając to na myśli, zatytułowałem wpis [„bądź copywriterem – nie pisz jak copywriter”](https://www.content-blog.pl/badz-copywriterem-nie-pisz-jak-copywriter/). Swoją drogą, jeśli klikniesz w hiperłącze obok, wygenerujesz ruch typu refferal, do czego serdecznie zapraszam. Taki przykład… 🙂
 
-Zaangażowanie odbiorców treści mierzy się za pomocą różnych narzędzi – nie tylko Google Analitycs, choć oczywiście usługa Google jest znakomita i niemal kompletna. Ciekawa jest także usługa [HotJar](http://www.hotjar.com/) – generuje raporty w postaci „mapy cieplnej”, na której widać, gdzie najczęściej najeżdżali i klikali myszką czytelnicy. Naprawdę, w Internecie można zbadać wszystko. Potrzeba jedynie czasu, wiedzy i pieniędzy. Jeśli jednak klient jest wymagający, a zlecenie odpowiednio opłacone, warto wykraczać poza standardowe rozwiązania i metody. Inne przydatne narzędzia do badania konwersji to m.in. Mousestats, Landingi, Yandex Metrica oraz CrazyEgg.
+Zaangażowanie odbiorców treści mierzy się za pomocą różnych narzędzi – nie tylko Google Analitycs, choć oczywiście usługa Google jest znakomita i niemal kompletna. Ciekawa jest także usługa [HotJar](https://www.hotjar.com/) – generuje raporty w postaci „mapy cieplnej”, na której widać, gdzie najczęściej najeżdżali i klikali myszką czytelnicy. Naprawdę, w Internecie można zbadać wszystko. Potrzeba jedynie czasu, wiedzy i pieniędzy. Jeśli jednak klient jest wymagający, a zlecenie odpowiednio opłacone, warto wykraczać poza standardowe rozwiązania i metody. Inne przydatne narzędzia do badania konwersji to m.in. Mousestats, Landingi, Yandex Metrica oraz CrazyEgg.
 
 ## Media czytają
 
@@ -58,7 +58,7 @@ Dzisiejsze dziennikarstwo w dużej mierze opiera się o źródła internetowe. S
 
 Strategie content marketingowe szczególnie w przypadku firm działających na dużą skalę muszą uwzględniać nie tylko zaangażowanie potencjalnych klientów i zwykłych użytkowników, ale właśnie mediów. Markę działającą na giełdzie czy będącą potentatem branżowym prawdopodobnie bardziej interesuje liczba artykułów w mediach niż źródła ruchu na stronie. Najwięksi zawsze patrzą na wszystkie konteksty i biorą pod uwagę wszystkie statystyki, dlatego utrzymują pozycję liderów.
 
-Monitoring mediów jest więc działaniem, które dotyczy treści pisanej przez copywriterów i tworzonej przez content marketerów. Podstawowym narzędziem wydaje się Google Alert – na więcej możesz liczyć dzięki profesjonalnym usługom w rodzaju [Brand24](http://www.brand24.com/). Nieprzypadkowo istnieją na rynku też tak rozbudowane firmy jak agencja Press Service.
+Monitoring mediów jest więc działaniem, które dotyczy treści pisanej przez copywriterów i tworzonej przez content marketerów. Podstawowym narzędziem wydaje się Google Alert – na więcej możesz liczyć dzięki profesjonalnym usługom w rodzaju [Brand24](https://www.brand24.com/). Nieprzypadkowo istnieją na rynku też tak rozbudowane firmy jak agencja Press Service.
 
 ## Przechodząc do podsumowania
 

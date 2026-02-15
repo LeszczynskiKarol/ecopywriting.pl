@@ -8,8 +8,6 @@ readingTime: 8
 
 **Kiedyś pisanie tekstów zapleczowych było dla mnie żmudnym i niezbyt ciekawym zajęciem. „Pisać dwadzieścia dobrych tekstów na ten sam temat? W kółko to samo i jeszcze ma być ciekawie?” – myślałem, zmuszając się do siedzenia przed monitorem. Dziś teksty zapleczowe to czysta przyjemność, której oddaje się z radością.Jaki jest mój sekret? Po prostu nauczyłem się, jak je pisać i na ile je wyceniać, aby cena była zadowalająca zarówno dla klienta, jak i dla mnie.**
 
-## [*Zamów teraz skuteczne teksty zapleczowe w korzystnej cenie*](http://www.ecopywriting.pl/uslugi/zapleczowe.html)
-
 **W niniejszym artykule chciałbym podzielić się swoją wiedzą i pokazać Ci:**
 
 - czym jest i jaką funkcję pełni tekst zapleczowy;
@@ -35,7 +33,7 @@ Jeśli już wiesz, jaka jest rola tekstów zapleczowych i gdzie się je publikuj
 - rozwinięcie (kilka akapitów);
 - zakończenie (1 akapit, kilka zdań).
 
-Taki układ sprawia, że artykuł staje się czytelny i przyjemny w lekturze. Warto mieć to na uwadze, bo [internauci są wymagającymi czytelnikami](http://www.blog.ecopywriting.pl/jak-sie-czyta-w-internecie/).
+Taki układ sprawia, że artykuł staje się czytelny i przyjemny w lekturze. Warto mieć to na uwadze, bo [internauci są wymagającymi czytelnikami](https://www.ecopywriting.pl/blog/jak-sie-czyta-w-internecie/).
 
 Wstęp powinien być krótki – 2, 3 zdania spokojnie wystarczą – oraz napisany pogrubioną czcionką, co sprzyja przejrzystości artykułu. Zasygnalizuj w nim, **jaki temat poruszasz, jakie problemy rozwiązujesz w tekście**, jaką ma on wartość itd. We wstępie postaraj się również nakłonić użytkownika do dalszej lektury.
 
@@ -61,14 +59,14 @@ Główną rolą zaplecza jest linkowanie do strony docelowej. Jeżeli więc odno
 
 Co jest najważniejsze w linkowaniu na zapleczu? To, **aby odnośniki do innych stron wyglądały naturalnie**. Doskonale byłoby, gdyby bezpośrednio odnosiły się do treści i w logicznym ciągu wskazywały użytkownikowi pomocną z jego punktu widzenia witrynę.
 
-- **Prawidłowo umieszczony link:** *Jeśli nie wiesz, jak napisać CV, przeczytaj poniższy artykuł, a na pewno skutecznie odpowiesz na wybrane **ogłoszenia o pracę**.*
-- **Błędnie umieszczony linki:** *Pisanie CV to trudne zadanie, jednak można się z nim uporać **ogłoszenia o pracę** przy odpowiednim podejściu.*
+- **Prawidłowo umieszczony link:** _Jeśli nie wiesz, jak napisać CV, przeczytaj poniższy artykuł, a na pewno skutecznie odpowiesz na wybrane **ogłoszenia o pracę**._
+- **Błędnie umieszczony linki:** _Pisanie CV to trudne zadanie, jednak można się z nim uporać **ogłoszenia o pracę** przy odpowiednim podejściu._
 
 Bezsensowne umieszczanie linków i upychanie słów kluczowych, tak jak w drugim przykładzie, grozi karą od Google, dlatego należy się tego wystrzegać i postępować tak jak w pierwszym przykładzie.
 
 Pamiętaj, aby **stosować różne anchory i dywersyfikować teksty odnośników**, czyli
 
-używać nie tylko słów kluczowych, na które jest pozycjonowana strona, bo wygląda to sztucznie, ale też innych fraz. Czasami warto dla odmiany umieścić link z samym adresem URL do witryny docelowej (http://www.nazwastrony.pl), a innym razem z tekstem „zobacz tu” lub „więcej na tej stronie”. Takie linkowanie jest naturalne i zmniejsza szanse, że zaplecze zostanie wykryte.
+używać nie tylko słów kluczowych, na które jest pozycjonowana strona, bo wygląda to sztucznie, ale też innych fraz. Czasami warto dla odmiany umieścić link z samym adresem URL do witryny docelowej (https://www.nazwastrony.pl), a innym razem z tekstem „zobacz tu” lub „więcej na tej stronie”. Takie linkowanie jest naturalne i zmniejsza szanse, że zaplecze zostanie wykryte.
 
 ## Fachowy artykuł tematyczny a tekst zapleczowy
 
