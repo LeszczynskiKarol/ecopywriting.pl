@@ -1,9 +1,11 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://www.ecopywriting.pl',
+  site: "https://www.ecopywriting.pl",
   compressHTML: true,
   build: {
-    inlineStylesheets: 'auto'
-  }
+    inlineStylesheets: "auto",
+  },
+  integrations: [sitemap()],
 });
