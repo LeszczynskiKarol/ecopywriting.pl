@@ -1,6 +1,6 @@
 ---
 title: "Ebook jako narzędzie content marketingowe"
-description: "Dobry ebook jest jak zabytkowy samochód – wymaga inwestycji i poświęcenia wielu długich dni, a nawet miesięcy, ale po"
+description: "Ebook jako narzędzie content marketingowe — kiedy się opłaca, jak go zaplanować, ile kosztuje, jak go dystrybuować. Praktyczny przewodnik krok po kroku."
 date: 2015-09-15T21:00:41+00:00
 author: "Karol Leszczyński"
 readingTime: 4

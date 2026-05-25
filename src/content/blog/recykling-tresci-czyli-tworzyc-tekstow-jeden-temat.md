@@ -1,6 +1,6 @@
 ---
 title: "Recykling treści, czyli jak tworzyć wiele tekstów na jeden temat"
-description: "Przygotowując regularnie treść na blog, do serwisu internetowego lub na jakąkolwiek inną stronę, prędzej czy później zauważysz pewną powtarzalność"
+description: "Recykling treści — jak z jednego tematu wycisnąć wiele tekstów, nie wpadając w autoduplikat. Techniki repurposingu dla blogerów i agencji."
 date: 2017-01-11T19:04:47+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

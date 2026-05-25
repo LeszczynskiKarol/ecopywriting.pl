@@ -1,6 +1,6 @@
 ---
 title: "Słowa kluczowe w SEO copywritingu – poradnik, jak stosować"
-description: "Wydaje Ci się, że o słowach kluczowych wiesz już wszystko? W pierwszym akapicie ośmielę się nie zgodzić z Twoim"
+description: "Słowa kluczowe w SEO copywritingu — jak je dobierać, gdzie umieszczać, jak unikać kanibalizacji i nadoptymalizacji. Poradnik krok po kroku."
 date: 2017-07-27T10:33:41+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

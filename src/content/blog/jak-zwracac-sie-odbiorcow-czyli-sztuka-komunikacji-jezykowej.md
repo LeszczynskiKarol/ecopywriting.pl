@@ -1,6 +1,6 @@
 ---
 title: "Jak zwracać się do odbiorców, czyli sztuka komunikacji językowej"
-description: "Jako copywriter poszukujący informacji na temat naszego fachu surfujesz po Internecie, trafiasz tutaj i… no właśnie. Zaczynamy rozmawiać –"
+description: "Jak zwracać się do odbiorców w tekstach — Ty czy Państwo, ton głosu, dopasowanie do persony, język branżowy. Sztuka komunikacji w copywritingu."
 date: 2016-08-29T14:39:20+00:00
 author: "Karol Leszczyński"
 readingTime: 5

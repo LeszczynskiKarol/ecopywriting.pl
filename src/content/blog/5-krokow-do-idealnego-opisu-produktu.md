@@ -1,6 +1,6 @@
 ---
 title: "5 kroków do idealnego opisu produktu"
-description: "Dlaczego powinno się inwestować w oryginalne opisy produktów? Korzyści są szerokie, gdyż dobrze napisany i niepowtarzalny opis produktu z"
+description: "5 kroków do napisania opisu produktu, który sprzedaje i wspiera SEO — grupa docelowa, korzyści, emocje, struktura, słowa kluczowe. Konkretny przewodnik."
 date: 2015-08-05T17:21:40+00:00
 author: "Karol Leszczyński"
 readingTime: 3

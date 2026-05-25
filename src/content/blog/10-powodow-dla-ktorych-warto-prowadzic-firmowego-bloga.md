@@ -1,6 +1,6 @@
 ---
 title: "10 powodów, dla których warto prowadzić blog firmowy"
-description: "Skupiając się na działaniach marketingowych w Sieci, firmy często koncentrują swój wysiłek na działaniach w social media, zapominając o"
+description: "10 konkretnych powodów, dla których warto prowadzić firmowego bloga — SEO, autorytet w branży, lead generation, niższy koszt akwizycji. Dlaczego blog wciąż działa."
 date: 2015-08-31T14:10:01+00:00
 author: "Franciszek Budzbon"
 readingTime: 6

@@ -1,6 +1,6 @@
 ---
 title: "Copywriting Case Study #1 Domowy Kosmetyk"
-description: "Dzisiejszy wpis otwiera nowy cykl na naszym blogu, w którym przedstawiamy założenia, przebieg i efekty wdrażanych przez nas kampanii"
+description: "Case study kampanii copywriterskiej dla marki domowych kosmetyków — od briefu po efekty. Co działało, co poprawiliśmy w trakcie, jakie były wyniki."
 date: 2017-03-02T09:59:55+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

@@ -1,6 +1,6 @@
 ---
 title: "Jak się czyta w Internecie"
-description: "Rozczaruję cię: nie licz na to, że użytkownicy będą czytać twoje teksty. Nie, nie będą. Przynajmniej większość z nich"
+description: "Jak ludzie czytają w Internecie — F-pattern, skanowanie, długość akapitu, wpływ urządzenia. Co to znaczy dla copywritera i jak pisać pod ekran."
 date: 2015-07-18T07:00:08+00:00
 author: "Karol Leszczyński"
 readingTime: 2

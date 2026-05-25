@@ -1,6 +1,6 @@
 ---
 title: "8 wskazówek, jak pisać tekst na firmową stronę WWW"
-description: "Strona firmowa w Internecie to Twoja wizytówka. Zapewne dobrze o tym wiesz, dlatego zlecasz jej wykonanie fachowcom, dbasz o"
+description: "8 wskazówek, jak napisać teksty na firmową stronę WWW — od strony głównej, przez O nas, po opisy usług. Co zawrzeć, czego unikać, jak ułatwić zakup."
 date: 2015-11-23T20:34:57+00:00
 author: "Karol Leszczyński"
 readingTime: 4

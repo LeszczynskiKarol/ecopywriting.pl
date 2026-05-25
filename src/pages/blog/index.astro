@@ -48,6 +48,52 @@ const blogSchema = {
     </div>
   </section>
 
+  <section class="blog-intro" aria-label="O blogu eCopywriting.pl">
+    <div class="container-narrow">
+      <div class="blog-intro__body reveal">
+        <p>
+          Blog eCopywriting.pl prowadzimy od 2015 roku jako otwartą bazę wiedzy
+          dla osób, które na co dzień pracują z&nbsp;tekstem — copywriterów,
+          właścicieli sklepów internetowych, marketerów, redaktorów i&nbsp;agencji
+          contentowych. Pokazujemy, jak teksty wpływają na sprzedaż, jakie błędy
+          najczęściej kosztują markę utratę zaufania i&nbsp;jak budować
+          systematyczną strategię contentową, która generuje ruch organiczny
+          przez lata.
+        </p>
+        <p>
+          Publikujemy trzy rodzaje artykułów. <strong>Poradniki praktyczne</strong>{' '}
+          — konkretne checklisty i&nbsp;procesy, które można wdrożyć od razu
+          (jak napisać opis produktu, jak zaplanować strategię contentową,
+          jak pisać teksty sprzedażowe). <strong>Analizy i&nbsp;case studies</strong>{' '}
+          — co działa w&nbsp;copywritingu, dlaczego niektóre nagłówki przyciągają
+          a&nbsp;inne nie, jak mózg odbiorcy reaguje na język reklamy.{' '}
+          <strong>Tematy zaawansowane</strong> — semiotyka języka reklamy,
+          neuromarketing, storytelling, AI w&nbsp;pisaniu — dla osób, które
+          przeszły już etap podstaw.
+        </p>
+        <p>
+          Za każdym wpisem stoi <strong>zespół eCopywriting.pl</strong> —
+          copywriterzy, redaktorzy i&nbsp;stratedzy contentowi z&nbsp;ponad
+          15-letnim doświadczeniem w&nbsp;branży. Każdy artykuł powstaje
+          z&nbsp;myślą o&nbsp;konkretnym problemie, z&nbsp;którym mierzą się nasi
+          klienci — od początkujących e-sklepów po duże agencje SEO szukające
+          nowych sposobów na produkcję contentu.
+        </p>
+        <p>
+          Jeśli szukasz informacji o&nbsp;konkretnym temacie, przejrzyj listę
+          poniżej — wpisy są uporządkowane od najnowszych. Tematy poruszane na
+          blogu: <a href="/uslugi/copywriting/">copywriting sprzedażowy</a>,{' '}
+          <a href="/uslugi/seo-copywriting/">SEO copywriting</a>,{' '}
+          <a href="/uslugi/opisy-produktow/">opisy produktów e-commerce</a>,{' '}
+          <a href="/uslugi/strategia-content-marketingowa/">strategia content marketingowa</a>,{' '}
+          <a href="/uslugi/ebooki/">tworzenie ebooków</a>, naming, storytelling,
+          AI&nbsp;w&nbsp;copywritingu, struktura artykułu blogowego, nagłówki,
+          social proof, AIDA, semantyka języka reklamy.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="blog-list" aria-label="Lista artykułów">
     <div class="container">
       <div class="blog-list__grid">
@@ -87,6 +133,43 @@ const blogSchema = {
   .blog-hero {
     padding: var(--space-16) 0 var(--space-8);
     border-bottom: 1px solid var(--rule-light);
+  }
+
+  .blog-intro {
+    padding: var(--space-10) 0 var(--space-6);
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .blog-intro__body {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .blog-intro__body p {
+    font-size: 1rem;
+    line-height: var(--lh-relaxed);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .blog-intro__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .blog-intro__body strong {
+    color: var(--ink-soft);
+    font-weight: var(--fw-medium);
+  }
+
+  .blog-intro__body a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--transition-fast);
+  }
+
+  .blog-intro__body a:hover {
+    color: var(--ink);
   }
 
   .blog-list {

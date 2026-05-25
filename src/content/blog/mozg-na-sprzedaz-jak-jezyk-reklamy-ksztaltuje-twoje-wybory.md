@@ -1,6 +1,6 @@
 ---
 title: "Mózg na sprzedaż. Jak język reklamy kształtuje Twoje wybory"
-description: "W sercu marketingu tkwi siła słów, które copywriter wykorzystuje do zachęcenia Cię do kupna produktów czy usług. Jakie mechanizmy"
+description: "Jak język reklamy wpływa na decyzje zakupowe — neuromarketing, heurystyki, słowa-wyzwalacze. Mechanizmy, które copywriter wykorzysta świadomie."
 date: 2023-11-27T18:37:42+00:00
 updated: 2023-11-27T23:30:22+00:00
 author: "Karol Leszczyński"

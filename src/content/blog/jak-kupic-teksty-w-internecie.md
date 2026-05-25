@@ -1,6 +1,6 @@
 ---
 title: "Jak kupić tekst w Internecie"
-description: "Obecnie bez odpowiedniego contentu trudno skutecznie wypromować stronę i markę w Internecie. Niezależnie od branży trzeba wziąć skądś teksty"
+description: "Jak kupić dobre teksty w Internecie — gdzie szukać, na co uważać, jaką cenę oferować, jak weryfikować jakość. Przewodnik dla zamawiających content."
 date: 2015-08-03T08:15:06+00:00
 author: "Franciszek Budzbon"
 readingTime: 3

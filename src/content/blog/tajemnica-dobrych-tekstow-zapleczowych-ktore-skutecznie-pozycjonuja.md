@@ -1,6 +1,6 @@
 ---
 title: "Tajemnica dobrych tekstów zapleczowych, które skutecznie pozycjonują"
-description: "Kiedyś pisanie tekstów zapleczowych było dla mnie żmudnym i niezbyt ciekawym zajęciem. „Pisać dwadzieścia dobrych tekstów na ten sam"
+description: "Jak pisać teksty zapleczowe, które realnie pozycjonują — unikalność, długość, struktura, anchor. Tajemnice skutecznego link-buildingu dzisiaj."
 date: 2015-08-27T10:29:55+00:00
 author: "Karol Leszczyński"
 readingTime: 8

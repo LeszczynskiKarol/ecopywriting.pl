@@ -1,6 +1,6 @@
 ---
 title: "Jak napisać opis produktu do sklepu internetowego, który sprzedaje i wspiera SEO"
-description: "Przygotowujesz opisy produktów w sklepie internetowym i zastanawiasz się, jak się za to zabrać? W niniejszym poradniku znajdziesz informacje"
+description: "Jak napisać opis produktu do sklepu internetowego, który sprzedaje i wspiera SEO — struktura, słowa kluczowe, język korzyści, długość. Pełny poradnik."
 date: 2020-04-17T08:47:02+00:00
 updated: 2023-10-04T06:26:14+00:00
 author: "Franciszek Budzbon"

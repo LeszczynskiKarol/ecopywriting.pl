@@ -1,6 +1,6 @@
 ---
 title: "Co to copywriting, kim jest copywriter"
-description: "Czy piekarz, ślusarz albo położna muszą wyjaśniać, czym się zajmują? Oczywiście, że nie, dlatego kiedy znowu mam mówić, kto"
+description: "Czym jest copywriting i kim tak naprawdę jest copywriter? Definicja zawodu, codzienne zadania, kompetencje i różnica między copywriterem a content writerem."
 date: 2015-07-22T20:13:18+00:00
 author: "Karol Leszczyński"
 readingTime: 4

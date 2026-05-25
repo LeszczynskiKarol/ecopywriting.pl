@@ -1,6 +1,6 @@
 ---
 title: "4 najważniejsze wnioski z raportu „Czas na content”"
-description: "Świadomość roli treści w marketingu rośnie. To dobra wiadomość; Stowarzyszenie Prasy Firmowej jest już Stowarzyszeniem Content Marketing, a zainteresowani"
+description: "4 najważniejsze wnioski z raportu Stowarzyszenia Content Marketing — co naprawdę zmienia się w polskim rynku treści i jakie kierunki warto obrać."
 date: 2015-07-27T11:43:38+00:00
 author: "Franciszek Budzbon"
 readingTime: 2

@@ -1,6 +1,6 @@
 ---
 title: "Piwo, telezakupy i copywriting, czyli kilka słów o znaczeniu treści w marketingu"
-description: "Tysiące różnych definicji marketingu można sprowadzić do podstawowego, najważniejszego zagadnienia: chodzi o działania zwiększające sprzedaż produktów lub usług. Niezbędnym"
+description: "Piwo, telezakupy i copywriting — co łączy te zjawiska? Esej o znaczeniu treści w marketingu i o tym, dlaczego słowa nadal sprzedają najlepiej."
 date: 2018-10-01T17:29:38+00:00
 updated: 2023-10-10T17:44:16+00:00
 author: "Franciszek Budzbon"

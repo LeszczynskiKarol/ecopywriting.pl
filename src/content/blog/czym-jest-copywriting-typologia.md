@@ -1,6 +1,6 @@
 ---
 title: "Czym jest copywriting – typologia"
-description: "Co to jest copywriting? Powiedzieć, że pisanie tekstów – to zbyt ogólne. Jak wobec tego podzielić dziedzinę, jaką jest"
+description: "Typologia copywritingu — reklamowy, sprzedażowy, SEO, technical, wizerunkowy. Jak podzielić dziedzinę i który rodzaj wybrać do swojego projektu."
 date: 2015-10-22T12:12:20+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

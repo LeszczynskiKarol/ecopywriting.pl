@@ -1,6 +1,6 @@
 ---
 title: "Social proof (społeczny dowód słuszności) w reklamie, marketingu i sprzedaży"
-description: "W tym artykule przeczytasz, czym jest social proof. Bo przecież tej informacji szukasz, prawda? W takim razie dowiedz się,"
+description: "Social proof — czym jest społeczny dowód słuszności i jak wykorzystać go w copywritingu. Opinie, case studies, liczby, autorytety. Z przykładami."
 date: 2018-11-26T11:26:56+00:00
 updated: 2023-10-04T06:59:03+00:00
 author: "Franciszek Budzbon"

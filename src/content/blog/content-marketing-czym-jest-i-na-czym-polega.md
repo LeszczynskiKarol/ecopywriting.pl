@@ -1,6 +1,6 @@
 ---
 title: "Content marketing – czym jest i na czym polega"
-description: "Za każdym razem, kiedy wchodzę na stronę WWW i widzę wyskakujący baner lub nachalną reklamę zajmującą pół witryny, od"
+description: "Czym jest content marketing i na czym polega? Definicja, cele, narzędzia oraz różnice między contentem a reklamą. Wstęp dla początkujących i marketerów."
 date: 2015-07-24T13:14:26+00:00
 author: "Karol Leszczyński"
 readingTime: 4

@@ -1,6 +1,6 @@
 ---
 title: "Dlaczego potrzebujesz dobrego copywritera"
-description: "Załóżmy, że masz do napisania jakieś teksty i zastanawiasz się, czy przygotować je samemu, czy wynająć copywritera. Myślisz sobie:"
+description: "Dlaczego warto wynająć copywritera zamiast pisać teksty samemu — czas, jakość, SEO, efekt sprzedażowy. Argumenty dla właścicieli firm i marketerów."
 date: 2015-10-07T11:01:28+00:00
 author: "Karol Leszczyński"
 readingTime: 5

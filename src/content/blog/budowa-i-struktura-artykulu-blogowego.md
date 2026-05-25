@@ -1,6 +1,6 @@
 ---
 title: "Budowa i struktura artykułu blogowego. Z jakich elementów się składa tekst na blog?"
-description: "Wydaje Ci się, że pisanie artykułu tematycznego na blog to formalność, z którą poradzisz sobie w mgnieniu oka? Dlaczego"
+description: "Jak zbudować artykuł blogowy, który czyta się od początku do końca — nagłówek, lead, struktura, wezwanie do działania. Kompletny przewodnik po strukturze."
 date: 2023-10-10T20:36:23+00:00
 updated: 2023-11-12T15:04:00+00:00
 author: "Karol Leszczyński"

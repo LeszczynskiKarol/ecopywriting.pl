@@ -1,6 +1,6 @@
 ---
 title: "Pisanie tekstu O nas, czyli misja i wizja Twojej firmy"
-description: "„Cel to wyzwanie, które musisz zrealizować” – w dobie wszechobecnego coachingu takie hasło tylko śmieszy? Spokojnie, mnie również. Pisanie"
+description: "Jak napisać tekst O nas — misja, wizja i historia firmy w sposób, który buduje zaufanie i sprzedaje. Wzorce, błędy, przykłady dobrego storytellingu."
 date: 2016-07-19T11:42:36+00:00
 author: "Franciszek Budzbon"
 readingTime: 7

@@ -1,6 +1,6 @@
 ---
 title: "7 powodów, dla których warto inwestować w content marketing"
-description: "Prowadzisz własny biznes i masz wątpliwości, czy warto zainwestować w content marketing? Nie orientujesz się, jakie właściwie korzyści daje"
+description: "7 powodów, dla których content marketing zwraca się lepiej niż reklama płatna — SEO, zaufanie, koszt akwizycji, długi tail. Argumenty dla właścicieli firm."
 date: 2015-09-08T10:10:12+00:00
 author: "Karol Leszczyński"
 readingTime: 3

@@ -1,6 +1,6 @@
 ---
 title: "6 błędów w treści w sklepach internetowych. Czego się wystrzegać, wypełniając stronę e-commerce tekstem?"
-description: "Czego unikać, wypełniając sklep internetowy tekstem? Poznaj 6 najczęstszych błędów, których warto się wystrzegać"
+description: "6 najczęstszych błędów w tekstach sklepów internetowych — kopiowanie opisów producenta, brak strategii, niewidoczne CTA. Sprawdź, jak się ich wystrzec."
 date: 2022-01-26T19:11:13+00:00
 updated: 2023-10-03T12:25:18+00:00
 author: "Karol Leszczyński"

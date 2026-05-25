@@ -1,6 +1,6 @@
 ---
 title: "Storytelling – historie i narracja w służbie Twojej marce"
-description: "Ludzie kochają ciekawe historie. Rozmawiają o nich w sklepie, emocjonują się korzystając z mediów, kreują możliwe zakończenia. Popularność tabloidów"
+description: "Storytelling w marketingu — jak budować narrację marki, by zapadała w pamięć i sprzedawała. Struktura, archetypy bohatera, przykłady polskich marek."
 date: 2016-06-03T06:12:06+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

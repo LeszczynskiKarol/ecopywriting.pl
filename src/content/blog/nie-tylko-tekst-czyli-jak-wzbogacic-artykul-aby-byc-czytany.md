@@ -1,6 +1,6 @@
 ---
 title: "Nie tylko tekst, czyli jak wzbogacić artykuł, żeby był czytany"
-description: "Jesteśmy wzrokowcami. Przynajmniej większość z nas, ale to wystarczy, aby visual content stał się ważną częścią skutecznej kampanii marketingowej"
+description: "Jak wzbogacić artykuł blogowy, by faktycznie był czytany — infografiki, cytaty, wideo, listy, tabele, screenshoty. Visual content w praktyce."
 date: 2015-08-22T19:34:15+00:00
 author: "Franciszek Budzbon"
 readingTime: 3

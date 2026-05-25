@@ -1,6 +1,6 @@
 ---
 title: "Jak wybrać domenę, uwzględniając aspekty kreatywne, techniczne i pozycjonujące"
-description: "Pomimo gwałtownego rozwoju mediów społecznościowych strona WWW wciąż pozostaje podstawą komunikacji praktycznie każdej firmy, organizacji czy inicjatywy. Jeżeli dopiero"
+description: "Jak wybrać dobrą domenę — aspekty kreatywne (zapamiętywalność), techniczne (długość, znaki) i SEO (frazy, wiek, historia). Praktyczny przewodnik."
 date: 2018-07-11T20:15:36+00:00
 author: "Franciszek Budzbon"
 readingTime: 8

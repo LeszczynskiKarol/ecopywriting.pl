@@ -225,11 +225,15 @@
   }
 
   // ═══════════════════════════════════════════
-  // Load GA4 (only when analytics consented)
-  // No GTM — using gtag.js directly
+  // Load GA4 — Consent Mode v2: load ALWAYS, even with denied consent.
+  // The gtag('consent', 'default', {analytics_storage: denied, ...}) set
+  // earlier means GA4 sends cookieless modeled pings until/unless the user
+  // grants explicit consent via the banner. This is the Google-blessed
+  // pattern: without these early pings, conversion modeling and audience
+  // attribution lose their baseline.
+  // No GTM — using gtag.js directly.
   // ═══════════════════════════════════════════
   function loadGA4(consent) {
-    if (!consent.analytics) return;
     if (document.getElementById('ga4-script')) return;
 
     var s = document.createElement('script');
@@ -300,6 +304,7 @@
     var c = { analytics: false, marketing: false };
     setConsent(c);
     updateGoogleConsent(c);
+    loadGA4(c);
     hideBanner();
   }
 
@@ -340,7 +345,9 @@
       updateGoogleConsent(consent);
       loadGA4(consent);
     } else {
-      // New visitor or expired consent — show banner
+      // New visitor or expired consent — load gtag.js with denied defaults
+      // (Consent Mode v2 sends cookieless modeled pings) and show the banner
+      loadGA4({ analytics: false, marketing: false });
       showBanner();
     }
 

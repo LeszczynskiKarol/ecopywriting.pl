@@ -1,6 +1,6 @@
 ---
 title: "Semantyka i semiotyka języka reklamy. Jak tworzyć skuteczne komunikaty dzięki narzędziom językowym?"
-description: "Jak kreować przekazy reklamowe, które poruszają, inspirują i przekonują? Zrozumienie znaczenia i percepcji słów przez odbiorców jest jedną z"
+description: "Semantyka i semiotyka w języku reklamy — jak słowa kształtują percepcję marki. Narzędzia językowe, które ożywiają komunikat i zwiększają skuteczność."
 date: 2023-11-14T19:59:56+00:00
 updated: 2023-11-27T23:22:09+00:00
 author: "Karol Leszczyński"

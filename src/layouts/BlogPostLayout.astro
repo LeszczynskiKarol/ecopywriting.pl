@@ -9,9 +9,13 @@ interface Props {
   author?: string;
   readingTime?: number;
   tags?: string[];
+  image?: string;
 }
 
-const { title, description = '', date, updated, author = 'Karol Leszczyński', readingTime, tags = [] } = Astro.props;
+const { title, description = '', date, updated, author = 'Karol Leszczyński', readingTime, tags = [], image } = Astro.props;
+const ogImage = image
+  ? (image.startsWith('http') ? image : new URL(image, 'https://www.ecopywriting.pl').href)
+  : 'https://www.ecopywriting.pl/og-default.png';
 
 const formattedDate = date.toLocaleDateString('pl-PL', {
   year: 'numeric',
@@ -31,15 +35,24 @@ const blogSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://www.ecopywriting.pl/#organization",
+      "name": "eCopywriting.pl",
+      "url": "https://www.ecopywriting.pl",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.ecopywriting.pl/og-default.png"
+      }
+    },
+    {
       "@type": "Article",
       "headline": title,
       "description": description,
+      "image": ogImage,
       "datePublished": date.toISOString(),
       ...(updated && { "dateModified": updated.toISOString() }),
       "author": {
-        "@type": "Person",
-        "name": author,
-        "url": "https://www.ecopywriting.pl"
+        "@id": "https://www.ecopywriting.pl/#organization"
       },
       "publisher": {
         "@id": "https://www.ecopywriting.pl/#organization"
@@ -67,6 +80,8 @@ const blogSchema = {
   description={description}
   schema={blogSchema}
   canonical={currentUrl}
+  ogImage={ogImage}
+  ogType="article"
 >
   <article class="blog-post">
     <div class="container-narrow">
@@ -85,8 +100,6 @@ const blogSchema = {
         <h1 class="blog-post__title">{title}</h1>
 
         <div class="blog-post__meta">
-          <span class="blog-post__author">{author}</span>
-          <span class="blog-post__meta-sep" aria-hidden="true"></span>
           <time datetime={date.toISOString()}>{formattedDate}</time>
           {formattedUpdated && (
             <>

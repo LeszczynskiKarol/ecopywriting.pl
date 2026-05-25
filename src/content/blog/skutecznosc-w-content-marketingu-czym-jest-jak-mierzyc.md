@@ -1,6 +1,6 @@
 ---
 title: "Skuteczność w content marketingu – czym jest, jak mierzyć"
-description: "Zdajesz sobie sprawę, że odpowiednio przygotowana i sformułowana treść to potężna siła w dzisiejszym marketingu. Dobrze wiesz, dlaczego warto"
+description: "Jak mierzyć skuteczność content marketingu — KPI, atrybucja, ścieżka zakupowa, narzędzia analityczne. Co naprawdę warto śledzić i jak interpretować dane."
 date: 2017-09-13T11:45:47+00:00
 author: "Franciszek Budzbon"
 readingTime: 7

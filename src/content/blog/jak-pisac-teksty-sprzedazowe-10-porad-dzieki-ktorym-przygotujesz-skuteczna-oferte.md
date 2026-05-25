@@ -1,6 +1,6 @@
 ---
 title: "Jak pisać teksty sprzedażowe – 10 porad, dzięki którym przygotujesz skuteczną ofertę"
-description: "Chcesz sprzedawać więcej, więc szukasz nowych odbiorców swoich produktów lub usług. Jak ich przekonać do skorzystania z Twojej oferty?"
+description: "Jak pisać teksty sprzedażowe, które konwertują — 10 sprawdzonych porad, od nagłówka po CTA. Sztuka tworzenia skutecznej oferty handlowej."
 date: 2020-04-15T17:20:37+00:00
 updated: 2023-10-04T06:34:48+00:00
 author: "Karol Leszczyński"

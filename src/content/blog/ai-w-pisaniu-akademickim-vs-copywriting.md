@@ -1,6 +1,6 @@
 ---
 title: "AI w pisaniu akademickim — co działa, a gdzie nadal wygrywa człowiek"
-description: "Praktyczne spojrzenie copywritera na narzędzia AI do generowania prac dyplomowych. Czym pisanie akademickie różni się od copywritingu, kiedy generator AI radzi sobie świetnie, a kiedy potrzebny jest człowiek. Konkretne wnioski."
+description: "Praktyczne spojrzenie copywritera na narzędzia AI do prac dyplomowych. Czym pisanie akademickie różni się od copywritingu i kiedy generator AI radzi sobie świetnie."
 date: 2026-05-22
 author: "Karol Leszczyński"
 readingTime: 11

@@ -1,6 +1,6 @@
 ---
 title: "Optymalizacja treści pod SEO – skuteczne pozycjonowanie i wysokie pozycje dzięki copywritingowi"
-description: "Publikując treść, chcesz, żeby dotarła do jak największy liczby odbiorców – niezależnie od tego, czy mowa o wpisie blogowym,"
+description: "Jak optymalizować treści pod SEO — dobór fraz, gęstość, struktura nagłówków, linkowanie wewnętrzne, długość. SEO copywriting w praktyce."
 date: 2017-11-16T14:25:19+00:00
 author: "Karol Leszczyński"
 readingTime: 6

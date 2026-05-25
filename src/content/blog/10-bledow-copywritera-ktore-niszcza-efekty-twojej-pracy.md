@@ -1,6 +1,6 @@
 ---
 title: "10 błędów copywritera, które niszczą efekty Twojej pracy"
-description: "Copywriterko, copywriterze! Nie jesteś ideałem. Pisze to kolega po fachu, który mimo kolejnych lat w branży nadal popełnia wiele"
+description: "10 błędów, które popełnia prawie każdy copywriter — od braku researchu, przez przesadną korektę, po ignorowanie persony klienta. Sprawdź, czy Ciebie też nie zgubiły."
 date: 2019-01-28T16:32:55+00:00
 updated: 2023-10-04T06:51:14+00:00
 author: "Franciszek Budzbon"

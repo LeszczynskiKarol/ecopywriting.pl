@@ -1,6 +1,6 @@
 ---
 title: "Jak pisać treści, którymi czytelnicy będą się dzielić"
-description: "Tworzysz artykuł i publikujesz go w wybranym miejscu, np. na swoim blogu. Po kilku dniach zaglądasz do statystyk i"
+description: "Jak pisać treści, którymi czytelnicy chcą się dzielić — emocje, kontrowersje, użyteczność, format. Co sprawia, że artykuł staje się wiralowy."
 date: 2018-09-13T20:19:10+00:00
 updated: 2023-10-15T11:37:45+00:00
 author: "Franciszek Budzbon"

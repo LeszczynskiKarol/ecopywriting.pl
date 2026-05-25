@@ -1,0 +1,28 @@
+{
+  "Name": "ecopywriting-security-headers",
+  "Comment": "HSTS + nosniff + referrer-policy + frame-options",
+  "SecurityHeadersConfig": {
+    "StrictTransportSecurity": {
+      "Override": true,
+      "AccessControlMaxAgeSec": 31536000,
+      "IncludeSubdomains": true,
+      "Preload": true
+    },
+    "ContentTypeOptions": {
+      "Override": true
+    },
+    "ReferrerPolicy": {
+      "Override": true,
+      "ReferrerPolicy": "strict-origin-when-cross-origin"
+    },
+    "FrameOptions": {
+      "Override": true,
+      "FrameOption": "SAMEORIGIN"
+    },
+    "XSSProtection": {
+      "Override": true,
+      "Protection": true,
+      "ModeBlock": true
+    }
+  }
+}

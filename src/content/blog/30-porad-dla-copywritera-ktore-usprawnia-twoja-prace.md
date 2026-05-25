@@ -1,6 +1,6 @@
 ---
 title: "30 porad dla copywritera, które usprawnią Twoją pracę"
-description: "Daleko mi do doskonałości. Wiem, ile jeszcze przede mną, jak dużo mi brakuje do najlepszych copywriterów i jak wiele"
+description: "30 sprawdzonych porad dla copywritera — od warsztatu pisarskiego, przez organizację pracy, po negocjacje z klientem. Praktyczne rady z 15 lat pracy w branży."
 date: 2017-06-15T21:33:45+00:00
 author: "Karol Leszczyński"
 readingTime: 9

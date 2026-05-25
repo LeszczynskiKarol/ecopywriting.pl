@@ -1,6 +1,6 @@
 ---
 title: "Jak pisać skuteczne i ciekawe teksty na strony WWW"
-description: "Pisaliśmy już wiele tekstów poradnikowych o konkretnych zadaniach, które stoją przed nami – copywriterami. Być może poszukujesz jednak esencji,"
+description: "Jak pisać skuteczne, ciekawe teksty na stronę WWW — esencja warsztatu copywritera. Co odróżnia tekst, który sprzedaje, od tekstu, który nudzi."
 date: 2016-06-17T16:03:50+00:00
 author: "Karol Leszczyński"
 readingTime: 5

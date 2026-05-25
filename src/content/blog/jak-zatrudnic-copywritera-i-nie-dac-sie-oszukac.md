@@ -1,6 +1,6 @@
 ---
 title: "Jak zatrudnić copywritera i nie dać się oszukać"
-description: "Korzystanie z usług copywritera zajmującego się tworzeniem treści może przynieść Twojej marce wymierne korzyści. Jednak jak w każdej branży,"
+description: "Jak zatrudnić copywritera i nie dać się oszukać — gdzie szukać, jak weryfikować portfolio, czerwone flagi w briefie, modele rozliczeń. Checklist dla firm."
 date: 2015-08-13T13:13:48+00:00
 updated: 2023-11-07T14:44:37+00:00
 author: "Franciszek Budzbon"

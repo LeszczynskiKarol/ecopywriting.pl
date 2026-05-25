@@ -1,6 +1,6 @@
 ---
 title: "Typy i rodzaje nazw marek i firm stosowanych w namingu"
-description: "Wybór nazwy należy do najważniejszych elementów tworzenia marki czy zakładania firmy. Odzwierciedla ona charakter działalności i wpływa na postrzeganie"
+description: "Naming — typy i rodzaje nazw marek (deskryptywne, sugestywne, abstrakcyjne, akronimy). Jak wybrać, co działa w jakiej branży, czego unikać."
 date: 2023-12-05T18:45:14+00:00
 updated: 2023-11-30T17:35:47+00:00
 author: "Karol Leszczyński"

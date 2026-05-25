@@ -1,6 +1,6 @@
 ---
 title: "Rola, funkcje i znaczenie nagłówków w tekście. Dlaczego są istotne?"
-description: "Przywiązywanie wagi jedynie do treści artykułów to błędne założenie, które może kosztować Cię utratę cennych odbiorców. Równie ważną rolę"
+description: "Rola i funkcje nagłówków w tekście — dlaczego H1, H2, H3 są krytyczne dla UX, SEO i czytelności. Jak je pisać i strukturyzować w artykule."
 date: 2023-11-30T15:39:22+00:00
 updated: 2023-12-01T14:40:40+00:00
 author: "Karol Leszczyński"

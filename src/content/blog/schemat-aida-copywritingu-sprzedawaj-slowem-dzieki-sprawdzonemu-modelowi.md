@@ -1,6 +1,6 @@
 ---
 title: "Schemat AIDA w copywritingu – sprzedawaj słowem dzięki sprawdzonemu modelowi"
-description: "Sprzedać za pomocą słów – zadanie trudne i wymagające wiele wysiłku, z czego zapewne zdajesz sobie sprawę. Stworzenie skutecznego"
+description: "Model AIDA w copywritingu — uwaga, zainteresowanie, pragnienie, działanie. Jak stosować klasyczny schemat sprzedaży słowem dzisiaj. Z przykładami."
 date: 2017-03-16T10:44:20+00:00
 author: "Karol Leszczyński"
 readingTime: 5

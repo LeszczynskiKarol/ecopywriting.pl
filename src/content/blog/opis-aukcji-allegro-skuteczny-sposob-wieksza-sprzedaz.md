@@ -1,6 +1,6 @@
 ---
 title: "Opis aukcji Allegro – skuteczny sposób na większą sprzedaż"
-description: "Chcesz poprawić sprzedaż na Allegro? Dowiedz się, jak przygotować opis aukcji, który będzie czytelny dla odbiorcy i zwiększy szansę"
+description: "Jak napisać opis aukcji na Allegro, który zwiększa sprzedaż — struktura, język korzyści, słowa kluczowe, formatowanie. Konkretne wskazówki dla sprzedawców."
 date: 2017-01-05T15:45:20+00:00
 author: "Franciszek Budzbon"
 readingTime: 4

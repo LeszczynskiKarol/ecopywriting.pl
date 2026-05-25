@@ -1,6 +1,6 @@
 ---
 title: "Wszystko, co chcesz wiedzieć o artykule sponsorowanym"
-description: "Artykuły sponsorowane na stałe zagościły w Internecie i na łamach prasy. Nakłady na tę formę promocji są coraz większe,"
+description: "Artykuł sponsorowany — wszystko, co musisz wiedzieć przed publikacją lub zleceniem. Format, koszt, mierzenie efektów, zasady oznaczania, dobre praktyki."
 date: 2015-09-23T07:26:16+00:00
 author: "Karol Leszczyński"
 readingTime: 8

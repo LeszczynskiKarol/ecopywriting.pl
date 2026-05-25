@@ -1,6 +1,6 @@
 ---
 title: "7 źródeł inspiracji copywritera"
-description: "Musisz przygotować paczkę tekstów – nieważne, czy zapleczowych, czy specjalistycznych – na określony temat, ale brak Ci weny i"
+description: "7 sprawdzonych źródeł inspiracji dla copywritera, gdy brakuje weny — od analizy konkurencji, przez fora i grupy, po techniki kreatywne. Konkretne rady."
 date: 2015-10-14T18:49:12+00:00
 author: "Franciszek Budzbon"
 readingTime: 3

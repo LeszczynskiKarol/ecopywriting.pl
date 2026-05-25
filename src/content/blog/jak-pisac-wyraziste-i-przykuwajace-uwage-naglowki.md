@@ -1,6 +1,6 @@
 ---
 title: "Jak tworzyć wyraziste i przykuwające uwagę nagłówki"
-description: "O tym, czy odbiorca zacznie czytać tekst, decydują pierwsze sekundy. Szczególnie wyraźnie widać to w Internecie, gdzie większość użytkowników"
+description: "Jak pisać nagłówki, które przyciągają uwagę i zwiększają CTR — formuły 4U, BAB, liczby, pytania. Schematy sprawdzone na milionach kliknięć."
 date: 2015-08-17T16:12:38+00:00
 author: "Karol Leszczyński"
 readingTime: 8

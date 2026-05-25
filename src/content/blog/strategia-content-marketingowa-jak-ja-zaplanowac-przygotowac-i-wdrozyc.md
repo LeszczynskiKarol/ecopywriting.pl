@@ -1,6 +1,6 @@
 ---
 title: "Strategia content marketingowa – jak ją zaplanować, przygotować i wdrożyć"
-description: "Aby działania content marketingowe przynosiły określone profity, powinny być precyzyjnie zaplanowane. W tym wpisie podpowiadamy, jak wdrażać przemyślaną i"
+description: "Jak zaplanować i wdrożyć strategię content marketingową — audyt, persony, mapa treści, kalendarz, KPI, dystrybucja. Pełny framework dla firm i agencji."
 date: 2020-09-02T12:36:02+00:00
 updated: 2023-10-02T11:36:37+00:00
 author: "Franciszek Budzbon"

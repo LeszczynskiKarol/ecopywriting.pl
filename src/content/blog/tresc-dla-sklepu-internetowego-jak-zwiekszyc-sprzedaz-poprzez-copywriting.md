@@ -1,6 +1,6 @@
 ---
 title: "Treść dla sklepu internetowego. Jak zwiększyć sprzedaż poprzez copywriting"
-description: "Przyszłość handlu przeniesionego głównie do sfery internetowej jest niekwestionowanie perspektywiczna. Już dziś wiele przedsiębiorstw rezygnuje ze sklepów stacjonarnych na"
+description: "Jak treści zwiększają sprzedaż w sklepie internetowym — opisy kategorii, produktów, blog, FAQ. Copywriting e-commerce, który konwertuje. Z przykładami."
 date: 2016-01-12T10:34:18+00:00
 author: "Franciszek Budzbon"
 readingTime: 3
