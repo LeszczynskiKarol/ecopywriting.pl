@@ -47,7 +47,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer__bottom">
-      <span>&copy; {year} eCopywriting.pl</span>
+      <span>&copy; {year} eCopywriting.pl · Projekt i wykonanie: <a href="https://www.karol-leszczynski.pl/" rel="author" class="footer__credit">Karol Leszczyński</a></span>
       <div class="footer__legal">
         <a href="/polityka-prywatnosci/">Polityka prywatności</a>
         <a href="#" onclick="openCookieSettings(); return false;">Ustawienia cookies</a>
@@ -164,6 +164,15 @@ const year = new Date().getFullYear();
   }
 
   .footer__legal a:hover {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer__credit {
+    color: rgba(255,255,255,0.3);
+    transition: color var(--transition-fast);
+  }
+
+  .footer__credit:hover {
     color: rgba(255,255,255,0.6);
   }
 </style>
