@@ -1,0 +1,10 @@
+# eCopywriting.pl
+
+> Usługi copywriterskie: teksty na strony, ebooki na zamówienie, e-mail marketing i opisy produktów.
+
+## Najważniejsze strony
+
+- [Strona główna](https://www.ecopywriting.pl/)
+- [Ebooki na zamówienie](https://www.ecopywriting.pl/uslugi/ebooki/): pisanie i formatowanie ebooków
+- [Teksty na strony](https://www.ecopywriting.pl/uslugi/teksty-na-strone/)
+- [E-mail marketing](https://www.ecopywriting.pl/uslugi/email-marketing/)
