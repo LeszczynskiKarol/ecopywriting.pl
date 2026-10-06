@@ -3,7 +3,11 @@
 // Przetwarza formularz kontaktowy i wysyła email przez SES
 
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  GetObjectCommand,
+  PutObjectCommand,
+} from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const REGION = process.env.AWS_REGION || "eu-north-1";
@@ -12,7 +16,12 @@ const ses = new SESClient({ region: SES_REGION });
 const s3 = new S3Client({ region: REGION });
 
 const BUCKET = process.env.BUCKET_NAME || "ecopywriting-attachments";
-const TO_EMAIL = "kontakt@ecopywriting.pl";
+// Każdy adres dostaje OSOBNY e-mail — odbicie u jednego dostawcy
+// (np. RBL aftermarket.pl blokujący IP SES) nie może zabrać leada drugiemu.
+const TO_EMAILS = [
+  "kontakt@ecopywriting.pl",
+  "karolleszczynskikorektor@gmail.com",
+];
 const FROM_EMAIL = "formularz@ecopywriting.pl";
 const FROM_NAME = "eCopywriting.pl";
 
@@ -84,6 +93,42 @@ export const handler = async (event) => {
         headers,
         body: JSON.stringify({ error: "Nieprawidłowy adres email" }),
       };
+    }
+
+    // Trwały zapis leada ZANIM cokolwiek pójdzie przez SES.
+    // Lekcja z 2026-09-11: e-mail odbił się na RBL aftermarket.pl i treść
+    // zapytania przepadła, bo nigdzie poza mailem nie była zapisana.
+    const leadId = `${new Date().toISOString().replace(/[:.]/g, "-")}-${Math.random().toString(36).slice(2, 8)}`;
+    const lead = {
+      leadId,
+      receivedAt: new Date().toISOString(),
+      name,
+      email,
+      phone,
+      company,
+      service,
+      budget,
+      message,
+      attachments: (attachments || []).map((a) => ({
+        key: a.key,
+        name: a.name,
+        size: a.size,
+      })),
+      origin,
+      ip: event.requestContext?.http?.sourceIp,
+    };
+    console.log("LEAD " + JSON.stringify(lead));
+    try {
+      await s3.send(
+        new PutObjectCommand({
+          Bucket: BUCKET,
+          Key: `leads/${leadId}.json`,
+          Body: JSON.stringify(lead, null, 2),
+          ContentType: "application/json",
+        }),
+      );
+    } catch (err) {
+      console.error("Lead S3 backup failed (continuing):", err);
     }
 
     // Generuj linki do pobrania załączników (ważne 7 dni)
@@ -213,22 +258,34 @@ export const handler = async (event) => {
 </body>
 </html>`;
 
-    const command = new SendEmailCommand({
-      Source: `${FROM_NAME} <${FROM_EMAIL}>`,
-      Destination: { ToAddresses: [TO_EMAIL] },
-      ReplyToAddresses: [email],
-      Message: {
-        Subject: {
-          Data: `Nowe zapytanie: ${name}${service ? " — " + service : ""}`,
-          Charset: "UTF-8",
-        },
-        Body: {
-          Html: { Data: htmlBody, Charset: "UTF-8" },
-        },
-      },
+    const subject = `Nowe zapytanie: ${name}${service ? " — " + service : ""}`;
+    const results = await Promise.allSettled(
+      TO_EMAILS.map((to) =>
+        ses.send(
+          new SendEmailCommand({
+            Source: `${FROM_NAME} <${FROM_EMAIL}>`,
+            Destination: { ToAddresses: [to] },
+            ReplyToAddresses: [email],
+            Message: {
+              Subject: { Data: subject, Charset: "UTF-8" },
+              Body: { Html: { Data: htmlBody, Charset: "UTF-8" } },
+            },
+          }),
+        ),
+      ),
+    );
+    results.forEach((r, i) => {
+      if (r.status === "fulfilled") {
+        console.log(`SES sent to ${TO_EMAILS[i]} messageId=${r.value?.MessageId} leadId=${leadId}`);
+      } else {
+        console.error(`SES FAILED to ${TO_EMAILS[i]} leadId=${leadId}:`, r.reason);
+      }
     });
-
-    await ses.send(command);
+    // Lead jest już zapisany w S3/CloudWatch, więc błąd SES nie może
+    // zwrócić klientowi 500 — dostałby komunikat o błędzie i odszedł.
+    if (results.every((r) => r.status === "rejected")) {
+      console.error("ALL SES sends failed for leadId=" + leadId);
+    }
 
     return {
       statusCode: 200,
